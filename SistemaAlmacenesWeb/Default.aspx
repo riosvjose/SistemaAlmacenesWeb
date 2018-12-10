@@ -104,7 +104,7 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-md-offset-3 col-md-4">
+                            <div class="col-md-offset-4 col-md-4">
                                 <script type="text/javascript" src="https://seal.thawte.com/getthawteseal?host_name=www.ucb.edu.bo&amp;size=S&amp;lang=es"></script>
                             </div>
                         </div>
@@ -113,10 +113,11 @@
                     <%--PIE--%>
                     <div id="authFooter">
                         <div class="row">
+                            <br />
                             <div class="col-xs-12">
                                 <div class="text-right">
-                                    <asp:Label ID="Label1" runat="server" Text="Version 2018.11 test" CssClass="text-info small"></asp:Label><br />
-                                    <asp:Label ID="Label2" runat="server" Text="Fecha Publicacion: 31/08/2018" CssClass="text-info small"></asp:Label>
+                                    <asp:Label ID="Label1" runat="server" Text="Version 2018.01 test" CssClass="text-info small"></asp:Label><br />
+                                    <asp:Label ID="Label2" runat="server" Text="Fecha Publicacion: 15/12/2018" CssClass="text-info small"></asp:Label>
                                 </div>
                             </div>
                         </div>
