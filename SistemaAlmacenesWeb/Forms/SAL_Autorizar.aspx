@@ -55,9 +55,12 @@
                                                             <asp:BoundField HeaderText="Nro"  />
                                                             <asp:BoundField HeaderText="Item" />
                                                             <asp:BoundField HeaderText="Cantidad" />
-                                                            <ItemTemplate>
-                                                                <asp:TextBox ID="TxtFecha" runat="server"></asp:TextBox>
-                                                            </ItemTemplate>
+                                                            <asp:TemplateField HeaderText="TextBox">
+                                                               <ItemTemplate>
+                                                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                               </ItemTemplate>
+                                                              </asp:TemplateField>
+                                                            <%--<asp:TextBox ID="TxtFecha" runat="server"></asp:TextBox>--%>
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" Text="Autorizar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>
