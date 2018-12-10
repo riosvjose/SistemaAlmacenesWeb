@@ -5,6 +5,7 @@ using System.Web;
 using System.Data;
 using nsGEN_OracleBD;
 using nsGEN_Mensajes;
+using nsGEN_VarSession;
 using nsGEN_Cadenas;
 using System.Collections;
 
@@ -19,6 +20,7 @@ namespace SistemaAlmacenesWeb
         GEN_OracleBD OracleBD = new GEN_OracleBD();
         GEN_Mensajes libMensajes = new GEN_Mensajes();
         GEN_Cadenas libCadenas = new GEN_Cadenas();
+        GEN_VarSession axVarSes = new GEN_VarSession();
         private string strSql = string.Empty;
         #endregion
 
@@ -90,15 +92,9 @@ namespace SistemaAlmacenesWeb
         public bool Insertar(bool blAsignarFuncionesPerfil, long lngNSPerfil, bool blObligarCambioPWD)
         {
             bool blOperacionCorrecta = false;
-            strSql = "insert into alm_marcas (num_sec_usuario, num_sec_persona, usuario, login, activo, fecha_vigencia, num_sec_usuario_reg) values";
-            strSql += " (alm_marcas_sec.nextval";
-           /* strSql += " , " + _numsecpersona.ToString();
-            strSql += " , '" + _usuario.Trim() + "'";
-            strSql += " , '" + _login.Trim().ToUpper() + "'";
-            strSql += " , " + _activo.ToString();
-            strSql += " , to_date('" + _fechavigencia.Trim() + "','dd/mm/rrrr')";*/
-            strSql += " , " + _numsecusuarioregistro.ToString();
-            strSql += " )";
+            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            strSql = "insert into alm_marcas (num_sec_marca, nombre, num_sec_usuario_reg) values";
+            strSql += " (alm_marcas_sec.nextval"+ _nombre+","+usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
