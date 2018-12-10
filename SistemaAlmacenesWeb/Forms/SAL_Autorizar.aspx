@@ -59,8 +59,7 @@
                                                                <ItemTemplate>
                                                                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                                                                </ItemTemplate>
-                                                              </asp:TemplateField>
-                                                            <%--<asp:TextBox ID="TxtFecha" runat="server"></asp:TextBox>--%>
+                                                            </asp:TemplateField>
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" Text="Autorizar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>
