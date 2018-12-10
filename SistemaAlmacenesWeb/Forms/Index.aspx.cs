@@ -45,11 +45,11 @@ namespace SistemaAlmacenes.Forms
         }
         protected void lbReportes_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_SAL_MenuSalidas.aspx");
+           // Response.Redirect("STRS_SAL_MenuSalidas.aspx");
         }
         protected void lbPedidos_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_TAR_MenuTareas.aspx"); 
+            Response.Redirect("STRS_TAR_MenuTareas.aspx"); 
         }
         protected void lbAutoriza_Click(object sender, EventArgs e)
         {

@@ -88,6 +88,21 @@
                                     </div>
                                 </li>
                                 <li>
+                                    <a class="" role="link" data-toggle="collapse" href="#collapseMArcas" aria-expanded="false" aria-controls="collapseProductos">
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i> Marcas
+                                    </a>
+                                    <div class="collapse" id="collapseMarcas">
+                                        <ul class="nav nav-second-level">
+                                            <li>
+                                                <asp:LinkButton ID="lnkbtnCrearMarca" runat="server" CausesValidation="false" OnClick="lnkbtnCrearMarca_Click">Añadir marca</asp:LinkButton>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton ID="lbnkbtnEliminarMarca" runat="server" CausesValidation="false" OnClick="lnkbtnEliminarMarca_Click">Eliminar marca</asp:LinkButton>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
                                     <a class="" role="link" data-toggle="collapse" href="#collapseProductos" aria-expanded="false" aria-controls="collapseProductos">
                                         <i class="fa fa-chevron-down" aria-hidden="true"></i> Productos
                                     </a>

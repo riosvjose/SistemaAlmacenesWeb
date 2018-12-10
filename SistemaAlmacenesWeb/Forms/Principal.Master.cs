@@ -61,6 +61,7 @@ namespace SistemaAlmacenes.Forms
         {
            Response.Redirect("SAL_Registrar.aspx");
         }
+
         protected void lnkbtnAutorizarSalida_Click(object sender, EventArgs e)
         {
             Response.Redirect("SAL_Autorizar.aspx");
@@ -70,26 +71,42 @@ namespace SistemaAlmacenes.Forms
         {
             //Response.Redirect("STRS_PROY_Administrar.aspx");
         }
+
         protected void lnkbtnModificarProducto_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_PROY_Reportes.aspx");
         }
+
         protected void lnkbtnEliminarProducto_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
         }
+
+        protected void lnkbtnCrearMarca_Click(object sender, EventArgs e)
+        {
+            //Response.Redirect("STRS_PROY_Administrar.aspx");
+        }
+
+        protected void lnkbtnEliminarMarca_Click(object sender, EventArgs e)
+        {
+            //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
+        }
+
         protected void lnkbtnReporte1_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
         }
+
         protected void lnkbtnReporte2_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
         }
+
         protected void lnkbtnReporte3_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
         }
+
         protected void lblSalir_Click(object sender, EventArgs e)
         {
             Response.Redirect("ALM_Salir.aspx");

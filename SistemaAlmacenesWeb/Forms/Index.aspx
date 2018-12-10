@@ -16,7 +16,7 @@
 		    </div>
 	    </asp:Panel>
     </div>
-    <div class="row">
+   <%--<div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Inicio</h1>
         </div>
@@ -127,5 +127,5 @@
                 <br /><br />
             </div>
         </div>
-    </div>
+    </div>--%>
 </asp:Content>

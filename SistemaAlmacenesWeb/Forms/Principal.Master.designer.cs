@@ -85,6 +85,24 @@ namespace SistemaAlmacenes.Forms {
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAutorizarSalida;
         
         /// <summary>
+        /// lnkbtnCrearMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnCrearMarca;
+        
+        /// <summary>
+        /// lbnkbtnEliminarMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbnkbtnEliminarMarca;
+        
+        /// <summary>
         /// lnkbtnCrearProductos control.
         /// </summary>
         /// <remarks>
