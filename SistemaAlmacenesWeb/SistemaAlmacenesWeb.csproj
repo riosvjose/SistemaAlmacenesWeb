@@ -246,11 +246,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LibBD\BD_ALM_Medidas.cs" />
+    <Compile Include="LibBD\BD_ALM_Grupos_Items_Subdeptos.cs" />
+    <Compile Include="LibBD\BD_ALM_Items.cs" />
+    <Compile Include="LibBD\BD_ALM_Cat_Items .cs" />
+    <Compile Include="LibBD\BD_ALM_Grupos_Items.cs" />
+    <Compile Include="LibBD\BD_ALM_Almacenes.cs" />
     <Compile Include="LibBD\BD_SAM_Modulos.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Modulos.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Personas.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Semestres.cs" />
-    <Compile Include="LibBD\BD_Marcas.cs" />
+    <Compile Include="LibBD\BD_ALM_Marcas.cs" />
     <Compile Include="LibBD\BD_SAM_Usuarios.cs" />
     <Compile Include="LibBD\BD_SAM_Usuarios_Subdeptos.cs" />
     <Compile Include="Lib\GEN_AccesoModulo.cs" />
