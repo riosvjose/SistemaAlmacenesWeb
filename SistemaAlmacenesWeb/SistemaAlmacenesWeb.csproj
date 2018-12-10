@@ -250,6 +250,7 @@
     <Compile Include="LibBD\BD_SAM_Parametros_Modulos.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Personas.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Semestres.cs" />
+    <Compile Include="LibBD\BD_Marcas.cs" />
     <Compile Include="LibBD\BD_SAM_Usuarios.cs" />
     <Compile Include="LibBD\BD_SAM_Usuarios_Subdeptos.cs" />
     <Compile Include="Lib\GEN_AccesoModulo.cs" />

@@ -50,7 +50,7 @@
                                             <img src="../Img/LogoPeqUCB2.png" class="img-responsive" width="140" alt="LogoUcbWeb" style="margin: 0 auto; padding-top: 15px; padding-bottom: 15px;" />
                                         </div>
                                     </div>
-                                </li>
+                                </li>  
                                 <li>
                                     <a href="Index.aspx"><i class="fa fa-home fa-fw" ></i> Inicio</a>
                                 </li>
