@@ -43,19 +43,19 @@ namespace SistemaAlmacenes.Forms
                 CargarDatosIniciales(axVarSes.Lee<string>("strConexion"));
             }
         }
-        protected void lbSalidas_Click(object sender, EventArgs e)
+        protected void lbReportes_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_SAL_MenuSalidas.aspx");
         }
-        protected void lbTareas_Click(object sender, EventArgs e)
+        protected void lbPedidos_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_TAR_MenuTareas.aspx"); 
         }
-        protected void lbProyectos_Click(object sender, EventArgs e)
+        protected void lbAutoriza_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_PROY_MenuProyectos.aspx");
         }
-        protected void lbControlAulas_Click(object sender, EventArgs e)
+        protected void lbSalidas_Click(object sender, EventArgs e)
         {
             //Response.Redirect("STRS_CON_AULA_Registrar.aspx");
         }

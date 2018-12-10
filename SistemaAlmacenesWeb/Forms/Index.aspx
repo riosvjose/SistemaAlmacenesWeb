@@ -32,15 +32,15 @@
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <div class="text-center">
 
-                <asp:LinkButton ID="lbSalidas" runat="server" OnClick="lbSalidas_Click">
-                    <asp:Panel ID="pnSalidas" runat="server" CssClass="panel-dashboard" role="button" style="margin:0; padding:0;">
+                <asp:LinkButton ID="lbPedidos" runat="server" OnClick="lbPedidos_Click">
+                    <asp:Panel ID="pnPedidos" runat="server" CssClass="panel-dashboard" role="button" style="margin:0; padding:0;">
                         <div class="hidden-xs">
                             <div class="ASR5DCB-v-l ASR5DCB-v-n">
-                                    <asp:Image ID="imgSalidas" CssClass="ASR5DCB-d-Vc" ImageUrl="~/Img/Salidas.png" Width="70px" Height="70px" runat="server" />
+                                    <asp:Image ID="imgSalidas" CssClass="ASR5DCB-d-Vc" ImageUrl="~/Img/pedidos.png" Width="70px" Height="70px" runat="server" />
                             </div>
                         </div>
-                        <div class="gwt-Label ASR5DCB-v-q ASR5DCB-v-s quantumMediumText">Salidas</div>
-                        <div class="gwt-Label ASR5DCB-v-d quantumFadedDescriptionText ASR5DCB-v-e" style="width:200px;">Registre su salida y retorno.</div>
+                        <div class="gwt-Label ASR5DCB-v-q ASR5DCB-v-s quantumMediumText">Pedidos</div>
+                        <div class="gwt-Label ASR5DCB-v-d quantumFadedDescriptionText ASR5DCB-v-e" style="width:200px;">Realice un pedido.</div>
                     </asp:Panel>
                 </asp:LinkButton>
             </div>
@@ -52,15 +52,15 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <div class="text-center">
-                <asp:LinkButton ID="lbTareas" runat="server" OnClick="lbTareas_Click">
-                    <asp:Panel ID="pnTareas" runat="server" CssClass="panel-dashboard" role="button" style="margin:0; padding:0;">
+                <asp:LinkButton ID="lbAutoriza" runat="server" OnClick="lbAutoriza_Click">
+                    <asp:Panel ID="pnAutoriza" runat="server" CssClass="panel-dashboard" role="button" style="margin:0; padding:0;">
                         <div class="hidden-xs">
                             <div class="ASR5DCB-v-l ASR5DCB-v-n">
-                                <asp:Image ID="imgTareas" CssClass="ASR5DCB-d-Vc" ImageUrl="~/Img/Tareas.png" Width="52px" Height="52px" runat="server" />
+                                <asp:Image ID="imgTareas" CssClass="ASR5DCB-d-Vc" ImageUrl="~/Img/autoriza.png" Width="52px" Height="52px" runat="server" />
                             </div>
                         </div>
-                        <div class="gwt-Label ASR5DCB-v-q ASR5DCB-v-s quantumMediumText" style="width:200px;">Tareas</div>
-                        <div class="gwt-Label ASR5DCB-v-d quantumFadedDescriptionText ASR5DCB-v-e" style="width:200px;">Registre sus tareas.</div>
+                        <div class="gwt-Label ASR5DCB-v-q ASR5DCB-v-s quantumMediumText" style="width:200px;">Autorizaciones</div>
+                        <div class="gwt-Label ASR5DCB-v-d quantumFadedDescriptionText ASR5DCB-v-e" style="width:200px;">Revise las solicitudes.</div>
                     </asp:Panel>
                 </asp:LinkButton>
             </div>
@@ -84,15 +84,15 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <div class="text-center">
-                <asp:LinkButton ID="lbProyectos" runat="server" OnClick="lbProyectos_Click">
-                    <asp:Panel ID="pnProyectos" runat="server" CssClass="panel-dashboard" role="button" style="margin:0; padding:0;">
+                <asp:LinkButton ID="lbReportes" runat="server" OnClick="lbReportes_Click">
+                    <asp:Panel ID="pnReportes" runat="server" CssClass="panel-dashboard" role="button" style="margin:0; padding:0;">
                         <div class="hidden-xs">
                             <div class="ASR5DCB-v-l ASR5DCB-v-n">
-                                <asp:Image ID="imgProyectos" CssClass="ASR5DCB-d-Vc" ImageUrl="~/Img/Proyectos.png" Width="70px" Height="70px" runat="server" />
+                                <asp:Image ID="imgProyectos" CssClass="ASR5DCB-d-Vc" ImageUrl="~/Img/reporte.png" Width="70px" Height="70px" runat="server" />
                             </div>
                         </div>
-                        <div class="gwt-Label ASR5DCB-v-q ASR5DCB-v-s quantumMediumText" style="width:200px;">Proyectos</div>
-                        <div class="gwt-Label ASR5DCB-v-d quantumFadedDescriptionText ASR5DCB-v-e" style="width:200px;">Registre sus proyectos y actividades.</div>
+                        <div class="gwt-Label ASR5DCB-v-q ASR5DCB-v-s quantumMediumText" style="width:200px;">Reportes</div>
+                        <div class="gwt-Label ASR5DCB-v-d quantumFadedDescriptionText ASR5DCB-v-e" style="width:200px;">Revise los movimientos de almacen.</div>
                     </asp:Panel>
                 </asp:LinkButton>
             </div>
@@ -104,15 +104,15 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <div class="text-center">
-                <asp:LinkButton ID="lbControlAulas" runat="server" OnClick="lbControlAulas_Click" Visible="false">
-                    <asp:Panel ID="pnControlAulas" runat="server" CssClass="panel-dashboard" role="button" style="margin:0; padding:0;">
+                <asp:LinkButton ID="lbSalidas" runat="server" OnClick="lbSalidas_Click" Visible="true">
+                    <asp:Panel ID="pnSalidas" runat="server" CssClass="panel-dashboard" role="button" style="margin:0; padding:0;">
                         <div class="hidden-xs">
                             <div class="ASR5DCB-v-l ASR5DCB-v-n">
-                                <asp:Image ID="Image1" CssClass="ASR5DCB-d-Vc" ImageUrl="~/Img/icon-people-2.png" Width="70px" Height="70px" runat="server" />
+                                <asp:Image ID="Image1" CssClass="ASR5DCB-d-Vc" ImageUrl="~/Img/salida.jpg" Width="70px" Height="70px" runat="server" />
                             </div>
                         </div>
-                        <div class="gwt-Label ASR5DCB-v-q ASR5DCB-v-s quantumMediumText" style="width:200px;">Control Aulas</div>
-                        <div class="gwt-Label ASR5DCB-v-d quantumFadedDescriptionText ASR5DCB-v-e" style="width:200px;">Registre la asistencia de los docentes en aula.</div>
+                        <div class="gwt-Label ASR5DCB-v-q ASR5DCB-v-s quantumMediumText" style="width:200px;">Salidas</div>
+                        <div class="gwt-Label ASR5DCB-v-d quantumFadedDescriptionText ASR5DCB-v-e" style="width:200px;">Registre las salidas de productos.</div>
                     </asp:Panel>
                 </asp:LinkButton>
             </div>

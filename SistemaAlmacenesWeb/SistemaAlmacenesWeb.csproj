@@ -108,6 +108,10 @@
     <Content Include="Forms\PED_Autorizar.aspx" />
     <Content Include="Forms\SAL_Registrar.aspx" />
     <Content Include="Forms\PED_Realizar.aspx" />
+    <Content Include="Img\autoriza.png" />
+    <Content Include="Img\pedidos.png" />
+    <Content Include="Img\reporte.png" />
+    <Content Include="Img\salida.jpg" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
