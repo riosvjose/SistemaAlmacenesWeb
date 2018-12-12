@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
+    // Ultima modificación: Ignacio Rios; Fecha: 11/12/2018
     // Descripción: Clase referente a la tabla alm_grupos_items_subdeptos
     public class BD_ALM_Grupos_Items_Subdeptos
     {
@@ -120,7 +120,7 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_grupo_items. " + _mensaje;
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_grupos_items_subdeptos. " + _mensaje;
             return blOperacionCorrecta;
         }
 
@@ -132,8 +132,8 @@ namespace SistemaAlmacenesWeb
         public bool Borrar()
         {
             bool blOperacionCorrecta = false;
-            strSql = "delete alm_almacenes ";
-            strSql += " where num_sec_grupo_items = " + _num_sec_grupo_items.ToString();
+            strSql = "update alm_grupos_items_subdeptos "+
+                    " set estado =0 where num_sec_grupo_subdepto = " + _num_sec_grupo_subdepto.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -143,7 +143,7 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible borrar el dato. Se encontró un error al eliminar en la tabla alm_grupos_items. " + _mensaje;
+                _mensaje = "No fue posible borrar el dato. Se encontró un error al eliminar en la tabla alm_grupos_items_subdeptos. " + _mensaje;
             return blOperacionCorrecta;
         }
 

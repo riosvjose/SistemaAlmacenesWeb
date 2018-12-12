@@ -12,9 +12,9 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 11/12/2018
-    // Descripción: Clase referente a la tabla alm_categorias_items
-    public class BD_ALM_Cat_Items
+    // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
+    // Descripción: Clase referente a la tabla alm_almacenes
+    public class BD_ALM_Almacenes_Usu
     {
         #region Variables Locales
         GEN_OracleBD OracleBD = new GEN_OracleBD();
@@ -25,9 +25,8 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Atributos
-        // Campos de la tabla alm_categorias_items
-        private long _num_sec_cat_items = 0;
-        private long _num_sec_grupo_items = 0;
+        // Campos de la tabla alm_almacenes
+        private long _num_sec_almacen = 0;
         private string _nombre = string.Empty;
         private string _descripcion= string.Empty;
         private string _fecharegistro = string.Empty;
@@ -38,22 +37,22 @@ namespace SistemaAlmacenesWeb
         private string _mensaje = string.Empty;
         private string _strconexion = string.Empty;
 
-        public long NumSecCat
+        public long NumSecAlmacen
         {
-            get { return _num_sec_cat_items; }
-            set { _num_sec_cat_items = value; }
-        }
-
-        public long NumSecGrupoItem
-        {
-            get { return _num_sec_grupo_items; }
-            set { _num_sec_grupo_items = value; }
+            get { return _num_sec_almacen; }
+            set { _num_sec_almacen = value; }
         }
 
         public string Nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
+        }
+
+        public string Descripcion
+        {
+            get { return _descripcion; }
+            set { _descripcion = value; }
         }
 
         public string FechaRegistro
@@ -82,10 +81,9 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Constructores
-        public BD_ALM_Cat_Items()
-        {
-            _num_sec_cat_items = 0;
-            _num_sec_grupo_items = 0;
+        public BD_ALM_Almacenes_Usu()
+        { 
+            _num_sec_almacen = 0;
             _nombre = string.Empty;
             _fecharegistro = string.Empty;
             _usuarioregistro = string.Empty;
@@ -101,8 +99,8 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_categorias_items (num_sec_cat_items, nombre, num_sec_grupo_items, num_sec_usuario_reg) values";
-            strSql += " (alm_cat_item_sec.nextval,"+ _nombre+","+ _num_sec_grupo_items + ","+usuario +" )";
+            strSql = "insert into alm_almacenes (num_sec_almacen, nombre, descripcion, num_sec_usuario_reg) values";
+            strSql += " (alm_almacenes_sec.nextval,"+ _nombre+","+_descripcion+","+usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -110,16 +108,17 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_categorias_items. " + _mensaje;
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
             return blOperacionCorrecta;
         }
 
         public bool Modificar()
         {
             bool blOperacionCorrecta = false;
-            strSql = "update alm_categorias_items set "+
+            strSql = "update alm_almacenes set "+
                 " nombre = " + _nombre+
-                " where num_sec_cat_items = " + _num_sec_cat_items.ToString();
+                ", descripcion = " + _descripcion+
+                " where num_sec_almacen = " + _num_sec_almacen.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -129,7 +128,7 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible actualizar el dato. Se encontró un error al actualizar en la tabla alm_categorias_items. " + _mensaje;
+                _mensaje = "No fue posible actualizar el dato. Se encontró un error al actualizar en la tabla alm_almacenes. " + _mensaje;
             return blOperacionCorrecta;
         }
 
@@ -137,7 +136,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "delete alm_almacenes ";
-            strSql += " where num_sec_cat_items = " + _num_sec_cat_items.ToString();
+            strSql += " where num_sec_almacen = " + _num_sec_almacen.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -147,7 +146,7 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible borrar el dato. Se encontró un error al eliminar en la tabla alm_categorias_items. " + _mensaje;
+                _mensaje = "No fue posible borrar el dato. Se encontró un error al eliminar en la tabla alm_almacenes. " + _mensaje;
             return blOperacionCorrecta;
         }
 
@@ -166,9 +165,9 @@ namespace SistemaAlmacenesWeb
             {
                 blEncontrado = true;
                 DataRow dr = dt.Rows[0];
-                _num_sec_grupo_items = Convert.ToInt64(dr["num_sec_grupo_items"].ToString());
-                _num_sec_cat_items = Convert.ToInt64(dr["num_sec_cat_items"].ToString());
+                _num_sec_almacen = Convert.ToInt64(dr["num_sec_almacen"].ToString());
                 _nombre = dr["nombre"].ToString();
+                _descripcion= dr["descripcion"].ToString();
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -176,9 +175,9 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             if (!blEncontrado)
             {
-                _num_sec_cat_items = 0;
-                _num_sec_grupo_items = 0;
+                _num_sec_almacen = 0;
                 _nombre = string.Empty;
+                _descripcion = string.Empty;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
                 _numsecusuarioregistro = 0;
