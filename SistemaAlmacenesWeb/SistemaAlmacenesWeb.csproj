@@ -250,6 +250,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LibBD\BD_ALM_IngresosMov.cs" />
+    <Compile Include="LibBD\BD_ALM_Ingresos.cs" />
+    <Compile Include="LibBD\BD_ALM_Proveedores.cs" />
+    <Compile Include="LibBD\BD_ALM_Almacenes_Usu.cs" />
     <Compile Include="LibBD\BD_ALM_Medidas.cs" />
     <Compile Include="LibBD\BD_ALM_Grupos_Items_Subdeptos.cs" />
     <Compile Include="LibBD\BD_ALM_Items.cs" />

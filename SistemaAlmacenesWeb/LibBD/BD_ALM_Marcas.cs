@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
+    // Ultima modificación: Ignacio Rios; Fecha: 11/12/2018
     // Descripción: Clase referente a la tabla alm_marcas
     public class BD_ALM_Marcas
     {
