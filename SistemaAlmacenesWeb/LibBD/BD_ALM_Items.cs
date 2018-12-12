@@ -148,7 +148,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_items (num_sec_item, cod, nombre, num_sec_cat_items, num_sec_marca, num_sec_medida"+
+            strSql = "insert into alm_items (num_sec_item, cod, nombre, num_sec_cat, num_sec_marca, num_sec_medida"+
                      ", estado, precio, stock_min, num_sec_usuario_reg) values" +
                     " (alm_items_sec.nextval,"+ _cod+","+_nombre+","+ _num_sec_cat_items + ","+_num_sec_marca
                     + "," + _num_sec_medida + "," +_estado + "," +_precio_mov + "," +_stock_min+ ","+usuario +" )";
@@ -224,7 +224,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select a.num_sec_usuario, a.num_sec_persona, a.usuario, a.login, a.activo";
+            strSql = "select * from alm_items where num_sec_item = " + _num_sec_item.ToString();
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -237,7 +237,7 @@ namespace SistemaAlmacenesWeb
                 DataRow dr = dt.Rows[0];
                 _num_sec_item = Convert.ToInt64(dr["num_sec_item"].ToString());
                 _cod= dr["cod"].ToString();
-                _num_sec_cat_items = Convert.ToInt64(dr["num_sec_cat_items"].ToString());
+                _num_sec_cat_items = Convert.ToInt64(dr["num_sec_cat"].ToString());
                 _nombre = dr["nombre"].ToString();
                 _num_sec_marca= Convert.ToInt64(dr["num_sec_cat_items"].ToString());
                 _num_sec_medida = Convert.ToInt64(dr["num_sec_cat_items"].ToString());
