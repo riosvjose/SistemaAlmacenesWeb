@@ -252,6 +252,9 @@
     </Compile>
     <Compile Include="LibBD\BD_ALM_IngresosMov.cs" />
     <Compile Include="LibBD\BD_ALM_Ingresos.cs" />
+    <Compile Include="LibBD\BD_ALM_Movimientos.cs" />
+    <Compile Include="LibBD\BD_ALM_MovimientosPuntajes.cs" />
+    <Compile Include="LibBD\BD_ALM_MovimientosTipos.cs" />
     <Compile Include="LibBD\BD_ALM_Proveedores.cs" />
     <Compile Include="LibBD\BD_ALM_Almacenes_Usu.cs" />
     <Compile Include="LibBD\BD_ALM_Medidas.cs" />
@@ -260,9 +263,6 @@
     <Compile Include="LibBD\BD_ALM_Cat_Items .cs" />
     <Compile Include="LibBD\BD_ALM_Grupos_Items.cs" />
     <Compile Include="LibBD\BD_ALM_Almacenes.cs" />
-    <Compile Include="LibBD\BD_ALM_MovimientosPuntajes.cs" />
-    <Compile Include="LibBD\BD_ALM_Movimientos.cs" />
-    <Compile Include="LibBD\BD_ALM_MovimientosTipos.cs" />
     <Compile Include="LibBD\BD_SAM_Modulos.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Modulos.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Personas.cs" />
