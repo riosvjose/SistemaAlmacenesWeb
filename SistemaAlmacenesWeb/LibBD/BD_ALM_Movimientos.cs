@@ -27,7 +27,7 @@ namespace SistemaAlmacenesWeb
         #region Atributos
         // Campos de la tabla alm_movimientos
         private long _num_sec_movimiento = 0;
-        private long _cod_transaccion = 0;
+        private long _num_sec_transaccion = 0;
         private long _num_sec_item = 0;
         private long _num_sec_persona = 0;
         private long _num_sec_usuario = 0;
@@ -51,8 +51,8 @@ namespace SistemaAlmacenesWeb
 
         public long CodTransaccion
         {
-            get { return _cod_transaccion; }
-            set { _cod_transaccion = value; }
+            get { return _num_sec_transaccion; }
+            set { _num_sec_transaccion = value; }
         }
         public long NumSecItem
         {
@@ -118,7 +118,7 @@ namespace SistemaAlmacenesWeb
         public BD_ALM_Movimientos()
         {
             _num_sec_movimiento = 0;
-            _cod_transaccion = 0;
+            _num_sec_transaccion = 0;
             _num_sec_item = 0;
             _num_sec_persona = 0;
             _num_sec_usuario = 0;
@@ -140,8 +140,8 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_movimientos (num_sec_movimiento, cod_transaccion, num_sec_item, num_sec_persona, num_sec_usuario, num_sec_mov_tipo, precio_unitario, ingreso, egreso, num_sec_usuario_reg) values " +
-                    "(alm_movimientos_sec.nextval, " + _cod_transaccion + ", " + _num_sec_item + ", " + _num_sec_persona + ", " + _num_sec_usuario + ", " + _num_sec_tipo_mov + ", " + _precio_unitario + ", " + _ingreso + ", " + _egreso + ", " + usuario + " )";/* Revisar el num_sec_ de "cod_transaccion" */
+            strSql = "insert into alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item, num_sec_persona, num_sec_usuario, num_sec_mov_tipo, precio_unitario, ingreso, egreso, num_sec_usuario_reg) values " +
+                    "(alm_movimientos_sec.nextval, " + _num_sec_transaccion + ", " + _num_sec_item + ", " + _num_sec_persona + ", " + _num_sec_usuario + ", " + _num_sec_tipo_mov + ", " + _precio_unitario + ", " + _ingreso + ", " + _egreso + ", " + usuario + " )";/* Revisar el num_sec_ de "num_sec_transaccion" */
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -157,7 +157,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "update alm_movimientos set " +
-                "cod_transaccion = " + _cod_transaccion + ", " +
+                "num_sec_transaccion = " + _num_sec_transaccion + ", " +
                 "num_sec_item = " + _num_sec_item + ", " +
                 "num_sec_persona = " + _num_sec_persona + ", " +
                 "num_sec_usuario = " + _num_sec_usuario + ", " +
@@ -187,7 +187,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select num_sec_movimiento, cod_transaccion, num_sec_item, num_sec_persona, num_sec_usuario, num_sec_mov_tipo, precio_unitario, ingreso, egreso " +
+            strSql = "select num_sec_movimiento, num_sec_transaccion, num_sec_item, num_sec_persona, num_sec_usuario, num_sec_mov_tipo, precio_unitario, ingreso, egreso " +
                 "from alm_movimientos " +
                 "where num_sec_movimiento = " + _num_sec_movimiento.ToString().Trim();
             DataTable dt = new DataTable();
@@ -201,7 +201,7 @@ namespace SistemaAlmacenesWeb
                 blEncontrado = true;
                 DataRow dr = dt.Rows[0];
                 _num_sec_movimiento = Convert.ToInt64(dr["num_sec_movimiento"].ToString());
-                _cod_transaccion = Convert.ToInt64(dr["cod_transaccion"].ToString());
+                _num_sec_transaccion = Convert.ToInt64(dr["num_sec_transaccion"].ToString());
                 _num_sec_item = Convert.ToInt64(dr["num_sec_item"].ToString());
                 _num_sec_persona = Convert.ToInt64(dr["num_sec_persona"].ToString());
                 _num_sec_usuario = Convert.ToInt64(dr["num_sec_usuario"].ToString());
@@ -217,7 +217,7 @@ namespace SistemaAlmacenesWeb
             if (!blEncontrado)
             {
                 _num_sec_movimiento = 0;
-                _cod_transaccion = 0;
+                _num_sec_transaccion = 0;
                 _num_sec_item = 0;
                 _num_sec_persona = 0;
                 _num_sec_usuario = 0;

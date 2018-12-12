@@ -67,19 +67,19 @@ namespace SistemaAlmacenes.Forms
             Response.Redirect("SAL_Autorizar.aspx");
         }
 
-        protected void lnkbtnCrearProductos_Click(object sender, EventArgs e)
+        protected void lnkbtnCrearItem_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_PROY_Administrar.aspx");
+
         }
 
-        protected void lnkbtnModificarProducto_Click(object sender, EventArgs e)
+        protected void lnkbtnModificarItem_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_PROY_Reportes.aspx");
+
         }
 
-        protected void lnkbtnEliminarProducto_Click(object sender, EventArgs e)
+        protected void lnkbtnEliminarItem_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
+
         }
 
         protected void lnkbtnCrearMarca_Click(object sender, EventArgs e)
