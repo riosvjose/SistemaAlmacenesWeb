@@ -13,8 +13,8 @@ namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
     // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
-    // Descripción: Clase referente a la tabla alm_almacenes
-    public class BD_ALM_Almacenes_Usu
+    // Descripción: Clase referente a la tabla alm_ingresos
+    public class BD_ALM_IngresosMov
     {
         #region Variables Locales
         GEN_OracleBD OracleBD = new GEN_OracleBD();
@@ -25,10 +25,9 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Atributos
-        // Campos de la tabla alm_almacenes
-        private long _num_sec_alm_usu= 0;
-        private long _num_sec_almacen = 0;
-        private long _num_sec_usuario = 0;
+        // Campos de la tabla alm_ingresos
+        private long _num_sec_ingreso = 0;
+        private long _num_sec_movimiento = 0;
         private string _fecharegistro = string.Empty;
         private string _usuarioregistro = string.Empty;
         private long _numsecusuarioregistro = 0;
@@ -37,22 +36,16 @@ namespace SistemaAlmacenesWeb
         private string _mensaje = string.Empty;
         private string _strconexion = string.Empty;
 
-        public long NumSecAlmacenusu
+        public long NumSecIngreso
         {
-            get { return _num_sec_alm_usu; }
-            set { _num_sec_alm_usu = value; }
+            get { return _num_sec_ingreso; }
+            set { _num_sec_ingreso = value; }
         }
 
-        public long NumSecAlmacen
+        public long NumSecMovimiento
         {
-            get { return _num_sec_almacen; }
-            set { _num_sec_almacen = value; }
-        }
-
-        public long NumSecUsu
-        {
-            get { return _num_sec_usuario; }
-            set { _num_sec_usuario = value; }
+            get { return _num_sec_movimiento; }
+            set { _num_sec_movimiento = value; }
         }
 
         public string FechaRegistro
@@ -81,11 +74,10 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Constructores
-        public BD_ALM_Almacenes_Usu()
-        {
-            _num_sec_alm_usu = 0;
-            _num_sec_almacen = 0;
-            _num_sec_usuario = 0;
+        public BD_ALM_IngresosMov()
+        { 
+            _num_sec_ingreso = 0;
+            _num_sec_movimiento = 0;
             _fecharegistro = string.Empty;
             _usuarioregistro = string.Empty;
             _numsecusuarioregistro = 0;
@@ -100,8 +92,8 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_almacenes_usuarios (num_sec_alm_usuario, num_sec_almacen, num_sec_usuario, num_sec_usuario_reg) values";
-            strSql += " (alm_almacenes_usu.nextval,"+ _num_sec_almacen+","+_num_sec_usuario+","+usuario +" )";
+            strSql = "insert into alm_ingresos_movimientos (num_sec_ingreso, num_sec_movimiento, num_sec_usuario_reg) values"+
+                     " ("+_num_sec_ingreso+","+_num_sec_movimiento+"," +usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -109,38 +101,25 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_ingresos_movimientos. " + _mensaje;
             return blOperacionCorrecta;
         }
 
         public void Modificar()
         {
-
+            
         }
 
-        public bool Borrar()
+        public void Borrar()
         {
-            bool blOperacionCorrecta = false;
-            strSql = "update alm_almacenes set estado=0"+
-                     " where num_sec_alm_usuario = " + _num_sec_alm_usu.ToString();
-
-            OracleBD.MostrarError = false;
-            OracleBD.StrConexion = _strconexion;
-            OracleBD.Sql = strSql;
-            OracleBD.EjecutarSqlTrans();
-
-            _mensaje = OracleBD.Mensaje;
-            blOperacionCorrecta = !OracleBD.Error;
-            if (OracleBD.Error)
-                _mensaje = "No fue posible borrar el dato. Se encontró un error al eliminar en la tabla alm_almacenes. " + _mensaje;
-            return blOperacionCorrecta;
+            
         }
 
-        public bool Ver()
+        public bool VerPorMov()
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select * from alm_almacenes usuarios where num_sec_alm_usuario="+_num_sec_alm_usu.ToString();
+            strSql = "select * from alm_ingresos_movimientos where num_sec_movimiento"+_num_sec_movimiento;
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -151,9 +130,7 @@ namespace SistemaAlmacenesWeb
             {
                 blEncontrado = true;
                 DataRow dr = dt.Rows[0];
-                _num_sec_alm_usu = Convert.ToInt64(dr["num_sec_alm_usuario"].ToString());
-                _num_sec_almacen = Convert.ToInt64(dr["num_sec_almacen"].ToString());
-                _num_sec_usuario = Convert.ToInt64(dr["num_sec_usuario"].ToString());
+                _num_sec_ingreso = Convert.ToInt64(dr["num_sec_ingreso"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -161,9 +138,7 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             if (!blEncontrado)
             {
-                _num_sec_alm_usu = 0;
-                _num_sec_almacen = 0;
-                _num_sec_usuario = 0;
+                _num_sec_ingreso = 0;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
                 _numsecusuarioregistro = 0;
@@ -174,10 +149,43 @@ namespace SistemaAlmacenesWeb
             return blEncontrado;
         }
 
+        public bool VerPorIng()
+        {
+            bool blEncontrado = false;
+            string strSql = string.Empty;
+            strSql = "select * from alm_ingresos_movimientos where num_sec_ingreso=" + _num_sec_ingreso;
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                blEncontrado = true;
+                DataRow dr = dt.Rows[0];
+                _num_sec_movimiento = Convert.ToInt64(dr["num_sec_movimiento"].ToString());
+                _fecharegistro = dr["fecha_registro"].ToString();
+                _usuarioregistro = dr["usuario_registro"].ToString();
+                _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
+            }
+            dt.Dispose();
+            if (!blEncontrado)
+            {
+                _num_sec_movimiento = 0;
+                _fecharegistro = string.Empty;
+                _usuarioregistro = string.Empty;
+                _numsecusuarioregistro = 0;
+
+                _mensaje = string.Empty;
+                _strconexion = string.Empty;
+            }
+            return blEncontrado;
+        }
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
+
         #endregion
 
     }

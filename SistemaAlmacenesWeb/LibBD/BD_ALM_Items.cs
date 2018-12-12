@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 11/12/2018
+    // Ultima modificación: Ignacio Rios; Fecha: 12/12/2018
     // Descripción: Clase referente a la tabla alm_items
     public class BD_ALM_Items
     {
@@ -148,8 +148,10 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_categorias_items (num_sec_item, cod, nombre, num_sec_cat_items, num_sec_usuario_reg) values" +
-                    " (alm_items_sec.nextval,"+ _cod+","+_nombre+","+ _num_sec_cat_items + ","+usuario +" )";
+            strSql = "insert into alm_items (num_sec_item, cod, nombre, num_sec_cat_items, num_sec_marca, num_sec_medida"+
+                     ", estado, precio, stock_min, num_sec_usuario_reg) values" +
+                    " (alm_items_sec.nextval,"+ _cod+","+_nombre+","+ _num_sec_cat_items + ","+_num_sec_marca
+                    + "," + _num_sec_medida + "," +_estado + "," +_precio_mov + "," +_stock_min+ ","+usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -184,7 +186,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "update alm_items set " +
-                " precio_mov = " + _precio_mov +
+                " precio = " + _precio_mov +
                 " where num_sec_item = " + _num_sec_item.ToString();
 
             OracleBD.MostrarError = false;
@@ -239,7 +241,7 @@ namespace SistemaAlmacenesWeb
                 _nombre = dr["nombre"].ToString();
                 _num_sec_marca= Convert.ToInt64(dr["num_sec_cat_items"].ToString());
                 _num_sec_medida = Convert.ToInt64(dr["num_sec_cat_items"].ToString());
-                _precio_mov = Convert.ToDouble(dr["precio_mov"].ToString());
+                _precio_mov = Convert.ToDouble(dr["precio"].ToString());
                 _estado = Convert.ToInt16(dr["num_sec_cat_items"].ToString());
                 _stock_min = Convert.ToInt64(dr["num_sec_cat_items"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();

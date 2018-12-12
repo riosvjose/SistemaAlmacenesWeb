@@ -13,8 +13,8 @@ namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
     // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
-    // Descripción: Clase referente a la tabla alm_almacenes
-    public class BD_ALM_Almacenes_Usu
+    // Descripción: Clase referente a la tabla alm_ingresos
+    public class BD_ALM_Ingresos
     {
         #region Variables Locales
         GEN_OracleBD OracleBD = new GEN_OracleBD();
@@ -25,10 +25,12 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Atributos
-        // Campos de la tabla alm_almacenes
-        private long _num_sec_alm_usu= 0;
-        private long _num_sec_almacen = 0;
-        private long _num_sec_usuario = 0;
+        // Campos de la tabla alm_ingresos
+        private long _num_sec_ingreso = 0;
+        private string _cod_orden_compra = string.Empty;
+        private string _fecha_ingreso = string.Empty;
+        private long _num_sec_proveedor = 0;
+        private short _tipo = 0;
         private string _fecharegistro = string.Empty;
         private string _usuarioregistro = string.Empty;
         private long _numsecusuarioregistro = 0;
@@ -37,22 +39,34 @@ namespace SistemaAlmacenesWeb
         private string _mensaje = string.Empty;
         private string _strconexion = string.Empty;
 
-        public long NumSecAlmacenusu
+        public long NumSecIngreso
         {
-            get { return _num_sec_alm_usu; }
-            set { _num_sec_alm_usu = value; }
+            get { return _num_sec_ingreso; }
+            set { _num_sec_ingreso = value; }
         }
 
-        public long NumSecAlmacen
+        public string CodOrdenCompra
         {
-            get { return _num_sec_almacen; }
-            set { _num_sec_almacen = value; }
+            get { return _cod_orden_compra; }
+            set { _cod_orden_compra = value; }
         }
 
-        public long NumSecUsu
+        public string FechaIngreso
         {
-            get { return _num_sec_usuario; }
-            set { _num_sec_usuario = value; }
+            get { return _fecha_ingreso; }
+            set { _fecha_ingreso = value; }
+        }
+
+        public short Tipo
+        {
+            get { return _tipo; }
+            set { _tipo = value; }
+        }
+
+        public long NumSecProveedor
+        {
+            get { return _num_sec_proveedor; }
+            set { _num_sec_proveedor = value; }
         }
 
         public string FechaRegistro
@@ -81,11 +95,13 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Constructores
-        public BD_ALM_Almacenes_Usu()
-        {
-            _num_sec_alm_usu = 0;
-            _num_sec_almacen = 0;
-            _num_sec_usuario = 0;
+        public BD_ALM_Ingresos()
+        { 
+            _num_sec_ingreso = 0;
+            _cod_orden_compra = string.Empty;
+            _fecha_ingreso = string.Empty;
+            _num_sec_proveedor = 0;
+            _tipo = 0;
             _fecharegistro = string.Empty;
             _usuarioregistro = string.Empty;
             _numsecusuarioregistro = 0;
@@ -100,8 +116,10 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_almacenes_usuarios (num_sec_alm_usuario, num_sec_almacen, num_sec_usuario, num_sec_usuario_reg) values";
-            strSql += " (alm_almacenes_usu.nextval,"+ _num_sec_almacen+","+_num_sec_usuario+","+usuario +" )";
+            strSql = "insert into alm_ingresos (num_sec_ingreso, codigo_orden_compra, fecha_ingreso, tipo"+
+                     ", num_sec_proveedor, num_sec_usuario_reg) values"+
+                     " (alm_ingresos_sec.nextval,"+ _cod_orden_compra+","+_fecha_ingreso + ","+_tipo + ","+
+                     _num_sec_proveedor+"," +usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -109,20 +127,18 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_ingresos. " + _mensaje;
             return blOperacionCorrecta;
         }
 
-        public void Modificar()
-        {
-
-        }
-
-        public bool Borrar()
+        public bool Modificar()
         {
             bool blOperacionCorrecta = false;
-            strSql = "update alm_almacenes set estado=0"+
-                     " where num_sec_alm_usuario = " + _num_sec_alm_usu.ToString();
+            strSql = "update alm_ingresos set "+
+                " codigo_orden_compra = " + _cod_orden_compra+
+                ", fecha_ingreso = " + _fecha_ingreso+
+                ", tipo = " + _fecha_ingreso +
+                " where num_sec_ingreso = " + _num_sec_ingreso.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -132,15 +148,21 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible borrar el dato. Se encontró un error al eliminar en la tabla alm_almacenes. " + _mensaje;
+                _mensaje = "No fue posible actualizar el dato. Se encontró un error al actualizar en la tabla alm_ingresos. " + _mensaje;
             return blOperacionCorrecta;
+        }
+
+        public void Borrar()
+        {
+            
         }
 
         public bool Ver()
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select * from alm_almacenes usuarios where num_sec_alm_usuario="+_num_sec_alm_usu.ToString();
+            strSql = "select cod_orden_compra, to_char(fecha_ingreso, 'DD/MM/YYYY') fecha_ingreso, tipo, num_sec_proveedor"+
+                        " from alm_ingresos where num_sec_ingreso="+_num_sec_ingreso;
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -151,9 +173,10 @@ namespace SistemaAlmacenesWeb
             {
                 blEncontrado = true;
                 DataRow dr = dt.Rows[0];
-                _num_sec_alm_usu = Convert.ToInt64(dr["num_sec_alm_usuario"].ToString());
-                _num_sec_almacen = Convert.ToInt64(dr["num_sec_almacen"].ToString());
-                _num_sec_usuario = Convert.ToInt64(dr["num_sec_usuario"].ToString());
+                _cod_orden_compra = dr["codigo_orden_compra"].ToString();
+                _fecha_ingreso= dr["fecha_ingreso"].ToString();
+                _tipo = Convert.ToInt16(dr["tipo"].ToString());
+                _num_sec_proveedor = Convert.ToInt64(dr["num_sec_proveedor"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -161,9 +184,11 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             if (!blEncontrado)
             {
-                _num_sec_alm_usu = 0;
-                _num_sec_almacen = 0;
-                _num_sec_usuario = 0;
+                _num_sec_ingreso = 0;
+                _cod_orden_compra = string.Empty;
+                _fecha_ingreso = string.Empty;
+                _num_sec_proveedor = 0;
+                _tipo = 0;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
                 _numsecusuarioregistro = 0;
