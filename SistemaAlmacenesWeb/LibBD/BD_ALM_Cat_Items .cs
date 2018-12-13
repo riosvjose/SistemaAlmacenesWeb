@@ -101,7 +101,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_categorias_items (num_sec_cat_items, nombre, num_sec_grupo_items, num_sec_usuario_reg) values";
+            strSql = "insert into alm_categorias_items (num_sec_cat, nombre, num_sec_grupo, num_sec_usuario_reg) values";
             strSql += " (alm_cat_item_sec.nextval,"+ _nombre+","+ _num_sec_grupo_items + ","+usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -119,7 +119,7 @@ namespace SistemaAlmacenesWeb
             bool blOperacionCorrecta = false;
             strSql = "update alm_categorias_items set "+
                 " nombre = " + _nombre+
-                " where num_sec_cat_items = " + _num_sec_cat_items.ToString();
+                " where num_sec_cat = " + _num_sec_cat_items.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -137,7 +137,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "delete alm_almacenes ";
-            strSql += " where num_sec_cat_items = " + _num_sec_cat_items.ToString();
+            strSql += " where num_sec_cat = " + _num_sec_cat_items.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -155,7 +155,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select a.num_sec_usuario, a.num_sec_persona, a.usuario, a.login, a.activo";
+            strSql = "select * from alm_cat_items where num_sec_item = " + _num_sec_cat_items.ToString(); 
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -166,8 +166,8 @@ namespace SistemaAlmacenesWeb
             {
                 blEncontrado = true;
                 DataRow dr = dt.Rows[0];
-                _num_sec_grupo_items = Convert.ToInt64(dr["num_sec_grupo_items"].ToString());
-                _num_sec_cat_items = Convert.ToInt64(dr["num_sec_cat_items"].ToString());
+                _num_sec_grupo_items = Convert.ToInt64(dr["num_sec_grupo"].ToString());
+                _num_sec_cat_items = Convert.ToInt64(dr["num_sec_cat"].ToString());
                 _nombre = dr["nombre"].ToString();
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();

@@ -9,7 +9,7 @@ using nsGEN_VarSession;
 using nsGEN_Java;
 using nsGEN_WebForms;
 
-namespace SistemaAlmacenes.Forms
+namespace SistemaAlmacenesWeb.Forms
 {
     public partial class PED_Realizar : System.Web.UI.Page
     {
@@ -23,14 +23,19 @@ namespace SistemaAlmacenes.Forms
         #endregion
 
         #region "Clase de tablas de la Base de Datos"
-
+        BD_ALM_Grupos_Items libGrupo = new BD_ALM_Grupos_Items();
         #endregion
 
         #region "Funciones y procedimientos"
 
         private void CargarDatosIniciales(string strCon)
         {
-
+            libGrupo = new BD_ALM_Grupos_Items();
+            libGrupo.StrConexion = strCon;
+            ddlCat1.DataSource = libGrupo.DTListaGrupos();
+            ddlCat1.DataTextField = "NOMBRE";
+            ddlCat1.DataValueField = "NUM_SEC_GRUPO";
+            ddlCat1.DataBind();
 
         }
         protected void VaciarBoxes()
@@ -44,7 +49,7 @@ namespace SistemaAlmacenes.Forms
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
-            {
+            {            
                 CargarDatosIniciales(axVarSes.Lee<string>("strConexion"));
             }
         }

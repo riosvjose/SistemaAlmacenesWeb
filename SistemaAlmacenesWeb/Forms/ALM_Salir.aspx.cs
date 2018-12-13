@@ -9,7 +9,7 @@ using nsGEN_VarSession;
 using nsGEN_Java;
 using nsGEN_WebForms;
 
-namespace SistemaAlmacenes.Forms
+namespace SistemaAlmacenesWeb.Forms
 {
     public partial class ALM_Salir : System.Web.UI.Page
     {
