@@ -9,7 +9,7 @@ using nsGEN_VarSession;
 using nsGEN_Java;
 using nsGEN_WebForms;
 
-namespace SistemaAlmacenes.Forms
+namespace SistemaAlmacenesWeb.Forms
 {
     public partial class Index : System.Web.UI.Page
     {

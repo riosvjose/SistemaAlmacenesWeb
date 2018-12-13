@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="SAL_Registrar.aspx.cs" Inherits="SistemaAlmacenes.Forms.SAL_Registrar" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="SAL_Registrar.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.SAL_Registrar" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

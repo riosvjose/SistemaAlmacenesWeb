@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SistemaAlmacenes.Forms {
+namespace SistemaAlmacenesWeb.Forms {
     
     
     public partial class SAL_Autorizar {

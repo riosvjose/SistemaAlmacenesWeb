@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ALM_Salir.aspx.cs" Inherits="SistemaAlmacenes.Forms.ALM_Salir" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ALM_Salir.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.ALM_Salir" %>
 
 <!DOCTYPE html>
 
