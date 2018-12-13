@@ -104,6 +104,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Forms\ALM_PROV_Administrar.aspx" />
     <Content Include="Forms\SAL_Autorizar.aspx" />
     <Content Include="Forms\PED_Autorizar.aspx" />
     <Content Include="Forms\SAL_Registrar.aspx" />
@@ -190,6 +191,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_PROV_Administrar.aspx.cs">
+      <DependentUpon>ALM_PROV_Administrar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_PROV_Administrar.aspx.designer.cs">
+      <DependentUpon>ALM_PROV_Administrar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\SAL_Autorizar.aspx.cs">
       <DependentUpon>SAL_Autorizar.aspx</DependentUpon>

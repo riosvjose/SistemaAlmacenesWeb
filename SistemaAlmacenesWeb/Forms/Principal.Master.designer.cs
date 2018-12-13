@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SistemaAlmacenes.Forms {
+namespace SistemaAlmacenesWeb.Forms {
     
     
     public partial class Principal {
@@ -29,6 +29,24 @@ namespace SistemaAlmacenes.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
+        /// lnkbtnCrearProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnCrearProveedor;
+        
+        /// <summary>
+        /// lnkbtnModificarProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnModificarProveedor;
         
         /// <summary>
         /// lnkbtnRealizarPedido control.
@@ -137,24 +155,6 @@ namespace SistemaAlmacenes.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnReporte3;
-        
-        /// <summary>
-        /// lnkbtnCrearProveedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnCrearProveedor;
-        
-        /// <summary>
-        /// lnkbtnModificarProveedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnModificarProveedor;
         
         /// <summary>
         /// ScriptManager1 control.

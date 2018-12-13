@@ -9,7 +9,7 @@ using nsGEN_VarSession;
 using nsGEN_Java;
 using nsGEN_WebForms;
 
-namespace SistemaAlmacenes.Forms
+namespace SistemaAlmacenesWeb.Forms
 {
     public partial class Principal : System.Web.UI.MasterPage
     {
@@ -78,6 +78,16 @@ namespace SistemaAlmacenes.Forms
         }
 
         protected void lnkbtnEliminarItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkbtnCrearProveedor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkbtnModificarProveedor_Click(object sender, EventArgs e)
         {
 
         }
