@@ -273,7 +273,18 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
+        public DataTable DTListaItems(long cat)
+        {
+            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            strSql = "(select 0 as num_sec_item, '---------------------------' as nombre from dual) union " +
+                    "(select num_sec_item, nombre " +
+                     "from alm_items where num_sec_cat="+cat+")";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
         #endregion
 
     }

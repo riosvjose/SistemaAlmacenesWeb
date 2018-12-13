@@ -69,7 +69,7 @@
                         <asp:Panel ID="Panel1" runat="server" Visible="true">
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat1" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat1" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat1_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem1" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -88,7 +88,7 @@
                         <asp:Panel ID="Panel2" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat2" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat2" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat2_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem2" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -107,7 +107,7 @@
                         <asp:Panel ID="Panel3" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat3" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat3" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat3_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem3" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -126,7 +126,7 @@
                         <asp:Panel ID="Panel4" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat4" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat4" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat4_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem4" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -145,7 +145,7 @@
                         <asp:Panel ID="Panel5" runat="server" Visible="false">
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat5" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat5" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat5_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem5" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -164,7 +164,7 @@
                         <asp:Panel ID="Panel6" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat6" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat6" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat6_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem6" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -183,7 +183,7 @@
                         <asp:Panel ID="Panel7" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat7" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat7" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat7_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem7" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -202,7 +202,7 @@
                         <asp:Panel ID="Panel8" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat8" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat8" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat8_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem8" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -221,7 +221,7 @@
                         <asp:Panel ID="Panel9" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat9" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat9" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat9_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem9" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -240,7 +240,7 @@
                         <asp:Panel ID="Panel10" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat10" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat10" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat10_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem10" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -259,7 +259,7 @@
                         <asp:Panel ID="Panel11" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat11" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat11" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat11_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem11" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -278,7 +278,7 @@
                         <asp:Panel ID="Panel12" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat12" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat12" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat12_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem12" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -297,7 +297,7 @@
                         <asp:Panel ID="Panel13" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat13" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat13" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat13_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem13" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -316,7 +316,7 @@
                         <asp:Panel ID="Panel14" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat14" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat14" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat14_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem14" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -335,7 +335,7 @@
                         <asp:Panel ID="Panel15" runat="server" Visible="false">
                              <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <asp:DropDownList ID="ddlCat15" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCat15" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCat15_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:DropDownList ID="ddlItem15" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
