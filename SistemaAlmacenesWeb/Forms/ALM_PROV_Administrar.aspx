@@ -139,15 +139,10 @@
 			                <asp:Label ID="lblMensajeOK" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>.
 		                </div>
 	                </asp:Panel>
-<%--                    <asp:Panel ID="pnAjaxValidator" runat="server" >
-                        <div class="alert alert-danger alert-dismissable">
-			                <asp:Label ID="ValidationSummary1" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>.
-		                </div>
-                    </asp:Panel>--%>
+                    <%--MensajeErrorAJAXValidator--%>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />
 	            </div>
-            </div>
-
-    
+            </div>    
 	            </div>
             </div>
         </ContentTemplate>
