@@ -9,6 +9,7 @@ namespace SistemaAlmacenesWeb.Forms
 {
     public partial class ALM_CAT_AdministrarCategorias : System.Web.UI.Page
     {
+        #region "Eventos"
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -64,6 +65,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             Response.Redirect("ALM_CAT_AdministrarCategorias.aspx");
         }
+        #endregion
 
     }
 }

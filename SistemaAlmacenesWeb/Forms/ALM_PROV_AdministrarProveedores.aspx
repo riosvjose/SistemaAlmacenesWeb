@@ -102,12 +102,30 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
+                                <strong><asp:Label ID="lblDireccionProv" runat="server" Text="Dirección:"></asp:Label></strong>
+                                <asp:RequiredFieldValidator ID="rfvDireccionProv" runat="server" ControlToValidate="tbDireccionProv" CssClass="text-danger" ErrorMessage="El campo Dirección es obligatorio.">*</asp:RequiredFieldValidator>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                <asp:TextBox ID="tbDireccionProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-2">
                                 <strong><asp:Label ID="lblEmailProv" runat="server" Text="Email:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvEmailProv" runat="server" ControlToValidate="tbEmailProv" CssClass="text-danger" ErrorMessage="El campo Email es obligatorio.">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revEmailProv" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbEmailProv" CssClass="text-danger" ErrorMessage="El formato del Email no es valido (@).">*</asp:RegularExpressionValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox  ID="tbEmailProv" runat="server" CssClass="form-control" type="email" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-2">
+                                <strong><asp:Label ID="lblNombreConProv" runat="server" Text="Nombre de Contacto:"></asp:Label></strong>
+                                <asp:RequiredFieldValidator ID="rfvNombreConProv" runat="server" ControlToValidate="tbNombreConProv" CssClass="text-danger" ErrorMessage="El campo Nombre de Contacto es obligatorio.">*</asp:RequiredFieldValidator>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                <asp:TextBox ID="tbNombreConProv" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                         </div>
 			        </div>
@@ -138,7 +156,7 @@
                                 <asp:RequiredFieldValidator ID="rfvEditarNitProv" runat="server" ControlToValidate="tbEditarNitProveedor" CssClass="text-danger" ErrorMessage="El campo Nit es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbEditarNitProveedor" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="tbEditarNitProveedor" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" ReadOnly="true" ></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -147,7 +165,7 @@
                                 <asp:RequiredFieldValidator ID="rfvEditarNombreComProv" runat="server" ControlToValidate="tbEditarNombreComercialProv" CssClass="text-danger" ErrorMessage="El campo Nombre Comercial es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbEditarNombreComercialProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="tbEditarNombreComercialProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled" ReadOnly="true" ></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -156,7 +174,7 @@
                                 <asp:RequiredFieldValidator ID="rfvEditarRazonSocialProv" runat="server" ControlToValidate="tbEditarRazonSocialProv" CssClass="text-danger" ErrorMessage="El campo Razón Social es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbEditarRazonSocialProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="tbEditarRazonSocialProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled" ReadOnly="true" ></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -170,12 +188,30 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
+                                <strong><asp:Label ID="lblEditarDireccionProv" runat="server" Text="Dirección:"></asp:Label></strong>
+                                <asp:RequiredFieldValidator ID="rfvEditarDireccionProv" runat="server" ControlToValidate="tbEditarDireccionProv" CssClass="text-danger" ErrorMessage="El campo Dirección es obligatorio.">*</asp:RequiredFieldValidator>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                <asp:TextBox ID="tbEditarDireccionProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                            </div>
+                        </div>                        
+                        <div class="row mb-3">
+                            <div class="col-sm-2">
                                 <strong><asp:Label ID="lblEditarEmailProv" runat="server" Text="Email:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvEditarEmailProv" runat="server" ControlToValidate="tbEditarEmailProv" CssClass="text-danger" ErrorMessage="El campo Email es obligatorio.">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revEditarEmailProv" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tbEditarEmailProv" CssClass="text-danger" ErrorMessage="El formato del Email no es valido (@).">*</asp:RegularExpressionValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox  ID="tbEditarEmailProv" runat="server" CssClass="form-control" type="email" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-2">
+                                <strong><asp:Label ID="lblEditarNombreConProv" runat="server" Text="Nombre de Contacto:"></asp:Label></strong>
+                                <asp:RequiredFieldValidator ID="rfvEditarNombreConProv" runat="server" ControlToValidate="tbEditarNombreConProv" CssClass="text-danger" ErrorMessage="El campo Nombre de Contacto es obligatorio.">*</asp:RequiredFieldValidator>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                <asp:TextBox ID="tbEditarNombreConProv" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" ReadOnly="true" ></asp:TextBox>
                             </div>
                         </div>
 			        </div>

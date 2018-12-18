@@ -9,6 +9,7 @@ namespace SistemaAlmacenesWeb.Forms
 {
     public partial class ALM_MED_AdministrarMedidas : System.Web.UI.Page
     {
+        #region "Eventos"
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -62,6 +63,6 @@ namespace SistemaAlmacenesWeb.Forms
         {
             Response.Redirect("ALM_MED_AdministrarMedidas.aspx");
         }
-
+        #endregion
     }
 }

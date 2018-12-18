@@ -159,10 +159,10 @@ namespace SistemaAlmacenesWeb
 
         public DataTable DTListaPersonasDepto()
         {
-            strSql = "select " +
-                     "a.num_sec, a.nombres||' '|| a.ap_paterno||' '|| a.ap_materno as nombre_completo "+
-                     " from personas a  WHERE a.num_sec<100 ORDER BY a.num_sec";            
-            OracleBD.MostrarError = false;
+            strSql = "SELECT a.num_sec, a.nombres||' '|| a.ap_paterno||' '|| a.ap_materno as nombre_completo " +
+                     "from personas a  WHERE a.num_sec<100 " +
+                     "ORDER BY a.nombres||' '|| a.ap_paterno||' '|| a.ap_materno ASC";            
+            OracleBD.MostrarError = false;  
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();

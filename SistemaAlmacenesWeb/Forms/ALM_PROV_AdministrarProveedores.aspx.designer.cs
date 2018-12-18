@@ -211,6 +211,33 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.TextBox tbTelefonoProv;
         
         /// <summary>
+        /// lblDireccionProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDireccionProv;
+        
+        /// <summary>
+        /// rfvDireccionProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDireccionProv;
+        
+        /// <summary>
+        /// tbDireccionProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDireccionProv;
+        
+        /// <summary>
         /// lblEmailProv control.
         /// </summary>
         /// <remarks>
@@ -245,6 +272,33 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEmailProv;
+        
+        /// <summary>
+        /// lblNombreConProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreConProv;
+        
+        /// <summary>
+        /// rfvNombreConProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreConProv;
+        
+        /// <summary>
+        /// tbNombreConProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNombreConProv;
         
         /// <summary>
         /// btnGuardarProv control.
@@ -391,6 +445,33 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.TextBox tbEditarTelefonoProv;
         
         /// <summary>
+        /// lblEditarDireccionProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEditarDireccionProv;
+        
+        /// <summary>
+        /// rfvEditarDireccionProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditarDireccionProv;
+        
+        /// <summary>
+        /// tbEditarDireccionProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbEditarDireccionProv;
+        
+        /// <summary>
         /// lblEditarEmailProv control.
         /// </summary>
         /// <remarks>
@@ -425,6 +506,33 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEditarEmailProv;
+        
+        /// <summary>
+        /// lblEditarNombreConProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEditarNombreConProv;
+        
+        /// <summary>
+        /// rfvEditarNombreConProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditarNombreConProv;
+        
+        /// <summary>
+        /// tbEditarNombreConProv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbEditarNombreConProv;
         
         /// <summary>
         /// btnEditarGuardarProv control.

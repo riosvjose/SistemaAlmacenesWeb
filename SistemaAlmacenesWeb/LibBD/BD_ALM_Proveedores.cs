@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 12/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 12/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 18/12/2018
     // Descripción: Clase referente a la tabla alm_proveedores
     public class BD_ALM_Proveedores
     {
@@ -32,6 +32,8 @@ namespace SistemaAlmacenesWeb
         private string _razon_social = string.Empty;
         private string _telefono = string.Empty;
         private string _email= string.Empty;
+        private string _direccion = string.Empty;
+        private string _nombre_contacto = string.Empty;
         private string _fecharegistro = string.Empty;
         private string _usuarioregistro = string.Empty;
         private long _numsecusuarioregistro = 0;
@@ -76,6 +78,18 @@ namespace SistemaAlmacenesWeb
             set { _email = value; }
         }
 
+        public string Direccion
+        {
+            get { return _direccion; }
+            set { _direccion = value; }
+        }
+
+        public string NombreContacto
+        {
+            get { return _nombre_contacto; }
+            set { _nombre_contacto = value; }
+        }
+
         public string FechaRegistro
         {
             get { return _fecharegistro; }
@@ -110,6 +124,8 @@ namespace SistemaAlmacenesWeb
             _razon_social = string.Empty;
             _telefono = string.Empty;
             _email = string.Empty;
+            _direccion = string.Empty;
+            _nombre_contacto = string.Empty;
             _fecharegistro = string.Empty;
             _usuarioregistro = string.Empty;
             _numsecusuarioregistro = 0;
@@ -124,10 +140,10 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_proveedores (num_sec_proveedor, nit, nombre_comercial, razon_social, "+
-                    " telefono, email, num_sec_usuario_reg) values";
-            strSql += " (alm_proveedores_sec.nextval,"+ _nit+","+_nombre_comercial + ","+_razon_social+
-                      "," +_telefono + ","+_email+ "," +usuario +" )";
+            strSql = "insert into ALM_PROVEEDORES (num_sec_proveedor, nit, nombre_comercial, razon_social, " + 
+                    "telefono, email, direccion, nombre_contacto, num_sec_usuario_reg) values " +
+                    "(alm_proveedores_sec.nextval,'" + _nit + "', '" + _nombre_comercial + "', '" + _razon_social + "', '" +
+                      _telefono + "', '" + _email + "', '" + _direccion + "', '" + _nombre_contacto + "', " + usuario + ")";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -143,12 +159,10 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "update alm_proveedores set " +
-                " nit = " + _nit+
-                ", nombre_comercial = " + _nombre_comercial+
-                ", razon_social = " + _razon_social+
-                ", telefono = " + _telefono +
-                ", email = " + _email +
-                " where num_sec_proveedor = " + _num_sec_proveedor.ToString();
+                "telefono = '" + _telefono + "', " +
+                "direccion = '" + _direccion + "', " +
+                "email = '" + _email + "' "+
+                "where num_sec_proveedor = " + _num_sec_proveedor.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -171,7 +185,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select * from alm_proveedores where num_sec_proveedor="+_num_sec_proveedor.ToString();
+            strSql = "select * from alm_proveedores where num_sec_proveedor = " + _num_sec_proveedor.ToString();
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -183,11 +197,13 @@ namespace SistemaAlmacenesWeb
                 blEncontrado = true;
                 DataRow dr = dt.Rows[0];
                 _num_sec_proveedor = Convert.ToInt64(dr["num_sec_proveedor"].ToString());
-                _nit = dr["nombre_comercial"].ToString();
+                _nit = dr["nit"].ToString();
                 _nombre_comercial = dr["nombre_comercial"].ToString();
-                _razon_social= dr["descripcion"].ToString();
+                _razon_social= dr["razon_social"].ToString();
                 _telefono = dr["telefono"].ToString();
                 _email = dr["email"].ToString();
+                _direccion = dr["direccion"].ToString();
+                _nombre_contacto = dr["nombre_contacto"].ToString();
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -201,6 +217,8 @@ namespace SistemaAlmacenesWeb
                 _razon_social = string.Empty;
                 _telefono = string.Empty;
                 _email = string.Empty;
+                _direccion = string.Empty;
+                _nombre_contacto = string.Empty;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
                 _numsecusuarioregistro = 0;
@@ -213,7 +231,19 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
+        // Lista de todos los proveedores
+        public DataTable ListarProveedores()
+        {            
+            strSql = "SELECT * FROM ( " +
+                        "SELECT 0 as num_sec_proveedor, '---------------------------' as nombre_comercial from dual UNION " +
+                        "SELECT num_sec_proveedor, nombre_comercial FROM alm_proveedores " +
+                    ") ORDER BY nombre_comercial ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
         #endregion
 
     }

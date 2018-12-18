@@ -148,8 +148,7 @@
                         </div>
 			        </div>
 		        </div>
-            </asp:Panel>
-                  
+            </asp:Panel>                  
             <%--Salto de linea--%>
             <div class="visible-lg visible-md">
                 <div class="col-lg-12">

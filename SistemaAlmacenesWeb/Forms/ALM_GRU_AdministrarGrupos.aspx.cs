@@ -9,6 +9,7 @@ namespace SistemaAlmacenesWeb.Forms
 {
     public partial class ALM_GRU_AdministrarGrupos : System.Web.UI.Page
     {
+        #region "Eventos"
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -63,6 +64,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             Response.Redirect("ALM_GRU_AdministrarGrupos.aspx");
         }
+        #endregion
 
     }
 }

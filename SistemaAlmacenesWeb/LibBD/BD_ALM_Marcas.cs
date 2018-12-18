@@ -147,8 +147,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select a.num_sec_usuario, a.num_sec_persona, a.usuario, a.login, a.activo";
-
+            strSql = "select * from alm_marcas where num_sec_proveedor = " + _num_sec_marca.ToString();
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -183,7 +182,19 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
+        // Lista de todas las marcas
+        public DataTable ListarMarcas()
+        {
+            strSql = "SELECT * FROM ( " +
+                        "SELECT 0 as num_sec_marca, '---------------------------' as nombre from dual UNION " +
+                        "SELECT num_sec_marca, nombre FROM alm_marcas " +
+                    ") ORDER BY nombre ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
         #endregion
 
     }
