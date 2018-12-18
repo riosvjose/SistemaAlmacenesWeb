@@ -100,7 +100,7 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_categorias_items (num_sec_cat, nombre, num_sec_grupo, num_sec_usuario_reg) values";
             strSql += " (alm_cat_item_sec.nextval,"+ _nombre+","+ _num_sec_grupo_items + ","+usuario +" )";
             OracleBD.MostrarError = false;
@@ -194,7 +194,6 @@ namespace SistemaAlmacenesWeb
         #region Procedimientos y Funciones Locales
         public DataTable DTListaCategorias()
         {
-            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
             strSql = "(select num_sec_cat, nombre " +
                      "from alm_categorias_items where num_sec_grupo=" + _num_sec_grupo_items + ")";
             OracleBD.MostrarError = false;

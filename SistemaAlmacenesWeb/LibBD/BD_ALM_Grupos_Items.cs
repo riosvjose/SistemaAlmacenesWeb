@@ -100,7 +100,7 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_grupos_items (num_sec_grupo, nombre, num_sec_almacen, num_sec_usuario_reg) values";
             strSql += " (alm_grupo_item_sec.nextval,"+ _nombre+","+ _num_sec_almacen + ","+usuario +" )";
             OracleBD.MostrarError = false;
@@ -194,7 +194,6 @@ namespace SistemaAlmacenesWeb
         #region Procedimientos y Funciones Locales
         public DataTable DTListaGrupos()
         {
-            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
             strSql = "(select 0 as num_sec_grupo, '---------------------------' as nombre from dual) union " +
                     "(select num_sec_grupo, nombre " +
                      "from alm_grupos_items)";
@@ -207,7 +206,6 @@ namespace SistemaAlmacenesWeb
 
         public DataTable DTListaGruposPorAlmacen(string [] strsqlalm)
         {
-            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
             strSql = string.Empty;//"(select 0 as num_sec_grupo '-----------' as nombre from dual)";
             for (int i=0; i<strsqlalm.Length;i++)
             {

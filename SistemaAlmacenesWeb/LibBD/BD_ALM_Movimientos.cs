@@ -140,7 +140,7 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item, num_sec_persona, num_sec_usuario, num_sec_mov_tipo, precio_unitario, ingreso, egreso, num_sec_usuario_reg) values " +
                     "(alm_movimientos_sec.nextval, " + _num_sec_transaccion + ", " + _num_sec_item + ", " + _num_sec_persona + ", " + _num_sec_usuario + ", " + _num_sec_tipo_mov + ", " + _precio_unitario + ", " + _ingreso + ", " + _egreso + ", " + usuario + " )";/* Revisar el num_sec_ de "num_sec_transaccion" */
             OracleBD.MostrarError = false;
