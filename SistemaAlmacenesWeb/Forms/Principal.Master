@@ -37,21 +37,6 @@
                         <a href="Index.aspx"><i class="fa fa-home fa-fw" ></i>Inicio</a>
                     </li>
                     <li>
-                        <a class="" role="link" data-toggle="collapse" href="#collapseProveedores" aria-expanded="false" aria-controls="collapseProveedores">
-                            <i class="fa fa-handshake-o" aria-hidden="true"></i> Proveedores
-                        </a>
-                        <div class="collapse" id="collapseProveedores">
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <asp:LinkButton ID="lnkbtnCrearProveedor" runat="server" CausesValidation="false" OnClick="lnkbtnCrearProveedor_Click">Crear Proveedor</asp:LinkButton>
-                                </li>
-                                <li>
-                                    <asp:LinkButton ID="lnkbtnModificarProveedor" runat="server" CausesValidation="false" OnClick="lnkbtnModificarProveedor_Click">Modificar Proveedor</asp:LinkButton>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>  
-                    <li>
                         <a href="ALM_RegistrarIngreso.aspx"><i class="fa fa-truck" ></i> Registrar ingreso</a>
                     </li>
                     <li>
@@ -85,37 +70,22 @@
                         </div>
                     </li>
                     <li>
-                        <a class="" role="link" data-toggle="collapse" href="#collapseMarcas" aria-expanded="false" aria-controls="collapseProductos">
-                            <i class="fa fa-shirtsinbulk" aria-hidden="true"></i> Marcas
-                        </a>
-                        <div class="collapse" id="collapseMarcas">
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <asp:LinkButton ID="lnkbtnCrearMarca" runat="server" CausesValidation="false" OnClick="lnkbtnCrearMarca_Click">Añadir marca</asp:LinkButton>
-                                </li>
-                                <li>
-                                    <asp:LinkButton ID="lbnkbtnEliminarMarca" runat="server" CausesValidation="false" OnClick="lnkbtnEliminarMarca_Click">Eliminar marca</asp:LinkButton>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="ALM_MAR_AdministrarMarcas.aspx"><i class="fa fa-shirtsinbulk" ></i> Marcas</a>
                     </li>
                     <li>
-                        <a class="" role="link" data-toggle="collapse" href="#collapseItems" aria-expanded="false" aria-controls="collapseItems">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> Items
-                        </a>
-                        <div class="collapse" id="collapseItems">
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <asp:LinkButton ID="lnkbtnCrearItem" runat="server" CausesValidation="false" OnClick="lnkbtnCrearItem_Click" >Crear Item</asp:LinkButton>
-                                </li>
-                                <li>
-                                    <asp:LinkButton ID="lnkbtnModificarItem" runat="server" CausesValidation="false" OnClick="lnkbtnModificarItem_Click" >Modificar Item</asp:LinkButton>
-                                </li>
-                                <li>
-                                    <asp:LinkButton ID="lnkbtnEliminarItem" runat="server" CausesValidation="false" OnClick="lnkbtnEliminarItem_Click" >Eliminar Item </asp:LinkButton>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="ALM_MED_AdministrarMedidas.aspx"><i class="fa fa-balance-scale" ></i> Medidas</a>
+                    </li>
+                    <li>
+                        <a href="ALM_PROV_AdministrarProveedores.aspx"><i class="fa fa-handshake-o" ></i> Proveedores</a>
+                    </li>
+                    <li>
+                        <a href="ALM_GRU_AdministrarGrupos.aspx"><i class="fa fa-object-group" ></i> Grupos</a>
+                    </li>
+                    <li>
+                        <a href="ALM_CAT_AdministrarCategorias.aspx"><i class="fa fa-crop" ></i> Categorías</a>
+                    </li>
+                    <li>
+                        <a href="ALM_ITEM_AdministrarItems.aspx"><i class="fa fa-pencil" ></i> Items</a>
                     </li>
                     <li>
                         <a class="" role="link" data-toggle="collapse" href="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">

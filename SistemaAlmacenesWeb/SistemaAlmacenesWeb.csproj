@@ -104,7 +104,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Forms\ALM_PROV_Administrar.aspx" />
+    <Content Include="Forms\ALM_CAT_AdministrarCategorias.aspx" />
+    <Content Include="Forms\ALM_GRU_AdministrarGrupos.aspx" />
+    <Content Include="Forms\ALM_ITEM_AdministrarItems.aspx" />
+    <Content Include="Forms\ALM_MAR_AdministrarMarcas.aspx" />
+    <Content Include="Forms\ALM_MED_AdministrarMedidas.aspx" />
+    <Content Include="Forms\ALM_PROV_AdministrarProveedores.aspx" />
     <Content Include="Forms\SAL_Autorizar.aspx" />
     <Content Include="Forms\PED_Autorizar.aspx" />
     <Content Include="Forms\SAL_Registrar.aspx" />
@@ -192,12 +197,47 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ALM_PROV_Administrar.aspx.cs">
-      <DependentUpon>ALM_PROV_Administrar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_CAT_AdministrarCategorias.aspx.cs">
+      <DependentUpon>ALM_CAT_AdministrarCategorias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\ALM_PROV_Administrar.aspx.designer.cs">
-      <DependentUpon>ALM_PROV_Administrar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_CAT_AdministrarCategorias.aspx.designer.cs">
+      <DependentUpon>ALM_CAT_AdministrarCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_GRU_AdministrarGrupos.aspx.cs">
+      <DependentUpon>ALM_GRU_AdministrarGrupos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_GRU_AdministrarGrupos.aspx.designer.cs">
+      <DependentUpon>ALM_GRU_AdministrarGrupos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_ITEM_AdministrarItems.aspx.cs">
+      <DependentUpon>ALM_ITEM_AdministrarItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_ITEM_AdministrarItems.aspx.designer.cs">
+      <DependentUpon>ALM_ITEM_AdministrarItems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_MAR_AdministrarMarcas.aspx.cs">
+      <DependentUpon>ALM_MAR_AdministrarMarcas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_MAR_AdministrarMarcas.aspx.designer.cs">
+      <DependentUpon>ALM_MAR_AdministrarMarcas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_MED_AdministrarMedidas.aspx.cs">
+      <DependentUpon>ALM_MED_AdministrarMedidas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_MED_AdministrarMedidas.aspx.designer.cs">
+      <DependentUpon>ALM_MED_AdministrarMedidas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_PROV_AdministrarProveedores.aspx.cs">
+      <DependentUpon>ALM_PROV_AdministrarProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_PROV_AdministrarProveedores.aspx.designer.cs">
+      <DependentUpon>ALM_PROV_AdministrarProveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\SAL_Autorizar.aspx.cs">
       <DependentUpon>SAL_Autorizar.aspx</DependentUpon>
