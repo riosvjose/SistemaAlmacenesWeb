@@ -197,13 +197,14 @@ namespace SistemaAlmacenesWeb
             string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
             strSql = "(select 0 as num_sec_cat, '---------------------------' as nombre from dual) union " +
                     "(select num_sec_cat, nombre " +
-                     "from alm_categorias_items)";
+                     "from alm_categorias_items where num_sec_grupo=" + _num_sec_grupo_items + ")";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             return OracleBD.DataTable;
         }
+
         #endregion
 
     }

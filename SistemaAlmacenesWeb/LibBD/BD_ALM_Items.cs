@@ -239,11 +239,11 @@ namespace SistemaAlmacenesWeb
                 _cod= dr["cod"].ToString();
                 _num_sec_cat_items = Convert.ToInt64(dr["num_sec_cat"].ToString());
                 _nombre = dr["nombre"].ToString();
-                _num_sec_marca= Convert.ToInt64(dr["num_sec_cat_items"].ToString());
-                _num_sec_medida = Convert.ToInt64(dr["num_sec_cat_items"].ToString());
+                _num_sec_marca= Convert.ToInt64(dr["num_sec_marca"].ToString());
+                _num_sec_medida = Convert.ToInt64(dr["num_sec_medida"].ToString());
                 _precio_mov = Convert.ToDouble(dr["precio"].ToString());
-                _estado = Convert.ToInt16(dr["num_sec_cat_items"].ToString());
-                _stock_min = Convert.ToInt64(dr["num_sec_cat_items"].ToString());
+                _estado = Convert.ToInt16(dr["estado"].ToString());
+                _stock_min = Convert.ToInt64(dr["stock_min"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -279,6 +279,18 @@ namespace SistemaAlmacenesWeb
             strSql = "(select 0 as num_sec_item, '---------------------------' as nombre from dual) union " +
                     "(select num_sec_item, nombre " +
                      "from alm_items where num_sec_cat="+cat+")";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
+        public DataTable DTStockItems()
+        {
+            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            strSql = "SELECT m.num_sec_item, i.nombre, Sum(m.ingreso)-Sum(m.egreso) AS existencias "+
+                     " FROM alm_movimientos m, alm_items i" +
+                     " WHERE m.num_sec_item = i.num_sec_item GROUP BY m.num_sec_item, i.nombre ORDER BY i.nombre";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

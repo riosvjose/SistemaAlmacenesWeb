@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Alvaro Mamani            ; Fecha: 12/12/2018
-    // Ultima modificación: Alvaro Mamani   ; Fecha: 12/12/2018
+    // Ultima modificación: IGNACIO RIOS   ; Fecha: 17/12/2018
     // Descripción: Clase referente a la tabla ALM_MOVIMIENTOS
     public class BD_ALM_Movimientos
     {
@@ -21,6 +21,7 @@ namespace SistemaAlmacenesWeb
         GEN_Mensajes libMensajes = new GEN_Mensajes();
         GEN_Cadenas libCadenas = new GEN_Cadenas();
         GEN_VarSession axVarSes = new GEN_VarSession();
+        BD_ALM_Items libItem = new BD_ALM_Items();
         private string strSql = string.Empty;
         #endregion
 
@@ -234,10 +235,46 @@ namespace SistemaAlmacenesWeb
             }
             return blEncontrado;
         }
-
+        public bool InsetarVarios(string[] strSql, int cant)
+        {
+            bool blOperacionCorrecta = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.ListaSqls = strSql;
+            OracleBD.NumSqls = cant;
+            OracleBD.EjecutarSqlsTrans();
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible insertar los datos. Se encontró un error al insertaren la tabla alm_movimientos. " + _mensaje;
+            return blOperacionCorrecta;
+        }
         #endregion
 
         #region Procedimientos y Funciones Locales
+        public string SQLCadenaMovimiento()
+        {
+            libItem = new BD_ALM_Items();
+            libItem.StrConexion = StrConexion;
+            libItem.NumSecItem = _num_sec_item;
+            if (libItem.Ver())
+            {
+                _precio_unitario = libItem.PrecioMov;
+            }  
+            strSql = "INSERT INTO alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item,"+
+                     " num_sec_persona, num_sec_usuario, num_sec_tipo_mov, precio_unitario, ingreso, egreso,"+
+                     " num_sec_usuario_reg) VALUES "+
+                     " (alm_movimientos_sec.NEXTVAL"+
+                     ", alm_mov_trans_sec.NEXTVAL" +
+                     ", " +_num_sec_item+
+                     ", " +_num_sec_persona+
+                     ", " +_num_sec_usuario+
+                     ", " +_num_sec_tipo_mov+
+                     ", " +_precio_unitario+
+                     ", " +_ingreso+
+                     ", " +_egreso+
+                     ", "+_num_sec_usuario_registro+")";
+            return strSql;
+        }
         #endregion
     }
 }
