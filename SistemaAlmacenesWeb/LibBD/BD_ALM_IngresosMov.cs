@@ -91,7 +91,7 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_ingresos_movimientos (num_sec_ingreso, num_sec_movimiento, num_sec_usuario_reg) values"+
                      " ("+_num_sec_ingreso+","+_num_sec_movimiento+"," +usuario +" )";
             OracleBD.MostrarError = false;

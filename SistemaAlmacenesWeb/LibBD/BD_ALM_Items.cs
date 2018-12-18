@@ -147,7 +147,7 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_items (num_sec_item, cod, nombre, num_sec_cat, num_sec_marca, num_sec_medida"+
                      ", estado, precio, stock_min, num_sec_usuario_reg) values" +
                     " (alm_items_sec.nextval,"+ _cod+","+_nombre+","+ _num_sec_cat_items + ","+_num_sec_marca
@@ -275,7 +275,7 @@ namespace SistemaAlmacenesWeb
         #region Procedimientos y Funciones Locales
         public DataTable DTListaItems(long cat)
         {
-            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string persona = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "(select 0 as num_sec_item, '---------------------------' as nombre from dual) union " +
                     "(select num_sec_item, nombre " +
                      "from alm_items where num_sec_cat="+cat+")";
@@ -287,7 +287,7 @@ namespace SistemaAlmacenesWeb
         }
         public DataTable DTStockItems()
         {
-            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string persona = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "SELECT m.num_sec_item, i.nombre, Sum(m.ingreso)-Sum(m.egreso) AS existencias "+
                      " FROM alm_movimientos m, alm_items i" +
                      " WHERE m.num_sec_item = i.num_sec_item GROUP BY m.num_sec_item, i.nombre ORDER BY i.nombre";

@@ -115,7 +115,7 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_ingresos (num_sec_ingreso, codigo_orden_compra, fecha_ingreso, tipo"+
                      ", num_sec_proveedor, num_sec_usuario_reg) values"+
                      " (alm_ingresos_sec.nextval,"+ _cod_orden_compra+","+_fecha_ingreso + ","+_tipo + ","+
