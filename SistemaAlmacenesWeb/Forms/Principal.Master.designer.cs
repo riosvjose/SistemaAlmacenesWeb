@@ -31,24 +31,6 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lnkbtnCrearProveedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnCrearProveedor;
-        
-        /// <summary>
-        /// lnkbtnModificarProveedor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnModificarProveedor;
-        
-        /// <summary>
         /// lnkbtnRealizarPedido control.
         /// </summary>
         /// <remarks>
@@ -83,51 +65,6 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAutorizarSalida;
-        
-        /// <summary>
-        /// lnkbtnCrearMarca control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnCrearMarca;
-        
-        /// <summary>
-        /// lbnkbtnEliminarMarca control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbnkbtnEliminarMarca;
-        
-        /// <summary>
-        /// lnkbtnCrearItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnCrearItem;
-        
-        /// <summary>
-        /// lnkbtnModificarItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnModificarItem;
-        
-        /// <summary>
-        /// lnkbtnEliminarItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnEliminarItem;
         
         /// <summary>
         /// lnkbtnReporte1 control.
