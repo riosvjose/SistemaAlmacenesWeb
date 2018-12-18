@@ -23,7 +23,8 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Items libItem = new BD_ALM_Items();
         BD_Personas libpersona = new BD_Personas();
         BD_ALM_Movimientos libMov = new BD_ALM_Movimientos();
-
+        BD_ALM_Dominios libDominio = new BD_ALM_Dominios();
+        BD_ALM_Almacenes_Usu libAlmUsu = new BD_ALM_Almacenes_Usu();
         #endregion
 
         #region "Clase de tablas de la Base de Datos"
@@ -34,11 +35,27 @@ namespace SistemaAlmacenesWeb.Forms
 
         private void CargarDatosIniciales(string strCon)
         {
-
-
+            libDominio = new BD_ALM_Dominios();
+            libDominio.StrConexion = axVarSes.Lee<string>("strConexion");
+            libDominio.Dominio = "ALM_TIPO_INGRESO";
+            ddlTipoIngreso.DataSource = libDominio.DTVerDominio();
+            ddlTipoIngreso.DataTextField = "DESCRIPCION";
+            ddlTipoIngreso.DataValueField = "VALOR";
+            ddlTipoIngreso.DataBind();
         }
         protected void VaciarBoxes()
         {
+            
+        }
+        protected void CargarDdlGrupos()
+        {
+            libAlmUsu = new BD_ALM_Almacenes_Usu();
+            libAlmUsu.StrConexion = axVarSes.Lee<string>("strConexion");
+            libAlmUsu.NumSecUsu= Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+            string[] stralmacenes = libAlmUsu.ObtenerAlmacenUsuario();
+            libGrupo = new BD_ALM_Grupos_Items(); 
+            libGrupo.StrConexion= axVarSes.Lee<string>("strConexion");
+            libGrupo.DTListaGruposPorAlmacen(stralmacenes);
             
         }
         #endregion

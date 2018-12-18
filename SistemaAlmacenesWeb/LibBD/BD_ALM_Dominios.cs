@@ -11,10 +11,10 @@ using System.Collections;
 
 namespace SistemaAlmacenesWeb
 {
-    // Creado por: Ignacio Rios; Fecha: 10/12/2018
+    // Creado por: Ignacio Rios; Fecha: 18/12/2018
     // Ultima modificación: Ignacio Rios; Fecha: 18/12/2018
-    // Descripción: Clase referente a la tabla alm_almacenes
-    public class BD_ALM_Almacenes_Usu
+    // Descripción: Clase referente a la tabla dominios
+    public class BD_ALM_Dominios
     {
         #region Variables Locales
         GEN_OracleBD OracleBD = new GEN_OracleBD();
@@ -26,9 +26,10 @@ namespace SistemaAlmacenesWeb
 
         #region Atributos
         // Campos de la tabla alm_almacenes
-        private long _num_sec_alm_usu= 0;
-        private long _num_sec_almacen = 0;
-        private long _num_sec_usuario = 0;
+        private short _valor = 0;
+        private string _dominio = string.Empty;
+        private string _descripcion= string.Empty;
+        private string _abreviacion = string.Empty;
         private string _fecharegistro = string.Empty;
         private string _usuarioregistro = string.Empty;
         private long _numsecusuarioregistro = 0;
@@ -37,22 +38,28 @@ namespace SistemaAlmacenesWeb
         private string _mensaje = string.Empty;
         private string _strconexion = string.Empty;
 
-        public long NumSecAlmacenusu
+        public short Valor
         {
-            get { return _num_sec_alm_usu; }
-            set { _num_sec_alm_usu = value; }
+            get { return _valor; }
+            set { _valor = value; }
         }
 
-        public long NumSecAlmacen
+        public string Dominio
         {
-            get { return _num_sec_almacen; }
-            set { _num_sec_almacen = value; }
+            get { return _dominio; }
+            set { _dominio = value; }
         }
 
-        public long NumSecUsu
+        public string Descripcion
         {
-            get { return _num_sec_usuario; }
-            set { _num_sec_usuario = value; }
+            get { return _descripcion; }
+            set { _descripcion = value; }
+        }
+
+        public string Abreviacion
+        {
+            get { return _abreviacion; }
+            set { _abreviacion = value; }
         }
 
         public string FechaRegistro
@@ -81,11 +88,12 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Constructores
-        public BD_ALM_Almacenes_Usu()
-        {
-            _num_sec_alm_usu = 0;
-            _num_sec_almacen = 0;
-            _num_sec_usuario = 0;
+        public BD_ALM_Dominios()
+        { 
+            _valor = 0;
+            _dominio = string.Empty;
+            _abreviacion = string.Empty;
+            _descripcion = string.Empty;
             _fecharegistro = string.Empty;
             _usuarioregistro = string.Empty;
             _numsecusuarioregistro = 0;
@@ -96,51 +104,26 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Metodos
-        public bool Insertar()
+        public void Insertar()
         {
-            bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_almacenes_usuarios (num_sec_alm_usuario, num_sec_almacen, num_sec_usuario, num_sec_usuario_reg) values";
-            strSql += " (alm_almacenes_usu.nextval,"+ _num_sec_almacen+","+_num_sec_usuario+","+usuario +" )";
-            OracleBD.MostrarError = false;
-            OracleBD.StrConexion = _strconexion;
-            OracleBD.Sql = strSql;
-            OracleBD.EjecutarSqlTrans();
-            _mensaje = OracleBD.Mensaje;
-            blOperacionCorrecta = !OracleBD.Error;
-            if (OracleBD.Error)
-                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
-            return blOperacionCorrecta;
+            
         }
 
         public void Modificar()
         {
-
+          
         }
 
-        public bool Borrar()
+        public void Borrar()
         {
-            bool blOperacionCorrecta = false;
-            strSql = "update alm_almacenes set estado=0"+
-                     " where num_sec_alm_usuario = " + _num_sec_alm_usu.ToString();
 
-            OracleBD.MostrarError = false;
-            OracleBD.StrConexion = _strconexion;
-            OracleBD.Sql = strSql;
-            OracleBD.EjecutarSqlTrans();
-
-            _mensaje = OracleBD.Mensaje;
-            blOperacionCorrecta = !OracleBD.Error;
-            if (OracleBD.Error)
-                _mensaje = "No fue posible borrar el dato. Se encontró un error al eliminar en la tabla alm_almacenes. " + _mensaje;
-            return blOperacionCorrecta;
         }
 
         public bool Ver()
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select * from alm_almacenes usuarios where num_sec_alm_usuario="+_num_sec_alm_usu.ToString();
+            strSql = "select * from dominios where dominio='" + _dominio + "' and valor="+_valor;
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -150,10 +133,9 @@ namespace SistemaAlmacenesWeb
             if (dt.Rows.Count > 0)
             {
                 blEncontrado = true;
-                DataRow dr = dt.Rows[0];
-                _num_sec_alm_usu = Convert.ToInt64(dr["num_sec_alm_usuario"].ToString());
-                _num_sec_almacen = Convert.ToInt64(dr["num_sec_almacen"].ToString());
-                _num_sec_usuario = Convert.ToInt64(dr["num_sec_usuario"].ToString());
+                DataRow dr = dt.Rows[0];                
+                _abreviacion = dr["abreviacion"].ToString();
+                _descripcion= dr["descripcion"].ToString();
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -161,9 +143,8 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             if (!blEncontrado)
             {
-                _num_sec_alm_usu = 0;
-                _num_sec_almacen = 0;
-                _num_sec_usuario = 0;
+                _abreviacion = string.Empty;
+                _descripcion = string.Empty;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
                 _numsecusuarioregistro = 0;
@@ -177,28 +158,17 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        public string[] ObtenerAlmacenUsuario()
+        public DataTable DTVerDominio()
         {
             string strSql = string.Empty;
-            strSql = "select * from alm_almacenes usuarios where num_sec_alm_usuario=" + _num_sec_alm_usu.ToString();
+            strSql = "select * from dominios where dominio='" + _dominio+"'";
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             dt = OracleBD.DataTable;
-            string[] almacenes = new string[dt.Rows.Count];
-            if (dt.Rows.Count > 0)
-            {
-               for(int i=0; i< dt.Rows.Count;i++)
-                {
-                    DataRow dr = dt.Rows[i];
-                    _num_sec_almacen = Convert.ToInt64(dr["num_sec_almacen"].ToString());
-                    almacenes[i] = _num_sec_almacen.ToString();
-                }
-                
-            }
-            return almacenes;
+            return dt;
         }
             #endregion
 

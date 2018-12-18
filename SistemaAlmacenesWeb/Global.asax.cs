@@ -21,7 +21,7 @@ namespace SistemaAlmacenes
             Session["Servidor"] = "ucbp";
             Session["bEnviarNotificaciones"] = false;
             Session["StrConexion"] = "";
-            Session["UsuarioPersonaNumSec"] = "";
+            Session["UsuarioNumSec"] = "";
             Session["strDeptoUsuario"]= "";
             Session["UsuarioPersonaNumSec"] = "";
             Session["UsuarioPersonaCI"] = "";

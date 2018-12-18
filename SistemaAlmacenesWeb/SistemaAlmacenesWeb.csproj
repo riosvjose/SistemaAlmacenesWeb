@@ -298,6 +298,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LibBD\BD_ALM_Dominios.cs" />
     <Compile Include="LibBD\BD_ALM_IngresosMov.cs" />
     <Compile Include="LibBD\BD_ALM_Ingresos.cs" />
     <Compile Include="LibBD\BD_ALM_Movimientos.cs" />

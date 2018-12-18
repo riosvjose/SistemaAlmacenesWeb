@@ -204,6 +204,25 @@ namespace SistemaAlmacenesWeb
             OracleBD.sqlDataTable();
             return OracleBD.DataTable;
         }
+
+        public DataTable DTListaGruposPorAlmacen(string [] strsqlalm)
+        {
+            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            strSql = string.Empty;
+            for (int i=0; i<strsqlalm.Length;i++)
+            {
+                if (i != 0)
+                {
+                    strSql += " UNION ";
+                }
+                strSql += "(select * from alm_grupos_items where num_sec_almacen " + strsqlalm[i]+")";
+            } 
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
         #endregion
 
     }

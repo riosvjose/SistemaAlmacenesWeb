@@ -11,8 +11,8 @@ using System.Collections;
 
 namespace SistemaAlmacenesWeb
 {
-    // Creado por: Alvaro Mamani            ; Fecha: 12/12/2018
-    // Ultima modificación: IGNACIO RIOS   ; Fecha: 17/12/2018
+    // Creado por: Alvaro Mamani   ; Fecha: 12/12/2018
+    // Ultima modificación: IGNACIO RIOS   ; Fecha: 18/12/2018
     // Descripción: Clase referente a la tabla ALM_MOVIMIENTOS
     public class BD_ALM_Movimientos
     {

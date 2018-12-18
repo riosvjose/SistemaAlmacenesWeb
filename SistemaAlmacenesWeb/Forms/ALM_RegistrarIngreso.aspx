@@ -81,7 +81,7 @@
 			        <div class="panel-body">
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblProveedor" runat="server" Text="Provedor:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblProveedor" runat="server" Text="Proveedor:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                  <asp:DropDownList ID="ddlProveedor" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
