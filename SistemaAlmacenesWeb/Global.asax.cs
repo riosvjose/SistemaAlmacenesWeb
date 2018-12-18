@@ -17,16 +17,16 @@ namespace SistemaAlmacenes
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            Session["UsuarioLogin"] = "";
+            Session["UsuarioLogin"] = string.Empty;
             Session["Servidor"] = "ucbp";
             Session["bEnviarNotificaciones"] = false;
-            Session["StrConexion"] = "";
-            Session["UsuarioPersonaNumSec"] = "";
-            Session["strDeptoUsuario"]= "";
-            Session["UsuarioPersonaNumSec"] = "";
-            Session["UsuarioPersonaCI"] = "";
-            Session["UsuarioPersonaNombre"] = "";
-            Session["UsuarioPersonaTipo"] = "";
+            Session["StrConexion"] = string.Empty;
+            Session["UsuarioNumSec"] = 0.ToString();
+            Session["strDeptoUsuario"] = string.Empty;
+            Session["UsuarioPersonaNumSec"] = string.Empty;
+            Session["UsuarioPersonaCI"] = string.Empty;
+            Session["UsuarioPersonaNombre"] = string.Empty;
+            Session["UsuarioPersonaTipo"] = string.Empty;
 
         }
 

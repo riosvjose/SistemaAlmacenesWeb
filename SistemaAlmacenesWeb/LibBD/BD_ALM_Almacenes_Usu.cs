@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
+    // Ultima modificación: Ignacio Rios; Fecha: 18/12/2018
     // Descripción: Clase referente a la tabla alm_almacenes
     public class BD_ALM_Almacenes_Usu
     {
@@ -177,10 +177,33 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
-        #endregion
+        public string[] ObtenerAlmacenUsuario()
+        {
+            string strSql = string.Empty;
+            strSql = "select distinct num_sec_almacen from alm_almacenes_usuarios where num_sec_usuario=" + _num_sec_usuario.ToString()+
+                     " and activo=1";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            string[] almacenes = new string[dt.Rows.Count];
+            if (dt.Rows.Count > 0)
+            {
+               for(int i=0; i< dt.Rows.Count;i++)
+                {
+                    DataRow dr = dt.Rows[i];
+                    _num_sec_almacen = Convert.ToInt64(dr["num_sec_almacen"].ToString());
+                    almacenes[i] = _num_sec_almacen.ToString();
+                }
+                
+            }
+            return almacenes;
+        }
+            #endregion
 
-    }
+        }
 
 
 }

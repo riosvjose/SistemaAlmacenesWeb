@@ -27,6 +27,7 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Cat_Items libCat = new BD_ALM_Cat_Items();
         BD_ALM_Items libItem = new BD_ALM_Items();
         BD_Personas libpersona = new BD_Personas();
+        BD_ALM_Movimientos libMov = new BD_ALM_Movimientos();
         #endregion
 
         #region "Funciones y procedimientos"
@@ -189,6 +190,106 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            string[] StrSqls = new string[15];
+            for (int i = 1; ((i <= 15)&&(i <= Convert.ToInt32(lblContador.Text))); i++)
+            {
+                libMov = new BD_ALM_Movimientos();
+                libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                libMov.NumSecTipoMov = 2;
+                switch (i)
+                {
+                    case 1:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem1.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante1.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant1.Text);
+                        break;
+                    case 2:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem2.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante2.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant2.Text);
+                        break;
+                    case 3:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem3.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante3.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant3.Text);
+                        break;
+                    case 4:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante4.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        break;
+                    case 5:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem5.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante5.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant5.Text);
+                        break;
+                    case 6:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem6.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante6.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        break;
+                    case 7:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante7.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        break;
+                    case 8:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante8.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant8.Text);
+                        break;
+                    case 9:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante9.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant9.Text);
+                        break;
+                    case 10:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante10.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant10.Text);
+                        break;
+                    case 11:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante11.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant11.Text);
+                        break;
+                    case 12:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante12.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant12.Text);
+                        break;
+                    case 13:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante13.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant13.Text);
+                        break;
+                    case 14:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante14.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant14.Text);
+                        break;
+                    case 15:
+                        libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                        libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante15.SelectedValue);
+                        libMov.Egreso = Convert.ToInt32(tbCant15.Text);
+                        break;
+                }
+                libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                StrSqls[i - 1] = libMov.SQLCadenaMovimiento();
+            }
+            libMov = new BD_ALM_Movimientos();
+            libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+            if (libMov.InsetarVarios(StrSqls, Convert.ToInt32(lblContador.Text)))
+            {
+                lblMensajeOK.Text = "Pedido registrado exitosamente.";
+                pnMensajeOK.Visible = true;
+            }
+            else
+            {
+                lblMensajeError.Text = "Error al registrar el pedido."+libMov.Mensaje;
+                pnMensajeError.Visible = true;
+            }
 
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
