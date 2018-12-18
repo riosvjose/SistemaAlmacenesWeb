@@ -180,7 +180,8 @@ namespace SistemaAlmacenesWeb
         public string[] ObtenerAlmacenUsuario()
         {
             string strSql = string.Empty;
-            strSql = "select * from alm_almacenes usuarios where num_sec_alm_usuario=" + _num_sec_alm_usu.ToString();
+            strSql = "select distinct num_sec_almacen from alm_almacenes_usuarios where num_sec_usuario=" + _num_sec_usuario.ToString()+
+                     " and activo=1";
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
