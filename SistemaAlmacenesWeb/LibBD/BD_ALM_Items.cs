@@ -33,7 +33,7 @@ namespace SistemaAlmacenesWeb
         private long _num_sec_cat_items = 0;
         private long _num_sec_marca = 0;
         private long _num_sec_medida = 0;
-        private short _estado = 0;
+        private short _activo = 0;
         private long _stock_min = 0;
         
         private string _fecharegistro = string.Empty;
@@ -80,10 +80,10 @@ namespace SistemaAlmacenesWeb
             set { _num_sec_marca = value; }
         }
 
-        public short Estado
+        public short Activo
         {
-            get { return _estado; }
-            set { _estado = value; }
+            get { return _activo; }
+            set { _activo = value; }
         }
 
         public long StockMin
@@ -131,7 +131,7 @@ namespace SistemaAlmacenesWeb
             _num_sec_cat_items = 0;
             _num_sec_marca = 0;
             _num_sec_medida = 0;
-            _estado = 0;
+            _activo = 0;
             _stock_min = 0;
             _precio_mov = 0;
             _fecharegistro = string.Empty;
@@ -151,7 +151,7 @@ namespace SistemaAlmacenesWeb
             strSql = "insert into alm_items (num_sec_item, cod, nombre, num_sec_cat, num_sec_marca, num_sec_medida"+
                      ", estado, precio, stock_min, num_sec_usuario_reg) values" +
                     " (alm_items_sec.nextval,"+ _cod+","+_nombre+","+ _num_sec_cat_items + ","+_num_sec_marca
-                    + "," + _num_sec_medida + "," +_estado + "," +_precio_mov + "," +_stock_min+ ","+usuario +" )";
+                    + "," + _num_sec_medida + "," + _activo + "," +_precio_mov + "," +_stock_min+ ","+usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -242,7 +242,7 @@ namespace SistemaAlmacenesWeb
                 _num_sec_marca= Convert.ToInt64(dr["num_sec_marca"].ToString());
                 _num_sec_medida = Convert.ToInt64(dr["num_sec_medida"].ToString());
                 _precio_mov = Convert.ToDouble(dr["precio"].ToString());
-                _estado = Convert.ToInt16(dr["estado"].ToString());
+                _activo = Convert.ToInt16(dr["activo"].ToString());
                 _stock_min = Convert.ToInt64(dr["stock_min"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
@@ -258,7 +258,7 @@ namespace SistemaAlmacenesWeb
                 _num_sec_marca = 0;
                 _num_sec_medida = 0;
                 _precio_mov = 0;
-                _estado = 0;
+                _activo = 0;
                 _stock_min = 0;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
