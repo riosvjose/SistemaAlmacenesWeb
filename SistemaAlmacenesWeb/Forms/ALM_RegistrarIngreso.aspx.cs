@@ -22,6 +22,8 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Cat_Items libCat = new BD_ALM_Cat_Items();
         BD_ALM_Items libItem = new BD_ALM_Items();
         BD_Personas libpersona = new BD_Personas();
+        BD_ALM_Ingresos libIngreso = new BD_ALM_Ingresos();
+        BD_ALM_IngresosMov libIngresoMov = new BD_ALM_IngresosMov();
         BD_ALM_Movimientos libMov = new BD_ALM_Movimientos();
         BD_ALM_Pasos libPasos = new BD_ALM_Pasos();
         BD_ALM_Dominios libDominio = new BD_ALM_Dominios();
@@ -389,6 +391,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem1.DataValueField = "NUM_SEC_ITEM";
                 ddlItem1.DataBind();
             }
+            else
+            {
+                ddlItem1.Items.Clear();
+            }
         }
         protected void CargarDdlItem2()
         {
@@ -401,10 +407,14 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem2.DataValueField = "NUM_SEC_ITEM";
                 ddlItem2.DataBind();
             }
+            else
+            {
+                ddlItem2.Items.Clear();
+            }
         }
         protected void CargarDdlItem3()
         {
-            if (ddlCat1.SelectedValue != string.Empty)
+            if (ddlCat3.SelectedValue != string.Empty)
             {
                 libItem = new BD_ALM_Items();
                 libItem.StrConexion = axVarSes.Lee<string>("strConexion");
@@ -412,6 +422,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem3.DataTextField = "NOMBRE";
                 ddlItem3.DataValueField = "NUM_SEC_ITEM";
                 ddlItem3.DataBind();
+            }
+            else
+            {
+                ddlItem3.Items.Clear();
             }
         }
         protected void CargarDdlItem4()
@@ -425,6 +439,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem4.DataValueField = "NUM_SEC_ITEM";
                 ddlItem4.DataBind();
             }
+            else
+            {
+                ddlItem6.Items.Clear();
+            }
         }
         protected void CargarDdlItem5()
         {
@@ -436,6 +454,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem5.DataTextField = "NOMBRE";
                 ddlItem5.DataValueField = "NUM_SEC_ITEM";
                 ddlItem5.DataBind();
+            }
+            else
+            {
+                ddlItem5.Items.Clear();
             }
         }
         protected void CargarDdlItem6()
@@ -449,6 +471,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem6.DataValueField = "NUM_SEC_ITEM";
                 ddlItem6.DataBind();
             }
+            else
+            {
+                ddlItem6.Items.Clear();
+            }
         }
         protected void CargarDdlItem7()
         {
@@ -460,6 +486,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem7.DataTextField = "NOMBRE";
                 ddlItem7.DataValueField = "NUM_SEC_ITEM";
                 ddlItem7.DataBind();
+            }
+            else
+            {
+                ddlItem7.Items.Clear();
             }
         }
         protected void CargarDdlItem8()
@@ -473,6 +503,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem8.DataValueField = "NUM_SEC_ITEM";
                 ddlItem8.DataBind();
             }
+            else
+            {
+                ddlItem8.Items.Clear();
+            }
         }
         protected void CargarDdlItem9()
         {
@@ -484,6 +518,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem9.DataTextField = "NOMBRE";
                 ddlItem9.DataValueField = "NUM_SEC_ITEM";
                 ddlItem9.DataBind();
+            }
+            else
+            {
+                ddlItem9.Items.Clear();
             }
         }
         protected void CargarDdlItem10()
@@ -497,6 +535,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem10.DataValueField = "NUM_SEC_ITEM";
                 ddlItem10.DataBind();
             }
+            else
+            {
+                ddlItem10.Items.Clear();
+            }
         }
         protected void CargarDdlItem11()
         {
@@ -508,6 +550,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem11.DataTextField = "NOMBRE";
                 ddlItem11.DataValueField = "NUM_SEC_ITEM";
                 ddlItem11.DataBind();
+            }
+            else
+            {
+                ddlItem11.Items.Clear();
             }
         }
         protected void CargarDdlItem12()
@@ -521,6 +567,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem12.DataValueField = "NUM_SEC_ITEM";
                 ddlItem12.DataBind();
             }
+            else
+            {
+                ddlItem12.Items.Clear();
+            }
         }
         protected void CargarDdlItem13()
         {
@@ -532,6 +582,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem13.DataTextField = "NOMBRE";
                 ddlItem13.DataValueField = "NUM_SEC_ITEM";
                 ddlItem13.DataBind();
+            }
+            else
+            {
+                ddlItem13.Items.Clear();
             }
         }
         protected void CargarDdlItem14()
@@ -545,6 +599,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem14.DataValueField = "NUM_SEC_ITEM";
                 ddlItem14.DataBind();
             }
+            else
+            {
+                ddlItem14.Items.Clear();
+            }
         }
         protected void CargarDdlItem15()
         {
@@ -556,6 +614,10 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem15.DataTextField = "NOMBRE";
                 ddlItem15.DataValueField = "NUM_SEC_ITEM";
                 ddlItem15.DataBind();
+            }
+            else
+            {
+                ddlItem15.Items.Clear();
             }
         }
         #endregion
@@ -581,8 +643,15 @@ namespace SistemaAlmacenesWeb.Forms
             string[] StrSqls = new string[15];
             if (ddlTipoIngreso.SelectedValue!="0")
             {
+                libIngreso = new BD_ALM_Ingresos();
+                libIngreso.StrConexion = axVarSes.Lee<string>("strConexion");
+                libIngreso.NumSecIngreso = libIngreso.ObtenerNSIngreso();
+                //libIngresoMov.
                 for (int i = 1; ((i <= 15) && (i <= Convert.ToInt32(lblContador.Text))); i++)
                 {
+                    
+                    libIngresoMov = new BD_ALM_IngresosMov();
+                    libIngresoMov.StrConexion = axVarSes.Lee<string>("strConexion");
                     libMov = new BD_ALM_Movimientos();
                     libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                     libItem = new BD_ALM_Items();
@@ -678,6 +747,7 @@ namespace SistemaAlmacenesWeb.Forms
                     libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
                     libPasos.VerPrimeroPlantilla();
                     libMov.NumSecPaso = libPasos.NumSecPaso;
+                    libMov.NumSecMovimiento = libMov.ObtenerNSMov();
                     StrSqls[i - 1] = libMov.SQLCadenaMovimiento();
                 }
                 libMov = new BD_ALM_Movimientos();

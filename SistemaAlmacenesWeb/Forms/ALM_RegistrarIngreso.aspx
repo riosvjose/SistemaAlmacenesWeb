@@ -89,32 +89,12 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblNumeroFac" runat="server" Text="Numero de factura: "></asp:Label>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="tbNumFac" CssClass="text-danger" ErrorMessage="El campo número factura es obligatorio.">*</asp:RequiredFieldValidator>
+                                <strong><asp:Label ID="lblCompraSap" runat="server" Text="Codigo compra SAP: "></asp:Label>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="tbCodSap" CssClass="text-danger" ErrorMessage="El campo número factura es obligatorio.">*</asp:RequiredFieldValidator>
                                 </strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
-                                <asp:TextBox ID="tbNumFac" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-2">
-                                <strong><asp:Label ID="lblNumOrden" runat="server" Text="Numero de orden: "></asp:Label>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbNumOrden" CssClass="text-danger" ErrorMessage="El campo número de orden es obligatorio.">*</asp:RequiredFieldValidator>
-                                </strong>
-                            </div>
-                            <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
-                                <asp:TextBox ID="tbNumOrden" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
-                            </div>
-                        </div>
-                         <div class="row mb-3">
-                            <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <strong><asp:Label ID="lblFechaFac" runat="server" Width="150">Fecha de emisión:</asp:Label></strong>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbFechaFac" CssClass="text-danger" ErrorMessage="El campo fecha de emisión es obligatorio.">*</asp:RequiredFieldValidator>
-                            </div>
-                            <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
-                                 <asp:TextBox ID="tbFechaFac" runat="server" CssClass="form-control" MaxLength="10" AutoCompleteType="Disabled"></asp:TextBox>
-                                <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" BehaviorID="tbFechaFac_CalendarExtender" TargetControlID="tbFechaFac" />
+                                <asp:TextBox ID="tbCodSap" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                         </div>
 			        </div>

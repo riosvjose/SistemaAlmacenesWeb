@@ -268,7 +268,7 @@ namespace SistemaAlmacenesWeb
             strSql = "INSERT INTO alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item,"+
                      " num_sec_persona, num_sec_usuario, num_sec_paso, precio_unitario, ingreso, egreso,"+
                      " num_sec_usuario_reg) VALUES "+
-                     " (alm_movimientos_sec.NEXTVAL"+
+                     " ("+_num_sec_movimiento+
                      ", alm_mov_trans_sec.NEXTVAL" +
                      ", " +_num_sec_item+
                      ", " +_num_sec_persona+
@@ -279,6 +279,25 @@ namespace SistemaAlmacenesWeb
                      ", " +_egreso+
                      ", "+_num_sec_usuario_registro+")";
             return strSql;
+        }
+        public long ObtenerNSMov()
+        {
+            long num_sec=0;
+            string strSql = string.Empty;
+            strSql = "select alm_movimientos_sec.NEXTVAL as valor from dual";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                num_sec = Convert.ToInt64(dr["valor"].ToString());
+            }
+            dt.Dispose();
+            return num_sec;
         }
         #endregion
     }
