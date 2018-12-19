@@ -18,6 +18,7 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_VarSession axVarSes = new GEN_VarSession();
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
+        BD_ALM_Proveedores libProv = new BD_ALM_Proveedores();
         BD_ALM_Grupos_Items libGrupo = new BD_ALM_Grupos_Items();
         BD_ALM_Cat_Items libCat = new BD_ALM_Cat_Items();
         BD_ALM_Items libItem = new BD_ALM_Items();
@@ -49,6 +50,12 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlTipoIngreso.DataTextField = "DESCRIPCION";
                 ddlTipoIngreso.DataValueField = "VALOR";
                 ddlTipoIngreso.DataBind();
+                libProv = new BD_ALM_Proveedores();
+                libProv.StrConexion = axVarSes.Lee<string>("strConexion");
+                ddlProveedor.DataSource = libProv.dtListarProveedores();
+                ddlProveedor.DataTextField = "nombre_comercial";
+                ddlProveedor.DataValueField = "num_sec_proveedor";
+                ddlProveedor.DataBind();
                 CargarDdlGrupos();
                 CargarDdlCategorias();
                 CargarDdlItems();
@@ -620,6 +627,23 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem15.Items.Clear();
             }
         }
+        protected void Vaciarboxes()
+        {
+            tbCant1.Text = "0";
+            tbCant2.Text = "0";
+            tbCant3.Text = "0";
+            tbCant4.Text = "0";
+            tbCant5.Text = "0";
+            tbCant6.Text = "0";
+            tbCant7.Text = "0";
+            tbCant9.Text = "0";
+            tbCant10.Text = "0";
+            tbCant11.Text = "0";
+            tbCant12.Text = "0";
+            tbCant13.Text = "0";
+            tbCant14.Text = "0";
+            tbCant15.Text = "0";
+        }
         #endregion
 
         #region "Eventos"
@@ -640,16 +664,21 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            string[] StrSqls = new string[15];
+            string[] StrSqls = new string[20];
+            int contSqls = 0;
             if (ddlTipoIngreso.SelectedValue!="0")
             {
                 libIngreso = new BD_ALM_Ingresos();
                 libIngreso.StrConexion = axVarSes.Lee<string>("strConexion");
                 libIngreso.NumSecIngreso = libIngreso.ObtenerNSIngreso();
-                //libIngresoMov.
+                libIngreso.NumSecProveedor = Convert.ToInt64(ddlProveedor.SelectedValue);
+                libIngreso.CodCompraSAP = tbCodSap.Text;
+                libIngreso.Tipo = Convert.ToInt16(ddlTipoIngreso.SelectedValue);
+                libIngreso.FechaIngreso = tbFechaMov.Text;
+                StrSqls[contSqls]=libIngreso.ObtenerCadenaInsertar();
+                contSqls++;
                 for (int i = 1; ((i <= 15) && (i <= Convert.ToInt32(lblContador.Text))); i++)
                 {
-                    
                     libIngresoMov = new BD_ALM_IngresosMov();
                     libIngresoMov.StrConexion = axVarSes.Lee<string>("strConexion");
                     libMov = new BD_ALM_Movimientos();
@@ -748,11 +777,18 @@ namespace SistemaAlmacenesWeb.Forms
                     libPasos.VerPrimeroPlantilla();
                     libMov.NumSecPaso = libPasos.NumSecPaso;
                     libMov.NumSecMovimiento = libMov.ObtenerNSMov();
-                    StrSqls[i - 1] = libMov.SQLCadenaMovimiento();
+                    StrSqls[contSqls] = libMov.SQLCadenaMovimiento();
+                    contSqls++;
+                    libIngresoMov.NumSecIngreso = libIngreso.NumSecIngreso;
+                    libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;
+                    StrSqls[contSqls] = libIngresoMov.ObtenerCadenaInsertar();
+                    contSqls++;
+
+                    //// falta actualiar precio
                 }
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.InsetarVarios(StrSqls, Convert.ToInt32(lblContador.Text)))
+                if (libMov.InsetarVarios(StrSqls, contSqls))
                 {
                     lblMensajeOK.Text = "Ingreso registrado exitosamente.";
                     pnMensajeOK.Visible = true;
