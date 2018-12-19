@@ -99,7 +99,7 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_almacenes_usuarios (num_sec_alm_usuario, num_sec_almacen, num_sec_usuario, num_sec_usuario_reg) values";
             strSql += " (alm_almacenes_usu.nextval,"+ _num_sec_almacen+","+_num_sec_usuario+","+usuario +" )";
             OracleBD.MostrarError = false;

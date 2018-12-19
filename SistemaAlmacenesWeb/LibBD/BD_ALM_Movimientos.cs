@@ -32,13 +32,14 @@ namespace SistemaAlmacenesWeb
         private long _num_sec_item = 0;
         private long _num_sec_persona = 0;
         private long _num_sec_usuario = 0;
-        private long _num_sec_tipo_mov = 0;
+        private long _num_sec_paso = 0;
         private double _precio_unitario = 0;
         private long _ingreso = 0;
         private long _egreso = 0;
         private string _fecha_registro = string.Empty;
         private string _usuario_registro = string.Empty;
         private long _num_sec_usuario_registro = 0;
+
 
         // Otras propiedades
         private string _mensaje = string.Empty;
@@ -70,10 +71,10 @@ namespace SistemaAlmacenesWeb
             get { return _num_sec_usuario; }
             set { _num_sec_usuario = value; }
         }
-        public long NumSecTipoMov
+        public long NumSecPaso
         {
-            get { return _num_sec_tipo_mov; }
-            set { _num_sec_tipo_mov = value; }
+            get { return _num_sec_paso; }
+            set { _num_sec_paso = value; }
         }
         public double PrecioUnitario
         {
@@ -123,7 +124,7 @@ namespace SistemaAlmacenesWeb
             _num_sec_item = 0;
             _num_sec_persona = 0;
             _num_sec_usuario = 0;
-            _num_sec_tipo_mov = 0;
+            _num_sec_paso = 0;
             _precio_unitario = 0;
             _ingreso = 0;
             _egreso = 0;
@@ -140,9 +141,13 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item, num_sec_persona, num_sec_usuario, num_sec_mov_tipo, precio_unitario, ingreso, egreso, num_sec_usuario_reg) values " +
-                    "(alm_movimientos_sec.nextval, " + _num_sec_transaccion + ", " + _num_sec_item + ", " + _num_sec_persona + ", " + _num_sec_usuario + ", " + _num_sec_tipo_mov + ", " + _precio_unitario + ", " + _ingreso + ", " + _egreso + ", " + usuario + " )";/* Revisar el num_sec_ de "num_sec_transaccion" */
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "insert into alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item"+
+                    ", num_sec_persona, num_sec_usuario, num_sec_paso, precio_unitario, ingreso, egreso"+
+                    ", num_sec_usuario_reg) values " +
+                    "(alm_movimientos_sec.nextval, " + _num_sec_transaccion + ", " + _num_sec_item + ", " +
+                    _num_sec_persona + ", " + _num_sec_usuario + ", " + _num_sec_paso + ", " + _precio_unitario +
+                    ", " + _ingreso + ", " + _egreso + ", " + usuario + " )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -162,7 +167,7 @@ namespace SistemaAlmacenesWeb
                 "num_sec_item = " + _num_sec_item + ", " +
                 "num_sec_persona = " + _num_sec_persona + ", " +
                 "num_sec_usuario = " + _num_sec_usuario + ", " +
-                "num_sec_mov_tipo = " + _num_sec_tipo_mov + ", " +
+                "num_sec_mov_tipo = " + _num_sec_paso + ", " +
                 "precio_unitario = " + _precio_unitario + ", " +
                 "ingreso = " + _ingreso + ", " +
                 "egreso = " + _egreso + " " +
@@ -206,7 +211,7 @@ namespace SistemaAlmacenesWeb
                 _num_sec_item = Convert.ToInt64(dr["num_sec_item"].ToString());
                 _num_sec_persona = Convert.ToInt64(dr["num_sec_persona"].ToString());
                 _num_sec_usuario = Convert.ToInt64(dr["num_sec_usuario"].ToString());
-                _num_sec_tipo_mov = Convert.ToInt64(dr["num_sec_mov_tipo"].ToString());
+                _num_sec_paso = Convert.ToInt64(dr["num_sec_paso"].ToString());
                 _precio_unitario = Convert.ToDouble(dr["precio_unitario"].ToString());
                 _ingreso = Convert.ToInt64(dr["ingreso"].ToString());
                 _egreso = Convert.ToInt64(dr["egreso"].ToString());
@@ -222,7 +227,7 @@ namespace SistemaAlmacenesWeb
                 _num_sec_item = 0;
                 _num_sec_persona = 0;
                 _num_sec_usuario = 0;
-                _num_sec_tipo_mov = 0;
+                _num_sec_paso = 0;
                 _precio_unitario = 0;
                 _ingreso = 0;
                 _egreso = 0;
@@ -261,19 +266,38 @@ namespace SistemaAlmacenesWeb
                 _precio_unitario = libItem.PrecioMov;
             }  
             strSql = "INSERT INTO alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item,"+
-                     " num_sec_persona, num_sec_usuario, num_sec_tipo_mov, precio_unitario, ingreso, egreso,"+
+                     " num_sec_persona, num_sec_usuario, num_sec_paso, precio_unitario, ingreso, egreso,"+
                      " num_sec_usuario_reg) VALUES "+
-                     " (alm_movimientos_sec.NEXTVAL"+
+                     " ("+_num_sec_movimiento+
                      ", alm_mov_trans_sec.NEXTVAL" +
                      ", " +_num_sec_item+
                      ", " +_num_sec_persona+
                      ", " +_num_sec_usuario+
-                     ", " +_num_sec_tipo_mov+
+                     ", " + _num_sec_paso +
                      ", " +_precio_unitario+
                      ", " +_ingreso+
                      ", " +_egreso+
                      ", "+_num_sec_usuario_registro+")";
             return strSql;
+        }
+        public long ObtenerNSMov()
+        {
+            long num_sec=0;
+            string strSql = string.Empty;
+            strSql = "select alm_movimientos_sec.NEXTVAL as valor from dual";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                num_sec = Convert.ToInt64(dr["valor"].ToString());
+            }
+            dt.Dispose();
+            return num_sec;
         }
         #endregion
     }

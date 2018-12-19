@@ -28,6 +28,8 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Items libItem = new BD_ALM_Items();
         BD_Personas libpersona = new BD_Personas();
         BD_ALM_Movimientos libMov = new BD_ALM_Movimientos();
+        BD_ALM_Almacenes libAlm = new BD_ALM_Almacenes();
+        BD_ALM_Plantillas libPlant = new BD_ALM_Plantillas();
         #endregion
 
         #region "Funciones y procedimientos"
@@ -193,85 +195,106 @@ namespace SistemaAlmacenesWeb.Forms
             string[] StrSqls = new string[15];
             for (int i = 1; ((i <= 15)&&(i <= Convert.ToInt32(lblContador.Text))); i++)
             {
+                libItem = new BD_ALM_Items();
+                libItem.StrConexion = axVarSes.Lee<string>("strConexion");
+                libCat = new BD_ALM_Cat_Items();
+                libCat.StrConexion = axVarSes.Lee<string>("strConexion");
+                libGrupo = new BD_ALM_Grupos_Items();
+                libGrupo.StrConexion = axVarSes.Lee<string>("strConexion");
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                libMov.NumSecTipoMov = 2;
                 switch (i)
                 {
                     case 1:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem1.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante1.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant1.Text);
+                        //libI
+                        libMov.NumSecPaso = 2;
                         break;
                     case 2:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem2.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante2.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant2.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 3:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem3.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante3.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant3.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 4:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante4.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 5:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem5.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante5.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant5.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 6:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem6.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante6.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 7:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante7.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 8:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante8.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant8.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 9:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante9.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant9.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 10:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante10.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant10.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 11:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante11.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant11.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 12:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante12.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant12.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 13:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante13.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant13.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 14:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante14.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant14.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                     case 15:
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante15.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant15.Text);
+                        libMov.NumSecPaso = 2;
                         break;
                 }
                 libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));

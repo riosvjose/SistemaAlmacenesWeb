@@ -195,6 +195,7 @@ namespace SistemaAlmacenesWeb
         //Lista de Grupos Items
         public DataTable DTListaGrupos()
         {
+
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "SELECT DISTINCT a.num_sec_grupo, a.nombre " +
                         "FROM alm_grupos_items a, alm_almacenes b, alm_almacenes_usuarios c " +
@@ -203,6 +204,7 @@ namespace SistemaAlmacenesWeb
                             "AND c.num_sec_usuario = " + usuario + " " +
                             "AND c.activo = 1 " +
                         "ORDER BY a.nombre ASC";
+
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -212,7 +214,6 @@ namespace SistemaAlmacenesWeb
 
         public DataTable DTListaGruposPorAlmacen(string [] strsqlalm)
         {
-            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
             strSql = string.Empty;//"(select 0 as num_sec_grupo '-----------' as nombre from dual)";
             for (int i=0; i<strsqlalm.Length;i++)
             {

@@ -27,7 +27,7 @@ namespace SistemaAlmacenesWeb
         #region Atributos
         // Campos de la tabla alm_ingresos
         private long _num_sec_ingreso = 0;
-        private string _cod_orden_compra = string.Empty;
+        private string _cod_compra_sap = string.Empty;
         private string _fecha_ingreso = string.Empty;
         private long _num_sec_proveedor = 0;
         private short _tipo = 0;
@@ -45,10 +45,10 @@ namespace SistemaAlmacenesWeb
             set { _num_sec_ingreso = value; }
         }
 
-        public string CodOrdenCompra
+        public string CodCompraSAP
         {
-            get { return _cod_orden_compra; }
-            set { _cod_orden_compra = value; }
+            get { return _cod_compra_sap; }
+            set { _cod_compra_sap = value; }
         }
 
         public string FechaIngreso
@@ -98,7 +98,7 @@ namespace SistemaAlmacenesWeb
         public BD_ALM_Ingresos()
         { 
             _num_sec_ingreso = 0;
-            _cod_orden_compra = string.Empty;
+            _cod_compra_sap = string.Empty;
             _fecha_ingreso = string.Empty;
             _num_sec_proveedor = 0;
             _tipo = 0;
@@ -115,10 +115,10 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_ingresos (num_sec_ingreso, codigo_orden_compra, fecha_ingreso, tipo"+
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "insert into alm_ingresos (num_sec_ingreso, codigo_compra_sap, fecha_ingreso, tipo"+
                      ", num_sec_proveedor, num_sec_usuario_reg) values"+
-                     " (alm_ingresos_sec.nextval,"+ _cod_orden_compra+","+_fecha_ingreso + ","+_tipo + ","+
+                     " (alm_ingresos_sec.nextval,"+ _cod_compra_sap + ","+_fecha_ingreso + ","+_tipo + ","+
                      _num_sec_proveedor+"," +usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -135,7 +135,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "update alm_ingresos set "+
-                " codigo_orden_compra = " + _cod_orden_compra+
+                " codigo_compra_sap = " + _cod_compra_sap +
                 ", fecha_ingreso = " + _fecha_ingreso+
                 ", tipo = " + _fecha_ingreso +
                 " where num_sec_ingreso = " + _num_sec_ingreso.ToString();
@@ -173,7 +173,7 @@ namespace SistemaAlmacenesWeb
             {
                 blEncontrado = true;
                 DataRow dr = dt.Rows[0];
-                _cod_orden_compra = dr["codigo_orden_compra"].ToString();
+                _cod_compra_sap = dr["codigo_orden_compra"].ToString();
                 _fecha_ingreso= dr["fecha_ingreso"].ToString();
                 _tipo = Convert.ToInt16(dr["tipo"].ToString());
                 _num_sec_proveedor = Convert.ToInt64(dr["num_sec_proveedor"].ToString());
@@ -185,7 +185,7 @@ namespace SistemaAlmacenesWeb
             if (!blEncontrado)
             {
                 _num_sec_ingreso = 0;
-                _cod_orden_compra = string.Empty;
+                _cod_compra_sap = string.Empty;
                 _fecha_ingreso = string.Empty;
                 _num_sec_proveedor = 0;
                 _tipo = 0;
@@ -202,7 +202,25 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
+        public long ObtenerNSIngreso()
+        {
+            long num_sec = 0;
+            string strSql = string.Empty;
+            strSql = "select alm_ingresos.sec.nextval  as valor from dual";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+               num_sec =  Convert.ToInt64(dr["valor"].ToString());
+            }
+            dt.Dispose();
+            return num_sec;
+        }
         #endregion
 
     }
