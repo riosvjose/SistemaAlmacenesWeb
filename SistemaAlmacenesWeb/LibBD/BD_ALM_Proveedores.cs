@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 12/12/2018
-    // Ultima modificación: Alvaro Mamani; Fecha: 18/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 19/12/2018
     // Descripción: Clase referente a la tabla alm_proveedores
     public class BD_ALM_Proveedores
     {
@@ -139,7 +139,7 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into ALM_PROVEEDORES (num_sec_proveedor, nit, nombre_comercial, razon_social, " + 
                     "telefono, email, direccion, nombre_contacto, num_sec_usuario_reg) values " +
                     "(alm_proveedores_sec.nextval,'" + _nit + "', '" + _nombre_comercial + "', '" + _razon_social + "', '" +
@@ -232,12 +232,10 @@ namespace SistemaAlmacenesWeb
 
         #region Procedimientos y Funciones Locales
         // Lista de todos los proveedores
-        public DataTable ListarProveedores()
+        public DataTable dtListarProveedores()
         {            
-            strSql = "SELECT * FROM ( " +
-                        "SELECT 0 as num_sec_proveedor, '---------------------------' as nombre_comercial from dual UNION " +
-                        "SELECT num_sec_proveedor, nombre_comercial FROM alm_proveedores " +
-                    ") ORDER BY nombre_comercial ASC";
+            strSql = "SELECT num_sec_proveedor, nombre_comercial FROM alm_proveedores " +
+                        "ORDER BY nombre_comercial ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

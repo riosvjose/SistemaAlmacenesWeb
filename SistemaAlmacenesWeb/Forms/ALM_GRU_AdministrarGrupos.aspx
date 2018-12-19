@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Administrar Grupos de Items</h1>
+		            <h1>Administrar Grupo de Items</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -73,6 +73,14 @@
                                 <asp:TextBox ID="tbNombreGrupoItem" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                         </div>
+                        <div class="row mb-3" runat="server" id="idAlmacenItem" visible="false">
+                            <div class="col-sm-2">
+                                <strong><asp:Label ID="lblAlmacenItem" runat="server" Text="Almacen:"></asp:Label></strong>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                <asp:DropDownList ID="ddlAlmacenItem" runat="server" CssClass="form-control" ></asp:DropDownList>
+                            </div>
+                        </div>
 			        </div>
                     <%--PIE DEL PANEL--%>
 			        <div class="panel-footer">
@@ -101,6 +109,14 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarNombreGrupoItem" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row mb-3" runat="server">
+                            <div class="col-sm-2">
+                                <strong><asp:Label ID="lblEditarAlmacen" runat="server" Text="Almacen:"></asp:Label></strong>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                <asp:DropDownList ID="ddlEditarAlmacen" runat="server" CssClass="form-control" readonly="true"></asp:DropDownList>
                             </div>
                         </div>
 			        </div>

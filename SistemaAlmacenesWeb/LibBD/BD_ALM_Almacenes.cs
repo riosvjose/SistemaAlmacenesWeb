@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 19/12/2018
     // Descripción: Clase referente a la tabla alm_almacenes
     public class BD_ALM_Almacenes
     {
@@ -191,7 +191,21 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
+        // Lista de todos los almacenes a los que una persona tiene permisos
+        public DataTable dtListarAlmacenes()
+        {
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "SELECT DISTINCT a.num_sec_almacen, a.nombre FROM alm_almacenes a, alm_almacenes_usuarios b " +
+                        "WHERE a.num_sec_almacen = b.num_sec_almacen " +
+                            "AND b.num_sec_usuario = " + usuario  + " " +
+                            "AND b.activo = 1 " +
+                        "ORDER BY a.nombre ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
         #endregion
 
     }

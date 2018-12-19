@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 11/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 18/12/2018
     // Descripción: Clase referente a la tabla alm_marcas
     public class BD_ALM_Marcas
     {
@@ -92,9 +92,9 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_marcas (num_sec_marca, nombre, num_sec_usuario_reg) values";
-            strSql += " (alm_marcas_sec.nextval"+ _nombre+","+usuario +" )";
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "insert into alm_marcas (num_sec_marca, nombre, num_sec_usuario_reg) values " +
+                    " (alm_marcas_sec.nextval, '" +  _nombre + "', " + usuario + " )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -110,8 +110,8 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "update alm_marcas set "+
-                    " nombre = " + _nombre+
-                    " where num_sec_marca = " + _num_sec_marca.ToString();
+                    "nombre = '" + _nombre + "' " +
+                    "where num_sec_marca = " + _num_sec_marca.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -147,7 +147,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select * from alm_marcas where num_sec_proveedor = " + _num_sec_marca.ToString();
+            strSql = "select * from alm_marcas where num_sec_marca = " + _num_sec_marca.ToString();
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -183,7 +183,7 @@ namespace SistemaAlmacenesWeb
 
         #region Procedimientos y Funciones Locales
         // Lista de todas las marcas
-        public DataTable ListarMarcas()
+        public DataTable dtListarMarcas()
         {
             strSql = "SELECT * FROM ( " +
                         "SELECT 0 as num_sec_marca, '---------------------------' as nombre from dual UNION " +

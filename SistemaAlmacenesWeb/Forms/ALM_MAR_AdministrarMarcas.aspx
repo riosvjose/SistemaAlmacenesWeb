@@ -100,7 +100,7 @@
                                 <asp:RequiredFieldValidator ID="rfvEditarNombreMarca" runat="server" ControlToValidate="tbEditarNombreMarca" CssClass="text-danger" ErrorMessage="El campo Nombre es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbEditarNombreMarca" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" OnTextChanged="tbEditarNombreMarca_TextChanged"></asp:TextBox>
+                                <asp:TextBox ID="tbEditarNombreMarca" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" ></asp:TextBox>
                             </div>
                         </div>
 			        </div>
@@ -108,7 +108,7 @@
 			        <div class="panel-footer">
                         <div class="row">
                             <div class="btn-group">
-                                <asp:Button ID="btnEditarGuardarMarca" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="True" />
+                                <asp:Button ID="btnEditarGuardarMarca" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="True" OnClick="btnEditarGuardarMarca_Click" />
                                 <asp:Button ID="btnEditarCancelarMarca" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClick="btnEditarCancelarMarca_Click" />
                             </div>
                         </div>

@@ -29,21 +29,23 @@ namespace SistemaAlmacenesWeb.Forms
         #region "Funciones y procedimientos"
         private void CargarDatosIniciales(string strCon)
         {
-            ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
-            if (!Page.IsPostBack)
+            if (!string.IsNullOrEmpty(strCon.Trim()))
             {
-                // Listar a todos los Proveedores
-                ddlMarca.DataSource = ALMMarcas.ListarMarcas();
-                ddlMarca.DataTextField = "NOMBRE_COMERCIAL";
-                ddlMarca.DataValueField = "NUM_SEC_PROVEEDOR";
+                ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
+
+                // Listar a todas las marcas
+                ddlMarca.DataSource = ALMMarcas.dtListarMarcas();
+                ddlMarca.DataTextField = "NOMBRE";
+                ddlMarca.DataValueField = "NUM_SEC_MARCA";
                 ddlMarca.DataBind();
-            }
-            // Recibir mensaje exitoso cuando se redirige de otra pagina
-            if (Session["MensajeOK"] != null)
-            {
-                pnMensajeOK.Visible = true;
-                lblMensajeOK.Text = Session["MensajeOK"].ToString();
-                Session["MensajeOK"] = null;
+
+                // Recibir mensaje exitoso cuando se redirige de otra pagina
+                if (Session["MensajeOK"] != null)
+                {
+                    pnMensajeOK.Visible = true;
+                    lblMensajeOK.Text = Session["MensajeOK"].ToString();
+                    Session["MensajeOK"] = null;
+                }
             }
         }
         #endregion
@@ -51,7 +53,10 @@ namespace SistemaAlmacenesWeb.Forms
         #region "Eventos"
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            {
+                CargarDatosIniciales(axVarSes.Lee<string>("strConexion"));
+            }
         }
 
         protected void ddlMarca_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,7 +100,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Usted no selecciono a ninguna Marca";
+                lblMensajeError.Text = "Usted no selecciono ninguna Marca";
             }
         }
 
@@ -106,7 +111,19 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void btnGuardarMarca_Click(object sender, EventArgs e)
         {
+            ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
+            ALMMarcas.Nombre = tbNombreMarca.Text.ToUpper().Trim();
 
+            if (ALMMarcas.Insertar())
+            {
+                Session["MensajeOK"] = "La Marca fue creada exitosamente";
+                Response.Redirect("ALM_MAR_AdministrarMarcas.aspx");
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "Mensaje: " + ALMMarcas.Mensaje;
+            }
         }
 
         protected void btnCancelarMarca_Click(object sender, EventArgs e)
@@ -114,9 +131,23 @@ namespace SistemaAlmacenesWeb.Forms
             Response.Redirect("ALM_MAR_AdministrarMarcas.aspx");
         }
 
-        protected void tbEditarNombreMarca_TextChanged(object sender, EventArgs e)
+        protected void btnEditarGuardarMarca_Click(object sender, EventArgs e)
         {
+            //BD_ALM_Marcas
+            ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
+            ALMMarcas.NumSecMarca = Convert.ToInt64(ddlMarca.Text.Trim()); // Obtener el NUM_SEC_MARCA (id de la marca)*/
+            ALMMarcas.Nombre= tbEditarNombreMarca.Text.ToUpper().Trim();
 
+            if (ALMMarcas.Modificar())
+            {
+                Session["MensajeOK"] = "La Marca fue actualizada exitosamente";
+                Response.Redirect("ALM_MAR_AdministrarMarcas.aspx");
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "Mensaje: " + ALMMarcas.Mensaje;
+            }
         }
 
         protected void btnEditarCancelarMarca_Click(object sender, EventArgs e)

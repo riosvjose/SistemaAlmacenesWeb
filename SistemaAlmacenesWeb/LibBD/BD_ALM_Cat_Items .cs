@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 11/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 19/12/2018
     // Descripción: Clase referente a la tabla alm_categorias_items
     public class BD_ALM_Cat_Items
     {
@@ -192,17 +192,33 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
+        //Listar las "Categorias" segun el "grupo" al que pertenece
         public DataTable DTListaCategorias()
         {
             string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "(select num_sec_cat, nombre " +
-                     "from alm_categorias_items where num_sec_grupo=" + _num_sec_grupo_items + ")";
+            strSql = "select num_sec_cat, nombre " +
+                     "from alm_categorias_items where num_sec_grupo= " + _num_sec_grupo_items + " " +
+                     "Order by nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             return OracleBD.DataTable;
         }
+
+        // Lista de todas las Categorias dependiendo a que almacen o almacenes tiene permiso
+        public DataTable dtListarTodasCategorias()
+        {
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "SELECT num_sec_cat, nombre FROM alm_categorias_items " +
+                     "ORDER BY nombre ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
+
 
         #endregion
 

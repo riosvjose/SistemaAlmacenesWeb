@@ -130,6 +130,33 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.TextBox tbNombreGrupoItem;
         
         /// <summary>
+        /// idAlmacenItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl idAlmacenItem;
+        
+        /// <summary>
+        /// lblAlmacenItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAlmacenItem;
+        
+        /// <summary>
+        /// ddlAlmacenItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAlmacenItem;
+        
+        /// <summary>
         /// btnGuardarGrupoItem control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,24 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEditarNombreGrupoItem;
+        
+        /// <summary>
+        /// lblEditarAlmacen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEditarAlmacen;
+        
+        /// <summary>
+        /// ddlEditarAlmacen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEditarAlmacen;
         
         /// <summary>
         /// btnEditarGuardarGrupoItem control.

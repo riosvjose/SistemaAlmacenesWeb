@@ -29,21 +29,23 @@ namespace SistemaAlmacenesWeb.Forms
         #region "Funciones y procedimientos"
         private void CargarDatosIniciales(string strCon)
         {
-            ALMProveedores.StrConexion = axVarSes.Lee<string>("strConexion");
-            if (!Page.IsPostBack)
+            if (!string.IsNullOrEmpty(strCon.Trim()))
             {
+                ALMProveedores.StrConexion = axVarSes.Lee<string>("strConexion");
+
                 // Listar a todos los Proveedores
-                ddlProveedor.DataSource = ALMProveedores.ListarProveedores();
+                ddlProveedor.DataSource = ALMProveedores.dtListarProveedores();
                 ddlProveedor.DataTextField = "NOMBRE_COMERCIAL";
                 ddlProveedor.DataValueField = "NUM_SEC_PROVEEDOR";
                 ddlProveedor.DataBind();
-            }
-            // Recibir mensaje exitoso cuando se redirige de otra pagina
-            if (Session["MensajeOK"] != null)
-            {
-                pnMensajeOK.Visible = true;
-                lblMensajeOK.Text = Session["MensajeOK"].ToString();
-                Session["MensajeOK"] = null;
+
+                // Recibir mensaje exitoso cuando se redirige de otra pagina
+                if (Session["MensajeOK"] != null)
+                {
+                    pnMensajeOK.Visible = true;
+                    lblMensajeOK.Text = Session["MensajeOK"].ToString();
+                    Session["MensajeOK"] = null;
+                }
             }
         }
         #endregion
@@ -51,7 +53,10 @@ namespace SistemaAlmacenesWeb.Forms
         #region "Eventos"
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarDatosIniciales(axVarSes.Lee<string>("strConexion"));
+            if (!Page.IsPostBack)
+            {
+                CargarDatosIniciales(axVarSes.Lee<string>("strConexion"));
+            }
         }
 
         protected void ddlProveedor_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,7 +90,7 @@ namespace SistemaAlmacenesWeb.Forms
                 if (ALMProveedores.Ver())
                 {
                     tbEditarNitProveedor.Text = ALMProveedores.Nit.Trim();
-                    tbEditarNombreComercialProv.Text = ALMProveedores.NombreComercial.Trim();
+                    tbEditarNombreComercialProv.Text = ALMProveedores.NombreComercial.ToUpper().Trim();
                     tbEditarRazonSocialProv.Text = ALMProveedores.RazonSocial.Trim();
                     tbEditarTelefonoProv.Text = ALMProveedores.Telefono.Trim();
                     tbEditarEmailProv.Text = ALMProveedores.Email.Trim();
@@ -114,7 +119,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             ALMProveedores.StrConexion = axVarSes.Lee<string>("strConexion");
             ALMProveedores.Nit = tbNitProveedor.Text.Trim();
-            ALMProveedores.NombreComercial = tbNombreComercialProv.Text.Trim();
+            ALMProveedores.NombreComercial = tbNombreComercialProv.Text.ToUpper().Trim();
             ALMProveedores.RazonSocial = tbRazonSocialProv.Text.Trim();
             ALMProveedores.Telefono = tbTelefonoProv.Text.Trim();
             ALMProveedores.Email = tbEmailProv.Text.Trim();

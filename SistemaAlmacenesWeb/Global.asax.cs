@@ -28,6 +28,7 @@ namespace SistemaAlmacenes
             Session["UsuarioPersonaNombre"] = string.Empty;
             Session["UsuarioPersonaTipo"] = string.Empty;
 
+            Session["UsuarioNumSecAlmacen"] = 0;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

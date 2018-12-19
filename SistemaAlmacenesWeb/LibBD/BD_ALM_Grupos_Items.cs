@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 19/12/2018
     // Descripción: Clase referente a la tabla alm_grupos_items
     public class BD_ALM_Grupos_Items
     {
@@ -100,9 +100,9 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_grupos_items (num_sec_grupo, nombre, num_sec_almacen, num_sec_usuario_reg) values";
-            strSql += " (alm_grupo_item_sec.nextval,"+ _nombre+","+ _num_sec_almacen + ","+usuario +" )";
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "insert into alm_grupos_items (num_sec_grupo, nombre, num_sec_almacen, num_sec_usuario_reg) values " +
+                    " (alm_grupos_items_sec.nextval, '" + _nombre + "', " + _num_sec_almacen + ", " + usuario + " )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -110,7 +110,7 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_grupo_items. " + _mensaje;
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_grupos_items. " + _mensaje;
             return blOperacionCorrecta;
         }
 
@@ -118,8 +118,8 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "update alm_grupos_items set "+
-                " nombre = " + _nombre+
-                " where num_sec_grupo = " + _num_sec_grupo_items.ToString();
+                "nombre = '" + _nombre + "' " +
+                "where num_sec_grupo = " + _num_sec_grupo_items.ToString();
 
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -192,12 +192,17 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
+        //Lista de Grupos Items
         public DataTable DTListaGrupos()
         {
-            string persona = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "(select 0 as num_sec_grupo, '---------------------------' as nombre from dual) union " +
-                    "(select num_sec_grupo, nombre " +
-                     "from alm_grupos_items)";
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "SELECT DISTINCT a.num_sec_grupo, a.nombre " +
+                        "FROM alm_grupos_items a, alm_almacenes b, alm_almacenes_usuarios c " +
+                        "WHERE a.num_sec_almacen = b.num_sec_almacen " +
+                            "AND b.num_sec_almacen = c.num_sec_almacen " +
+                            "AND c.num_sec_usuario = " + usuario + " " +
+                            "AND c.activo = 1 " +
+                        "ORDER BY a.nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

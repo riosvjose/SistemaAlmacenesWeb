@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 10/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 18/12/2018
     // Descripción: Clase referente a la tabla alm_medidas
     public class BD_ALM_Medidas
     {
@@ -99,9 +99,9 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            strSql = "insert into alm_medidas (num_sec_medida, nombre, abreviacion, num_sec_usuario_reg) values";
-            strSql += " (alm_medidas_sec.nextval,"+ _nombre+","+_abreviacion+","+usuario +" )";
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "insert into alm_medidas (num_sec_medida, nombre, abreviacion, num_sec_usuario_reg) values " +
+                        " (alm_medidas_sec.nextval, '" + _nombre + "', '" + _abreviacion + "', " + usuario + " )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -192,7 +192,22 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
+        //Listado de todas las medidas
+        public DataTable dtListadoMedidas()
+        {
+            DataTable dt = new DataTable();
+            strSql = "SELECT ROWNUM AS nro, nombre, abreviacion " +
+                        "FROM " +
+                            "(SELECT nombre, abreviacion " +
+                            "FROM alm_medidas " +
+                            "ORDER BY nombre ASC)";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt.Dispose();
+            return OracleBD.DataTable;
+        }
         #endregion
 
     }
