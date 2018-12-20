@@ -110,10 +110,10 @@
     <Content Include="Forms\ALM_MAR_AdministrarMarcas.aspx" />
     <Content Include="Forms\ALM_MED_AdministrarMedidas.aspx" />
     <Content Include="Forms\ALM_PROV_AdministrarProveedores.aspx" />
-    <Content Include="Forms\SAL_Autorizar.aspx" />
-    <Content Include="Forms\PED_Autorizar.aspx" />
-    <Content Include="Forms\SAL_Registrar.aspx" />
-    <Content Include="Forms\PED_Realizar.aspx" />
+    <Content Include="Forms\ALM_SAL_Autorizar.aspx" />
+    <Content Include="Forms\ALM_PED_Autorizar.aspx" />
+    <Content Include="Forms\ALM_SAL_Registrar.aspx" />
+    <Content Include="Forms\ALM_PED_Realizar.aspx" />
     <Content Include="Img\autoriza.png" />
     <Content Include="Img\biblioteca_b.jpg" />
     <Content Include="Img\pedidos.png" />
@@ -239,33 +239,33 @@
     <Compile Include="Forms\ALM_PROV_AdministrarProveedores.aspx.designer.cs">
       <DependentUpon>ALM_PROV_AdministrarProveedores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SAL_Autorizar.aspx.cs">
-      <DependentUpon>SAL_Autorizar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_SAL_Autorizar.aspx.cs">
+      <DependentUpon>ALM_SAL_Autorizar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\SAL_Autorizar.aspx.designer.cs">
-      <DependentUpon>SAL_Autorizar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_SAL_Autorizar.aspx.designer.cs">
+      <DependentUpon>ALM_SAL_Autorizar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PED_Autorizar.aspx.cs">
-      <DependentUpon>PED_Autorizar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_PED_Autorizar.aspx.cs">
+      <DependentUpon>ALM_PED_Autorizar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\PED_Autorizar.aspx.designer.cs">
-      <DependentUpon>PED_Autorizar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_PED_Autorizar.aspx.designer.cs">
+      <DependentUpon>ALM_PED_Autorizar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SAL_Registrar.aspx.cs">
-      <DependentUpon>SAL_Registrar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_SAL_Registrar.aspx.cs">
+      <DependentUpon>ALM_SAL_Registrar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\SAL_Registrar.aspx.designer.cs">
-      <DependentUpon>SAL_Registrar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_SAL_Registrar.aspx.designer.cs">
+      <DependentUpon>ALM_SAL_Registrar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PED_Realizar.aspx.cs">
-      <DependentUpon>PED_Realizar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_PED_Realizar.aspx.cs">
+      <DependentUpon>ALM_PED_Realizar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\PED_Realizar.aspx.designer.cs">
-      <DependentUpon>PED_Realizar.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_PED_Realizar.aspx.designer.cs">
+      <DependentUpon>ALM_PED_Realizar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ALM_RegistrarIngreso.aspx.cs">
       <DependentUpon>ALM_RegistrarIngreso.aspx</DependentUpon>

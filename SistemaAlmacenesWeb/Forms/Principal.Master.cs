@@ -49,22 +49,22 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void lnkbtnAutorizarPedido_Click(object sender, EventArgs e)
         {
-           Response.Redirect("PED_Autorizar.aspx");
+           Response.Redirect("ALM_PED_Autorizar.aspx");
         }
 
         protected void lnkbtnRealizarPedido_Click(object sender, EventArgs e)
         {
-           Response.Redirect("PED_Realizar.aspx");
+           Response.Redirect("ALM_PED_Realizar.aspx");
         }
 
         protected void lnkbtnRegistarSalida_Click(object sender, EventArgs e)
         {
-           Response.Redirect("SAL_Registrar.aspx");
+           Response.Redirect("ALM_SAL_Registrar.aspx");
         }
 
         protected void lnkbtnAutorizarSalida_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SAL_Autorizar.aspx");
+            Response.Redirect("ALM_SAL_Autorizar.aspx");
         }
 
         protected void lnkbtnCrearMarca_Click(object sender, EventArgs e)

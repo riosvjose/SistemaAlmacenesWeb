@@ -11,7 +11,7 @@ using nsGEN_WebForms;
 
 namespace SistemaAlmacenesWeb.Forms
 {
-    public partial class PED_Realizar : System.Web.UI.Page
+    public partial class ALM_PED_Realizar : System.Web.UI.Page
     {
         #region "Librerias Externas"
 

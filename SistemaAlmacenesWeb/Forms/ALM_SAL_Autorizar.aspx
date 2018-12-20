@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="SAL_Autorizar.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.SAL_Autorizar" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="ALM_SAL_Autorizar.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.ALM_SAL_Autorizar" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

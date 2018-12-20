@@ -11,7 +11,7 @@ using nsGEN_WebForms;
 
 namespace SistemaAlmacenesWeb.Forms
 {
-    public partial class SAL_Registrar : System.Web.UI.Page
+    public partial class ALM_SAL_Autorizar : System.Web.UI.Page
     {
         #region "Librerias Externas"
 
@@ -53,15 +53,6 @@ namespace SistemaAlmacenesWeb.Forms
         {
 
         }
-        
-        protected void btnSgteGenerales_Click(object sender, EventArgs e)
-        {
-
-        }
-        protected void btnEditarGenerales_Click(object sender, EventArgs e)
-        {
-
-        }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
@@ -70,34 +61,11 @@ namespace SistemaAlmacenesWeb.Forms
         {
 
         }
-        protected void ddlTipoIngreso_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        protected void ddlProveedor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlCat_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlTipoSal_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        protected void tbCambioValor_TextChanged(object sender, EventArgs e)
+        protected void gvDatos1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
         }
 
         #endregion
-    }
+        }
 }

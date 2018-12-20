@@ -10,7 +10,7 @@
 namespace SistemaAlmacenesWeb.Forms {
     
     
-    public partial class SAL_Autorizar {
+    public partial class ALM_SAL_Autorizar {
         
         /// <summary>
         /// UpdatePanel1 control.
