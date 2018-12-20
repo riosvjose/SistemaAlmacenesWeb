@@ -842,14 +842,12 @@ namespace SistemaAlmacenesWeb.Forms
                     libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;
                     StrSqls[contSqls] = libIngresoMov.ObtenerCadenaInsertar();
                     contSqls++;
-
-                    //// falta actualiar precio
-                    StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);
+                    StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
                     contSqls++;
                 }
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.InsetarVarios(StrSqls, contSqls))
+                if (libMov.InsertarVarios(StrSqls, contSqls))
                 {
                     lblMensajeOK.Text = "Ingreso registrado exitosamente.";
                     pnMensajeOK.Visible = true;

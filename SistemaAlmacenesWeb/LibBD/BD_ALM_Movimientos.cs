@@ -240,7 +240,7 @@ namespace SistemaAlmacenesWeb
             }
             return blEncontrado;
         }
-        public bool InsetarVarios(string[] strSql, int cant)
+        public bool InsertarVarios(string[] strSql, int cant)
         {
             bool blOperacionCorrecta = false;
             OracleBD.StrConexion = _strconexion;
