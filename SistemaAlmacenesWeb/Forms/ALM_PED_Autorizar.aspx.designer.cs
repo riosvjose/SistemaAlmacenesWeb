@@ -10,7 +10,7 @@
 namespace SistemaAlmacenesWeb.Forms {
     
     
-    public partial class PED_Autorizar {
+    public partial class ALM_PED_Autorizar {
         
         /// <summary>
         /// UpdatePanel1 control.

@@ -206,7 +206,7 @@ namespace SistemaAlmacenesWeb
         {
             long num_sec = 0;
             string strSql = string.Empty;
-            strSql = "select alm_ingresos.sec.nextval  as valor from dual";
+            strSql = "select alm_ingresos_sec.nextval  as valor from dual";
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -220,6 +220,16 @@ namespace SistemaAlmacenesWeb
             }
             dt.Dispose();
             return num_sec;
+        }
+
+        public string ObtenerCadenaInsertar()
+        {
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "insert into alm_ingresos (num_sec_ingreso, codigo_compra_sap, fecha_ingreso, tipo" +
+                     ", num_sec_proveedor, num_sec_usuario_reg) values" +
+                     " ("+_num_sec_ingreso+"," + _cod_compra_sap + ", TO_DATE('" + _fecha_ingreso + "', 'dd/mm/yyyy')," + _tipo + "," +
+                     _num_sec_proveedor + "," + usuario + " )";
+            return strSql;
         }
         #endregion
 

@@ -240,7 +240,7 @@ namespace SistemaAlmacenesWeb
             }
             return blEncontrado;
         }
-        public bool InsetarVarios(string[] strSql, int cant)
+        public bool InsertarVarios(string[] strSql, int cant)
         {
             bool blOperacionCorrecta = false;
             OracleBD.StrConexion = _strconexion;
@@ -298,6 +298,27 @@ namespace SistemaAlmacenesWeb
             }
             dt.Dispose();
             return num_sec;
+        }
+
+        public int ObtenerExistenciasItem(long num_sec_item)
+        {
+            string strSql = string.Empty;
+            int existencias = 0;
+            strSql = "select num_sec_item, (sum(ingreso) -sum(egreso)) as existencias from alm_movimientos"+
+                     " where num_sec_item="+num_sec_item+" group by num_sec_item";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                existencias = Convert.ToInt32(dr["existencias"].ToString());
+            }
+            dt.Dispose();
+            return existencias;
         }
         #endregion
     }

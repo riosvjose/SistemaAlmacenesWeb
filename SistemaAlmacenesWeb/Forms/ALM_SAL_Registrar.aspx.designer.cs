@@ -10,7 +10,7 @@
 namespace SistemaAlmacenesWeb.Forms {
     
     
-    public partial class SAL_Registrar {
+    public partial class ALM_SAL_Registrar {
         
         /// <summary>
         /// UpdatePanel1 control.
