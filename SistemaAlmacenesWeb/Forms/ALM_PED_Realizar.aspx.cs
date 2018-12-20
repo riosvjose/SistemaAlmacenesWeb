@@ -870,7 +870,7 @@ namespace SistemaAlmacenesWeb.Forms
                 libPasos.VerPrimeroPlantilla();
                 libMov.NumSecPaso = libPasos.NumSecPaso;
                 libMov.NumSecMovimiento = libMov.ObtenerNSMov();
-                StrSqls[contSqls] = libMov.SQLCadenaMovimiento();
+                StrSqls[contSqls] = libMov.SQLCadenaMovimiento(false,true);
                 contSqls++;
             }
             libMov = new BD_ALM_Movimientos();

@@ -836,7 +836,8 @@ namespace SistemaAlmacenesWeb.Forms
                     libPasos.VerPrimeroPlantilla();
                     libMov.NumSecPaso = libPasos.NumSecPaso;
                     libMov.NumSecMovimiento = libMov.ObtenerNSMov();
-                    StrSqls[contSqls] = libMov.SQLCadenaMovimiento();
+                    libMov.PrecioUnitario = auxprecio;
+                    StrSqls[contSqls] = libMov.SQLCadenaMovimiento(true,false);
                     contSqls++;
                     libIngresoMov.NumSecIngreso = libIngreso.NumSecIngreso;
                     libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;

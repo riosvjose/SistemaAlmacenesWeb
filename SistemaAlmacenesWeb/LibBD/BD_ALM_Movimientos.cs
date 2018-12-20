@@ -256,14 +256,14 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        public string SQLCadenaMovimiento()
+        public string SQLCadenaMovimiento(bool Bing, bool Bsal) 
         {
             libItem = new BD_ALM_Items();
             libItem.StrConexion = StrConexion;
             libItem.NumSecItem = _num_sec_item;
-            if (libItem.Ver())
+            if (libItem.Ver() &&(Bsal))
             {
-                _precio_unitario = libItem.PrecioMov;
+                _precio_unitario = libItem.PrecioMov;// actualiza el precio_mov al de la tabla items si es salida
             }  
             strSql = "INSERT INTO alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item,"+
                      " num_sec_persona, num_sec_usuario, num_sec_paso, precio_unitario, ingreso, egreso,"+
