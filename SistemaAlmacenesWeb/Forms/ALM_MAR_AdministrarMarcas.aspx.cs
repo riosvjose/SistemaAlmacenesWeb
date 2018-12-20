@@ -47,6 +47,10 @@ namespace SistemaAlmacenesWeb.Forms
                     Session["MensajeOK"] = null;
                 }
             }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
         }
         #endregion
 
@@ -78,7 +82,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             pnMensajeError.Visible = false;
             pnMensajeOK.Visible = false;
-            if (ddlMarca.SelectedIndex != 0)
+            if (ddlMarca.Items.Count != 0)
             {
                 pnPrincipal.Visible = false;
                 pnCrearMarca.Visible = false;
@@ -100,7 +104,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Usted no selecciono ninguna Marca";
+                lblMensajeError.Text = "No existe ninguna Marca creada";
             }
         }
 
@@ -111,6 +115,8 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void btnGuardarMarca_Click(object sender, EventArgs e)
         {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
             ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
             ALMMarcas.Nombre = tbNombreMarca.Text.ToUpper().Trim();
 
@@ -133,6 +139,8 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void btnEditarGuardarMarca_Click(object sender, EventArgs e)
         {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
             //BD_ALM_Marcas
             ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
             ALMMarcas.NumSecMarca = Convert.ToInt64(ddlMarca.Text.Trim()); // Obtener el NUM_SEC_MARCA (id de la marca)*/

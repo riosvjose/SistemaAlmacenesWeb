@@ -238,33 +238,6 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.DropDownList ddlMedidaItem;
         
         /// <summary>
-        /// lblPrecioItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrecioItem;
-        
-        /// <summary>
-        /// rfvPrecioItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPrecioItem;
-        
-        /// <summary>
-        /// tbPrecioItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPrecioItem;
-        
-        /// <summary>
         /// lblStockItem control.
         /// </summary>
         /// <remarks>
@@ -391,24 +364,6 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.TextBox tbEditarNombreItem;
         
         /// <summary>
-        /// lblEditarGrupoItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEditarGrupoItem;
-        
-        /// <summary>
-        /// ddlEditarGrupoItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEditarGrupoItem;
-        
-        /// <summary>
         /// lblEditarCategoriaItem control.
         /// </summary>
         /// <remarks>
@@ -461,33 +416,6 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEditarMedidaItem;
-        
-        /// <summary>
-        /// lblEditarPrecioItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEditarPrecioItem;
-        
-        /// <summary>
-        /// rfvEditarPrecioItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditarPrecioItem;
-        
-        /// <summary>
-        /// tbEditarPrecioItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEditarPrecioItem;
         
         /// <summary>
         /// lblEditarStockItem control.

@@ -47,6 +47,10 @@ namespace SistemaAlmacenesWeb.Forms
                     Session["MensajeOK"] = null;
                 }
             }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
         }
         #endregion
 
@@ -78,7 +82,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             pnMensajeError.Visible = false;
             pnMensajeOK.Visible = false;
-            if (ddlProveedor.SelectedIndex != 0)
+            if (ddlProveedor.Items.Count != 0)
             {
                 pnPrincipal.Visible = false;
                 pnCrearProveedor.Visible = false;
@@ -106,7 +110,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Usted no selecciono a ningún Proveedor";
+                lblMensajeError.Text = "No existe ningún Proveedor creado";
             }
         }
 
@@ -117,6 +121,8 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void btnGuardarProv_Click(object sender, EventArgs e)
         {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
             ALMProveedores.StrConexion = axVarSes.Lee<string>("strConexion");
             ALMProveedores.Nit = tbNitProveedor.Text.Trim();
             ALMProveedores.NombreComercial = tbNombreComercialProv.Text.ToUpper().Trim();
@@ -143,6 +149,8 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void btnEditarGuardarProv_Click(object sender, EventArgs e)
         {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
             //BD_ALM_Proveedores
             ALMProveedores.StrConexion = axVarSes.Lee<string>("strConexion");
             ALMProveedores.NumSecProveedor = Convert.ToInt64(ddlProveedor.Text.Trim()); // Obtener el NUM_SEC_PROVEEDOR (id del proveedor)*/

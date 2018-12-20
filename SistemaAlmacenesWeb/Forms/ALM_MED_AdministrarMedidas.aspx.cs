@@ -35,7 +35,7 @@ namespace SistemaAlmacenesWeb.Forms
 
                 // Listar a todas las medidas
                 gvListaMedidas.Visible = true;
-                gvListaMedidas.DataSource = ALMMedidas.dtListadoMedidas();
+                gvListaMedidas.DataSource = ALMMedidas.dtListarMedidas();
                 gvListaMedidas.DataBind();
 
                 // Recibir mensaje exitoso cuando se redirige de otra pagina
@@ -45,6 +45,10 @@ namespace SistemaAlmacenesWeb.Forms
                     lblMensajeOK.Text = Session["MensajeOK"].ToString();
                     Session["MensajeOK"] = null;
                 }
+            }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
             }
         }
         #endregion
@@ -78,6 +82,8 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnGuardarMedida_Click(object sender, EventArgs e)
         {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
             ALMMedidas.StrConexion = axVarSes.Lee<string>("strConexion");
             ALMMedidas.Nombre = tbNombreMedida.Text.ToUpper().Trim();
             ALMMedidas.Abreviacion = tbAbrevMedida.Text.Trim();

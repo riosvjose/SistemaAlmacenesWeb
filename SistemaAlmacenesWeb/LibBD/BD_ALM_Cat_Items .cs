@@ -56,6 +56,12 @@ namespace SistemaAlmacenesWeb
             set { _nombre = value; }
         }
 
+        public string Descripcion
+        {
+            get { return _descripcion; }
+            set { _descripcion = value; }
+        }
+
         public string FechaRegistro
         {
             get { return _fecharegistro; }
@@ -87,6 +93,7 @@ namespace SistemaAlmacenesWeb
             _num_sec_cat_items = 0;
             _num_sec_grupo_items = 0;
             _nombre = string.Empty;
+            _descripcion = string.Empty;
             _fecharegistro = string.Empty;
             _usuarioregistro = string.Empty;
             _numsecusuarioregistro = 0;
@@ -101,8 +108,8 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
-            strSql = "insert into alm_categorias_items (num_sec_cat, nombre, num_sec_grupo, num_sec_usuario_reg) values";
-            strSql += " (alm_cat_item_sec.nextval,"+ _nombre+","+ _num_sec_grupo_items + ","+usuario +" )";
+            strSql = "insert into alm_categorias_items (num_sec_cat, nombre, descripcion, num_sec_grupo, num_sec_usuario_reg) values " +
+                        " (alm_cat_items_sec.nextval, '" + _nombre + "', '" + _descripcion + "', " + _num_sec_grupo_items + ", " + usuario + " )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -118,9 +125,9 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "update alm_categorias_items set "+
-                " nombre = " + _nombre+
-                " where num_sec_cat = " + _num_sec_cat_items.ToString();
-
+                    "nombre = '" + _nombre + "', " +
+                    "descripcion = '" + _descripcion + "' " +
+                    "where num_sec_cat = " + _num_sec_cat_items.ToString();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -155,7 +162,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select * from alm_cat_items where num_sec_item = " + _num_sec_cat_items.ToString(); 
+            strSql = "select * from alm_categorias_items where num_sec_cat = " + _num_sec_cat_items.ToString(); 
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -166,9 +173,10 @@ namespace SistemaAlmacenesWeb
             {
                 blEncontrado = true;
                 DataRow dr = dt.Rows[0];
-                _num_sec_grupo_items = Convert.ToInt64(dr["num_sec_grupo"].ToString());
                 _num_sec_cat_items = Convert.ToInt64(dr["num_sec_cat"].ToString());
                 _nombre = dr["nombre"].ToString();
+                _descripcion = dr["descripcion"].ToString();
+                _num_sec_grupo_items = Convert.ToInt64(dr["num_sec_grupo"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -177,8 +185,9 @@ namespace SistemaAlmacenesWeb
             if (!blEncontrado)
             {
                 _num_sec_cat_items = 0;
-                _num_sec_grupo_items = 0;
                 _nombre = string.Empty;
+                _descripcion = string.Empty;
+                _num_sec_grupo_items = 0;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
                 _numsecusuarioregistro = 0;
@@ -206,12 +215,18 @@ namespace SistemaAlmacenesWeb
             return OracleBD.DataTable;
         }
 
-        // Lista de todas las Categorias dependiendo a que almacen o almacenes tiene permiso
+        // Lista de todas las Categorias de todos los almacenes a los que tiene permiso una persona
         public DataTable dtListarTodasCategorias()
         {
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
-            strSql = "SELECT num_sec_cat, nombre FROM alm_categorias_items " +
-                     "ORDER BY nombre ASC";
+            strSql = "SELECT DISTINCT a.num_sec_cat, a.nombre " +
+                        "FROM alm_categorias_items a, alm_grupos_items b, alm_almacenes c, alm_almacenes_usuarios d " +
+                        "WHERE a.num_sec_grupo = b.num_sec_grupo " +
+                            "AND b.num_sec_almacen = c.num_sec_almacen " +
+                            "AND c.num_sec_almacen = d.num_sec_almacen " +
+                            "AND d.num_sec_usuario = " + usuario + " " +
+                            "AND d.activo = 1 " +
+                        "ORDER BY a.nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
