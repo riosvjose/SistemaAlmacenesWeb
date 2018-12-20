@@ -297,13 +297,13 @@ namespace SistemaAlmacenesWeb
             OracleBD.sqlDataTable();
             return OracleBD.DataTable;
         }
-        public string CadenaActualizarPrecio(int cant, int precio)
+        public string CadenaActualizarPrecio(long cant, double precio)
         {
             string persona = axVarSes.Lee<string>("UsuarioNumSec");
             BD_ALM_Movimientos libMov = new BD_ALM_Movimientos();
             libMov.StrConexion= axVarSes.Lee<string>("strConexion");
             int existencias = libMov.ObtenerExistenciasItem(_num_sec_item);
-            double nuevo_precio = 0;// Math.Round((((existencias*_precio_mov)+(cant*precio))/(existencias+cant)),2);
+            double nuevo_precio = Math.Round((((existencias*_precio_mov)+(cant*precio))/(existencias+cant)),2);
             strSql = "update alm_items set precio="+nuevo_precio+" where num_sec_item="+_num_sec_item;
             return strSql;
         }

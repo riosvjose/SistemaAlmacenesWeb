@@ -65,10 +65,6 @@ namespace SistemaAlmacenesWeb.Forms
                 Response.Redirect("~/Default.aspx");
             }
         }
-        protected void VaciarBoxes()
-        {
-            
-        }
         protected void CargarDdlGrupos()
         {
             libAlmUsu = new BD_ALM_Almacenes_Usu();
@@ -627,8 +623,25 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlItem15.Items.Clear();
             }
         }
-        protected void Vaciarboxes()
+        protected void VaciarBoxes()
         {
+            tbPrecio1.Text = "0";
+            tbPrecio2.Text = "0";
+            tbPrecio3.Text = "0";
+            tbPrecio4.Text = "0";
+            tbPrecio5.Text = "0";
+            tbPrecio6.Text = "0";
+            tbPrecio7.Text = "0";
+            tbPrecio8.Text = "0";
+            tbPrecio9.Text = "0";
+            tbPrecio10.Text = "0";
+            tbPrecio11.Text = "0";
+            tbPrecio12.Text = "0";
+            tbPrecio13.Text = "0";
+            tbPrecio14.Text = "0";
+            tbPrecio15.Text = "0";
+            tbFechaMov.Text = string.Empty;
+            tbCodSap.Text = string.Empty;
             tbCant1.Text = "0";
             tbCant2.Text = "0";
             tbCant3.Text = "0";
@@ -643,6 +656,36 @@ namespace SistemaAlmacenesWeb.Forms
             tbCant13.Text = "0";
             tbCant14.Text = "0";
             tbCant15.Text = "0";
+            ddlItem1.SelectedIndex = 0;
+            ddlItem2.SelectedIndex = 0;
+            ddlItem3.SelectedIndex = 0;
+            ddlItem4.SelectedIndex = 0;
+            ddlItem5.SelectedIndex = 0;
+            ddlItem6.SelectedIndex = 0;
+            ddlItem7.SelectedIndex = 0;
+            ddlItem8.SelectedIndex = 0;
+            ddlItem9.SelectedIndex = 0;
+            ddlItem10.SelectedIndex = 0;
+            ddlItem11.SelectedIndex = 0;
+            ddlItem12.SelectedIndex = 0;
+            ddlItem13.SelectedIndex = 0;
+            ddlItem14.SelectedIndex = 0;
+            ddlItem15.SelectedIndex = 0;
+            Panel2.Visible = false;
+            Panel3.Visible = false;
+            Panel4.Visible = false;
+            Panel5.Visible = false;
+            Panel6.Visible = false;
+            Panel7.Visible = false;
+            Panel8.Visible = false;
+            Panel9.Visible = false;
+            Panel10.Visible = false;
+            Panel11.Visible = false;
+            Panel12.Visible = false;
+            Panel13.Visible = false;
+            Panel14.Visible = false;
+            Panel15.Visible = false;
+            lblContador.Text = "1";
         }
         #endregion
 
@@ -664,7 +707,7 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            string[] StrSqls = new string[20];
+            string[] StrSqls = new string[60];
             int contSqls = 0;
             if (ddlTipoIngreso.SelectedValue!="0")
             {
@@ -701,66 +744,82 @@ namespace SistemaAlmacenesWeb.Forms
                         case 1:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem1.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant1.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio1.Text);
                             break;
                         case 2:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem2.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant2.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio2.Text);
                             break;
                         case 3:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem3.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant3.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio3.Text);
                             break;
                         case 4:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio4.Text);
                             break;
                         case 5:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem5.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant5.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio5.Text);
                             break;
                         case 6:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem6.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio6.Text);
                             break;
                         case 7:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio7.Text);
                             break;
                         case 8:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant8.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio8.Text);
                             break;
                         case 9:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant9.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio9.Text);
                             break;
                         case 10:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant10.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio10.Text);
                             break;
                         case 11:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant11.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio11.Text);
                             break;
                         case 12:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant12.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio12.Text);
                             break;
                         case 13:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant13.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio13.Text);
                             break;
                         case 14:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant14.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio14.Text);
                             break;
                         case 15:
                             libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                             libMov.Ingreso = Convert.ToInt32(tbCant15.Text);
+                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio15.Text);
                             break;
                     }
                     libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
                     libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                    double auxprecio = libMov.PrecioUnitario;
                     libItem.NumSecItem = libMov.NumSecItem;
                     libItem.Ver();
                     libCat.NumSecCat = libItem.NumSecCat;
@@ -785,6 +844,8 @@ namespace SistemaAlmacenesWeb.Forms
                     contSqls++;
 
                     //// falta actualiar precio
+                    StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);
+                    contSqls++;
                 }
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
@@ -792,6 +853,7 @@ namespace SistemaAlmacenesWeb.Forms
                 {
                     lblMensajeOK.Text = "Ingreso registrado exitosamente.";
                     pnMensajeOK.Visible = true;
+                    VaciarBoxes();
                 }
                 else
                 {
@@ -814,7 +876,10 @@ namespace SistemaAlmacenesWeb.Forms
         protected void btnAgregarItem_Click(object sender, EventArgs e)
         {
             int aux = Convert.ToInt32(lblContador.Text.Trim());
-            aux++;
+            if(aux<15)
+            {
+                aux++;
+            }
             lblContador.Text = aux.ToString();
             switch (aux)
             {
@@ -939,7 +1004,10 @@ namespace SistemaAlmacenesWeb.Forms
                     break;
 
             }
-            aux--;
+            if(aux>1)
+            {
+                aux--;
+            }
             lblContador.Text = aux.ToString();
         }
         protected void ddlGrupo1_SelectedIndexChanged(object sender, EventArgs e)
