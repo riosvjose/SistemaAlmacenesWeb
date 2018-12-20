@@ -192,10 +192,9 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        //Lista de Grupos Items
+        //Lista de Grupos Items a los que una persona tiene permisos segun el almacen
         public DataTable DTListaGrupos()
         {
-
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "SELECT DISTINCT a.num_sec_grupo, a.nombre " +
                         "FROM alm_grupos_items a, alm_almacenes b, alm_almacenes_usuarios c " +
@@ -204,7 +203,6 @@ namespace SistemaAlmacenesWeb
                             "AND c.num_sec_usuario = " + usuario + " " +
                             "AND c.activo = 1 " +
                         "ORDER BY a.nombre ASC";
-
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

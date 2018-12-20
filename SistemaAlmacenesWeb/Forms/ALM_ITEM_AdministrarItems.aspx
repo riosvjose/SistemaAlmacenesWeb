@@ -85,10 +85,10 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblGrupoItem" runat="server" Text="Grupo:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblGrupoItem" runat="server" Text="Grupo de Categoría:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:DropDownList ID="ddlGrupoItem" runat="server" CssClass="form-control" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlGrupoItem" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlGrupoItem_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -113,15 +113,6 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:DropDownList ID="ddlMedidaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-2">
-                                <strong><asp:Label ID="lblPrecioItem" runat="server" Text="Precio:"></asp:Label></strong>
-                                <asp:RequiredFieldValidator ID="rfvPrecioItem" runat="server" ControlToValidate="tbPrecioItem" CssClass="text-danger" ErrorMessage="El campo Precio es obligatorio.">*</asp:RequiredFieldValidator>
-                            </div>
-                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbPrecioItem" runat="server" type="number" step=".01" min="0" max="99999999" CssClass="form-control" onKeyPress="if(this.value.length==10) return false;" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -175,14 +166,6 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblEditarGrupoItem" runat="server" Text="Grupo:"></asp:Label></strong>
-                            </div>
-                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:DropDownList ID="ddlEditarGrupoItem" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-2">
                                 <strong><asp:Label ID="lblEditarCategoriaItem" runat="server" Text="Categoria:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -203,15 +186,6 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:DropDownList ID="ddlEditarMedidaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-2">
-                                <strong><asp:Label ID="lblEditarPrecioItem" runat="server" Text="Precio:"></asp:Label></strong>
-                                <asp:RequiredFieldValidator ID="rfvEditarPrecioItem" runat="server" ControlToValidate="tbEditarPrecioItem" CssClass="text-danger" ErrorMessage="El campo Precio es obligatorio.">*</asp:RequiredFieldValidator>
-                            </div>
-                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">                                                                
-                                <asp:TextBox ID="tbEditarPrecioItem" runat="server" type="number" step=".01" min="0" max="99999999" CssClass="form-control" onKeyPress="if(this.value.length==10) return false;" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mb-3">

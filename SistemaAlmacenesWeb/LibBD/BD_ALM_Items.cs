@@ -148,10 +148,10 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
-            strSql = "insert into alm_items (num_sec_item, cod, nombre, num_sec_cat, num_sec_marca, num_sec_medida"+
-                     ", estado, precio, stock_min, num_sec_usuario_reg) values" +
-                    " (alm_items_sec.nextval,"+ _cod+","+_nombre+","+ _num_sec_cat_items + ","+_num_sec_marca
-                    + "," + _num_sec_medida + "," + _activo + "," +_precio_mov + "," +_stock_min+ ","+usuario +" )";
+            strSql = "insert into alm_items (num_sec_item, cod, nombre, num_sec_cat, num_sec_marca, num_sec_medida, "+
+                     "activo, precio, stock_min, num_sec_usuario_reg) values " +
+                    "(alm_items_sec.nextval, " + _cod + ", '" + _nombre + "', " + _num_sec_cat_items + ", " +_num_sec_marca + ", " + _num_sec_medida + ", " + 
+                    "1, 0, " + _stock_min + ", " + usuario + " )";//Activo: 1=Si, 0=No. Se manda Precio = 0. Porque este se re-calcula cada vez que se hacen ingresos del item X
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -291,6 +291,27 @@ namespace SistemaAlmacenesWeb
             strSql = "SELECT m.num_sec_item, i.nombre, Sum(m.ingreso)-Sum(m.egreso) AS existencias "+
                      " FROM alm_movimientos m, alm_items i" +
                      " WHERE m.num_sec_item = i.num_sec_item GROUP BY m.num_sec_item, i.nombre ORDER BY i.nombre";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
+
+        //Lista de todos los ITEMS de los que se tiene permiso segun el almacen
+        public DataTable dtListaTodosItems()
+        {
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql =  "SELECT DISTINCT a.num_sec_item, a.nombre " +
+                        "FROM alm_items a, alm_categorias_items b, alm_grupos_items c, alm_almacenes d, alm_almacenes_usuarios e " +
+                        "WHERE a.num_sec_cat = b.num_sec_cat " +
+                            "AND b.num_sec_grupo = c.num_sec_grupo " +
+                            "AND c.num_sec_almacen = d.num_sec_almacen " +
+                            "AND d.num_sec_almacen = e.num_sec_almacen " +
+                            "AND a.activo = 1 " +
+                            "AND e.num_sec_usuario = " + usuario + " " +
+                            "AND e.activo = 1 " +
+                        "ORDER BY a.nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

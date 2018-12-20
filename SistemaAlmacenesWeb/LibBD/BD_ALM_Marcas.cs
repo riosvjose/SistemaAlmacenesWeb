@@ -185,10 +185,9 @@ namespace SistemaAlmacenesWeb
         // Lista de todas las marcas
         public DataTable dtListarMarcas()
         {
-            strSql = "SELECT * FROM ( " +
-                        "SELECT 0 as num_sec_marca, '---------------------------' as nombre from dual UNION " +
-                        "SELECT num_sec_marca, nombre FROM alm_marcas " +
-                    ") ORDER BY nombre ASC";
+            strSql = "SELECT num_sec_marca, nombre " +
+                        "FROM alm_marcas " +
+                        "ORDER BY nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Alvaro Mamani; Fecha: 18/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 20/12/2018
     // Descripción: Clase referente a la tabla alm_medidas
     public class BD_ALM_Medidas
     {
@@ -192,13 +192,13 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        //Listado de todas las medidas
-        public DataTable dtListadoMedidas()
+        //Listar todas las medidas
+        public DataTable dtListarMedidas()
         {
             DataTable dt = new DataTable();
-            strSql = "SELECT ROWNUM AS nro, nombre, abreviacion " +
+            strSql = "SELECT ROWNUM AS nro, num_sec_medida, nombre, abreviacion " +
                         "FROM " +
-                            "(SELECT nombre, abreviacion " +
+                            "(SELECT num_sec_medida, nombre, abreviacion " +
                             "FROM alm_medidas " +
                             "ORDER BY nombre ASC)";
             OracleBD.MostrarError = false;

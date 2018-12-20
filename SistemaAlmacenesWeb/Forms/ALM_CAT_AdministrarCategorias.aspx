@@ -134,7 +134,7 @@
                                 <strong><asp:Label ID="lblEditarGrupoItem" runat="server" Text="Grupo:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:DropDownList ID="ddlEditarGrupoItem" runat="server" CssClass="form-control" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlEditarGrupoItem" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                             </div>
                         </div>
 			        </div>
