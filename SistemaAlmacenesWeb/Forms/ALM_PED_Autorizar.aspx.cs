@@ -39,13 +39,30 @@ namespace SistemaAlmacenesWeb.Forms
 
         private void CargarDatosIniciales(string strCon)
         {
-
-
-        }
-        protected void VaciarBoxes()
-        {
             
+
         }
+        protected void VerificarPasos()
+        {
+            libAlm = new BD_ALM_Almacenes();
+            libAlm.StrConexion = axVarSes.Lee<string>("strConexion");
+            libPlant = new BD_ALM_Plantillas();
+            libPlant.StrConexion = axVarSes.Lee<string>("strConexion");
+            libPasos = new BD_ALM_Pasos();
+            libPasos.StrConexion = axVarSes.Lee<string>("strConexion");
+            libMov = new BD_ALM_Movimientos();
+            libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+            libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
+            libAlm.Ver();
+            libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
+            libPlant.TipoEgreso = 1;
+            libPlant.TipoIngreso = 0;
+            libPlant.Ver();
+            libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
+            libPasos.VerPrimeroPlantilla();
+
+        }
+
         #endregion
 
         #region "Eventos"

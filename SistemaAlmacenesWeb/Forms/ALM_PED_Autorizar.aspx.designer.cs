@@ -22,13 +22,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// lbtPagAnterior control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtPagAnterior;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// UpdateProgress1 control.
@@ -40,13 +40,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.UpdateProgress UpdateProgress1;
         
         /// <summary>
-        /// pnPedidos control.
+        /// pn1raAut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnPedidos;
+        protected global::System.Web.UI.WebControls.Panel pn1raAut;
         
         /// <summary>
         /// lblPedidos control.

@@ -184,6 +184,48 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             return blEncontrado;
         }
+
+        public bool VerPasosUsuario(bool ingreso, bool salida)
+        {
+            bool blEncontrado = false;
+            string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
+            string strSql = string.Empty;
+            strSql = "select a.num_sec_paso, b.nombre, b.num_sec_plantilla " +
+                    " from alm_paso_subdepto_usu a, alm_pasos b, alm_plantillas c" +
+                    "where a.num_sec_usuario=" + usuario +
+                    " and b.num_sec_paso_ant <> 0" +
+                    " and a.num_sec_paso=b.num_sec_paso" +
+                    " and b.num_sec_plantilla=c.num_sec_plantilla";
+            if (salida)
+            {
+                strSql+=" and c.tipo_ingreso=0";
+            }    
+            if (ingreso)
+            {
+                strSql += " and c.tipo_egreso=0";
+            } 
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                blEncontrado = true;
+                DataRow dr = dt.Rows[0];
+                _num_sec_paso_usu = Convert.ToInt64(dr["num_sec_paso_usu"].ToString());
+                _num_sec_paso = Convert.ToInt64(dr["num_sec_paso"].ToString());
+                _num_sec_subdepartamento = Convert.ToInt64(dr["num_sec_subdepartamento"].ToString());
+                _num_sec_usuario = Convert.ToInt64(dr["num_sec_usuario"].ToString());
+                _activo = Convert.ToInt16(dr["activo"].ToString());
+                _fecha_registro = dr["fecha_registro"].ToString();
+                _usuario_registro = dr["usuario_registro"].ToString();
+                _num_sec_usuario_registro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
+            }
+            dt.Dispose();
+            return blEncontrado;
+        }
         #endregion
     }
 }

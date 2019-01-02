@@ -11,9 +11,14 @@
         <ContentTemplate>
 
             <div class="row">
-                <div class="col-md-4 pull-right">
-                    <br/>
-                     <asp:LinkButton ID="lbtPagAnterior" runat="server" CausesValidation="False" CssClass="TextoBoton" Width="100px" OnClick="lbtPagAnterior_Click" >Página anterior</asp:LinkButton>
+                 <div class="col-md-3 pull-right">
+                    <div class="col-xs-12 text-right">
+                        <br/>
+                         
+                        <div class="btn-group">
+                            <asp:Button ID="Button1" runat="server" CssClass="btn btn-info" Text="Atrás" CausesValidation="False" OnClick="btnAtras_Click" />
+                        </div>
+                   </div>
                 </div>
 	            <div class="col-xs-12 col-md-6 pull-left">
 		            <h1>Autorizar pedido</h1>
@@ -36,7 +41,7 @@
             </div>
             <br />
              <%--panel pedidos--%>
-            <asp:Panel ID="pnPedidos" runat="server" Visible="true">
+            <asp:Panel ID="pn1raAut" runat="server" Visible="true">
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
@@ -53,13 +58,14 @@
                                                     <asp:GridView ID="gvDatos1" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvDatos1_RowCommand" >
                                                         <Columns>
                                                             <asp:BoundField DataField="nro" HeaderText="Nro"  />
-                                                            <asp:BoundField DataField="depto" HeaderText="Departamento" />
+                                                            <asp:BoundField DataField="depto" HeaderText="Departamento" Visible="false" />
                                                             <asp:BoundField DataField="persona" HeaderText="Solicitante" />
+                                                            <asp:BoundField DataField="tipo" HeaderText="Tipo" />
                                                             <asp:BoundField DataField="item" HeaderText="Item" />
-                                                            <asp:BoundField DataField="cant" HeaderText="Cantidad" />
-                                                            <asp:TemplateField HeaderText="Cantidad">
+                                                            <asp:BoundField DataField="cant" HeaderText="Cantidad Requerida" />
+                                                            <asp:TemplateField HeaderText="Cantidad Autorizada">
                                                                <ItemTemplate>
-                                                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                                 <asp:TextBox ID="tbCantAut" runat="server" Enabled="false"></asp:TextBox>
                                                                </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" Text="Autorizar" >

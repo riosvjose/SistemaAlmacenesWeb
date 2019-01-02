@@ -206,7 +206,8 @@ namespace SistemaAlmacenesWeb
             string strSql = string.Empty;
             strSql = "select * from alm_pasos " +
                     " where num_sec_plantilla= " + _num_sec_plantilla.ToString().Trim() +
-                    " and num_sec_paso_ant=0";                    
+                    " and num_sec_paso_ant=0"+
+                    " order by num_sec_paso";                    
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -244,6 +245,49 @@ namespace SistemaAlmacenesWeb
                 _strconexion = string.Empty;
             }
             return blEncontrado;
+        }
+
+        public DataTable DTVerTransPaso()
+        {
+            long paso_sgte = 0;
+            string strSql = string.Empty;
+            strSql = "select * from alm_movimientos " +
+                    " where num_sec_paso=" + _num_sec_paso.ToString() +
+                    " and num_sec_transaccion not in( " +
+                            " select num_sec_transaccion from alm_movimientos " +
+                            " where num_sec_paso=" + paso_sgte + ")" +
+                    " and num_sec_transaccion not in( " +
+                            " select num_sec_transaccion from alm_movimientos " +
+                            " where num_sec_paso=" + "(select num_sec_paso from alm_pasos "+
+                                    "where nombre='RECHAZO' and num_sec_plantilla="+_num_sec_plantilla+")" + ")";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            return dt;
+        }
+
+        public long ObtenerPasoSgte()
+        {
+            long sgte = 0;
+            string strSql = string.Empty;
+            strSql = "select * from alm_pasos " +
+                    "where num_sec_paso_ant= " + _num_sec_paso.ToString().Trim();
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                sgte = Convert.ToInt64(dr["num_sec_paso"].ToString());
+            }
+            dt.Dispose();
+            return sgte;
         }
         #endregion
     }
