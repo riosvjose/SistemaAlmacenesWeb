@@ -52,11 +52,16 @@
                                                 <div class="form-group">
                                                     <asp:GridView ID="gvDatos1" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvDatos1_RowCommand" >
                                                         <Columns>
-                                                            <asp:BoundField HeaderText="Nro"  />
-                                                            <asp:BoundField HeaderText="Departamento" />
-                                                            <asp:BoundField HeaderText="Solicitante" />
-                                                            <asp:BoundField HeaderText="Item" />
-                                                            <asp:BoundField HeaderText="Cantidad" />
+                                                            <asp:BoundField DataField="nro" HeaderText="Nro"  />
+                                                            <asp:BoundField DataField="depto" HeaderText="Departamento" />
+                                                            <asp:BoundField DataField="persona" HeaderText="Solicitante" />
+                                                            <asp:BoundField DataField="item" HeaderText="Item" />
+                                                            <asp:BoundField DataField="cant" HeaderText="Cantidad" />
+                                                            <asp:TemplateField HeaderText="Cantidad">
+                                                               <ItemTemplate>
+                                                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                               </ItemTemplate>
+                                                            </asp:TemplateField>
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" Text="Autorizar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>

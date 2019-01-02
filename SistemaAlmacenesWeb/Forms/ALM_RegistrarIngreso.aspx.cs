@@ -18,6 +18,10 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_VarSession axVarSes = new GEN_VarSession();
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
+
+        #endregion
+
+        #region "Clase de tablas de la Base de Datos"
         BD_ALM_Proveedores libProv = new BD_ALM_Proveedores();
         BD_ALM_Grupos_Items libGrupo = new BD_ALM_Grupos_Items();
         BD_ALM_Cat_Items libCat = new BD_ALM_Cat_Items();
@@ -31,10 +35,6 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Almacenes_Usu libAlmUsu = new BD_ALM_Almacenes_Usu();
         BD_ALM_Almacenes libAlm = new BD_ALM_Almacenes();
         BD_ALM_Plantillas libPlant = new BD_ALM_Plantillas();
-        #endregion
-
-        #region "Clase de tablas de la Base de Datos"
-
         #endregion
 
         #region "Funciones y procedimientos"
@@ -843,8 +843,12 @@ namespace SistemaAlmacenesWeb.Forms
                     libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;
                     StrSqls[contSqls] = libIngresoMov.ObtenerCadenaInsertar();
                     contSqls++;
-                    StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
-                    contSqls++;
+                    if (Convert.ToInt16(ddlTipoIngreso.SelectedValue) == 1)
+                    {
+                        StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
+                        contSqls++;
+                    }
+                    
                 }
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
@@ -852,25 +856,28 @@ namespace SistemaAlmacenesWeb.Forms
                 {
                     lblMensajeOK.Text = "Ingreso registrado exitosamente.";
                     pnMensajeOK.Visible = true;
+                    pnMensajeError.Visible = false;
                     VaciarBoxes();
                 }
                 else
                 {
                     lblMensajeError.Text = "Error al registrar el ingreso. " + libMov.Mensaje;
                     pnMensajeError.Visible = true;
+                    pnMensajeOK.Visible = false;
                 }
             }
             else
             {
                 lblMensajeError.Text = "Debe indicar el tipo de ingreso. " ;
                 pnMensajeError.Visible = true;
+                pnMensajeOK.Visible = false;
             }
             
 
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            VaciarBoxes();
         }
         protected void btnAgregarItem_Click(object sender, EventArgs e)
         {

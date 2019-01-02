@@ -10,15 +10,19 @@
         </Triggers>
         <ContentTemplate>
 
-            <div class="row">
-                <div class="col-md-4 pull-right">
-                    <br/>
-                     <asp:LinkButton ID="lbtPagAnterior" runat="server" CausesValidation="False" CssClass="TextoBoton" Width="100px" OnClick="lbtPagAnterior_Click" >Página anterior</asp:LinkButton>
+           <div class="row">
+                <div class="col-md-3 pull-right">
+                    <div class="col-xs-12 text-right">
+                        <br/>
+                         
+                        <div class="btn-group">
+                            <asp:Button ID="Button1" runat="server" CssClass="btn btn-info" Text="Atrás" CausesValidation="False" OnClick="btnAtras_Click" />
+                        </div>
+                   </div>
                 </div>
 	            <div class="col-xs-12 col-md-6 pull-left">
 		            <h1>Realizar pedido</h1>
-	            </div>
-                
+	            </div> 
             </div>
             <div class="row">
                 <asp:UpdateProgress ID="UpdateProgress1" runat="server">

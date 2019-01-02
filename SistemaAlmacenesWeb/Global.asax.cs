@@ -17,6 +17,8 @@ namespace SistemaAlmacenes
 
         protected void Session_Start(object sender, EventArgs e)
         {
+            Session["SubUnidad"] = 11;
+            Session["NumModulo"] = 46;
             Session["UsuarioLogin"] = string.Empty;
             Session["Servidor"] = "ucbp";
             Session["bEnviarNotificaciones"] = false;

@@ -746,19 +746,11 @@ namespace SistemaAlmacenesWeb.Forms
             }
         }
 
-        protected void lbtPagAnterior_Click(object sender, EventArgs e)
+        protected void btnAtras_Click(object sender, EventArgs e)
         {
-
+            //Response.Redirect("#");
         }
         
-        protected void btnSgteGenerales_Click(object sender, EventArgs e)
-        {
-
-        }
-        protected void btnEditarGenerales_Click(object sender, EventArgs e)
-        {
-
-        }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             string[] StrSqls = new string[30];
@@ -771,6 +763,12 @@ namespace SistemaAlmacenesWeb.Forms
                 libCat.StrConexion = axVarSes.Lee<string>("strConexion");
                 libGrupo = new BD_ALM_Grupos_Items();
                 libGrupo.StrConexion = axVarSes.Lee<string>("strConexion");
+                libAlm = new BD_ALM_Almacenes();
+                libAlm.StrConexion = axVarSes.Lee<string>("strConexion");
+                libPlant = new BD_ALM_Plantillas();
+                libPlant.StrConexion = axVarSes.Lee<string>("strConexion");
+                libPasos = new BD_ALM_Pasos();
+                libPasos.StrConexion = axVarSes.Lee<string>("strConexion");
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                 switch (i)
@@ -879,12 +877,14 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 lblMensajeOK.Text = "Pedido registrado exitosamente.";
                 pnMensajeOK.Visible = true;
+                pnMensajeError.Visible = false;
                 VaciarBoxes();
             }
             else
             {
                 lblMensajeError.Text = "Error al registrar el pedido."+libMov.Mensaje;
                 pnMensajeError.Visible = true;
+                pnMensajeOK.Visible = false;
             }
 
         }

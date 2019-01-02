@@ -12,15 +12,18 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Alvaro Mamani            ; Fecha: 12/12/2018
-    // Ultima modificación: Alvaro Mamani   ; Fecha: 12/12/2018
-    // Descripción: Clase referente a la tabla ALM_MOVIMIENTOS_TIPOS
+    // Ultima modificación: Ignacio Rios  ; Fecha: 02/01/2019
+    // Descripción: Clase referente a la tabla ALM_PASOS
     public class BD_ALM_Pasos
     {
-        #region Variables Locales
+        #region librerias externas
         GEN_OracleBD OracleBD = new GEN_OracleBD();
         GEN_Mensajes libMensajes = new GEN_Mensajes();
         GEN_Cadenas libCadenas = new GEN_Cadenas();
         GEN_VarSession axVarSes = new GEN_VarSession();
+        #endregion
+
+        #region Variables Locales
         private string strSql = string.Empty;
         #endregion
 

@@ -55,7 +55,7 @@
                                                             <asp:BoundField HeaderText="Nro"  />
                                                             <asp:BoundField HeaderText="Item" />
                                                             <asp:BoundField HeaderText="Cantidad" />
-                                                            <asp:TemplateField HeaderText="TextBox">
+                                                            <asp:TemplateField HeaderText="Cantidad">
                                                                <ItemTemplate>
                                                                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                                                                </ItemTemplate>

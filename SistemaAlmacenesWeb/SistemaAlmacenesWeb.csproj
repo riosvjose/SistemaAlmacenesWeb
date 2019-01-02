@@ -303,6 +303,7 @@
     <Compile Include="LibBD\BD_ALM_Ingresos.cs" />
     <Compile Include="LibBD\BD_ALM_Movimientos.cs" />
     <Compile Include="LibBD\BD_ALM_MovimientosPuntajes.cs" />
+    <Compile Include="LibBD\BD_ALM_Pasos_Subdepto_usu.cs" />
     <Compile Include="LibBD\BD_ALM_Pasos.cs" />
     <Compile Include="LibBD\BD_ALM_Plantillas.cs" />
     <Compile Include="LibBD\BD_ALM_Proveedores.cs" />

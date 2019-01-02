@@ -154,7 +154,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select a.num_sec_usuario, a.num_sec_persona, a.usuario, a.login, a.activo";
+            strSql = "select * from alm_almacenes where num_sec_almacen="+_num_sec_almacen;
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;

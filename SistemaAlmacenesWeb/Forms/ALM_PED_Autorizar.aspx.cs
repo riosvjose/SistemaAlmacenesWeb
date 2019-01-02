@@ -14,16 +14,25 @@ namespace SistemaAlmacenesWeb.Forms
     public partial class ALM_PED_Autorizar : System.Web.UI.Page
     {
         #region "Librerias Externas"
-
         GEN_VarSession axVarSes = new GEN_VarSession();
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
-
-
         #endregion
 
         #region "Clase de tablas de la Base de Datos"
-
+        BD_ALM_Grupos_Items libGrupo = new BD_ALM_Grupos_Items();
+        BD_ALM_Cat_Items libCat = new BD_ALM_Cat_Items();
+        BD_ALM_Items libItem = new BD_ALM_Items();
+        BD_Personas libpersona = new BD_Personas();
+        BD_ALM_Ingresos libIngreso = new BD_ALM_Ingresos();
+        BD_ALM_IngresosMov libIngresoMov = new BD_ALM_IngresosMov();
+        BD_ALM_Movimientos libMov = new BD_ALM_Movimientos();
+        BD_ALM_Pasos libPasos = new BD_ALM_Pasos();
+        BD_ALM_Dominios libDominio = new BD_ALM_Dominios();
+        BD_ALM_Almacenes_Usu libAlmUsu = new BD_ALM_Almacenes_Usu();
+        BD_ALM_Almacenes libAlm = new BD_ALM_Almacenes();
+        BD_ALM_Plantillas libPlant = new BD_ALM_Plantillas();
+        BD_ALM_Pasos_Subdepto_usu libPasoUsu = new BD_ALM_Pasos_Subdepto_usu();
         #endregion
 
         #region "Funciones y procedimientos"

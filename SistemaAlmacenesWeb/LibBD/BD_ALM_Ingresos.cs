@@ -227,7 +227,7 @@ namespace SistemaAlmacenesWeb
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_ingresos (num_sec_ingreso, codigo_compra_sap, fecha_ingreso, tipo" +
                      ", num_sec_proveedor, num_sec_usuario_reg) values" +
-                     " ("+_num_sec_ingreso+"," + _cod_compra_sap + ", TO_DATE('" + _fecha_ingreso + "', 'dd/mm/yyyy')," + _tipo + "," +
+                     " ("+_num_sec_ingreso+", '" + _cod_compra_sap + "' , TO_DATE('" + _fecha_ingreso + "', 'dd/mm/yyyy')," + _tipo + "," +
                      _num_sec_proveedor + "," + usuario + " )";
             return strSql;
         }

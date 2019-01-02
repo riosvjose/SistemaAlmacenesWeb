@@ -154,7 +154,7 @@ namespace SistemaAlmacenesWeb
             bool blEncontrado = false;
             string strSql = string.Empty;
             strSql = "select * from alm_plantillas where activo=1 and tipo_ingreso = " + _tipo_ingreso.ToString()+
-                    " and tipo_egreso="+_tipo_egreso+"and num_sec_almacen="+_num_sec_almacen;
+                    " and tipo_egreso="+_tipo_egreso+" and num_sec_almacen="+_num_sec_almacen;
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
