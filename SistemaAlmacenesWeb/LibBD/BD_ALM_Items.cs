@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Alvaro Mamani; Fecha: 18/12/2018
+    // Ultima modificación: Alvaro Mamani; Fecha: 2/01/2019
     // Descripción: Clase referente a la tabla alm_items
     public class BD_ALM_Items
     {
@@ -148,10 +148,27 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
-            strSql = "insert into alm_items (num_sec_item, cod, nombre, num_sec_cat, num_sec_marca, num_sec_medida, "+
-                     "activo, precio, stock_min, num_sec_usuario_reg) values " +
-                    "(alm_items_sec.nextval, " + _cod + ", '" + _nombre + "', " + _num_sec_cat_items + ", " +_num_sec_marca + ", " + _num_sec_medida + ", " + 
-                    "1, 0, " + _stock_min + ", " + usuario + " )";//Activo: 1=Si, 0=No. Se manda Precio = 0. Porque este se re-calcula cada vez que se hacen ingresos del item X
+            strSql = "insert into alm_items (" +
+                        "num_sec_item, " +
+                        "cod,  " +
+                        "nombre,  " +
+                        "num_sec_cat,  " +
+                        "num_sec_marca,  " + 
+                        "num_sec_medida, " +
+                        "activo, " + 
+                        "precio, " +
+                        "stock_min, " +
+                        "num_sec_usuario_reg) values(" +
+                        "alm_items_sec.nextval, " + 
+                        _cod + ", '" + 
+                        _nombre + "', " + 
+                        _num_sec_cat_items + ", " +
+                        _num_sec_marca + ", " + 
+                        _num_sec_medida + ", " + 
+                        "1, " +
+                        "0, " + 
+                        _stock_min + ", " + 
+                        usuario + " )";//Activo: 1=Si, 0=No. Se manda Precio = 0. Porque este se re-calcula cada vez que se hacen ingresos del item X
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -160,6 +177,27 @@ namespace SistemaAlmacenesWeb
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
                 _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_items. " + _mensaje;
+            return blOperacionCorrecta;
+        }
+
+        public bool Modificar()
+        {
+            bool blOperacionCorrecta = false;
+            strSql = "update alm_items set " +
+                "cod = '" + _cod + "', " +
+                "nombre = '" + _nombre + "', " +
+                "stock_min = " + _stock_min + " " +
+                "where num_sec_item = " + _num_sec_item.ToString();
+
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.EjecutarSqlTrans();
+
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible actualizar el dato. Se encontró un error al actualizar en la tabla alm_items. " + _mensaje;
             return blOperacionCorrecta;
         }
 
@@ -205,7 +243,7 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             strSql = "update alm_items set " +
-                " estado = 0 " +
+                " activo = 0 " +
                 " where num_sec_item = " + _num_sec_item.ToString();
 
             OracleBD.MostrarError = false;
@@ -224,7 +262,9 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select * from alm_items where num_sec_item = " + _num_sec_item.ToString();
+            strSql = "select * from alm_items where " +
+                        "num_sec_item = " + _num_sec_item.ToString() +
+                        "AND activo = 1";
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
