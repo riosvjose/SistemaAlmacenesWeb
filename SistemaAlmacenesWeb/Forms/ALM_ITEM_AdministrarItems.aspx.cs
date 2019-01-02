@@ -94,6 +94,11 @@ namespace SistemaAlmacenesWeb.Forms
             ddlEditarMedidaItem.DataTextField = "NOMBRE";
             ddlEditarMedidaItem.DataValueField = "NUM_SEC_MEDIDA";
             ddlEditarMedidaItem.DataBind();
+            //Listar Grupo de Categorias (Dentro del modal)
+            ddlGrupoCategoria.DataSource = ALMGruposItems.DTListaGrupos();
+            ddlGrupoCategoria.DataTextField = "NOMBRE";
+            ddlGrupoCategoria.DataValueField = "NUM_SEC_GRUPO";
+            ddlGrupoCategoria.DataBind();           
         }
         //Cargar todos los Drop Down List de Categorias
         protected void CargarCategoriasDdl()
@@ -104,11 +109,18 @@ namespace SistemaAlmacenesWeb.Forms
             //Listar todas las Categorias
             if (ddlGrupoItem.Items.Count != 0)
             {
+                //Listar Categorias
                 ALMCategoriasItems.NumSecGrupoItem = Convert.ToInt64(ddlGrupoItem.Text.Trim()); // Obtener el NUM_SEC_GRUPO (id del grupo)
                 ddlCategoriaItem.DataSource = ALMCategoriasItems.DTListaCategorias();
                 ddlCategoriaItem.DataTextField = "NOMBRE";
                 ddlCategoriaItem.DataValueField = "NUM_SEC_CAT";
                 ddlCategoriaItem.DataBind();
+            
+                //Listar Editar Categorias
+                ddlEditarCategoriaItem.DataSource = ALMCategoriasItems.dtListarTodasCategorias();
+                ddlEditarCategoriaItem.DataTextField = "NOMBRE";
+                ddlEditarCategoriaItem.DataValueField = "NUM_SEC_CAT";
+                ddlEditarCategoriaItem.DataBind();
             }
             else
             {
@@ -187,6 +199,18 @@ namespace SistemaAlmacenesWeb.Forms
             lblFormBorrarItem.Text = "Eliminar Item";
             pnEditarItem.Visible = false;
             pnBorrarItem.Visible = true;
+
+            if (ddlItem.Items.Count != 0)
+            {
+                pnBorrarItem.Visible = true;
+                lblFormBorrarItem.Visible = true;
+                lblFormBorrarItem.Text = "¿Está seguro de que desea eliminar el item " + ddlItem.SelectedItem.ToString() + " ?";
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "No existe ningún Item registrado";
+            }
         }
 
         protected void btnVolverMenu_Click(object sender, EventArgs e)
@@ -233,14 +257,88 @@ namespace SistemaAlmacenesWeb.Forms
             }
         }
 
-        protected void btnCancelarItem_Click(object sender, EventArgs e)
+        protected void btnGuardarModalCat_Click(object sender, EventArgs e)
         {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+
+            //Validar que el DDL no este vacio
+            if (ddlGrupoItem.Items.Count != 0)
+            {
+
+                ALMCategoriasItems.StrConexion = axVarSes.Lee<string>("strConexion");
+                ALMCategoriasItems.Nombre = tbNombreCategoria.Text.ToUpper().Trim();
+                ALMCategoriasItems.Descripcion = tbDescripcionCategoria.Text.Trim();
+                ALMCategoriasItems.NumSecGrupoItem = Convert.ToInt64(ddlGrupoItem.Text.Trim());
+                if (tbDescripcionCategoria.Text.Length >= 500)
+                {
+                    pnMensajeError.Visible = true;
+                    lblMensajeError.Text = "El campo Descripción debe contener menos de 500 caracteres";
+                }
+                else if (ALMCategoriasItems.Insertar())
+                {
+                    pnMensajeOK.Visible = true;
+                    lblMensajeOK.Text = "La Categoría fue creada exitosamente";
+                    // Cerrar el modal
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalCategoriaItem').hide();$('.modal-backdrop').hide();", true);
+                    //Limpiar los campos del modal
+                    tbNombreCategoria.Text = "";
+                    tbDescripcionCategoria.Text = "";
+                    //Recargar el DDL Categoria de Items
+                    ALMCategoriasItems.StrConexion = axVarSes.Lee<string>("strConexion");                    
+                    if (ddlGrupoItem.Items.Count != 0)
+                    {
+                        //Listar Categorias
+                        ALMCategoriasItems.NumSecGrupoItem = Convert.ToInt64(ddlGrupoItem.Text.Trim()); // Obtener el NUM_SEC_GRUPO (id del grupo)
+                        ddlCategoriaItem.DataSource = ALMCategoriasItems.DTListaCategorias();
+                        ddlCategoriaItem.DataTextField = "NOMBRE";
+                        ddlCategoriaItem.DataValueField = "NUM_SEC_CAT";
+                        ddlCategoriaItem.DataBind();
+                    }
+                    else
+                    {
+                        pnMensajeError.Visible = true;
+                        lblMensajeError.Text = "Mensaje: El Grupo seleccionado no cuenta con Categorías registradas. Seleccione otro Grupo por favor";
+                    }
+                }
+                else
+                {
+                    pnMensajeError.Visible = true;
+                    lblMensajeError.Text = "Mensaje: " + ALMCategoriasItems.Mensaje;
+                }
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "No existe ningún Grupo de Items creado";
+            }
+        }
+
+        protected void btnCancelarItem_Click(object sender, EventArgs e)
+        {                       
             Response.Redirect("ALM_ITEM_AdministrarItems.aspx");
         }
 
         protected void btnEditarGuardarItem_Click(object sender, EventArgs e)
         {
-
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+            //BD_ALM_Items
+            ALMItems.StrConexion = axVarSes.Lee<string>("strConexion");
+            ALMItems.NumSecItem = Convert.ToInt64(ddlItem.Text.Trim()); // Obtener el NUM_SEC_ITEM (id del Item)
+            ALMItems.Cod = tbEditarCodigoItem.Text.Trim();
+            ALMItems.Nombre = tbEditarNombreItem.Text.ToUpper().Trim();
+            ALMItems.StockMin = Convert.ToInt64(tbEditarStockItem.Text.Trim());
+            if (ALMItems.Modificar())
+            {
+                Session["MensajeOK"] = "El Item fue actualizada exitosamente";
+                Response.Redirect("ALM_ITEM_AdministrarItems.aspx");
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "Mensaje: " + ALMItems.Mensaje;
+            }
         }
 
         protected void btnEditarCancelarItem_Click(object sender, EventArgs e)
@@ -250,7 +348,20 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void btnBorrarItem_Click(object sender, EventArgs e)
         {
-
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+            ALMItems.StrConexion = axVarSes.Lee<string>("strConexion");
+            ALMItems.NumSecItem = Convert.ToInt64(ddlItem.Text.Trim()); // Obtener el NUM_SEC_ITEM (id del Item)
+            if (ALMItems.Borrar())
+            {
+                Session["MensajeOK"] = "El Item fue eliminado exitosamente";
+                Response.Redirect("ALM_ITEM_AdministrarItems.aspx");
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "Mensaje: " + ALMItems.Mensaje;
+            }
         }
 
         protected void btnCancelarBorrarItem_Click(object sender, EventArgs e)

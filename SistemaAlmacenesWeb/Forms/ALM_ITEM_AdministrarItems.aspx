@@ -93,11 +93,14 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblCategoriaItem" runat="server" Text="Categoria:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblCategoriaItem" runat="server" Text="Categoría:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:DropDownList ID="ddlCategoriaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
                             </div>
+                            <div>
+                                <button id="btnAgregarCategoria" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategoriaItem">Agregar Categoría</button>
+                            </div>                            
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
@@ -126,12 +129,45 @@
                             </div>
                         </div>
 			        </div>
+                    <%--MODAL DE CATEGORIAS--%>
+                    <div class="modal fade" id="modalCategoriaItem" tabindex="-1" role="dialog" aria-labelledby="modalLblCategoria" aria-hidden="true" >                              
+                        <div class="modal-dialog" role="document">                                
+                            <div class="modal-content">                                  
+                                <div class="modal-header">                                    
+                                    <center><h3 class="modal-title" id="modalLblCategoria">Agregar Categoría</h3></center>                                                                          
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">                                                                              
+                                        <span aria-hidden="true">&times;</span>                                                                                                                                                 
+                                    </button>                                                                    
+                                </div>                                                                      
+                                <div class="modal-body">                                                                                                              
+                                    <form>                                                                                                                      
+                                        <div class="form-group">                                          
+                                            <strong><asp:Label ID="lblNombreCategoria" runat="server">Nombre:</asp:Label></strong>                                          
+                                            <asp:TextBox ID="tbNombreCategoria" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                                                                                                   
+                                        </div>                                      
+                                        <div class="form-group">                                          
+                                            <strong><asp:Label ID="lblDescripcion" runat="server">Descripción:</asp:Label></strong>                                          
+                                            <asp:TextBox ID="tbDescripcionCategoria" runat="server" CssClass="form-control" onKeyPress="if(this.value.length==499) return false;" TextMode="MultiLine" Rows="2" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                      
+                                        </div>
+                                        <div class="form-group">                                                                                      
+                                            <strong><asp:Label ID="lblGrupoCategoria" runat="server">Grúpo de Categoría:</asp:Label></strong>
+                                            <asp:DropDownList ID="ddlGrupoCategoria" runat="server" CssClass="form-control" required=""></asp:DropDownList>
+                                        </div>                                    
+                                    </form>                                                                     
+                                </div>                                                                      
+                                <div class="modal-footer">                                                                            
+                                    <asp:Button ID="btnGuardarModalCat" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="False" OnClick="btnGuardarModalCat_Click"/>                                                                           
+                                    <asp:Button ID="btnCancelarModalCat" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" data-dismiss="modal"/>                                                                                                                                              
+                                </div>                                
+                            </div>                              
+                        </div>                            
+                    </div>
                     <%--PIE DEL PANEL--%>
 			        <div class="panel-footer">
                         <div class="row">
                             <div class="btn-group">
                                 <asp:Button ID="btnGuardarItem" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="True" OnClick="btnGuardarItem_Click" />
-                                <asp:Button ID="btnCancelarItem" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClick="btnCancelarItem_Click" />
+                                <asp:Button ID="btnCancelarItem" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClientClick="CancelarModalCategoria()" OnClick="btnCancelarItem_Click" />
                             </div>
                         </div>
 			        </div>
@@ -169,7 +205,7 @@
                                 <strong><asp:Label ID="lblEditarCategoriaItem" runat="server" Text="Categoria:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:DropDownList ID="ddlEditarCategoriaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlEditarCategoriaItem" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -177,7 +213,7 @@
                                 <strong><asp:Label ID="lblEditarMarcaItem" runat="server" Text="Marca:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:DropDownList ID="ddlEditarMarcaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlEditarMarcaItem" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -185,7 +221,7 @@
                                 <strong><asp:Label ID="lblEditarMedidaItem" runat="server" Text="Medida:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:DropDownList ID="ddlEditarMedidaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlEditarMedidaItem" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -258,7 +294,14 @@
                     <%--Mensaje de Error AJAXValidator--%>
                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />
 	            </div>
-            </div>    
+            </div>
+            <script type="text/javascript">
+                function CancelarModalCategoria() {
+                    document.getElementById('<%= tbNombreCategoria.ClientID %>').removeAttribute('required');
+                    document.getElementById('<%= tbDescripcionCategoria.ClientID %>').removeAttribute('required');
+                    document.getElementById('<%= ddlGrupoCategoria.ClientID %>').removeAttribute('required');
+                }
+            </script>    
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
