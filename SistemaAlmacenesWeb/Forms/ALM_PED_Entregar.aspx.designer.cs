@@ -10,114 +10,96 @@
 namespace SistemaAlmacenesWeb.Forms {
     
     
-    public partial class Principal {
+    public partial class ALM_PED_Entregar {
         
         /// <summary>
-        /// head control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// form1 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// lnkbtnRealizarPedido control.
+        /// UpdateProgress1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnRealizarPedido;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
         
         /// <summary>
-        /// lnkbtnAutorizarPedido control.
+        /// pn1raAut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnAutorizarPedido;
+        protected global::System.Web.UI.WebControls.Panel pn1raAut;
         
         /// <summary>
-        /// lnkbtnEntregarPedido control.
+        /// lblPedidos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnEntregarPedido;
+        protected global::System.Web.UI.WebControls.Label lblPedidos;
         
         /// <summary>
-        /// lnkbtnRegistarSalida control.
+        /// gvDatos1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnRegistarSalida;
+        protected global::System.Web.UI.WebControls.GridView gvDatos1;
         
         /// <summary>
-        /// lnkbtnAutorizarSalida control.
+        /// pnMensajeError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnAutorizarSalida;
+        protected global::System.Web.UI.WebControls.Panel pnMensajeError;
         
         /// <summary>
-        /// lnkbtnReporte1 control.
+        /// lblMensajeError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnReporte1;
+        protected global::System.Web.UI.WebControls.Label lblMensajeError;
         
         /// <summary>
-        /// lnkbtnReporte2 control.
+        /// pnMensajeOK control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnReporte2;
+        protected global::System.Web.UI.WebControls.Panel pnMensajeOK;
         
         /// <summary>
-        /// lnkbtnReporte3 control.
+        /// lblMensajeOK control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnReporte3;
-        
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// ContentPlaceHolder2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
+        protected global::System.Web.UI.WebControls.Label lblMensajeOK;
     }
 }

@@ -185,46 +185,92 @@ namespace SistemaAlmacenesWeb
             return blEncontrado;
         }
 
-        public bool VerPasosUsuario(bool ingreso, bool salida)
+        public int[] VerPasosTramiteUsuario(int ingreso, int salida) // obtiene todos los pasos de tramite en los que interviene un usuario en una plantilla
         {
-            bool blEncontrado = false;
             string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
             string strSql = string.Empty;
-            strSql = "select a.num_sec_paso, b.nombre, b.num_sec_plantilla " +
+            strSql = "select a.num_sec_paso"+//, b.nombre, b.num_sec_plantilla " +
                     " from alm_paso_subdepto_usu a, alm_pasos b, alm_plantillas c" +
-                    "where a.num_sec_usuario=" + usuario +
-                    " and b.num_sec_paso_ant <> 0" +
+                    " where a.num_sec_usuario=" + usuario +
+                    " and b.num_sec_paso_ant <> 0" + //no valorarra el primer paso de pedido
                     " and a.num_sec_paso=b.num_sec_paso" +
-                    " and b.num_sec_plantilla=c.num_sec_plantilla";
-            if (salida)
+                    " and b.num_sec_plantilla=c.num_sec_plantilla "+
+                    " and b.tipo =3";
+            if (salida==1)
             {
-                strSql+=" and c.tipo_ingreso=0";
-            }    
-            if (ingreso)
+                strSql+= " and c.tipo_egreso=1";
+            }
+            if (salida == 2)
             {
-                strSql += " and c.tipo_egreso=0";
-            } 
+                strSql += " and c.tipo_egreso=2";
+            }
+            if (salida == 3)
+            {
+                strSql += " and c.tipo_egreso=3";
+            }
+            if (salida == 4)
+            {
+                strSql += " and c.tipo_egreso=4";
+            }
+            if (ingreso == 1)
+            {
+                strSql += " and c.tipo_ingreso=1";
+            }
+            if (ingreso == 2)
+            {
+                strSql += " and c.tipo_ingreso=2";
+            }
+            if (ingreso == 3)
+            {
+                strSql += " and c.tipo_ingreso=3";
+            }
+            if (ingreso == 4)
+            {
+                strSql += " and c.tipo_ingreso=4";
+            }
+            strSql += " order by a.num_sec_paso asc";
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             dt = OracleBD.DataTable;
+            int[] pasos = new int [dt.Rows.Count];
             if (dt.Rows.Count > 0)
             {
-                blEncontrado = true;
-                DataRow dr = dt.Rows[0];
-                _num_sec_paso_usu = Convert.ToInt64(dr["num_sec_paso_usu"].ToString());
-                _num_sec_paso = Convert.ToInt64(dr["num_sec_paso"].ToString());
-                _num_sec_subdepartamento = Convert.ToInt64(dr["num_sec_subdepartamento"].ToString());
-                _num_sec_usuario = Convert.ToInt64(dr["num_sec_usuario"].ToString());
-                _activo = Convert.ToInt16(dr["activo"].ToString());
-                _fecha_registro = dr["fecha_registro"].ToString();
-                _usuario_registro = dr["usuario_registro"].ToString();
-                _num_sec_usuario_registro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
+                for(int i=0; i< dt.Rows.Count;i++)
+                {
+                    DataRow dr = dt.Rows[i];
+                    pasos[i] = Convert.ToInt32(dr["num_sec_paso"].ToString());
+                }
             }
             dt.Dispose();
-            return blEncontrado;
+            return pasos;
+        }
+        public int[] VerDeptosPasoUsuario(int paso) // obtiene todos los departamentos en los que el usuario realiza un paso
+        {
+            string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
+            string strSql = string.Empty;
+            strSql = "select num_sec_subdepartamento from alm_paso_subdepto_usu " +
+                    " where num_sec_usuario=" + usuario +
+                    " and num_sec_paso=" + paso.ToString(); ;
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            int[] pasos = new int[dt.Rows.Count];
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataRow dr = dt.Rows[i];
+                    pasos[i] = Convert.ToInt32(dr["num_sec_subdepartamento"].ToString());
+                }
+            }
+            dt.Dispose();
+            return pasos;
         }
         #endregion
     }

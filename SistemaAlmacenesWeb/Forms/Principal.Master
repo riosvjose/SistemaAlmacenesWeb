@@ -51,6 +51,9 @@
                                 <li>
                                     <asp:LinkButton ID="lnkbtnAutorizarPedido" runat="server" CausesValidation="false" OnClick="lnkbtnAutorizarPedido_Click">Autorizar pedido</asp:LinkButton>
                                 </li>
+                                <li>
+                                    <asp:LinkButton ID="lnkbtnEntregarPedido" runat="server" CausesValidation="false" OnClick="lnkbtnEntregarPedido_Click">Entregar pedido</asp:LinkButton>
+                                </li>
                             </ul>
                         </div>
                     </li>

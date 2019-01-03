@@ -12,7 +12,7 @@ using System.Data;
 
 namespace SistemaAlmacenesWeb.Forms
 {
-    public partial class ALM_PED_Autorizar : System.Web.UI.Page
+    public partial class ALM_PED_Entregar : System.Web.UI.Page
     {
         #region "Librerias Externas"
         GEN_VarSession axVarSes = new GEN_VarSession();

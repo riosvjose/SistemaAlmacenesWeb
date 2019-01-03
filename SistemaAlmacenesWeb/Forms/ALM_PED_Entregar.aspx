@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="ALM_PED_Autorizar.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.ALM_PED_Autorizar" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="ALM_PED_Entregar.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.ALM_PED_Entregar" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -21,7 +21,7 @@
                    </div>
                 </div>
 	            <div class="col-xs-12 col-md-6 pull-left">
-		            <h1>Autorizar pedido</h1>
+		            <h1>Entregar pedido</h1>
 	            </div>
                 
             </div>
@@ -64,7 +64,7 @@
                                                             <asp:BoundField DataField="num_sec_paso" HeaderText="Paso" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
                                                             <asp:BoundField DataField="cantidad" HeaderText="Cantidad Requerida" />
-                                                            <asp:TemplateField HeaderText="Cantidad Autorizada" Visible="false">
+                                                            <asp:TemplateField HeaderText="Cantidad Autorizada">
                                                                <ItemTemplate>
                                                                  <asp:TextBox ID="tbCantAut" runat="server" Enabled="false"></asp:TextBox>
                                                                </ItemTemplate>
@@ -72,7 +72,7 @@
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="autorizar" Text="Autorizar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>
-                                                            <asp:ButtonField HeaderText="" Visible="false" ButtonType="Button" CommandName="modificar" Text="Modificar" >
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="modificar" Text="Modificar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-warning "/>
                                                             </asp:ButtonField>
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="rechazar" Text="Rechazar" >

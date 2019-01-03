@@ -57,6 +57,11 @@ namespace SistemaAlmacenesWeb.Forms
            Response.Redirect("ALM_PED_Realizar.aspx");
         }
 
+        protected void lnkbtnEntregarPedido_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ALM_PED_Entregar.aspx");
+        }
+
         protected void lnkbtnRegistarSalida_Click(object sender, EventArgs e)
         {
            Response.Redirect("ALM_SAL_Registrar.aspx");

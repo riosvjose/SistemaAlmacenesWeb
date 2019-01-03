@@ -289,6 +289,28 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             return sgte;
         }
+
+        public long ObtenerPasoRechazo()
+        {
+            long sgte = 0;
+            string strSql = string.Empty;
+            strSql = "select num_sec_paso from alm_pasos " +
+                    "where tipo= 4" +
+                    " and num_sec_plantilla="+_num_sec_plantilla;
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                sgte = Convert.ToInt64(dr["num_sec_paso"].ToString());
+            }
+            dt.Dispose();
+            return sgte;
+        }
         #endregion
     }
 }
