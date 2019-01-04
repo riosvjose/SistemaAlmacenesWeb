@@ -278,8 +278,10 @@ namespace SistemaAlmacenesWeb.Forms
                 {
                     pnMensajeOK.Visible = true;
                     lblMensajeOK.Text = "La Categoría fue creada exitosamente";
+                    //Ocultar los modals
+                    cerrarModals();
                     // Cerrar el modal
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalCategoriaItem').hide();$('.modal-backdrop').hide();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalCategoriaItem').hide();$('.modal-backdrop').hide();", true);                    
                     //Limpiar los campos del modal
                     tbNombreCategoria.Text = "";
                     tbDescripcionCategoria.Text = "";
@@ -332,6 +334,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 pnMensajeOK.Visible = true;
                 lblMensajeOK.Text = "La Marca fue creada exitosamente";
+                //Ocultar los modals
+                cerrarModals();
                 // Cerrar el modal
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMarcaItem').hide();$('.modal-backdrop').hide();", true);
                 //Limpiar los campos del modal
@@ -369,6 +373,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 pnMensajeOK.Visible = true;
                 lblMensajeOK.Text = "La Medida fue creada exitosamente";
+                //Ocultar los modals
+                cerrarModals();
                 // Cerrar el modal
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMedidaItem').hide();$('.modal-backdrop').hide();", true);
                 //Limpiar los campos del modal
