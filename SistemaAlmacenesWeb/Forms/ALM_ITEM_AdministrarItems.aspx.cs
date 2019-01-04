@@ -136,7 +136,7 @@ namespace SistemaAlmacenesWeb.Forms
             if (!Page.IsPostBack)
             {
                 CargarDatosIniciales(axVarSes.Lee<string>("strConexion"));
-            }
+            }            
         }
         protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -217,6 +217,189 @@ namespace SistemaAlmacenesWeb.Forms
         {
             Response.Redirect("Index.aspx");
         }
+        protected void btnAgregarCategoria_Click(object sender, EventArgs e)
+        {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+            upCategoriaItem.Visible = true;
+            upMarcaItem.Visible = false;
+            upMedidaItem.Visible = false;
+            // Abrir el modal
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalCategoriaItem').modal('show');", true);
+        }
+
+        protected void btnAgregarMarca_Click(object sender, EventArgs e)
+        {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+            upCategoriaItem.Visible = false;
+            upMarcaItem.Visible = true;
+            upMedidaItem.Visible = false;
+            // Abrir el modal
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalMarcaItem').modal('show');", true);
+        }
+
+        protected void btnAgregarMedida_Click(object sender, EventArgs e)
+        {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+            upCategoriaItem.Visible = false;
+            upMarcaItem.Visible = false;
+            upMedidaItem.Visible = true;
+            // Abrir el modal
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalMedidaItem').modal('show');", true);
+        }
+
+        //Ocultar los modals
+        protected void cerrarModals()
+        {
+            upCategoriaItem.Visible = false;    //Modal Crear Categorias
+            upMarcaItem.Visible = false;        //Modal Crear Marca
+            upMedidaItem.Visible = false;       //Modal Crear Medida
+        }
+
+        protected void btnGuardarModalCat_Click(object sender, EventArgs e)
+        {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+            //Validar que el DDL no este vacio
+            if (ddlGrupoItem.Items.Count != 0)
+            {
+                ALMCategoriasItems.StrConexion = axVarSes.Lee<string>("strConexion");
+                ALMCategoriasItems.Nombre = tbNombreCategoria.Text.ToUpper().Trim();
+                ALMCategoriasItems.Descripcion = tbDescripcionCategoria.Text.Trim();
+                ALMCategoriasItems.NumSecGrupoItem = Convert.ToInt64(ddlGrupoItem.Text.Trim());
+                if (tbDescripcionCategoria.Text.Length >= 500)
+                {
+                    pnMensajeError.Visible = true;
+                    lblMensajeError.Text = "El campo Descripción debe contener menos de 500 caracteres";
+                }
+                else if (ALMCategoriasItems.Insertar())
+                {
+                    pnMensajeOK.Visible = true;
+                    lblMensajeOK.Text = "La Categoría fue creada exitosamente";
+                    //Ocultar los modals
+                    cerrarModals();
+                    // Cerrar el modal
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalCategoriaItem').hide();$('.modal-backdrop').hide();", true);                    
+                    //Limpiar los campos del modal
+                    tbNombreCategoria.Text = "";
+                    tbDescripcionCategoria.Text = "";
+                    //Recargar el DDL Categoria de Items
+                    ALMCategoriasItems.StrConexion = axVarSes.Lee<string>("strConexion");                    
+                    if (ddlGrupoItem.Items.Count != 0)
+                    {
+                        //Listar Categorias
+                        ALMCategoriasItems.NumSecGrupoItem = Convert.ToInt64(ddlGrupoItem.Text.Trim()); // Obtener el NUM_SEC_GRUPO (id del grupo)
+                        ddlCategoriaItem.DataSource = ALMCategoriasItems.DTListaCategorias();
+                        ddlCategoriaItem.DataTextField = "NOMBRE";
+                        ddlCategoriaItem.DataValueField = "NUM_SEC_CAT";
+                        ddlCategoriaItem.DataBind();
+                    }
+                    else
+                    {
+                        pnMensajeError.Visible = true;
+                        lblMensajeError.Text = "Mensaje: El Grupo seleccionado no cuenta con Categorías registradas. Seleccione otro Grupo por favor";
+                    }
+                }
+                else
+                {
+                    pnMensajeError.Visible = true;
+                    lblMensajeError.Text = "Mensaje: " + ALMCategoriasItems.Mensaje;
+                }
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "No existe ningún Grupo de Items creado";
+            }
+        }
+
+        protected void btnCancelarModalCat_Click(object sender, EventArgs e)
+        {
+            //Ocultar los modals
+            cerrarModals();
+            // Cerrar el modal Categoria
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalCategoriaItem').hide();$('.modal-backdrop').hide();", true);
+        }
+
+        protected void btnGuardarModalMarca_Click(object sender, EventArgs e)
+        {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+
+            ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
+            ALMMarcas.Nombre = tbNombreMarca.Text.ToUpper().Trim();
+            if (ALMMarcas.Insertar())
+            {
+                pnMensajeOK.Visible = true;
+                lblMensajeOK.Text = "La Marca fue creada exitosamente";
+                //Ocultar los modals
+                cerrarModals();
+                // Cerrar el modal
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMarcaItem').hide();$('.modal-backdrop').hide();", true);
+                //Limpiar los campos del modal
+                tbNombreMarca.Text = "";
+                //Recargar el DDL Marca de Items
+                ddlMarcaItem.DataSource = ALMMarcas.dtListarMarcas();
+                ddlMarcaItem.DataTextField = "NOMBRE";
+                ddlMarcaItem.DataValueField = "NUM_SEC_MARCA";
+                ddlMarcaItem.DataBind();
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "Mensaje: " + ALMMarcas.Mensaje;
+            }
+        }
+
+        protected void btnCancelarModalMarca_Click(object sender, EventArgs e)
+        {
+            //Ocultar los modals
+            cerrarModals();
+            // Cerrar el modal Marca
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMarcaItem').hide();$('.modal-backdrop').hide();", true);
+        }
+
+        protected void btnGuardarModalMedida_Click(object sender, EventArgs e)
+        {
+            pnMensajeError.Visible = false;
+            pnMensajeOK.Visible = false;
+
+            ALMMedidas.StrConexion = axVarSes.Lee<string>("strConexion");
+            ALMMedidas.Nombre = tbNombreMedida.Text.ToUpper().Trim();
+            ALMMedidas.Abreviacion = tbAbrevMedida.Text.Trim();
+            if (ALMMedidas.Insertar())
+            {
+                pnMensajeOK.Visible = true;
+                lblMensajeOK.Text = "La Medida fue creada exitosamente";
+                //Ocultar los modals
+                cerrarModals();
+                // Cerrar el modal
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMedidaItem').hide();$('.modal-backdrop').hide();", true);
+                //Limpiar los campos del modal
+                tbNombreMedida.Text = "";
+                tbAbrevMedida.Text = "";
+                //Recargar el DDL Marca de Items
+                ddlMedidaItem.DataSource = ALMMedidas.dtListarMedidas();
+                ddlMedidaItem.DataTextField = "NOMBRE";
+                ddlMedidaItem.DataValueField = "NUM_SEC_MEDIDA";
+                ddlMedidaItem.DataBind();
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "Mensaje: " + ALMMarcas.Mensaje;
+            }
+        }
+
+        protected void btnCancelarModalMedida_Click(object sender, EventArgs e)
+        {
+            //Ocultar los modals
+            cerrarModals();
+            // Cerrar el modal Marca
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMedidaItem').hide();$('.modal-backdrop').hide();", true);
+        }
 
         protected void btnGuardarItem_Click(object sender, EventArgs e)
         {
@@ -257,65 +440,8 @@ namespace SistemaAlmacenesWeb.Forms
             }
         }
 
-        protected void btnGuardarModalCat_Click(object sender, EventArgs e)
-        {
-            pnMensajeError.Visible = false;
-            pnMensajeOK.Visible = false;
-
-            //Validar que el DDL no este vacio
-            if (ddlGrupoItem.Items.Count != 0)
-            {
-
-                ALMCategoriasItems.StrConexion = axVarSes.Lee<string>("strConexion");
-                ALMCategoriasItems.Nombre = tbNombreCategoria.Text.ToUpper().Trim();
-                ALMCategoriasItems.Descripcion = tbDescripcionCategoria.Text.Trim();
-                ALMCategoriasItems.NumSecGrupoItem = Convert.ToInt64(ddlGrupoItem.Text.Trim());
-                if (tbDescripcionCategoria.Text.Length >= 500)
-                {
-                    pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "El campo Descripción debe contener menos de 500 caracteres";
-                }
-                else if (ALMCategoriasItems.Insertar())
-                {
-                    pnMensajeOK.Visible = true;
-                    lblMensajeOK.Text = "La Categoría fue creada exitosamente";
-                    // Cerrar el modal
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalCategoriaItem').hide();$('.modal-backdrop').hide();", true);
-                    //Limpiar los campos del modal
-                    tbNombreCategoria.Text = "";
-                    tbDescripcionCategoria.Text = "";
-                    //Recargar el DDL Categoria de Items
-                    ALMCategoriasItems.StrConexion = axVarSes.Lee<string>("strConexion");                    
-                    if (ddlGrupoItem.Items.Count != 0)
-                    {
-                        //Listar Categorias
-                        ALMCategoriasItems.NumSecGrupoItem = Convert.ToInt64(ddlGrupoItem.Text.Trim()); // Obtener el NUM_SEC_GRUPO (id del grupo)
-                        ddlCategoriaItem.DataSource = ALMCategoriasItems.DTListaCategorias();
-                        ddlCategoriaItem.DataTextField = "NOMBRE";
-                        ddlCategoriaItem.DataValueField = "NUM_SEC_CAT";
-                        ddlCategoriaItem.DataBind();
-                    }
-                    else
-                    {
-                        pnMensajeError.Visible = true;
-                        lblMensajeError.Text = "Mensaje: El Grupo seleccionado no cuenta con Categorías registradas. Seleccione otro Grupo por favor";
-                    }
-                }
-                else
-                {
-                    pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "Mensaje: " + ALMCategoriasItems.Mensaje;
-                }
-            }
-            else
-            {
-                pnMensajeError.Visible = true;
-                lblMensajeError.Text = "No existe ningún Grupo de Items creado";
-            }
-        }
-
         protected void btnCancelarItem_Click(object sender, EventArgs e)
-        {                       
+        {
             Response.Redirect("ALM_ITEM_AdministrarItems.aspx");
         }
 
@@ -372,6 +498,8 @@ namespace SistemaAlmacenesWeb.Forms
         protected void ddlGrupoItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarCategoriasDdl();
+            //Auto-Seleccionar el mismo grupo del item en el modal
+            ddlGrupoCategoria.SelectedValue = ddlGrupoItem.SelectedValue.ToString();
         }
 
         protected void ddlEditarGrupoItem_SelectedIndexChanged(object sender, EventArgs e)
@@ -379,7 +507,6 @@ namespace SistemaAlmacenesWeb.Forms
             CargarCategoriasDdl();
         }
         #endregion
-
 
     }
 }
