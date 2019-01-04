@@ -62,6 +62,7 @@
                                                             <%--<asp:BoundField DataField="depto" HeaderText="Departamento" Visible="false" />--%>
                                                             <asp:BoundField DataField="persona" HeaderText="Solicitante" />
                                                             <asp:BoundField DataField="num_sec_paso" HeaderText="Paso" />
+                                                            <asp:BoundField DataField="paso" HeaderText="Estado" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
                                                             <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="entregar" Text="Entregar" >

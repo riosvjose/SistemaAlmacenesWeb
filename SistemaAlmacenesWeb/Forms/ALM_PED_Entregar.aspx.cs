@@ -43,8 +43,10 @@ namespace SistemaAlmacenesWeb.Forms
         {
             VerificarPasos();
             gvDatos1.Visible = true;
+            gvDatos1.Columns[2].Visible = true;
             gvDatos1.DataSource = dtPedidos;
             gvDatos1.DataBind();
+            gvDatos1.Columns[2].Visible = false;
 
         }
         protected void VerificarPasos()

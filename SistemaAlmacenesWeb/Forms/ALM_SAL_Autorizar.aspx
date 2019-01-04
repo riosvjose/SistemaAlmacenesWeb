@@ -45,7 +45,7 @@
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
-                        <h3> <strong><asp:Label ID="lblPedidos" runat="server" Text="Pedidos"></asp:Label></strong></h3>
+                        <h3> <strong><asp:Label ID="lblPedidos" runat="server" Text="Salidas"></asp:Label></strong></h3>
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			         <div class="panel-body">
@@ -65,11 +65,7 @@
                                                             <asp:BoundField DataField="paso" HeaderText="Estado" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
                                                             <asp:BoundField DataField="cantidad" HeaderText="Cantidad Requerida" />
-                                                            <asp:TemplateField HeaderText="Cantidad Autorizada" Visible="false">
-                                                               <ItemTemplate>
-                                                                 <asp:TextBox ID="tbCantAut" runat="server" Enabled="false"></asp:TextBox>
-                                                               </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="descripcion" HeaderText="Detalle" />
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="autorizar" Text="Autorizar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>

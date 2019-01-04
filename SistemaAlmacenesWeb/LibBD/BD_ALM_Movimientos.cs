@@ -314,15 +314,24 @@ namespace SistemaAlmacenesWeb
                     cadenaDeptos += ", ";
                 }
             }
-            strSql = "select m.num_sec_transaccion, i.nombre as num_sec_item, m.num_sec_paso, ps.nombre as paso, m.egreso as cantidad, per.ap_paterno||' '||per.nombres as persona " +
-                    " from alm_movimientos m, alm_pasos p, alm_pasos ps, personas per, alm_items i where p.num_sec_paso="+paso+
+            strSql = "select distinct m.num_sec_transaccion, i.nombre as num_sec_item, m.num_sec_paso, ps.nombre as paso, m.egreso as cantidad"+
+                    ", d.descripcion, per.ap_paterno||' '||per.nombres as persona " +
+                    " from alm_movimientos m, alm_movimientos mov, alm_pasos pa, alm_pasos p, alm_pasos ps, personas per, alm_items i "+
+                    ", alm_plantillas plant, dominios d" +
+                    " where p.num_sec_paso=" + paso+
+                    " AND p.num_sec_plantilla = plant.num_sec_plantilla "+
+                    " AND plant.tipo_egreso = d.valor"+
+                    " AND d.dominio = 'ALM_TIPO_EGRESO'"+
                     " and m.num_sec_paso=p.num_sec_paso_ant"+
                     " and m.num_sec_paso=ps.num_sec_paso"+
-                    " and num_sec_transaccion not in (select a.num_sec_transaccion from alm_movimientos a" +
+                    " and  m.num_sec_transaccion = mov.num_sec_transaccion"+
+                    " and mov.num_sec_paso = pa.num_sec_paso"+
+                    " and pa.num_sec_paso_ant = 0"+
+                    " and m.num_sec_transaccion not in (select a.num_sec_transaccion from alm_movimientos a" +
                                             " where a.num_sec_paso="+paso+")"+
-                    " and num_sec_transaccion not in (select a.num_sec_transaccion from alm_movimientos a, alm_pasos b" +
+                    " and m.num_sec_transaccion not in (select a.num_sec_transaccion from alm_movimientos a, alm_pasos b" +
                                             " where b.tipo=4 and a.num_sec_paso=b.num_sec_paso)"+
-                    " and per.num_sec=m.num_sec_persona"+
+                    " and per.num_sec=mov.num_sec_persona"+
                     " and m.num_sec_item=i.num_sec_item"+
                     " and m.num_sec_usuario in(select a.num_sec_usuario from alm_paso_subdepto_usu a"+
                                                 " where a.num_sec_subdepartamento in("+cadenaDeptos+"))"+
