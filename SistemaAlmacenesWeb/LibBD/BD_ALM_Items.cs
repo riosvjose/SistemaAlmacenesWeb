@@ -159,8 +159,8 @@ namespace SistemaAlmacenesWeb
                         "precio, " +
                         "stock_min, " +
                         "num_sec_usuario_reg) values(" +
-                        "alm_items_sec.nextval, " + 
-                        _cod + ", '" + 
+                        "alm_items_sec.nextval, '" + 
+                        _cod + "', '" + 
                         _nombre + "', " + 
                         _num_sec_cat_items + ", " +
                         _num_sec_marca + ", " + 

@@ -99,7 +99,7 @@
                                 <asp:DropDownList ID="ddlCategoriaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
                             </div>
                             <div>
-                                <button id="btnAgregarCategoria" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategoriaItem">Agregar Categoría</button>
+                                <asp:Button ID="btnAgregarCategoria" runat="server" CssClass="btn btn-primary" Text="Agregar Categoría" CausesValidation="False" OnClick="btnAgregarCategoria_Click"/>                                                                           
                             </div>                            
                         </div>
                         <div class="row mb-3">
@@ -109,6 +109,9 @@
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:DropDownList ID="ddlMarcaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
                             </div>
+                            <div>
+                                <asp:Button ID="btnAgregarMarca" runat="server" CssClass="btn btn-primary" Text="Agregar Marca" CausesValidation="False" OnClick="btnAgregarMarca_Click"/>                                                                           
+                            </div> 
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
@@ -117,6 +120,10 @@
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:DropDownList ID="ddlMedidaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
                             </div>
+                            <div>
+                                <asp:Button ID="btnAgregarMedida" runat="server" CssClass="btn btn-primary" Text="Agregar Medida" CausesValidation="False" OnClick="btnAgregarMedida_Click"/>                                                                           
+                            </div> 
+
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
@@ -128,16 +135,26 @@
                                 <ajaxToolkit:FilteredTextBoxExtender ID="tbStockItem_FilteredTextBoxExtender" runat="server" BehaviorID="tbStockItem_FilteredTextBoxExtender" FilterType="Numbers" InvalidChars="0123456789" TargetControlID="tbStockItem" />
                             </div>
                         </div>
+			        </div>                    
+                    <%--PIE DEL PANEL--%>
+			        <div class="panel-footer">
+                        <div class="row">
+                            <div class="btn-group">
+                                <asp:Button ID="btnGuardarItem" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="True" OnClick="btnGuardarItem_Click" />
+                                <asp:Button ID="btnCancelarItem" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClick="btnCancelarItem_Click" />
+                            </div>
+                        </div>
 			        </div>
-                    <%--MODAL DE CATEGORIAS--%>
-                    <div class="modal fade" id="modalCategoriaItem" tabindex="-1" role="dialog" aria-labelledby="modalLblCategoria" aria-hidden="true" >                              
+		        </div>
+            </asp:Panel>
+            <%--MODAL CREAR CATEGORIA--%>
+            <asp:UpdatePanel ID="upCategoriaItem" runat="server" Visible="false">    
+                <ContentTemplate>
+                    <div id="modalCategoriaItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLblCategoria" aria-hidden="true" >                              
                         <div class="modal-dialog" role="document">                                
                             <div class="modal-content">                                  
                                 <div class="modal-header">                                    
                                     <center><h3 class="modal-title" id="modalLblCategoria">Agregar Categoría</h3></center>                                                                          
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">                                                                              
-                                        <span aria-hidden="true">&times;</span>                                                                                                                                                 
-                                    </button>                                                                    
                                 </div>                                                                      
                                 <div class="modal-body">                                                                                                              
                                     <form>                                                                                                                      
@@ -151,28 +168,75 @@
                                         </div>
                                         <div class="form-group">                                                                                      
                                             <strong><asp:Label ID="lblGrupoCategoria" runat="server">Grúpo de Categoría:</asp:Label></strong>
-                                            <asp:DropDownList ID="ddlGrupoCategoria" runat="server" CssClass="form-control" required=""></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlGrupoCategoria" runat="server" CssClass="form-control" required="" ></asp:DropDownList>
                                         </div>                                    
                                     </form>                                                                     
                                 </div>                                                                      
                                 <div class="modal-footer">                                                                            
                                     <asp:Button ID="btnGuardarModalCat" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="False" OnClick="btnGuardarModalCat_Click"/>                                                                           
-                                    <asp:Button ID="btnCancelarModalCat" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" data-dismiss="modal"/>                                                                                                                                              
+                                    <asp:Button ID="btnCancelarModalCat" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClientClick="CancelarModalCategoria()" OnClick="btnCancelarModalCat_Click"/>                                                                                                                                       
+                                </div>                                
+                            </div>                              
+                        </div>                            
+                    </div>                    
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <%--MODAL CREAR MARCA--%>
+            <asp:UpdatePanel ID="upMarcaItem" runat="server" Visible="false">    
+                <ContentTemplate>
+                    <div id="modalMarcaItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLblMarca" aria-hidden="true">                              
+                        <div class="modal-dialog" role="document">                                
+                            <div class="modal-content">                                  
+                                <div class="modal-header">                                    
+                                    <center><h3 class="modal-title" id="modalLblMarca">Agregar Marca</h3></center>                                                                                                                                           
+                                </div>                                                                      
+                                <div class="modal-body">                                                                                                              
+                                    <form>                                                                                                                      
+                                        <div class="form-group">                                          
+                                            <strong><asp:Label ID="lblNombreMarca" runat="server">Nombre:</asp:Label></strong>                                          
+                                            <asp:TextBox ID="tbNombreMarca" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                                                                                                   
+                                        </div>                                                                      
+                                    </form>                                                                     
+                                </div>                                                                      
+                                <div class="modal-footer">                                                                            
+                                    <asp:Button ID="btnGuardarModalMarca" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="False" OnClick="btnGuardarModalMarca_Click"/>                                                                           
+                                    <asp:Button ID="btnCancelarModalMarca" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClientClick="CancelarModalMarca()" OnClick="btnCancelarModalMarca_Click"/>                                                                                                                                                                                                                                                                                                                                
                                 </div>                                
                             </div>                              
                         </div>                            
                     </div>
-                    <%--PIE DEL PANEL--%>
-			        <div class="panel-footer">
-                        <div class="row">
-                            <div class="btn-group">
-                                <asp:Button ID="btnGuardarItem" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="True" OnClick="btnGuardarItem_Click" />
-                                <asp:Button ID="btnCancelarItem" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClientClick="CancelarModalCategoria()" OnClick="btnCancelarItem_Click" />
-                            </div>
-                        </div>
-			        </div>
-		        </div>
-            </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <%--MODAL CREAR MEDIDA--%>
+            <asp:UpdatePanel ID="upMedidaItem" runat="server" Visible="false">    
+                <ContentTemplate>
+                    <div id="modalMedidaItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLblMedida" aria-hidden="true" >                              
+                        <div class="modal-dialog" role="document">                                
+                            <div class="modal-content">                                  
+                                <div class="modal-header">                                    
+                                    <center><h3 class="modal-title" id="modalLblMedida">Agregar Medida</h3></center>                                                                          
+                                </div>                                                                      
+                                <div class="modal-body">                                                                                                              
+                                    <form>                                                                                                                      
+                                        <div class="form-group">                                          
+                                            <strong><asp:Label ID="lblNombreMedida" runat="server">Nombre:</asp:Label></strong>                                          
+                                            <asp:TextBox ID="tbNombreMedida" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                                                                                                   
+                                        </div>                                      
+                                        <div class="form-group">                                          
+                                            <strong><asp:Label ID="lblAbrevMedida" runat="server">Abreviación:</asp:Label></strong>                                          
+                                            <asp:TextBox ID="tbAbrevMedida" runat="server" CssClass="form-control" MaxLength="5" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                                                                                                   
+                                        </div>                                   
+                                    </form>                                                                     
+                                </div>                                                                      
+                                <div class="modal-footer">                                                                            
+                                    <asp:Button ID="btnGuardarModalMedida" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="False" OnClick="btnGuardarModalMedida_Click"/>                                                                           
+                                    <asp:Button ID="btnCancelarModalMedida" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClientClick="CancelarModalMedida()" OnClick="btnCancelarModalMedida_Click"/>                                                                                                                                       
+                                </div>                                
+                            </div>                              
+                        </div>                            
+                    </div>                    
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <%--panel Editar Item--%>
             <asp:Panel ID="pnEditarItem" runat="server" Visible="false">
 		        <div class="panel panel-info">
@@ -265,9 +329,9 @@
 			        <div class="panel-footer">
                         <div class="row">
                             <div class="btn-group">
-                                     <asp:Button ID="btnBorrarItem" runat="server" CssClass="btn btn-danger" Text="Confirmar" CausesValidation="False" OnClick="btnBorrarItem_Click" />
-                                     <asp:Button ID="btnCancelarBorrarItem" runat="server" CssClass="btn btn-default" Text="Cancelar" CausesValidation="False" OnClick="btnCancelarBorrarItem_Click" />
-                                </div>
+                                <asp:Button ID="btnBorrarItem" runat="server" CssClass="btn btn-danger" Text="Confirmar" CausesValidation="False" OnClick="btnBorrarItem_Click" />
+                                <asp:Button ID="btnCancelarBorrarItem" runat="server" CssClass="btn btn-default" Text="Cancelar" CausesValidation="False" OnClick="btnCancelarBorrarItem_Click" />
+                            </div>
                         </div>
 			        </div>
 		        </div>
@@ -300,6 +364,13 @@
                     document.getElementById('<%= tbNombreCategoria.ClientID %>').removeAttribute('required');
                     document.getElementById('<%= tbDescripcionCategoria.ClientID %>').removeAttribute('required');
                     document.getElementById('<%= ddlGrupoCategoria.ClientID %>').removeAttribute('required');
+                }
+                function CancelarModalMarca() {
+                    document.getElementById('<%= tbNombreMarca.ClientID %>').removeAttribute('required');                    
+                }
+                function CancelarModalMedida() {
+                    document.getElementById('<%= tbNombreMedida.ClientID %>').removeAttribute('required');
+                    document.getElementById('<%= tbAbrevMedida.ClientID %>').removeAttribute('required');                    
                 }
             </script>    
         </ContentTemplate>

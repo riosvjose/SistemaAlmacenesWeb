@@ -202,6 +202,15 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.DropDownList ddlCategoriaItem;
         
         /// <summary>
+        /// btnAgregarCategoria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarCategoria;
+        
+        /// <summary>
         /// lblMarcaItem control.
         /// </summary>
         /// <remarks>
@@ -220,6 +229,15 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.DropDownList ddlMarcaItem;
         
         /// <summary>
+        /// btnAgregarMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarMarca;
+        
+        /// <summary>
         /// lblMedidaItem control.
         /// </summary>
         /// <remarks>
@@ -236,6 +254,15 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMedidaItem;
+        
+        /// <summary>
+        /// btnAgregarMedida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarMedida;
         
         /// <summary>
         /// lblStockItem control.
@@ -272,6 +299,33 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender tbStockItem_FilteredTextBoxExtender;
+        
+        /// <summary>
+        /// btnGuardarItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarItem;
+        
+        /// <summary>
+        /// btnCancelarItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarItem;
+        
+        /// <summary>
+        /// upCategoriaItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upCategoriaItem;
         
         /// <summary>
         /// lblNombreCategoria control.
@@ -346,22 +400,112 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Button btnCancelarModalCat;
         
         /// <summary>
-        /// btnGuardarItem control.
+        /// upMarcaItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarItem;
+        protected global::System.Web.UI.UpdatePanel upMarcaItem;
         
         /// <summary>
-        /// btnCancelarItem control.
+        /// lblNombreMarca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarItem;
+        protected global::System.Web.UI.WebControls.Label lblNombreMarca;
+        
+        /// <summary>
+        /// tbNombreMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNombreMarca;
+        
+        /// <summary>
+        /// btnGuardarModalMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarModalMarca;
+        
+        /// <summary>
+        /// btnCancelarModalMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarModalMarca;
+        
+        /// <summary>
+        /// upMedidaItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upMedidaItem;
+        
+        /// <summary>
+        /// lblNombreMedida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreMedida;
+        
+        /// <summary>
+        /// tbNombreMedida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNombreMedida;
+        
+        /// <summary>
+        /// lblAbrevMedida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAbrevMedida;
+        
+        /// <summary>
+        /// tbAbrevMedida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbAbrevMedida;
+        
+        /// <summary>
+        /// btnGuardarModalMedida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarModalMedida;
+        
+        /// <summary>
+        /// btnCancelarModalMedida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarModalMedida;
         
         /// <summary>
         /// pnEditarItem control.
