@@ -51,7 +51,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             libPasoUsu = new BD_ALM_Pasos_Subdepto_usu();
             libPasoUsu.StrConexion = axVarSes.Lee<string>("strConexion");
-            int [] auxpasos = libPasoUsu.VerPasosTramiteUsuario(0,1);
+            int [] auxpasos = libPasoUsu.VerPasosSalidaUsuario(1); //1 define dominio como pedido
             for (int i=0; i<auxpasos.Length;i++)
             {
                 int pasoaux = auxpasos[i];
@@ -91,39 +91,35 @@ namespace SistemaAlmacenesWeb.Forms
         protected void gvDatos1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int indice = Convert.ToInt32(e.CommandArgument);
-            if (e.CommandName == "autorizar")
+            if (e.CommandName == "entregar")
             {
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                 if (libMov.autorizarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[4].Text)))
                 {
                     pnMensajeError.Visible = false;
-                    Response.Redirect("ALM_PED_Autorizar.aspx");
+                    Response.Redirect("ALM_PED_Entregar.aspx");
                 }
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeOK.Text = "No se pudo aprobar el pedido Nro. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text)+". "+libMov.Mensaje; ;
+                    lblMensajeOK.Text = "No se pudo entregar el pedido Nro. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text)+". "+libMov.Mensaje; ;
                     pnMensajeOK.Visible = false;
                 }
             }
-            if (e.CommandName == "modificar")
-            {
-
-            }
-            if (e.CommandName == "rechazar")
+            if (e.CommandName == "eliminar")
             {
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                 if (libMov.RechazarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[4].Text)))
                 {
                     pnMensajeError.Visible = false;
-                    Response.Redirect("ALM_PED_Autorizar.aspx");
+                    Response.Redirect("ALM_PED_Entregar.aspx");
                 }
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeOK.Text = "No se pudo rechazar el pedido Nro. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text)+libMov.Mensaje;
+                    lblMensajeOK.Text = "No se pudo eliminar el pedido Nro. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text)+libMov.Mensaje;
                     pnMensajeOK.Visible = false;
                 }
             }

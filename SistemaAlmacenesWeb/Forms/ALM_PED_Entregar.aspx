@@ -41,7 +41,7 @@
             </div>
             <br />
              <%--panel pedidos--%>
-            <asp:Panel ID="pn1raAut" runat="server" Visible="true">
+            <asp:Panel ID="pnPrincipal" runat="server" Visible="true">
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
@@ -63,19 +63,11 @@
                                                             <asp:BoundField DataField="persona" HeaderText="Solicitante" />
                                                             <asp:BoundField DataField="num_sec_paso" HeaderText="Paso" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
-                                                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad Requerida" />
-                                                            <asp:TemplateField HeaderText="Cantidad Autorizada">
-                                                               <ItemTemplate>
-                                                                 <asp:TextBox ID="tbCantAut" runat="server" Enabled="false"></asp:TextBox>
-                                                               </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="autorizar" Text="Autorizar" >
+                                                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="entregar" Text="Entregar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="modificar" Text="Modificar" >
-                                                                 <ControlStyle CssClass="btn btn-sm btn-warning "/>
-                                                            </asp:ButtonField>
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="rechazar" Text="Rechazar" >
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="eliminar" Text="Eliminar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-danger "/>
                                                             </asp:ButtonField>
                                                         </Columns>

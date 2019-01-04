@@ -35,6 +35,9 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Almacenes_Usu libAlmUsu = new BD_ALM_Almacenes_Usu();
         #endregion
 
+        #region Variables Gobales
+
+        #endregion
         #region "Funciones y procedimientos"
 
         private void CargarDatosIniciales(string strCon)
@@ -755,6 +758,23 @@ namespace SistemaAlmacenesWeb.Forms
         {
             string[] StrSqls = new string[30];
             int contSqls = 0;
+            bool mayorQueExistencia = false;
+            string item = string.Empty;
+            int cantmaxItem1 = 0;
+            int cantmaxItem2 = 0;
+            int cantmaxItem3 = 0;
+            int cantmaxItem4 = 0;
+            int cantmaxItem5 = 0;
+            int cantmaxItem6 = 0;
+            int cantmaxItem7 = 0;
+            int cantmaxItem8 = 0;
+            int cantmaxItem9 = 0;
+            int cantmaxItem10 = 0;
+            int cantmaxItem11 = 0;
+            int cantmaxItem12 = 0;
+            int cantmaxItem13 = 0;
+            int cantmaxItem14 = 0;
+            int cantmaxItem15 = 0;
             for (int i = 1; ((i <= 15)&&(i <= Convert.ToInt32(lblContador.Text))); i++)
             {
                 libItem = new BD_ALM_Items();
@@ -774,118 +794,252 @@ namespace SistemaAlmacenesWeb.Forms
                 switch (i)
                 {
                     case 1:
+                        cantmaxItem1 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem1.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem1.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante1.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant1.Text);
+                        if (Convert.ToInt32(tbCant1.Text)> cantmaxItem1) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem1.SelectedItem.Text;
+                        }
                         break;
                     case 2:
+                        cantmaxItem2 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem2.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem2.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante2.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant2.Text);
+                        if (Convert.ToInt32(tbCant2.Text) > cantmaxItem2) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem2.SelectedItem.Text;
+                        }
                         break;
                     case 3:
+                        cantmaxItem3 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem3.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem3.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante3.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant3.Text);
+                        if (Convert.ToInt32(tbCant3.Text) > cantmaxItem3) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem3.SelectedItem.Text;
+                        }
                         break;
                     case 4:
+                        cantmaxItem4 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem4.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante4.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        if (Convert.ToInt32(tbCant4.Text) > cantmaxItem4) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem4.SelectedItem.Text;
+                        }
                         break;
                     case 5:
+                        cantmaxItem5 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem5.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem5.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante5.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant5.Text);
+                        if (Convert.ToInt32(tbCant5.Text) > cantmaxItem5) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem5.SelectedItem.Text;
+                        }
                         break;
                     case 6:
+                        cantmaxItem6 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem6.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem6.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante6.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        if (Convert.ToInt32(tbCant6.Text) > cantmaxItem6) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem6.SelectedItem.Text;
+                        }
                         break;
                     case 7:
+                        cantmaxItem7 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem7.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante7.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant4.Text);
+                        if (Convert.ToInt32(tbCant7.Text) > cantmaxItem7) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem7.SelectedItem.Text;
+                        }
                         break;
                     case 8:
+                        cantmaxItem8 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem8.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante8.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant8.Text);
+                        if (Convert.ToInt32(tbCant8.Text) > cantmaxItem8) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem8.SelectedItem.Text;
+                        }
                         break;
                     case 9:
+                        cantmaxItem9 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem9.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante9.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant9.Text);
+                        if (Convert.ToInt32(tbCant9.Text) > cantmaxItem9) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem9.SelectedItem.Text;
+                        }
                         break;
                     case 10:
+                        cantmaxItem10 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem10.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante10.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant10.Text);
+                        if (Convert.ToInt32(tbCant10.Text) > cantmaxItem10) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem10.SelectedItem.Text;
+                        }
                         break;
                     case 11:
+                        cantmaxItem11 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem11.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante11.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant11.Text);
+                        if (Convert.ToInt32(tbCant11.Text) > cantmaxItem11) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem11.SelectedItem.Text;
+                        }
                         break;
                     case 12:
+                        cantmaxItem12 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem12.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante12.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant12.Text);
+                        if (Convert.ToInt32(tbCant12.Text) > cantmaxItem12) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem12.SelectedItem.Text;
+                        }
                         break;
                     case 13:
+                        cantmaxItem13 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem13.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante13.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant13.Text);
+                        if (Convert.ToInt32(tbCant13.Text) > cantmaxItem13) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem13.SelectedItem.Text;
+                        }
                         break;
                     case 14:
+                        cantmaxItem14 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem14.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante14.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant14.Text);
+                        if (Convert.ToInt32(tbCant14.Text) > cantmaxItem14) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem14.SelectedItem.Text;
+                        }
                         break;
                     case 15:
+                        cantmaxItem15 = libMov.ObtenerExistenciasItem(Convert.ToInt64(ddlItem15.SelectedValue));
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante15.SelectedValue);
-                        libMov.Egreso = Convert.ToInt32(tbCant15.Text);   
+                        libMov.Egreso = Convert.ToInt32(tbCant15.Text);
+                        if (Convert.ToInt32(tbCant15.Text) > cantmaxItem15) // verifica si se pide mas de las existencias
+                        {
+                            mayorQueExistencia = true;
+                            item = ddlItem15.SelectedItem.Text;
+                        }
                         break;
                 }
-                libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-                libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-                double auxprecio = libMov.PrecioUnitario;
-                libItem.NumSecItem = libMov.NumSecItem;
-                libItem.Ver();
-                libCat.NumSecCat = libItem.NumSecCat;
-                libCat.Ver();
-                libGrupo.NumSecGrupoItem = libCat.NumSecGrupoItem;
-                libGrupo.Ver();
-                libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
-                libAlm.Ver();
-                libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
-                libPlant.TipoEgreso = 1;
-                libPlant.TipoIngreso = 0;
-                libPlant.Ver();
-                libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
-                libPasos.VerPrimeroPlantilla();
-                libMov.NumSecPaso = libPasos.NumSecPaso;
-                libMov.NumSecMovimiento = libMov.ObtenerNSMov();
-                StrSqls[contSqls] = libMov.SQLCadenaMovimiento(false,true);
-                contSqls++;
+                if (mayorQueExistencia)
+                {
+                    pnMensajeError.Visible = true;
+                    lblMensajeError.Text = "La cantidad del articulo " + item + " no esta disponible. Intente solicitando una cantidad menor. ";
+                    pnMensajeOK.Visible = false;
+                    i = 16;// Para salir del ciclo
+                }
+                else
+                {
+                    libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                    libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                    double auxprecio = libMov.PrecioUnitario;
+                    libItem.NumSecItem = libMov.NumSecItem;
+                    libItem.Ver();
+                    libCat.NumSecCat = libItem.NumSecCat;
+                    libCat.Ver();
+                    libGrupo.NumSecGrupoItem = libCat.NumSecGrupoItem;
+                    libGrupo.Ver();
+                    libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
+                    libAlm.Ver();
+                    libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
+                    libPlant.TipoEgreso = 1;
+                    libPlant.TipoIngreso = 0;
+                    libPlant.Ver();
+                    libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
+                    libPasos.VerPrimeroPlantilla();
+                    libMov.NumSecPaso = libPasos.NumSecPaso;
+                    libMov.NumSecMovimiento = libMov.ObtenerNSMov();
+                    StrSqls[contSqls] = libMov.SQLCadenaMovimiento(false, true);
+                    contSqls++;
+                }
             }
-            libMov = new BD_ALM_Movimientos();
-            libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-            if (libMov.InsertarVarios(StrSqls, contSqls))
+            if (!mayorQueExistencia)
             {
-                lblMensajeOK.Text = "Pedido registrado exitosamente.";
-                pnMensajeOK.Visible = true;
-                pnMensajeError.Visible = false;
-                VaciarBoxes();
+                libMov = new BD_ALM_Movimientos();
+                libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (libMov.InsertarVarios(StrSqls, contSqls))
+                {
+                    lblMensajeOK.Text = "Pedido registrado exitosamente.";
+                    pnMensajeOK.Visible = true;
+                    pnMensajeError.Visible = false;
+                    VaciarBoxes();
+                }
+                else
+                {
+                    lblMensajeError.Text = "Error al registrar el pedido." + libMov.Mensaje;
+                    pnMensajeError.Visible = true;
+                    pnMensajeOK.Visible = false;
+                }
             }
-            else
-            {
-                lblMensajeError.Text = "Error al registrar el pedido."+libMov.Mensaje;
-                pnMensajeError.Visible = true;
-                pnMensajeOK.Visible = false;
-            }
+            
 
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -1010,10 +1164,6 @@ namespace SistemaAlmacenesWeb.Forms
 
         }
 
-        protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         protected void ddlGrupo1_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarDdlCaT1();
@@ -1151,6 +1301,66 @@ namespace SistemaAlmacenesWeb.Forms
         }
 
         protected void ddlPersona_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+        protected void ddlItem1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+        protected void ddlItem2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem10_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem11_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem12_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem13_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem14_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void ddlItem15_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

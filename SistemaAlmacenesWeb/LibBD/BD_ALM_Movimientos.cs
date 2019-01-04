@@ -314,9 +314,10 @@ namespace SistemaAlmacenesWeb
                     cadenaDeptos += ", ";
                 }
             }
-            strSql = "select m.num_sec_transaccion, i.nombre as num_sec_item, m.num_sec_paso, m.egreso as cantidad, per.ap_paterno||' '||per.nombres as persona " +
-                    " from alm_movimientos m, alm_pasos p, personas per, alm_items i where p.num_sec_paso="+paso+
+            strSql = "select m.num_sec_transaccion, i.nombre as num_sec_item, m.num_sec_paso, ps.nombre as paso, m.egreso as cantidad, per.ap_paterno||' '||per.nombres as persona " +
+                    " from alm_movimientos m, alm_pasos p, alm_pasos ps, personas per, alm_items i where p.num_sec_paso="+paso+
                     " and m.num_sec_paso=p.num_sec_paso_ant"+
+                    " and m.num_sec_paso=ps.num_sec_paso"+
                     " and num_sec_transaccion not in (select a.num_sec_transaccion from alm_movimientos a" +
                                             " where a.num_sec_paso="+paso+")"+
                     " and num_sec_transaccion not in (select a.num_sec_transaccion from alm_movimientos a, alm_pasos b" +
@@ -335,6 +336,7 @@ namespace SistemaAlmacenesWeb
             //dt.Dispose();
             return dt;
         }
+
         public bool autorizarSalida(long num_sec_transaccion, int paso, int cant)
         {
             bool blOperacionCorrecta = false;

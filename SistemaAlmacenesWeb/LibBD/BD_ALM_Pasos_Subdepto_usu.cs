@@ -189,13 +189,18 @@ namespace SistemaAlmacenesWeb
         {
             string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
             string strSql = string.Empty;
-            strSql = "select a.num_sec_paso"+//, b.nombre, b.num_sec_plantilla " +
+            strSql = "select a.num_sec_paso"+
                     " from alm_paso_subdepto_usu a, alm_pasos b, alm_plantillas c" +
                     " where a.num_sec_usuario=" + usuario +
-                    " and b.num_sec_paso_ant <> 0" + //no valorarra el primer paso de pedido
+                    " and c.activo=1"+
+                    " and b.num_sec_paso_ant <> 0" + //no valorara el primer paso de la plantilla
                     " and a.num_sec_paso=b.num_sec_paso" +
                     " and b.num_sec_plantilla=c.num_sec_plantilla "+
                     " and b.tipo =3";
+            if (salida == 0)
+            {
+                strSql += " and c.tipo_egreso=0";
+            }
             if (salida==1)
             {
                 strSql+= " and c.tipo_egreso=1";
@@ -211,6 +216,10 @@ namespace SistemaAlmacenesWeb
             if (salida == 4)
             {
                 strSql += " and c.tipo_egreso=4";
+            }
+            if (ingreso == 0)
+            {
+                strSql += " and c.tipo_ingreso=0";
             }
             if (ingreso == 1)
             {
@@ -247,6 +256,41 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             return pasos;
         }
+
+        public int[] VerPasosSalidaUsuario() // obtiene todos los pasos de tramite en los que interviene un usuario en uplantillas de salida
+        {
+            string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
+            string strSql = string.Empty;
+            strSql = "select a.num_sec_paso" +
+                    " from alm_paso_subdepto_usu a, alm_pasos b, alm_plantillas c" +
+                    " where a.num_sec_usuario=" + usuario +
+                    " and c.activo=1" +
+                    " and a.num_sec_paso=b.num_sec_paso" +
+                    " and b.num_sec_plantilla=c.num_sec_plantilla " +
+                    " and b.tipo =2"+
+                    " and c.tipo_egreso <>0"+
+                    " and c.tipo_egreso <>1"+
+                    " and c.tipo_ingreso=0"+
+                    " order by a.num_sec_paso asc";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            int[] pasos = new int[dt.Rows.Count];
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataRow dr = dt.Rows[i];
+                    pasos[i] = Convert.ToInt32(dr["num_sec_paso"].ToString());
+                }
+            }
+            dt.Dispose();
+            return pasos;
+        }
+
         public int[] VerDeptosPasoUsuario(int paso) // obtiene todos los departamentos en los que el usuario realiza un paso
         {
             string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
@@ -267,6 +311,40 @@ namespace SistemaAlmacenesWeb
                 {
                     DataRow dr = dt.Rows[i];
                     pasos[i] = Convert.ToInt32(dr["num_sec_subdepartamento"].ToString());
+                }
+            }
+            dt.Dispose();
+            return pasos;
+        }
+
+        public int[] VerPasosSalidaUsuario(int salida) // obtiene todos los pasos de salida de almacen en los que interviene un usuario en una plantilla
+        {
+            string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
+            string strSql = string.Empty;
+            strSql = "select a.num_sec_paso" +
+                    " from alm_paso_subdepto_usu a, alm_pasos b, alm_plantillas c" +
+                    " where a.num_sec_usuario=" + usuario +
+                    " and b.num_sec_paso_ant <> 0" + //no valorara el primer paso de la plantilla
+                    " and a.num_sec_paso=b.num_sec_paso" +
+                    " and b.num_sec_plantilla=c.num_sec_plantilla " +
+                    " and b.tipo =2 " +
+                    " and c.activo=1 " +
+                    " and c.tipo_ingreso=0" +
+                    " and c.tipo_egreso="+salida+
+                    " order by a.num_sec_paso asc";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            int[] pasos = new int[dt.Rows.Count];
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataRow dr = dt.Rows[i];
+                    pasos[i] = Convert.ToInt32(dr["num_sec_paso"].ToString());
                 }
             }
             dt.Dispose();
