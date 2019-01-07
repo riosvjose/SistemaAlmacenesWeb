@@ -358,6 +358,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.sqlDataTable();
             return OracleBD.DataTable;
         }
+
         public string CadenaActualizarPrecio(long cant, double precio)
         {
             string persona = axVarSes.Lee<string>("UsuarioNumSec");
@@ -369,6 +370,25 @@ namespace SistemaAlmacenesWeb
             return strSql;
         }
 
+        // Reporte de la cantidad de los items entregados en un intervalo de tiempo
+        public DataTable dtItemsEntregados(string fechaInicial, string fechaFinal)
+        {
+            DataTable dt = new DataTable();
+            strSql = "SELECT a.num_sec_item, c.nombre AS item, Sum(egreso) AS cantidad FROM alm_movimientos a, alm_pasos b, alm_items c " +
+                        "WHERE a.num_sec_paso = b.num_sec_paso " +
+                            "AND a.num_sec_item = c.num_sec_item " +
+                            "AND b.tipo = 2 " + //Tipo 2 = Egreso de items
+                            "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
+                            "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
+                        "GROUP BY a.num_sec_item, c.nombre " +
+                        "ORDER BY item ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt.Dispose();
+            return OracleBD.DataTable;
+        }
 
         #endregion
 

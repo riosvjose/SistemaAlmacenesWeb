@@ -111,6 +111,8 @@
     <Content Include="Forms\ALM_MED_AdministrarMedidas.aspx" />
     <Content Include="Forms\ALM_PED_Entregar.aspx" />
     <Content Include="Forms\ALM_PROV_AdministrarProveedores.aspx" />
+    <Content Include="Forms\ALM_REP_ConsumoDepartamento.aspx" />
+    <Content Include="Forms\ALM_REP_ItemsEntregados.aspx" />
     <Content Include="Forms\ALM_SAL_Autorizar.aspx" />
     <Content Include="Forms\ALM_PED_Autorizar.aspx" />
     <Content Include="Forms\ALM_SAL_Registrar.aspx" />
@@ -246,6 +248,20 @@
     </Compile>
     <Compile Include="Forms\ALM_PROV_AdministrarProveedores.aspx.designer.cs">
       <DependentUpon>ALM_PROV_AdministrarProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_REP_ConsumoDepartamento.aspx.cs">
+      <DependentUpon>ALM_REP_ConsumoDepartamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_REP_ConsumoDepartamento.aspx.designer.cs">
+      <DependentUpon>ALM_REP_ConsumoDepartamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_REP_ItemsEntregados.aspx.cs">
+      <DependentUpon>ALM_REP_ItemsEntregados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_REP_ItemsEntregados.aspx.designer.cs">
+      <DependentUpon>ALM_REP_ItemsEntregados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ALM_SAL_Autorizar.aspx.cs">
       <DependentUpon>ALM_SAL_Autorizar.aspx</DependentUpon>
