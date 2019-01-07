@@ -93,11 +93,10 @@
                     <%--PIE DEL PANEL--%>
 			        <div class="panel-footer">
                         <div class="row">
-                            <div class="col-xs-10">
-                                
+                            <div class="col-xs-10">                                
                             </div>
                             <div class="col-xs-2 text-right">
-                                <asp:Button ID="btnVolvelMenu" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolvelMenu_Click"/>
+                                <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
                             </div>
                         </div>
 			        </div>

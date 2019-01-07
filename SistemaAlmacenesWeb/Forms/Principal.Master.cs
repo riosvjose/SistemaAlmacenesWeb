@@ -74,7 +74,7 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void lnkbtnReporte1_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
+            Response.Redirect("ALM_REP_ItemsEntregados.aspx");
         }
 
         protected void lnkbtnReporte2_Click(object sender, EventArgs e)
