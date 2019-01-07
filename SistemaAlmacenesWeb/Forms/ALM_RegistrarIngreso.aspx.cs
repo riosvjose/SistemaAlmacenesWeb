@@ -35,6 +35,7 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Almacenes_Usu libAlmUsu = new BD_ALM_Almacenes_Usu();
         BD_ALM_Almacenes libAlm = new BD_ALM_Almacenes();
         BD_ALM_Plantillas libPlant = new BD_ALM_Plantillas();
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
         #endregion
 
         #region "Funciones y procedimientos"
@@ -718,151 +719,161 @@ namespace SistemaAlmacenesWeb.Forms
                 libIngreso.NumSecProveedor = Convert.ToInt64(ddlProveedor.SelectedValue);
                 libIngreso.CodCompraSAP = tbCodSap.Text;
                 libIngreso.Tipo = Convert.ToInt16(ddlTipoIngreso.SelectedValue);
-                libIngreso.FechaIngreso = tbFechaMov.Text;
-                StrSqls[contSqls]=libIngreso.ObtenerCadenaInsertar();
-                contSqls++;
-                for (int i = 1; ((i <= 15) && (i <= Convert.ToInt32(lblContador.Text))); i++)
+                libIngreso.FechaIngreso = Convert.ToDateTime(tbFechaMov.Text.Trim()).ToString("dd/MM/yyyy");// tbFechaMov.Text;
+                libproc.StrConexion= axVarSes.Lee<string>("strConexion"); ;
+                if (libproc.FechaMenorIgualHoy(libIngreso.FechaIngreso))
                 {
-                    libIngresoMov = new BD_ALM_IngresosMov();
-                    libIngresoMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                    StrSqls[contSqls] = libIngreso.ObtenerCadenaInsertar();
+                    contSqls++;
+                    for (int i = 1; ((i <= 15) && (i <= Convert.ToInt32(lblContador.Text))); i++)
+                    {
+                        libIngresoMov = new BD_ALM_IngresosMov();
+                        libIngresoMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                        libItem = new BD_ALM_Items();
+                        libItem.StrConexion = axVarSes.Lee<string>("strConexion");
+                        libCat = new BD_ALM_Cat_Items();
+                        libCat.StrConexion = axVarSes.Lee<string>("strConexion");
+                        libGrupo = new BD_ALM_Grupos_Items();
+                        libGrupo.StrConexion = axVarSes.Lee<string>("strConexion");
+                        libAlm = new BD_ALM_Almacenes();
+                        libAlm.StrConexion = axVarSes.Lee<string>("strConexion");
+                        libPlant = new BD_ALM_Plantillas();
+                        libPlant.StrConexion = axVarSes.Lee<string>("strConexion");
+                        libPasos = new BD_ALM_Pasos();
+                        libPasos.StrConexion = axVarSes.Lee<string>("strConexion");
+                        libMov.NumSecPersona = Convert.ToInt64(axVarSes.Lee<string>("UsuarioPersonaNumSec"));
+                        switch (i)
+                        {
+                            case 1:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem1.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant1.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio1.Text);
+                                break;
+                            case 2:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem2.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant2.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio2.Text);
+                                break;
+                            case 3:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem3.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant3.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio3.Text);
+                                break;
+                            case 4:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio4.Text);
+                                break;
+                            case 5:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem5.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant5.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio5.Text);
+                                break;
+                            case 6:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem6.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio6.Text);
+                                break;
+                            case 7:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio7.Text);
+                                break;
+                            case 8:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant8.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio8.Text);
+                                break;
+                            case 9:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant9.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio9.Text);
+                                break;
+                            case 10:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant10.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio10.Text);
+                                break;
+                            case 11:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant11.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio11.Text);
+                                break;
+                            case 12:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant12.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio12.Text);
+                                break;
+                            case 13:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant13.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio13.Text);
+                                break;
+                            case 14:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant14.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio14.Text);
+                                break;
+                            case 15:
+                                libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
+                                libMov.Ingreso = Convert.ToInt32(tbCant15.Text);
+                                libMov.PrecioUnitario = Convert.ToDouble(tbPrecio15.Text);
+                                break;
+                        }
+                        libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                        libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                        double auxprecio = libMov.PrecioUnitario;
+                        libItem.NumSecItem = libMov.NumSecItem;
+                        libItem.Ver();
+                        libCat.NumSecCat = libItem.NumSecCat;
+                        libCat.Ver();
+                        libGrupo.NumSecGrupoItem = libCat.NumSecGrupoItem;
+                        libGrupo.Ver();
+                        libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
+                        libAlm.Ver();
+                        libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
+                        libPlant.TipoEgreso = 0;
+                        libPlant.TipoIngreso = Convert.ToInt16(ddlTipoIngreso.SelectedValue);// definido en basde a dominios 'alm_tipo_ingreso'
+                        libPlant.Ver();
+                        libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
+                        libPasos.VerPrimeroPlantilla();
+                        libMov.NumSecPaso = libPasos.NumSecPaso;
+                        libMov.NumSecMovimiento = libMov.ObtenerNSMov();
+                        libMov.PrecioUnitario = auxprecio;
+                        StrSqls[contSqls] = libMov.SQLCadenaMovimiento(true, false);
+                        contSqls++;
+                        libIngresoMov.NumSecIngreso = libIngreso.NumSecIngreso;
+                        libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;
+                        StrSqls[contSqls] = libIngresoMov.ObtenerCadenaInsertar();
+                        contSqls++;
+                        if (Convert.ToInt16(ddlTipoIngreso.SelectedValue) == 1)
+                        {
+                            StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
+                            contSqls++;
+                        }
+
+                    }
                     libMov = new BD_ALM_Movimientos();
                     libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                    libItem = new BD_ALM_Items();
-                    libItem.StrConexion = axVarSes.Lee<string>("strConexion");
-                    libCat = new BD_ALM_Cat_Items();
-                    libCat.StrConexion = axVarSes.Lee<string>("strConexion");
-                    libGrupo = new BD_ALM_Grupos_Items();
-                    libGrupo.StrConexion = axVarSes.Lee<string>("strConexion");
-                    libAlm = new BD_ALM_Almacenes();
-                    libAlm.StrConexion = axVarSes.Lee<string>("strConexion");
-                    libPlant = new BD_ALM_Plantillas();
-                    libPlant.StrConexion = axVarSes.Lee<string>("strConexion");
-                    libPasos = new BD_ALM_Pasos();
-                    libPasos.StrConexion= axVarSes.Lee<string>("strConexion");
-                    libMov.NumSecPersona = Convert.ToInt64(axVarSes.Lee<string>("UsuarioPersonaNumSec"));
-                    switch (i)
+                    if (libMov.InsertarVarios(StrSqls, contSqls))
                     {
-                        case 1:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem1.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant1.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio1.Text);
-                            break;
-                        case 2:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem2.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant2.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio2.Text);
-                            break;
-                        case 3:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem3.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant3.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio3.Text);
-                            break;
-                        case 4:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio4.Text);
-                            break;
-                        case 5:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem5.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant5.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio5.Text);
-                            break;
-                        case 6:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem6.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio6.Text);
-                            break;
-                        case 7:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant4.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio7.Text);
-                            break;
-                        case 8:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant8.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio8.Text);
-                            break;
-                        case 9:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant9.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio9.Text);
-                            break;
-                        case 10:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant10.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio10.Text);
-                            break;
-                        case 11:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant11.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio11.Text);
-                            break;
-                        case 12:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant12.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio12.Text);
-                            break;
-                        case 13:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant13.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio13.Text);
-                            break;
-                        case 14:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant14.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio14.Text);
-                            break;
-                        case 15:
-                            libMov.NumSecItem = Convert.ToInt64(ddlItem4.SelectedValue);
-                            libMov.Ingreso = Convert.ToInt32(tbCant15.Text);
-                            libMov.PrecioUnitario = Convert.ToDouble(tbPrecio15.Text);
-                            break;
+                        lblMensajeOK.Text = "Ingreso registrado exitosamente.";
+                        pnMensajeOK.Visible = true;
+                        pnMensajeError.Visible = false;
+                        VaciarBoxes();
                     }
-                    libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-                    libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-                    double auxprecio = libMov.PrecioUnitario;
-                    libItem.NumSecItem = libMov.NumSecItem;
-                    libItem.Ver();
-                    libCat.NumSecCat = libItem.NumSecCat;
-                    libCat.Ver();
-                    libGrupo.NumSecGrupoItem = libCat.NumSecGrupoItem;
-                    libGrupo.Ver();
-                    libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
-                    libAlm.Ver();
-                    libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
-                    libPlant.TipoEgreso = 0;
-                    libPlant.TipoIngreso = Convert.ToInt16(ddlTipoIngreso.SelectedValue);// definido en basde a dominios 'alm_tipo_ingreso'
-                    libPlant.Ver();
-                    libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
-                    libPasos.VerPrimeroPlantilla();
-                    libMov.NumSecPaso = libPasos.NumSecPaso;
-                    libMov.NumSecMovimiento = libMov.ObtenerNSMov();
-                    libMov.PrecioUnitario = auxprecio;
-                    StrSqls[contSqls] = libMov.SQLCadenaMovimiento(true,false);
-                    contSqls++;
-                    libIngresoMov.NumSecIngreso = libIngreso.NumSecIngreso;
-                    libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;
-                    StrSqls[contSqls] = libIngresoMov.ObtenerCadenaInsertar();
-                    contSqls++;
-                    if (Convert.ToInt16(ddlTipoIngreso.SelectedValue) == 1)
+                    else
                     {
-                        StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
-                        contSqls++;
+                        lblMensajeError.Text = "Error al registrar el ingreso. " + libMov.Mensaje;
+                        pnMensajeError.Visible = true;
+                        pnMensajeOK.Visible = false;
                     }
-                    
-                }
-                libMov = new BD_ALM_Movimientos();
-                libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.InsertarVarios(StrSqls, contSqls))
-                {
-                    lblMensajeOK.Text = "Ingreso registrado exitosamente.";
-                    pnMensajeOK.Visible = true;
-                    pnMensajeError.Visible = false;
-                    VaciarBoxes();
                 }
                 else
                 {
-                    lblMensajeError.Text = "Error al registrar el ingreso. " + libMov.Mensaje;
+                    lblMensajeError.Text = "Debe ingresar una fecha menor o igual a hoy. ";
                     pnMensajeError.Visible = true;
                     pnMensajeOK.Visible = false;
                 }
@@ -1156,7 +1167,14 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void ddlTipoIngreso_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (Convert.ToInt32(ddlTipoIngreso.SelectedValue) != 1)
+            {
+                pnFactura.Visible = false;
+            }
+            else
+            {
+                pnFactura.Visible = true;
+            }
         }
         protected void ddlProveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
