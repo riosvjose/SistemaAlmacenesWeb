@@ -65,7 +65,7 @@
                                                             <asp:BoundField DataField="paso" HeaderText="Estado" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
                                                             <asp:BoundField DataField="cantidad" HeaderText="Cantidad Requerida" />
-                                                            <asp:TemplateField HeaderText="Cantidad Autorizada" Visible="false">
+                                                            <asp:TemplateField HeaderText="Cantidad Autorizada" Visible="true">
                                                                <ItemTemplate>
                                                                  <asp:TextBox ID="tbCantAut" runat="server" Enabled="false"></asp:TextBox>
                                                                </ItemTemplate>
@@ -73,7 +73,7 @@
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="autorizar" Text="Autorizar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>
-                                                            <asp:ButtonField HeaderText="" Visible="false" ButtonType="Button" CommandName="modificar" Text="Modificar" >
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="modificar" Text="Modificar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-warning "/>
                                                             </asp:ButtonField>
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="rechazar" Text="Rechazar" >

@@ -47,8 +47,17 @@ namespace SistemaAlmacenesWeb.Forms
             gvDatos1.DataSource = dtPedidos;
             gvDatos1.DataBind();
             gvDatos1.Columns[2].Visible = false;
-
+            llenarTexboxes();
         }
+
+        protected void llenarTexboxes()
+        {
+            for (int i = 0; i < gvDatos1.Rows.Count; i++)
+            {
+                ((TextBox)gvDatos1.Rows[i].Cells[6].Controls[1]).Text= gvDatos1.Rows[i].Cells[5].Text.Trim();
+            }
+        }
+
         protected void VerificarPasos()
         {
             libPasoUsu = new BD_ALM_Pasos_Subdepto_usu();
@@ -93,11 +102,12 @@ namespace SistemaAlmacenesWeb.Forms
         protected void gvDatos1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int indice = Convert.ToInt32(e.CommandArgument);
+            int cant = Convert.ToInt32(((TextBox)gvDatos1.Rows[indice].Cells[6].Controls[1]).Text);
             if (e.CommandName == "autorizar")
             {
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.autorizarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[5].Text)))
+                if (libMov.autorizarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), cant))
                 {
                     pnMensajeError.Visible = false;
                     Response.Redirect("ALM_PED_Autorizar.aspx");
@@ -111,7 +121,7 @@ namespace SistemaAlmacenesWeb.Forms
             }
             if (e.CommandName == "modificar")
             {
-
+                ((TextBox)gvDatos1.Rows[indice].Cells[6].Controls[1]).Enabled=true;
             }
             if (e.CommandName == "rechazar")
             {
