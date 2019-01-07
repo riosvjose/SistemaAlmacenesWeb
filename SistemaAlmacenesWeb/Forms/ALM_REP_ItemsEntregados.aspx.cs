@@ -72,7 +72,7 @@ namespace SistemaAlmacenesWeb.Forms
             gvItemsEntregados.DataBind();
         }
 
-        protected void btnVolvelMenu_Click(object sender, EventArgs e)
+        protected void btnVolverMenu_Click(object sender, EventArgs e)
         {
             Response.Redirect("ALM_REP_ItemsEntregados.aspx");
         }
