@@ -370,14 +370,25 @@ namespace SistemaAlmacenesWeb
             return strSql;
         }
 
-        // Reporte de la cantidad de los items entregados en un intervalo de tiempo
+        // Reporte de la cantidad de los items entregados en un intervalo de tiempo (Verificando permiso a almacenes)
         public DataTable dtItemsEntregados(string fechaInicial, string fechaFinal)
         {
             DataTable dt = new DataTable();
-            strSql = "SELECT a.num_sec_item, c.nombre AS item, Sum(egreso) AS cantidad FROM alm_movimientos a, alm_pasos b, alm_items c " +
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "SELECT a.num_sec_item, c.nombre AS item, Sum(a.egreso) AS cantidad " +
+                        "FROM alm_movimientos a, alm_pasos b, alm_plantillas b2, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g " +
                         "WHERE a.num_sec_paso = b.num_sec_paso " +
                             "AND a.num_sec_item = c.num_sec_item " +
+                            "AND b.num_sec_plantilla = b2.num_sec_plantilla " +
+                            "AND c.num_sec_cat = d.num_sec_cat " +
+                            "AND d.num_sec_grupo = e.num_sec_grupo " +
+                            "AND e.num_sec_almacen = f.num_sec_almacen " +
+                            "AND f.num_sec_almacen = g.num_sec_almacen " +
                             "AND b.tipo = 2 " + //Tipo 2 = Egreso de items
+                            "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
+                            "AND b2.activo = 1 " +
+                            "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario
+                            "AND g.activo = 1 " + //Verificar si el permiso de un usuario al almacen esta activo                            
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
                         "GROUP BY a.num_sec_item, c.nombre " +
@@ -390,6 +401,80 @@ namespace SistemaAlmacenesWeb
             return OracleBD.DataTable;
         }
 
+        //Reporte del consumo de un item por departamento y verificando el permiso a que almacenes tiene una persona
+        public DataTable dtConsumoDepto(string fechaInicial, string fechaFinal)
+        {
+            DataTable dt = new DataTable();
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            string item = axVarSes.Lee<string>("NumSecItem");
+            strSql = "SELECT a.num_sec_item, Sum (a.egreso) AS cantidad, h.num_sec_subdepartamento, i.nombre AS nombre_depto " +
+                        "FROM alm_movimientos a, alm_pasos b, alm_plantillas b2, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g, gen_subdeptos_personas h, gen_subdepartamentos i " +
+                        "WHERE a.num_sec_paso = b.num_sec_paso " +
+                            "AND a.num_sec_item = c.num_sec_item " +
+                            "AND b.num_sec_plantilla = b2.num_sec_plantilla " +
+                            "AND c.num_sec_cat = d.num_sec_cat " +
+                            "AND d.num_sec_grupo = e.num_sec_grupo " +
+                            "AND e.num_sec_almacen = f.num_sec_almacen " +
+                            "AND f.num_sec_almacen = g.num_sec_almacen " +
+                            "AND a.num_sec_persona = h.num_sec_persona " +
+                            "AND h.num_sec_subdepartamento = i.num_sec_subdepartamento " +
+                            "AND b.tipo = 2 " + // Tipo egreso
+                            "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
+                            "AND b2.activo = 1 " +
+                            "AND a.num_sec_item = " + item + " " + // Restringir el consumo de un item en especifico
+                            "AND g.num_sec_usuario = " + usuario + " " +
+                            "AND g.activo = 1 " + // Verificar que el usario tena acceso a un almacen
+                            "AND h.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
+                            "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
+                            "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
+                        "GROUP BY a.num_sec_item, c.nombre, h.num_sec_subdepartamento, i.nombre " +
+                        "ORDER BY i.nombre ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt.Dispose();
+            return OracleBD.DataTable;
+        }
+        //Reporte del consumo de un item por persona que pertenece a un departamento. Haciendo la verificacion de los permisos
+        
+        public DataTable dtConsumoPersona(string fechaInicial, string fechaFinal)
+        {
+            DataTable dt = new DataTable();
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            string item = axVarSes.Lee<string>("NumSecItem");
+            string depto = axVarSes.Lee<string>("NumSecDepto");
+
+            strSql = "SELECT a.num_sec_item, Sum (a.egreso) AS cantidad, h.num_sec_subdepartamento, i.nombres||' '|| i.ap_paterno||' '|| i.ap_materno nombre_completo " +
+                        "FROM alm_movimientos a, alm_pasos b, alm_plantillas b2, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g, gen_subdeptos_personas h, personas i " +
+                        "WHERE a.num_sec_paso = b.num_sec_paso " +
+                            "AND a.num_sec_item = c.num_sec_item " +
+                            "AND b.num_sec_plantilla = b2.num_sec_plantilla " +
+                            "AND c.num_sec_cat = d.num_sec_cat " +
+                            "AND d.num_sec_grupo = e.num_sec_grupo " +
+                            "AND e.num_sec_almacen = f.num_sec_almacen " +
+                            "AND f.num_sec_almacen = g.num_sec_almacen " +
+                            "AND a.num_sec_persona = h.num_sec_persona " +
+                            "AND a.num_sec_persona = i.num_sec " +
+                            "AND b.tipo = 2 " + // Tipo egreso 
+                            "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
+                            "AND b2.activo = 1 " +
+                            "AND a.num_sec_item = " + item + " " + // Parametro del item
+                            "AND g.num_sec_usuario = " + usuario + " " + // Num_sec_usuario
+                            "AND g.activo = 1 " + // Verificar que el usario tenga acceso a un almacen
+                            "AND h.num_sec_subdepartamento = " + depto + " " + // Parametro del numero del Departamento
+                            "AND h.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
+                            "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
+                            "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
+                        "GROUP BY a.num_sec_item, c.nombre, h.num_sec_subdepartamento, i.ap_paterno, i.ap_materno, i.nombres " +
+                        "ORDER BY i.nombres || ' ' || i.ap_paterno || ' ' || i.ap_materno ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt.Dispose();
+            return OracleBD.DataTable;
+        }
         #endregion
 
     }

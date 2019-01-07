@@ -58,8 +58,7 @@ namespace SistemaAlmacenesWeb.Forms
         protected void btnGenerarReportes_Click(object sender, EventArgs e)
         {
             pnMensajeError.Visible = false;
-            pnMensajeOK.Visible = false;
-            
+            pnMensajeOK.Visible = false;            
             //Habilitar el panel del reporte
             pnRepConsumoItem.Visible = true;
             string fechaInicial = Convert.ToDateTime(tbFechaInicialItem.Text.Trim()).ToString("dd/MM/yyyy");
