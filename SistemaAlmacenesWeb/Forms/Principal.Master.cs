@@ -47,6 +47,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
            Response.Redirect("Index.aspx");
         }
+
         protected void lnkbtnAutorizarPedido_Click(object sender, EventArgs e)
         {
            Response.Redirect("ALM_PED_Autorizar.aspx");

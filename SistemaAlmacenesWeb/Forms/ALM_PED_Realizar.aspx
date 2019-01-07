@@ -11,7 +11,7 @@
         <ContentTemplate>
 
            <div class="row">
-                <div class="col-md-3 pull-right">
+                <%--<div class="col-md-3 pull-right">
                     <div class="col-xs-12 text-right">
                         <br/>
                          
@@ -19,7 +19,7 @@
                             <asp:Button ID="Button1" runat="server" CssClass="btn btn-info" Text="Atrás" CausesValidation="False" OnClick="btnAtras_Click" />
                         </div>
                    </div>
-                </div>
+                </div>--%>
 	            <div class="col-xs-12 col-md-6 pull-left">
 		            <h1>Realizar pedido</h1>
 	            </div> 
