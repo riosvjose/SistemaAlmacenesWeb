@@ -18,7 +18,7 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_VarSession axVarSes = new GEN_VarSession();
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
-
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
 
         #endregion
 
@@ -44,11 +44,20 @@ namespace SistemaAlmacenesWeb.Forms
         {
             if ((strCon!="")&&(strCon!=null)&&(strCon!=string.Empty))
             {
-                CargarDdlGrupos();
-                CargarDdlCategorias();
-                CargarDdlItems();
-                CargarDdlSalidas();
+                libproc.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (libproc.AccesoObjetoUsuario("ALM_SAL_Registrar"))
+                {
+                    CargarDdlGrupos();
+                    CargarDdlCategorias();
+                    CargarDdlItems();
+                    CargarDdlSalidas();
+                }
+            else
+            {
+                axVarSes.Escribe("MostrarMensajeError", "1");
+                Response.Redirect("Index.aspx");
             }
+        }
             else
             {
                 Response.Redirect("~/Default.aspx");

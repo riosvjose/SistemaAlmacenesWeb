@@ -20,11 +20,13 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
         SIS_GeneralesSistema Generales = new SIS_GeneralesSistema();
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
         #endregion
 
         #region "Clase de tablas de la Base de Datos"
         BD_ALM_Grupos_Items ALMGruposItems = new BD_ALM_Grupos_Items();
         BD_ALM_Almacenes ALMAlmacenes = new BD_ALM_Almacenes();
+        
         #endregion
 
         #region "Variable local"
@@ -36,44 +38,54 @@ namespace SistemaAlmacenesWeb.Forms
         {
             if (!string.IsNullOrEmpty(strCon.Trim()))
             {
-                ALMGruposItems.StrConexion = axVarSes.Lee<string>("strConexion");
-                // Listar a todos los Grupos de Items
-                ddlGrupoItems.DataSource = ALMGruposItems.DTListaGrupos();
-                ddlGrupoItems.DataTextField = "NOMBRE";
-                ddlGrupoItems.DataValueField = "NUM_SEC_GRUPO";
-                ddlGrupoItems.DataBind();
-
-                ALMAlmacenes.StrConexion = axVarSes.Lee<string>("strConexion");
-                // Listar todos los almacenes
-                ddlAlmacenItem.DataSource = ALMAlmacenes.dtListarAlmacenes();
-                ddlAlmacenItem.DataTextField = "NOMBRE";
-                ddlAlmacenItem.DataValueField = "NUM_SEC_ALMACEN";
-                ddlAlmacenItem.DataBind();
-                // Listar todos los almacenes al editar
-                ddlEditarAlmacen.DataSource = ALMAlmacenes.dtListarAlmacenes();
-                ddlEditarAlmacen.DataTextField = "NOMBRE";
-                ddlEditarAlmacen.DataValueField = "NUM_SEC_ALMACEN";
-                ddlEditarAlmacen.DataBind();
-                // Determinar si una persona tiene acceso a uno o a mas almacenes
-                if (ALMAlmacenes.dtListarAlmacenes().Rows.Count == 1) //Ver si el usuario tiene solo 1 almacen asignado
+                libproc.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (libproc.AccesoObjetoUsuario("ALM_GRU_AdministrarGrupos"))
                 {
-                    Almacenes = true;
-                    DataRow dr = ALMAlmacenes.dtListarAlmacenes().Rows[0];
-                    axVarSes.Escribe("UsuarioNumSecAlmacen", Convert.ToInt64(dr["NUM_SEC_ALMACEN"].ToString()));
+                    ALMGruposItems.StrConexion = axVarSes.Lee<string>("strConexion");
+                    // Listar a todos los Grupos de Items
+                    ddlGrupoItems.DataSource = ALMGruposItems.DTListaGrupos();
+                    ddlGrupoItems.DataTextField = "NOMBRE";
+                    ddlGrupoItems.DataValueField = "NUM_SEC_GRUPO";
+                    ddlGrupoItems.DataBind();
+
+                    ALMAlmacenes.StrConexion = axVarSes.Lee<string>("strConexion");
+                    // Listar todos los almacenes
+                    ddlAlmacenItem.DataSource = ALMAlmacenes.dtListarAlmacenes();
+                    ddlAlmacenItem.DataTextField = "NOMBRE";
+                    ddlAlmacenItem.DataValueField = "NUM_SEC_ALMACEN";
+                    ddlAlmacenItem.DataBind();
+                    // Listar todos los almacenes al editar
+                    ddlEditarAlmacen.DataSource = ALMAlmacenes.dtListarAlmacenes();
+                    ddlEditarAlmacen.DataTextField = "NOMBRE";
+                    ddlEditarAlmacen.DataValueField = "NUM_SEC_ALMACEN";
+                    ddlEditarAlmacen.DataBind();
+                    // Determinar si una persona tiene acceso a uno o a mas almacenes
+                    if (ALMAlmacenes.dtListarAlmacenes().Rows.Count == 1) //Ver si el usuario tiene solo 1 almacen asignado
+                    {
+                        Almacenes = true;
+                        DataRow dr = ALMAlmacenes.dtListarAlmacenes().Rows[0];
+                        axVarSes.Escribe("UsuarioNumSecAlmacen", Convert.ToInt64(dr["NUM_SEC_ALMACEN"].ToString()));
+                    }
+
+                    // Recibir mensaje exitoso cuando se redirige de otra pagina
+                    if (Session["MensajeOK"] != null)
+                    {
+                        pnMensajeOK.Visible = true;
+                        lblMensajeOK.Text = Session["MensajeOK"].ToString();
+                        Session["MensajeOK"] = null;
+                    }
                 }
-
-                // Recibir mensaje exitoso cuando se redirige de otra pagina
-                if (Session["MensajeOK"] != null)
+                else
                 {
-                    pnMensajeOK.Visible = true;
-                    lblMensajeOK.Text = Session["MensajeOK"].ToString();
-                    Session["MensajeOK"] = null;
+                    axVarSes.Escribe("MostrarMensajeError", "1");
+                    Response.Redirect("Index.aspx");
                 }
             }
             else
             {
                 Response.Redirect("~/Default.aspx");
             }
+
         }
         #endregion
 

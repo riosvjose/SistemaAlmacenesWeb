@@ -25,7 +25,12 @@ namespace SistemaAlmacenesWeb.Forms
 
         private void CargarDatosIniciales(string strCon)
         {
-
+            if (axVarSes.Lee<string>("MostrarMensajeError") == "1")
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "Permisos insuficientes.";
+                axVarSes.Escribe("MostrarMensajeError", "0");
+            }
         }
         
         protected void Page_Load(object sender, EventArgs e)

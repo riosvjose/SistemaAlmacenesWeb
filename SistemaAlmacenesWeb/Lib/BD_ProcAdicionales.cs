@@ -111,11 +111,38 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Públicos
-        //Obtener el dia de manera literal de la fecha ingresada
+        //verifica avances no registrados por proyecto y los inserta en la tabla avances
+
+        public bool AccesoObjetoUsuario(string nombre_objeto)
+        {
+            bool existe = false;
+            string struser = axVarSes.Lee<string>("UsuarioNumSec");
+            DataTable dt = new DataTable();
+            strSql = "SELECT distinct o.num_sec_objeto " +
+                    " FROM sam_usuarios_funciones fu, sam_funciones f, sam_accesos a, sam_objetos o " +
+                    " WHERE fu.num_sec_usuario= " + struser +
+                    " and o.nombre like '"+nombre_objeto+"%'"+
+                    " and a.acceso=1"+
+                    " and fu.num_sec_funcion=f.num_sec_funcion" +
+                    " and f.num_sec_funcion=a.num_sec_funcion"+
+                    " and a.num_sec_objeto=o.num_sec_objeto";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count >0)
+            {
+                existe = true;
+            }
+            dt.Dispose();
+            return existe;
+        }
+        // devuelve true si la fecha indicada es menor o igual a la fecha actual
         public bool FechaMenorIgualHoy(string fecha)
         {
             bool menorigual = false;
-            int dia = 0;            
+            int dia = 0;
             DataTable dt = new DataTable();
             strSql = "SELECT trunc(sysdate) - To_Date('" + fecha.ToString().Trim() + "', 'dd/mm/yyyy') as dia FROM dual";
             OracleBD.MostrarError = false;

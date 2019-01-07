@@ -43,24 +43,33 @@ namespace SistemaAlmacenesWeb.Forms
         private void CargarDatosIniciales(string strCon)
         {
             if ((strCon!="")&&(strCon!=string.Empty)&&(strCon!=null))
-            { 
-                libDominio = new BD_ALM_Dominios();
-                libDominio.StrConexion = axVarSes.Lee<string>("strConexion");
-                libDominio.Dominio = "ALM_TIPO_INGRESO";
-                string straux = "and valor <> 0";
-                ddlTipoIngreso.DataSource = libDominio.DTVerDominio(straux);
-                ddlTipoIngreso.DataTextField = "DESCRIPCION";
-                ddlTipoIngreso.DataValueField = "VALOR";
-                ddlTipoIngreso.DataBind();
-                libProv = new BD_ALM_Proveedores();
-                libProv.StrConexion = axVarSes.Lee<string>("strConexion");
-                ddlProveedor.DataSource = libProv.dtListarProveedores();
-                ddlProveedor.DataTextField = "nombre_comercial";
-                ddlProveedor.DataValueField = "num_sec_proveedor";
-                ddlProveedor.DataBind();
-                CargarDdlGrupos();
-                CargarDdlCategorias();
-                CargarDdlItems();
+            {
+                libproc.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (libproc.AccesoObjetoUsuario("ALM_RegistrarIngreso"))
+                {
+                    libDominio = new BD_ALM_Dominios();
+                    libDominio.StrConexion = axVarSes.Lee<string>("strConexion");
+                    libDominio.Dominio = "ALM_TIPO_INGRESO";
+                    string straux = "and valor <> 0";
+                    ddlTipoIngreso.DataSource = libDominio.DTVerDominio(straux);
+                    ddlTipoIngreso.DataTextField = "DESCRIPCION";
+                    ddlTipoIngreso.DataValueField = "VALOR";
+                    ddlTipoIngreso.DataBind();
+                    libProv = new BD_ALM_Proveedores();
+                    libProv.StrConexion = axVarSes.Lee<string>("strConexion");
+                    ddlProveedor.DataSource = libProv.dtListarProveedores();
+                    ddlProveedor.DataTextField = "nombre_comercial";
+                    ddlProveedor.DataValueField = "num_sec_proveedor";
+                    ddlProveedor.DataBind();
+                    CargarDdlGrupos();
+                    CargarDdlCategorias();
+                    CargarDdlItems();
+                }
+                else
+                {
+                    axVarSes.Escribe("MostrarMensajeError", "1");
+                    Response.Redirect("Index.aspx");
+                }
             }
             else
             {

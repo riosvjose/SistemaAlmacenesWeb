@@ -18,7 +18,7 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_VarSession axVarSes = new GEN_VarSession();
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
-
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
 
         #endregion
 
@@ -33,6 +33,7 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Pasos libPasos = new BD_ALM_Pasos();
         BD_ALM_Dominios libDominio = new BD_ALM_Dominios();
         BD_ALM_Almacenes_Usu libAlmUsu = new BD_ALM_Almacenes_Usu();
+
         #endregion
 
         #region Variables Gobales
@@ -42,12 +43,25 @@ namespace SistemaAlmacenesWeb.Forms
 
         private void CargarDatosIniciales(string strCon)
         {
+            libproc.StrConexion = axVarSes.Lee<string>("strConexion");
             if ((strCon != "") && (strCon != string.Empty))
             {
-                CargarDdlGrupos();
-                CargarDdlCategorias();
-                CargarDdlItems();
-                CargarDdlPersonas();
+                if (libproc.AccesoObjetoUsuario("ALM_PED_Realizar"))
+                {
+                    CargarDdlGrupos();
+                    CargarDdlCategorias();
+                    CargarDdlItems();
+                    CargarDdlPersonas();
+                }
+                else
+                {
+                    axVarSes.Escribe("MostrarMensajeError", "1");
+                    Response.Redirect("Index.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
             }
         }
 

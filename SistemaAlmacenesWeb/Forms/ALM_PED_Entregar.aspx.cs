@@ -18,6 +18,7 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_VarSession axVarSes = new GEN_VarSession();
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
         #endregion
 
         #region "Clase de tablas de la Base de Datos"
@@ -41,12 +42,28 @@ namespace SistemaAlmacenesWeb.Forms
 
         private void CargarDatosIniciales(string strCon)
         {
-            VerificarPasos();
-            gvDatos1.Visible = true;
-            gvDatos1.Columns[2].Visible = true;
-            gvDatos1.DataSource = dtPedidos;
-            gvDatos1.DataBind();
-            gvDatos1.Columns[2].Visible = false;
+            libproc.StrConexion = axVarSes.Lee<string>("strConexion");
+            if ((strCon != "") && (strCon != string.Empty))
+            {
+                if (libproc.AccesoObjetoUsuario("ALM_PED_Entregar"))
+                {
+                    VerificarPasos();
+                    gvDatos1.Visible = true;
+                    gvDatos1.Columns[2].Visible = true;
+                    gvDatos1.DataSource = dtPedidos;
+                    gvDatos1.DataBind();
+                    gvDatos1.Columns[2].Visible = false;
+                }
+                else
+                {
+                    axVarSes.Escribe("MostrarMensajeError", "1");
+                    Response.Redirect("Index.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
 
         }
         protected void VerificarPasos()

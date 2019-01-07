@@ -33,7 +33,7 @@ namespace SistemaAlmacenes
             Session["UsuarioNumSecAlmacen"] = 0;
             Session["NumSecItem"] = 0;
 
-            Session["MostrarMensajeError"] = 0; //Muestra mensaje de error cuando el usuario no tiene acceso a una funcion
+            Session["MostrarMensajeError"] = "0"; //Muestra mensaje de error cuando el usuario no tiene acceso a una funcion
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

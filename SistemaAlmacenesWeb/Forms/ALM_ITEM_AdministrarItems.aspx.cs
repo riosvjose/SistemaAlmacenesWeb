@@ -20,6 +20,7 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
         SIS_GeneralesSistema Generales = new SIS_GeneralesSistema();
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
         #endregion
 
         #region "Clase de tablas de la Base de Datos"
@@ -35,15 +36,24 @@ namespace SistemaAlmacenesWeb.Forms
         {
             if (!string.IsNullOrEmpty(strCon.Trim()))
             {
-                //Cargar todos los Drop Down List
-                CargarTodosDdl();
-
-                // Recibir mensaje exitoso cuando se redirige de otra pagina
-                if (Session["MensajeOK"] != null)
+                libproc.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (libproc.AccesoObjetoUsuario("ALM_ITEM_AdministrarItems"))
                 {
-                    pnMensajeOK.Visible = true;
-                    lblMensajeOK.Text = Session["MensajeOK"].ToString();
-                    Session["MensajeOK"] = null;
+                    //Cargar todos los Drop Down List
+                    CargarTodosDdl();
+
+                    // Recibir mensaje exitoso cuando se redirige de otra pagina
+                    if (Session["MensajeOK"] != null)
+                    {
+                        pnMensajeOK.Visible = true;
+                        lblMensajeOK.Text = Session["MensajeOK"].ToString();
+                        Session["MensajeOK"] = null;
+                    }
+                }
+                else
+                {
+                    axVarSes.Escribe("MostrarMensajeError", "1");
+                    Response.Redirect("Index.aspx");
                 }
             }
             else
