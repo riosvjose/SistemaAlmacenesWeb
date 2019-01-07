@@ -43,8 +43,10 @@ namespace SistemaAlmacenesWeb.Forms
         {
             VerificarPasos();
             gvDatos1.Visible = true;
+            gvDatos1.Columns[2].Visible = true;
             gvDatos1.DataSource = dtPedidos;
             gvDatos1.DataBind();
+            gvDatos1.Columns[2].Visible = false;
 
         }
         protected void VerificarPasos()
@@ -95,7 +97,7 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.autorizarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[4].Text)))
+                if (libMov.autorizarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[5].Text)))
                 {
                     pnMensajeError.Visible = false;
                     Response.Redirect("ALM_PED_Autorizar.aspx");
@@ -115,7 +117,7 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.RechazarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[4].Text)))
+                if (libMov.RechazarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[5].Text)))
                 {
                     pnMensajeError.Visible = false;
                     Response.Redirect("ALM_PED_Autorizar.aspx");

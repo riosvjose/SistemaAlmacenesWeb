@@ -11,9 +11,14 @@
         <ContentTemplate>
 
             <div class="row">
-                <div class="col-md-4 pull-right">
-                    <br/>
-                     <asp:LinkButton ID="lbtPagAnterior" runat="server" CausesValidation="False" CssClass="TextoBoton" Width="100px" OnClick="lbtPagAnterior_Click" >Página anterior</asp:LinkButton>
+                <div class="col-md-3 pull-right">
+                    <div class="col-xs-12 text-right">
+                        <br/>
+                         
+                        <div class="btn-group">
+                            <asp:Button ID="Button1" runat="server" CssClass="btn btn-info" Text="Atrás" CausesValidation="False" OnClick="btnAtras_Click" />
+                        </div>
+                   </div>
                 </div>
 	            <div class="col-xs-12 col-md-6 pull-left">
 		            <h1>Autorizar salida</h1>
@@ -40,10 +45,11 @@
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
-                        <h3> <strong><asp:Label ID="lblPedidos" runat="server" Text="Pedidos"></asp:Label></strong></h3>
+                        <h3> <strong><asp:Label ID="lblPedidos" runat="server" Text="Salidas"></asp:Label></strong></h3>
 			        </div>
                     <%--CUERPO DEL PANEL--%>
-			        <div class="panel-body">
+			         <div class="panel-body">
+                        <br />
                          <div class="row">
                             <div class="col-xs-12">
                                 <div class="row">
@@ -52,18 +58,18 @@
                                                 <div class="form-group">
                                                     <asp:GridView ID="gvDatos1" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvDatos1_RowCommand" >
                                                         <Columns>
-                                                            <asp:BoundField HeaderText="Nro"  />
-                                                            <asp:BoundField HeaderText="Item" />
-                                                            <asp:BoundField HeaderText="Cantidad" />
-                                                            <asp:TemplateField HeaderText="Cantidad">
-                                                               <ItemTemplate>
-                                                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                                                               </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" Text="Autorizar" >
+                                                            <asp:BoundField DataField="num_sec_transaccion" HeaderText="Nro"  />
+                                                            <%--<asp:BoundField DataField="depto" HeaderText="Departamento" Visible="false" />--%>
+                                                            <asp:BoundField DataField="persona" HeaderText="Solicitante" />
+                                                            <asp:BoundField DataField="num_sec_paso" HeaderText="Paso" />
+                                                            <asp:BoundField DataField="paso" HeaderText="Estado" />
+                                                            <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
+                                                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad Requerida" />
+                                                            <asp:BoundField DataField="descripcion" HeaderText="Detalle" />
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="autorizar" Text="Autorizar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" Text="Eliminar" >
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="rechazar" Text="Rechazar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-danger "/>
                                                             </asp:ButtonField>
                                                         </Columns>

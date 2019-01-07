@@ -41,12 +41,13 @@ namespace SistemaAlmacenesWeb.Forms
 
         private void CargarDatosIniciales(string strCon)
         {
-            if ((strCon!="")&&(strCon!=string.Empty))
+            if ((strCon!="")&&(strCon!=string.Empty)&&(strCon!=null))
             { 
                 libDominio = new BD_ALM_Dominios();
                 libDominio.StrConexion = axVarSes.Lee<string>("strConexion");
                 libDominio.Dominio = "ALM_TIPO_INGRESO";
-                ddlTipoIngreso.DataSource = libDominio.DTVerDominio();
+                string straux = "and valor <> 0";
+                ddlTipoIngreso.DataSource = libDominio.DTVerDominio(straux);
                 ddlTipoIngreso.DataTextField = "DESCRIPCION";
                 ddlTipoIngreso.DataValueField = "VALOR";
                 ddlTipoIngreso.DataBind();

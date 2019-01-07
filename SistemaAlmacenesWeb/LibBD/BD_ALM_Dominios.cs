@@ -158,10 +158,11 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        public DataTable DTVerDominio()
+
+        public DataTable DTVerDominio(string straux)
         {
             string strSql = string.Empty;
-            strSql = "select * from dominios where dominio='" + _dominio+"'";
+            strSql = "select * from dominios where dominio='" + _dominio+"' "+straux;
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
