@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SistemaAlmacenes {
+namespace SistemaAlmacenesWeb {
     
     
     public partial class Default {

@@ -14,7 +14,7 @@ using nsGEN_OracleBD;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios Villanueva; Fecha: 27/08/218
-    // Ultima modificación: Ignacio Rios Villanueva; Fecha: 13/12/2018
+    // Ultima modificación: Ignacio Rios Villanueva; Fecha: 07/01/2018
     // Descripción: Clase referente a la tabla Personas
     public class BD_Personas
     {
@@ -159,9 +159,12 @@ namespace SistemaAlmacenesWeb
 
         public DataTable DTListaPersonasDepto()
         {
+            string num_subdepto = axVarSes.Lee<string>("strDeptoUsuario");
             strSql = "SELECT a.num_sec, a.nombres||' '|| a.ap_paterno||' '|| a.ap_materno as nombre_completo " +
-                     "from personas a  WHERE a.num_sec<100 " +
-                     "ORDER BY a.nombres||' '|| a.ap_paterno||' '|| a.ap_materno ASC";            
+                     " from personas a, gen_subdeptos_personas g"+
+                     " WHERE g.num_sec_subdepartamento= " + num_subdepto+
+                     " and g.num_sec_persona=a.num_sec"+
+                     " ORDER BY a.nombres||' '|| a.ap_paterno||' '|| a.ap_materno ASC";            
             OracleBD.MostrarError = false;  
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
