@@ -348,6 +348,7 @@
     <Compile Include="LibBD\BD_SAM_Usuarios.cs" />
     <Compile Include="LibBD\BD_SAM_Usuarios_Subdeptos.cs" />
     <Compile Include="LibBD\BD_Personas.cs" />
+    <Compile Include="Lib\BD_ProcAdicionales.cs" />
     <Compile Include="Lib\GEN_AccesoModulo.cs" />
     <Compile Include="Lib\GEN_AutenticacionBD.cs" />
     <Compile Include="Lib\GEN_Cadenas.cs" />

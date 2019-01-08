@@ -20,15 +20,13 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
         SIS_GeneralesSistema Generales = new SIS_GeneralesSistema();
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
         #endregion
 
         #region "Clase de tablas de la Base de Datos"
         BD_ALM_Grupos_Items ALMGruposItems = new BD_ALM_Grupos_Items();
         BD_ALM_Almacenes ALMAlmacenes = new BD_ALM_Almacenes();
-        #endregion
-
-        #region "Variable local"
-        static bool Almacenes = false;
+        
         #endregion
 
         #region "Funciones y procedimientos"
@@ -36,44 +34,63 @@ namespace SistemaAlmacenesWeb.Forms
         {
             if (!string.IsNullOrEmpty(strCon.Trim()))
             {
-                ALMGruposItems.StrConexion = axVarSes.Lee<string>("strConexion");
-                // Listar a todos los Grupos de Items
-                ddlGrupoItems.DataSource = ALMGruposItems.DTListaGrupos();
-                ddlGrupoItems.DataTextField = "NOMBRE";
-                ddlGrupoItems.DataValueField = "NUM_SEC_GRUPO";
-                ddlGrupoItems.DataBind();
-
-                ALMAlmacenes.StrConexion = axVarSes.Lee<string>("strConexion");
-                // Listar todos los almacenes
-                ddlAlmacenItem.DataSource = ALMAlmacenes.dtListarAlmacenes();
-                ddlAlmacenItem.DataTextField = "NOMBRE";
-                ddlAlmacenItem.DataValueField = "NUM_SEC_ALMACEN";
-                ddlAlmacenItem.DataBind();
-                // Listar todos los almacenes al editar
-                ddlEditarAlmacen.DataSource = ALMAlmacenes.dtListarAlmacenes();
-                ddlEditarAlmacen.DataTextField = "NOMBRE";
-                ddlEditarAlmacen.DataValueField = "NUM_SEC_ALMACEN";
-                ddlEditarAlmacen.DataBind();
-                // Determinar si una persona tiene acceso a uno o a mas almacenes
-                if (ALMAlmacenes.dtListarAlmacenes().Rows.Count == 1) //Ver si el usuario tiene solo 1 almacen asignado
+                libproc.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (libproc.AccesoObjetoUsuario("ALM_GRU_AdministrarGrupos"))
                 {
-                    Almacenes = true;
+<<<<<<< HEAD
                     DataRow dr = ALMAlmacenes.dtListarAlmacenes().Rows[0];
-                    axVarSes.Escribe("UsuarioNumSecAlmacen", Convert.ToInt64(dr["NUM_SEC_ALMACEN"].ToString()));
+                    axVarSes.Escribe("UsuarioNumSecAlmacen", dr["NUM_SEC_ALMACEN"].ToString());
                 }
-
-                // Recibir mensaje exitoso cuando se redirige de otra pagina
-                if (Session["MensajeOK"] != null)
+                else
                 {
-                    pnMensajeOK.Visible = true;
-                    lblMensajeOK.Text = Session["MensajeOK"].ToString();
-                    Session["MensajeOK"] = null;
+                    axVarSes.Escribe("UsuarioNumSecAlmacen", 0.ToString());
+=======
+                    ALMGruposItems.StrConexion = axVarSes.Lee<string>("strConexion");
+                    // Listar a todos los Grupos de Items
+                    ddlGrupoItems.DataSource = ALMGruposItems.DTListaGrupos();
+                    ddlGrupoItems.DataTextField = "NOMBRE";
+                    ddlGrupoItems.DataValueField = "NUM_SEC_GRUPO";
+                    ddlGrupoItems.DataBind();
+
+                    ALMAlmacenes.StrConexion = axVarSes.Lee<string>("strConexion");
+                    // Listar todos los almacenes
+                    ddlAlmacenItem.DataSource = ALMAlmacenes.dtListarAlmacenes();
+                    ddlAlmacenItem.DataTextField = "NOMBRE";
+                    ddlAlmacenItem.DataValueField = "NUM_SEC_ALMACEN";
+                    ddlAlmacenItem.DataBind();
+                    // Listar todos los almacenes al editar
+                    ddlEditarAlmacen.DataSource = ALMAlmacenes.dtListarAlmacenes();
+                    ddlEditarAlmacen.DataTextField = "NOMBRE";
+                    ddlEditarAlmacen.DataValueField = "NUM_SEC_ALMACEN";
+                    ddlEditarAlmacen.DataBind();
+                    // Determinar si una persona tiene acceso a uno o a mas almacenes
+                    if (ALMAlmacenes.dtListarAlmacenes().Rows.Count == 1) //Ver si el usuario tiene solo 1 almacen asignado
+                    {
+                        Almacenes = true;
+                        DataRow dr = ALMAlmacenes.dtListarAlmacenes().Rows[0];
+                        axVarSes.Escribe("UsuarioNumSecAlmacen", Convert.ToInt64(dr["NUM_SEC_ALMACEN"].ToString()));
+                    }
+
+                    // Recibir mensaje exitoso cuando se redirige de otra pagina
+                    if (Session["MensajeOK"] != null)
+                    {
+                        pnMensajeOK.Visible = true;
+                        lblMensajeOK.Text = Session["MensajeOK"].ToString();
+                        Session["MensajeOK"] = null;
+                    }
+>>>>>>> 7627b9ec8f13aedd155fc278a00fcfed133629c4
+                }
+                else
+                {
+                    axVarSes.Escribe("MostrarMensajeError", "1");
+                    Response.Redirect("Index.aspx");
                 }
             }
             else
             {
                 Response.Redirect("~/Default.aspx");
             }
+
         }
         #endregion
 
@@ -99,7 +116,8 @@ namespace SistemaAlmacenesWeb.Forms
             pnCrearGrupoItem.Visible = true;
             lblFormGrupoItem.Text = "Crear Grupo de Items";
             pnEditarGrupoItem.Visible = false;
-            if (Almacenes == false)
+            long almacen = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSecAlmacen"));
+            if (almacen == 0)
             {
                 idAlmacenItem.Visible = true;
             }
@@ -145,12 +163,13 @@ namespace SistemaAlmacenesWeb.Forms
         {
             pnMensajeError.Visible = false;
             pnMensajeOK.Visible = false;
+            long almacen = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSecAlmacen"));
             //Validar que el DDL no este vacio
             if (ddlAlmacenItem.Items.Count != 0)
             {
                 ALMGruposItems.StrConexion = axVarSes.Lee<string>("strConexion");
                 ALMGruposItems.Nombre = tbNombreGrupoItem.Text.ToUpper().Trim();
-                if(Almacenes == true)
+                if (almacen != 0)
                 {
                     ALMGruposItems.NumSecAlmacen = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSecAlmacen"));                    
                 }
