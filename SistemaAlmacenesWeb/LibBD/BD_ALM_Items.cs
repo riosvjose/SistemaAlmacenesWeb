@@ -384,7 +384,8 @@ namespace SistemaAlmacenesWeb
                             "AND d.num_sec_grupo = e.num_sec_grupo " +
                             "AND e.num_sec_almacen = f.num_sec_almacen " +
                             "AND f.num_sec_almacen = g.num_sec_almacen " +
-                            "AND b.tipo = 2 " + //Tipo 2 = Egreso de items
+                            "AND b2.tipo = 2 " + //Tipo 2 = Egreso de items
+                            "AND b2.tipo_ingreso = 0 " + // Tipo de ingreso 0 (ninguno)
                             "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
                             "AND b2.activo = 1 " +
                             "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario
@@ -418,7 +419,8 @@ namespace SistemaAlmacenesWeb
                             "AND f.num_sec_almacen = g.num_sec_almacen " +
                             "AND a.num_sec_persona = h.num_sec_persona " +
                             "AND h.num_sec_subdepartamento = i.num_sec_subdepartamento " +
-                            "AND b.tipo = 2 " + // Tipo egreso
+                            "AND b2.tipo = 2 " + // Tipo egreso
+                            "AND b2.tipo_ingreso = 0 " + // Tipo de ingreso 0 (ninguno)
                             "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
                             "AND b2.activo = 1 " +
                             "AND a.num_sec_item = " + item + " " + // Restringir el consumo de un item en especifico
@@ -427,7 +429,7 @@ namespace SistemaAlmacenesWeb
                             "AND h.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
-                        "GROUP BY a.num_sec_item, c.nombre, h.num_sec_subdepartamento, i.nombre " +
+                        "GROUP BY a.num_sec_item, h.num_sec_subdepartamento, i.nombre " +
                         "ORDER BY i.nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -457,6 +459,7 @@ namespace SistemaAlmacenesWeb
                             "AND a.num_sec_persona = h.num_sec_persona " +
                             "AND a.num_sec_persona = i.num_sec " +
                             "AND b.tipo = 2 " + // Tipo egreso 
+                            "AND b2.tipo_ingreso = 0 " + // Tipo de ingreso 0 (ninguno)
                             "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
                             "AND b2.activo = 1 " +
                             "AND a.num_sec_item = " + item + " " + // Parametro del item
