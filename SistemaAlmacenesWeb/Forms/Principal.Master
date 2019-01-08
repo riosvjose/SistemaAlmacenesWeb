@@ -37,6 +37,9 @@
                         <a href="Index.aspx"><i class="fa fa-home fa-fw" ></i>Inicio</a>
                     </li>
                     <li>
+                        <a href="ALM_ALM_AdministrarAlmacenes.aspx"><i class="fa fa-industry fa-fw" ></i>Almacenes</a>
+                    </li>
+                    <li>
                         <a href="ALM_RegistrarIngreso.aspx"><i class="fa fa-truck" ></i> Registrar ingreso</a>
                     </li>
                     <li>

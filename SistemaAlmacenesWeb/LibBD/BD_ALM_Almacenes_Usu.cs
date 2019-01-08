@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 18/12/2018
+    // Ultima modificación: Ignacio Rios; Fecha: 08/01/2019
     // Descripción: Clase referente a la tabla alm_almacenes
     public class BD_ALM_Almacenes_Usu
     {
@@ -101,7 +101,7 @@ namespace SistemaAlmacenesWeb
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_almacenes_usuarios (num_sec_alm_usuario, num_sec_almacen, num_sec_usuario, num_sec_usuario_reg) values";
-            strSql += " (alm_almacenes_usu.nextval,"+ _num_sec_almacen+","+_num_sec_usuario+","+usuario +" )";
+            strSql += " (alm_almacenes_usuarios_sec.nextval,"+ _num_sec_almacen+","+_num_sec_usuario+","+usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -201,9 +201,87 @@ namespace SistemaAlmacenesWeb
             }
             return almacenes;
         }
-            #endregion
-
+        public DataTable ObtenerUsuariosAlmacen()
+        {
+            string strSql = string.Empty;
+            strSql = "select a.num_sec_usuario, u.usuario, p.ap_paterno||' '||p.ap_materno||' '||p.nombres as persona " +
+                     " from alm_almacenes_usuarios a, sam_usuarios u, personas p" +
+                     " where a.num_sec_almacen=" + _num_sec_almacen.ToString() +
+                     " and a.activo=1" +
+                     " and a.num_sec_usuario=u.num_sec_usuario" +
+                     " and u.num_sec_persona=p.num_sec"+
+                     " order by p.ap_paterno||' '||p.ap_materno||' '||p.nombres asc";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            return dt;
         }
+
+        public bool VolverInactivo()
+        {
+            bool blOperacionCorrecta = false;
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "update alm_almacenes_usuarios "+
+                    " set activo = 0"+
+                    " where num_sec_almacen=" + _num_sec_almacen + 
+                    " and num_sec_usuario=" + _num_sec_usuario;
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.EjecutarSqlTrans();
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
+            return blOperacionCorrecta;
+        }
+
+        public bool VolverActivo()
+        {
+            bool blOperacionCorrecta = false;
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "update alm_almacenes_usuarios " +
+                    " set activo = 1" +
+                    " where num_sec_almacen=" + _num_sec_almacen +
+                    " and num_sec_usuario=" + _num_sec_usuario;
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.EjecutarSqlTrans();
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
+            return blOperacionCorrecta;
+        }
+
+        public bool VerExistente()
+        {
+            bool blOperacionCorrecta = false;
+            strSql = "select num_sec_alm_usuario"+
+                     " from alm_almacenes_usuarios"+
+                    " where num_sec_almacen=" + _num_sec_almacen +
+                    " and num_sec_usuario=" + _num_sec_usuario;
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                blOperacionCorrecta = true;
+            }
+            dt.Dispose();
+            return blOperacionCorrecta;
+        }
+
+        #endregion
+
+    }
 
 
 }

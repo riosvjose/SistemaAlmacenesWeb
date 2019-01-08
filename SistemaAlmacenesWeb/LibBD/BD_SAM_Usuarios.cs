@@ -499,6 +499,23 @@ namespace nsBD_SAM
                 return true;
             }
         }
+
+        public DataTable ObtenerUsuariosSugeridos(string cad)
+        {
+            string strSql = string.Empty;
+            strSql = "select u.num_sec_usuario, u.usuario, p.ap_paterno||' '||p.ap_materno||' '||p.nombres as persona " +
+                     " from sam_usuarios u, personas p" +
+                     " where u.usuario like '%" +cad+"%'"+
+                     " and u.num_sec_persona=p.num_sec" +
+                     " order by p.ap_paterno||' '||p.ap_materno||' '||p.nombres asc";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            return dt;
+        }
         #endregion
 
     }
