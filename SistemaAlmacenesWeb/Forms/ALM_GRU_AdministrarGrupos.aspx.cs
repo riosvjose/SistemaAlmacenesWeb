@@ -26,7 +26,7 @@ namespace SistemaAlmacenesWeb.Forms
         #region "Clase de tablas de la Base de Datos"
         BD_ALM_Grupos_Items ALMGruposItems = new BD_ALM_Grupos_Items();
         BD_ALM_Almacenes ALMAlmacenes = new BD_ALM_Almacenes();
-        
+
         #endregion
 
         #region "Funciones y procedimientos"
@@ -37,14 +37,6 @@ namespace SistemaAlmacenesWeb.Forms
                 libproc.StrConexion = axVarSes.Lee<string>("strConexion");
                 if (libproc.AccesoObjetoUsuario("ALM_GRU_AdministrarGrupos"))
                 {
-<<<<<<< HEAD
-                    DataRow dr = ALMAlmacenes.dtListarAlmacenes().Rows[0];
-                    axVarSes.Escribe("UsuarioNumSecAlmacen", dr["NUM_SEC_ALMACEN"].ToString());
-                }
-                else
-                {
-                    axVarSes.Escribe("UsuarioNumSecAlmacen", 0.ToString());
-=======
                     ALMGruposItems.StrConexion = axVarSes.Lee<string>("strConexion");
                     // Listar a todos los Grupos de Items
                     ddlGrupoItems.DataSource = ALMGruposItems.DTListaGrupos();
@@ -66,11 +58,13 @@ namespace SistemaAlmacenesWeb.Forms
                     // Determinar si una persona tiene acceso a uno o a mas almacenes
                     if (ALMAlmacenes.dtListarAlmacenes().Rows.Count == 1) //Ver si el usuario tiene solo 1 almacen asignado
                     {
-                        Almacenes = true;
                         DataRow dr = ALMAlmacenes.dtListarAlmacenes().Rows[0];
-                        axVarSes.Escribe("UsuarioNumSecAlmacen", Convert.ToInt64(dr["NUM_SEC_ALMACEN"].ToString()));
+                        axVarSes.Escribe("UsuarioNumSecAlmacen", dr["NUM_SEC_ALMACEN"].ToString());
                     }
-
+                    else
+                    {
+                        axVarSes.Escribe("UsuarioNumSecAlmacen", 0.ToString());
+                    }
                     // Recibir mensaje exitoso cuando se redirige de otra pagina
                     if (Session["MensajeOK"] != null)
                     {
@@ -78,7 +72,6 @@ namespace SistemaAlmacenesWeb.Forms
                         lblMensajeOK.Text = Session["MensajeOK"].ToString();
                         Session["MensajeOK"] = null;
                     }
->>>>>>> 7627b9ec8f13aedd155fc278a00fcfed133629c4
                 }
                 else
                 {
@@ -126,7 +119,7 @@ namespace SistemaAlmacenesWeb.Forms
         protected void btnEditarGrupo_Click(object sender, EventArgs e)
         {
             pnMensajeError.Visible = false;
-            pnMensajeOK.Visible = false;          
+            pnMensajeOK.Visible = false;
             if (ddlGrupoItems.Items.Count != 0)
             {
                 pnPrincipal.Visible = false;
@@ -171,7 +164,7 @@ namespace SistemaAlmacenesWeb.Forms
                 ALMGruposItems.Nombre = tbNombreGrupoItem.Text.ToUpper().Trim();
                 if (almacen != 0)
                 {
-                    ALMGruposItems.NumSecAlmacen = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSecAlmacen"));                    
+                    ALMGruposItems.NumSecAlmacen = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSecAlmacen"));
                 }
                 else
                 {
@@ -192,7 +185,7 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 pnMensajeError.Visible = true;
                 lblMensajeError.Text = "No existe ningún Almacén creado"; //O tambien puede ser que una persona no cuente con "permisos" para acceder a ningun almacen
-            }            
+            }
         }
 
         protected void btnCancelarGrupoItem_Click(object sender, EventArgs e)
