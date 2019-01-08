@@ -37,7 +37,7 @@
                                 <strong><asp:Label ID="lblGrupoItems" runat="server" Text="Grupo de Items:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-9 col-lg-10">
-                                <asp:DropDownList ID="ddlGrupoItems" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlGrupoItems_SelectedIndexChanged" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlGrupoItems" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlGrupoItems_SelectedIndexChanged" ></asp:DropDownList>
                             </div>
                         </div>
 			        </div>
@@ -47,6 +47,7 @@
                             <div class="btn-group">
                                 <asp:Button ID="btnCrearGrupo" runat="server" CssClass="btn btn-success" Text="Crear Grupo" CausesValidation="False" OnClick="btnCrearGrupo_Click" />
                                 <asp:Button ID="btnEditarGrupo" runat="server" CssClass="btn btn-primary" Text="Editar Grupo" CausesValidation="False" OnClick="btnEditarGrupo_Click" />
+                                <asp:Button ID="btnAdmUsuariosAlm" runat="server" CssClass="btn btn-info" Text="Administrar Subdepartamentos" CausesValidation="False" OnClick="btnAdmSubdepto_Click" />
                             </div>
                             <div class="btn-group pull-right">
                                   <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click" />
@@ -131,7 +132,90 @@
 			        </div>
 		        </div>
             </asp:Panel>
-                  
+                  <%--panel administar ususarios--%>
+            <asp:Panel ID="pnAdmDeptos" runat="server" Visible="false">
+		        <div class="panel panel-info">
+                    <%--ENCABEZADO DEL PANEL--%>
+			        <div class="panel-heading">
+                        <h3> <strong><asp:Label ID="lblAdmDeptos" runat="server" Text="Administrar Subdepartamentos"></asp:Label></strong></h3>
+			        </div>
+                    <%--CUERPO DEL PANEL--%>
+			        <div class="panel-body">
+                         <br />
+                         <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <asp:GridView ID="gvDatos1" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvDatos1_RowCommand" >
+                                                        <Columns>
+                                                            <asp:BoundField DataField="num_sec_subdepartamento" HeaderText="ns"   Visible="false"/>
+                                                            <asp:BoundField DataField="nombre" HeaderText="Subdepartamento" />
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="eliminar" Text="Eliminar" >
+                                                                 <ControlStyle CssClass="btn btn-sm btn-danger "/>
+                                                            </asp:ButtonField>
+                                                        </Columns>
+                                                        <PagerStyle CssClass="GridPager" Wrap="True" />
+                                                        <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
+                                                        <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                                    </asp:GridView>
+                                                   </div>
+                                                </div>
+                                        </div>
+                                   </div>
+                            </div>
+                        </div>
+                    <asp:Panel ID="pnbuscar" runat="server" Visible="false">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                 <div class="form-inline">
+                                       <strong><asp:Label ID="lblsubdepto" runat="server" Text="Subdepartamento:"></asp:Label></strong>
+                                       <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbsubdepartamento" CssClass="text-danger" ErrorMessage="El campo usuario es obligatorio.">*</asp:RequiredFieldValidator>
+                                       <asp:TextBox ID="tbsubdepartamento" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                       <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-info" Text="Buscar" CausesValidation="true" OnClick="btnBuscar_Click" />
+                                 </div>
+                             </div>
+                         </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnsugeridos" runat="server" Visible="false">
+                          <br />
+                         <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <asp:GridView ID="gvSubdeptos" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvDatos1_RowCommand" >
+                                                        <Columns>
+                                                            <asp:BoundField DataField="num_sec_subdepartamento" HeaderText="ns"   Visible="false"/>
+                                                            <asp:BoundField DataField="nombre" HeaderText="Subdepartamento" />
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="agregar" Text="Agregar" >
+                                                                 <ControlStyle CssClass="btn btn-sm btn-success "/>
+                                                            </asp:ButtonField>
+                                                        </Columns>
+                                                        <PagerStyle CssClass="GridPager" Wrap="True" />
+                                                        <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
+                                                        <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                                    </asp:GridView>
+                                                   </div>
+                                                </div>
+                                        </div>
+                                   </div>
+                            </div>
+                        </div>
+                     </asp:Panel>
+                    </div>
+                    <%--PIE DEL PANEL--%>
+			        <div class="panel-footer">
+                        <div class="row">
+                            <div class="btn-group">
+                                <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-success" Text="Agregar subdepartamento" CausesValidation="false" OnClick="btnAgregarSubdepto_Click" />
+                            </div>
+                        </div>
+			        </div>
+		        </div>
+            </asp:Panel>    
             <%--Salto de linea--%>
             <div class="visible-lg visible-md">
                 <div class="col-lg-12">
