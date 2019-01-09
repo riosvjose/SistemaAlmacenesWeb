@@ -126,6 +126,8 @@ namespace SistemaAlmacenesWeb
             axVarSes.Escribe("UsuarioPersonaTipo", AutenticacionBD.Persona_Tipo.ToString());
             axVarSes.Escribe("usuario_persona_grupo", AutenticacionBD.Persona_Grupo.ToString());
             axVarSes.Escribe("ax_Permitir_Manuales_Todos", "1");
+            axVarSes.Escribe("UsuarioNumSecAlmacen", "0");
+            axVarSes.Escribe("NumSecItem", "0");
             BD_GEN_Subdeptos_Personas libSubdeptoPersona = new BD_GEN_Subdeptos_Personas();
             libSubdeptoPersona.StrConexion = axVarSes.Lee<string>("StrConexion");
             libSubdeptoPersona.Ver();

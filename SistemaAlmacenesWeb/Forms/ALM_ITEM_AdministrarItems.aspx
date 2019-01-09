@@ -104,17 +104,6 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblMarcaItem" runat="server" Text="Marca:"></asp:Label></strong>
-                            </div>
-                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:DropDownList ID="ddlMarcaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
-                            </div>
-                            <div>
-                                <asp:Button ID="btnAgregarMarca" runat="server" CssClass="btn btn-primary" Text="Agregar Marca" CausesValidation="False" OnClick="btnAgregarMarca_Click"/>                                                                           
-                            </div> 
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-2">
                                 <strong><asp:Label ID="lblMedidaItem" runat="server" Text="Medida:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -181,32 +170,6 @@
                     </div>                    
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <%--MODAL CREAR MARCA--%>
-            <asp:UpdatePanel ID="upMarcaItem" runat="server" Visible="false">    
-                <ContentTemplate>
-                    <div id="modalMarcaItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLblMarca" aria-hidden="true">                              
-                        <div class="modal-dialog" role="document">                                
-                            <div class="modal-content">                                  
-                                <div class="modal-header">                                    
-                                    <center><h3 class="modal-title" id="modalLblMarca">Agregar Marca</h3></center>                                                                                                                                           
-                                </div>                                                                      
-                                <div class="modal-body">                                                                                                              
-                                    <form>                                                                                                                      
-                                        <div class="form-group">                                          
-                                            <strong><asp:Label ID="lblNombreMarca" runat="server">Nombre:</asp:Label></strong>                                          
-                                            <asp:TextBox ID="tbNombreMarca" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                                                                                                   
-                                        </div>                                                                      
-                                    </form>                                                                     
-                                </div>                                                                      
-                                <div class="modal-footer">                                                                            
-                                    <asp:Button ID="btnGuardarModalMarca" runat="server" CssClass="btn btn-success" Text="Guardar" CausesValidation="False" OnClick="btnGuardarModalMarca_Click"/>                                                                           
-                                    <asp:Button ID="btnCancelarModalMarca" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClientClick="CancelarModalMarca()" OnClick="btnCancelarModalMarca_Click"/>                                                                                                                                                                                                                                                                                                                                
-                                </div>                                
-                            </div>                              
-                        </div>                            
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
             <%--MODAL CREAR MEDIDA--%>
             <asp:UpdatePanel ID="upMedidaItem" runat="server" Visible="false">    
                 <ContentTemplate>
@@ -270,14 +233,6 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:DropDownList ID="ddlEditarCategoriaItem" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-2">
-                                <strong><asp:Label ID="lblEditarMarcaItem" runat="server" Text="Marca:"></asp:Label></strong>
-                            </div>
-                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:DropDownList ID="ddlEditarMarcaItem" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -365,9 +320,9 @@
                     document.getElementById('<%= tbDescripcionCategoria.ClientID %>').removeAttribute('required');
                     document.getElementById('<%= ddlGrupoCategoria.ClientID %>').removeAttribute('required');
                 }
-                function CancelarModalMarca() {
-                    document.getElementById('<%= tbNombreMarca.ClientID %>').removeAttribute('required');                    
-                }
+                /*function CancelarModalMarca() {
+                    document.getElementById('</%= tbNombreMarca.ClientID %>').removeAttribute('required');                    
+                }*/
                 function CancelarModalMedida() {
                     document.getElementById('<%= tbNombreMedida.ClientID %>').removeAttribute('required');
                     document.getElementById('<%= tbAbrevMedida.ClientID %>').removeAttribute('required');                    

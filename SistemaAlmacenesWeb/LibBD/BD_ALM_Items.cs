@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Alvaro Mamani; Fecha: 2/01/2019
+    // Ultima modificación: Alvaro Mamani; Fecha: 08/01/2019
     // Descripción: Clase referente a la tabla alm_items
     public class BD_ALM_Items
     {
@@ -31,7 +31,6 @@ namespace SistemaAlmacenesWeb
         private string _nombre = string.Empty;
         private double _precio_mov = 0;
         private long _num_sec_cat_items = 0;
-        private long _num_sec_marca = 0;
         private long _num_sec_medida = 0;
         private short _activo = 0;
         private long _stock_min = 0;
@@ -72,12 +71,6 @@ namespace SistemaAlmacenesWeb
         {
             get { return _num_sec_medida; }
             set { _num_sec_medida= value; }
-        }
-
-        public long NumSecMarca
-        {
-            get { return _num_sec_marca; }
-            set { _num_sec_marca = value; }
         }
 
         public short Activo
@@ -129,7 +122,6 @@ namespace SistemaAlmacenesWeb
             _cod = string.Empty;
             _nombre = string.Empty;
             _num_sec_cat_items = 0;
-            _num_sec_marca = 0;
             _num_sec_medida = 0;
             _activo = 0;
             _stock_min = 0;
@@ -153,7 +145,6 @@ namespace SistemaAlmacenesWeb
                         "cod,  " +
                         "nombre,  " +
                         "num_sec_cat,  " +
-                        "num_sec_marca,  " + 
                         "num_sec_medida, " +
                         "activo, " + 
                         "precio, " +
@@ -163,7 +154,6 @@ namespace SistemaAlmacenesWeb
                         _cod + "', '" + 
                         _nombre + "', " + 
                         _num_sec_cat_items + ", " +
-                        _num_sec_marca + ", " + 
                         _num_sec_medida + ", " + 
                         "1, " +
                         "0, " + 
@@ -279,7 +269,6 @@ namespace SistemaAlmacenesWeb
                 _cod= dr["cod"].ToString();
                 _num_sec_cat_items = Convert.ToInt64(dr["num_sec_cat"].ToString());
                 _nombre = dr["nombre"].ToString();
-                _num_sec_marca= Convert.ToInt64(dr["num_sec_marca"].ToString());
                 _num_sec_medida = Convert.ToInt64(dr["num_sec_medida"].ToString());
                 _precio_mov = Convert.ToDouble(dr["precio"].ToString());
                 _activo = Convert.ToInt16(dr["activo"].ToString());
@@ -295,7 +284,6 @@ namespace SistemaAlmacenesWeb
                 _cod = string.Empty;
                 _nombre = string.Empty;
                 _num_sec_cat_items = 0;
-                _num_sec_marca = 0;
                 _num_sec_medida = 0;
                 _precio_mov = 0;
                 _activo = 0;
@@ -384,11 +372,11 @@ namespace SistemaAlmacenesWeb
                             "AND d.num_sec_grupo = e.num_sec_grupo " +
                             "AND e.num_sec_almacen = f.num_sec_almacen " +
                             "AND f.num_sec_almacen = g.num_sec_almacen " +
-                            "AND b2.tipo = 2 " + //Tipo 2 = Egreso de items
+                            "AND b.tipo = 2 " + //Tipo 2 = Egreso de items
                             "AND b2.tipo_ingreso = 0 " + // Tipo de ingreso 0 (ninguno)
                             "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
                             "AND b2.activo = 1 " +
-                            "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario
+                            "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
                             "AND g.activo = 1 " + //Verificar si el permiso de un usuario al almacen esta activo                            
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
@@ -419,12 +407,12 @@ namespace SistemaAlmacenesWeb
                             "AND f.num_sec_almacen = g.num_sec_almacen " +
                             "AND a.num_sec_persona = h.num_sec_persona " +
                             "AND h.num_sec_subdepartamento = i.num_sec_subdepartamento " +
-                            "AND b2.tipo = 2 " + // Tipo egreso
+                            "AND b.tipo = 2 " + // Tipo egreso
                             "AND b2.tipo_ingreso = 0 " + // Tipo de ingreso 0 (ninguno)
                             "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
                             "AND b2.activo = 1 " +
                             "AND a.num_sec_item = " + item + " " + // Restringir el consumo de un item en especifico
-                            "AND g.num_sec_usuario = " + usuario + " " +
+                            "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
                             "AND g.activo = 1 " + // Verificar que el usario tena acceso a un almacen
                             "AND h.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
@@ -440,14 +428,13 @@ namespace SistemaAlmacenesWeb
         }
         //Reporte del consumo de un item por persona que pertenece a un departamento. Haciendo la verificacion de los permisos
         
-        public DataTable dtConsumoPersona(string fechaInicial, string fechaFinal)
+        public DataTable dtConsumoPersona(string fechaInicial, string fechaFinal, string deptoUsr)
         {
             DataTable dt = new DataTable();
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             string item = axVarSes.Lee<string>("NumSecItem");
-            string depto = axVarSes.Lee<string>("NumSecDepto");
-
-            strSql = "SELECT a.num_sec_item, Sum (a.egreso) AS cantidad, h.num_sec_subdepartamento, i.nombres||' '|| i.ap_paterno||' '|| i.ap_materno nombre_completo " +
+            strSql = "SELECT num_sec_transaccion_fin, num_sec_item, cantidad, num_sec_subdepartamento, num_sec_persona, nombre_completo, fecha_pedido, fecha_entrega FROM " +
+                        "(SELECT a.num_sec_transaccion AS num_sec_transaccion_fin, a.num_sec_item, Sum(a.egreso) AS cantidad, h.num_sec_subdepartamento, a.fecha_registro AS fecha_entrega " +
                         "FROM alm_movimientos a, alm_pasos b, alm_plantillas b2, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g, gen_subdeptos_personas h, personas i " +
                         "WHERE a.num_sec_paso = b.num_sec_paso " +
                             "AND a.num_sec_item = c.num_sec_item " +
@@ -457,20 +444,37 @@ namespace SistemaAlmacenesWeb
                             "AND e.num_sec_almacen = f.num_sec_almacen " +
                             "AND f.num_sec_almacen = g.num_sec_almacen " +
                             "AND a.num_sec_persona = h.num_sec_persona " +
-                            "AND a.num_sec_persona = i.num_sec " +
+                            "AND h.num_sec_persona = i.num_sec " +
                             "AND b.tipo = 2 " + // Tipo egreso 
-                            "AND b2.tipo_ingreso = 0 " + // Tipo de ingreso 0 (ninguno)
+                            "AND b2.tipo_ingreso = 0  " + // Sin ingreso
                             "AND b2.tipo_egreso = 1 " + // Tipo de egreso por pedido
                             "AND b2.activo = 1 " +
-                            "AND a.num_sec_item = " + item + " " + // Parametro del item
-                            "AND g.num_sec_usuario = " + usuario + " " + // Num_sec_usuario
-                            "AND g.activo = 1 " + // Verificar que el usario tenga acceso a un almacen
-                            "AND h.num_sec_subdepartamento = " + depto + " " + // Parametro del numero del Departamento
+                            "AND a.num_sec_item = " + item.Trim() + " " + // PARAMETRO DEL ITEM
+                            "AND g.num_sec_usuario = " + usuario.Trim() + " " + // Verificar a que almacen tiene permiso un usuario
+                            "AND g.activo = 1 " + // Verificar que el usario tena acceso a un almacen
+                            "AND h.num_sec_subdepartamento = " + deptoUsr + " "+ // Parametro del Departamento consumidor
                             "AND h.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
-                        "GROUP BY a.num_sec_item, c.nombre, h.num_sec_subdepartamento, i.ap_paterno, i.ap_materno, i.nombres " +
-                        "ORDER BY i.nombres || ' ' || i.ap_paterno || ' ' || i.ap_materno ASC";
+                        "GROUP BY a.num_sec_movimiento, a.num_sec_transaccion, a.num_sec_item,a.num_sec_paso, h.num_sec_subdepartamento, a.fecha_registro) q1 " +
+                    "INNER JOIN " +
+                        "(SELECT DISTINCT a.num_sec_transaccion AS num_sec_transaccion_ini, a.num_sec_persona, a.fecha_registro AS fecha_pedido, e.nombres || ' ' || e.ap_paterno || ' ' || e.ap_materno AS nombre_completo " +
+                          "FROM alm_movimientos a, alm_pasos b, alm_plantillas c, gen_subdeptos_personas d, personas e " +
+                          "WHERE a.num_sec_paso = b.num_sec_paso " +
+                              "AND b.num_sec_plantilla = c.num_sec_plantilla " +
+                              "AND a.num_sec_persona = d.num_sec_persona " +
+                              "AND d.num_sec_persona = e.num_sec " +
+                              "AND d.num_sec_subdepartamento = " + deptoUsr + " " + //PARAMETRO DEL DEPARTAMENTO QUE SE ESTA BUSCANDO
+                              "AND d.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
+                              "AND a.ingreso = 0 " + // La primera transaccion siempre tiene como ingreso = 0, pero el egreso es mayor a 0
+                              "AND a.egreso > 0 " + // El valor del pedido siempre es mayor a 0
+                              "AND b.tipo = 3 " + // Tipo transaccion
+                              "AND b.num_sec_paso_ant = 0 " +
+                              "AND c.activo = 1 " +
+                              "AND c.tipo_ingreso = 0 " + // Sin ingreso
+                              "AND c.tipo_egreso = 1 ) q2  " + // Tipo de egreso por pedido
+                          "ON q1.num_sec_transaccion_fin = q2.num_sec_transaccion_ini " +
+                          "ORDER BY nombre_completo ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
