@@ -119,6 +119,7 @@
     <Content Include="Forms\ALM_PED_Autorizar.aspx" />
     <Content Include="Forms\ALM_SAL_Registrar.aspx" />
     <Content Include="Forms\ALM_PED_Realizar.aspx" />
+    <Content Include="Forms\ALM_TOK_GenerarToken.aspx" />
     <Content Include="Img\autoriza.png" />
     <Content Include="Img\biblioteca_b.jpg" />
     <Content Include="Img\pedidos.png" />
@@ -322,6 +323,13 @@
     <Compile Include="Forms\ALM_Salir.aspx.designer.cs">
       <DependentUpon>ALM_Salir.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ALM_TOK_GenerarToken.aspx.cs">
+      <DependentUpon>ALM_TOK_GenerarToken.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_TOK_GenerarToken.aspx.designer.cs">
+      <DependentUpon>ALM_TOK_GenerarToken.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -339,6 +347,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LibBD\BD_ALM_Tokens.cs" />
+    <Compile Include="LibBD\BD_ALM_Entregas.cs" />
     <Compile Include="LibBD\BD_ALM_Dominios.cs" />
     <Compile Include="LibBD\BD_ALM_IngresosMov.cs" />
     <Compile Include="LibBD\BD_ALM_Ingresos.cs" />
