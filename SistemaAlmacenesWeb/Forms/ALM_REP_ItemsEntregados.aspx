@@ -24,7 +24,7 @@
                 </asp:UpdateProgress>
             </div>
             <br />
-            <%--panel de Items Enregados--%>
+            <%--panel de Items Entregados--%>
             <asp:Panel ID="pnPrincipal" runat="server">
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
@@ -46,7 +46,7 @@
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
                                 <strong><asp:Label ID="lblFechaFinalItem" runat="server" Width="150">Fecha Final:</asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvFechaFinalItem" runat="server" ControlToValidate="tbFechaFinalItem" CssClass="text-danger" ErrorMessage="El campo Fecha Final es obligatorio.">*</asp:RequiredFieldValidator>
-                                <asp:CompareValidator ID="rfvFechaFinalMayor" runat="server" ControlToCompare="tbFechaInicialItem" ControlToValidate="tbFechaFinalItem" CssClass="text-danger" ErrorMessage="La Fecha Final debe ser mayor que la Fecha Inicial." Operator="GreaterThan" Type="Date">*</asp:CompareValidator>                            
+                                <asp:CompareValidator ID="rfvFechaFinalMayor" runat="server" ControlToCompare="tbFechaInicialItem" ControlToValidate="tbFechaFinalItem" CssClass="text-danger" ErrorMessage="La Fecha Final debe ser mayor o igual a la Fecha Inicial." Operator="GreaterThanEqual" Type="Date">*</asp:CompareValidator>                            
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-5 col-lg-3">
                                  <asp:TextBox ID="tbFechaFinalItem" runat="server" TextMode="Date" CssClass="form-control" max="3000-12-31" min="1000-01-01" MaxLength="10" AutoCompleteType="Disabled" ></asp:TextBox>
@@ -114,13 +114,13 @@
 			        <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:GridView ID="gvConsumoDepto" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvConsumoDepto_RowCommand" >
+                                <asp:GridView ID="gvConsumoDepto" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" ShowFooter="false" PageSize="15" OnRowCommand="gvConsumoDepto_RowCommand" >
                                     <Columns>
                                         <asp:TemplateField HeaderText="Nro." ItemStyle-Width=10%><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
                                         <asp:BoundField DataField="num_sec_item" HeaderText="itemId" />
                                         <asp:BoundField DataField="num_sec_subdepartamento" HeaderText="DeptoId" />
-                                        <asp:BoundField DataField="nombre_depto" HeaderText="Departamento" ItemStyle-Width=40% />
-                                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ItemStyle-Width=40% />
+                                        <asp:BoundField DataField="nombre_depto" HeaderText="Departamento" ItemStyle-Width=40% footertext="TOTAL" footerstyle-font-bold="true"/>
+                                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ItemStyle-Width=40% footerstyle-font-bold="true" />
                                         <asp:ButtonField HeaderText="Acciones" ButtonType="Button" CommandName="verPer" Text="Ver" ItemStyle-Width=10% >
                                             <ControlStyle CssClass="btn btn-sm btn-success "/>
                                         </asp:ButtonField>
@@ -149,23 +149,22 @@
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
-                        <h3> <strong><asp:Label ID="lblConsumoPersona" runat="server" ></asp:Label></strong></h3>
+                        <h3> <strong><asp:Label ID="lblRepConsumoPersona" runat="server" ></asp:Label></strong></h3>
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			        <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:GridView ID="gvConsumoPersona" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" >
+                                <asp:GridView ID="gvConsumoPersona" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" ShowFooter="false" PageSize="15" >
                                     <Columns>
                                         <asp:TemplateField HeaderText="Nro." ItemStyle-Width=10%><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
                                         <asp:BoundField DataField="num_sec_item" HeaderText="itemId" />
                                         <asp:BoundField DataField="num_sec_subdepartamento" HeaderText="DeptoId" />
-                                        <asp:BoundField DataField="nombre_completo" HeaderText="Persona" ItemStyle-Width=40% /> <%--Persona que hizo el Pedido--%>
-                                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ItemStyle-Width=40% />
-                                        <asp:ButtonField HeaderText="Acciones" ButtonType="Button" CommandName="verPer" Text="Ver" ItemStyle-Width=10% >
-                                            <ControlStyle CssClass="btn btn-sm btn-success "/>
-                                        </asp:ButtonField>
-                                    </Columns>
+                                        <asp:BoundField DataField="nombre_completo" HeaderText="Persona" ItemStyle-Width=30% /> <%--Persona que hizo el Pedido--%>
+                                        <asp:BoundField DataField="fecha_pedido" HeaderText="Fecha de Solicitud" ItemStyle-Width=20% />
+                                        <asp:BoundField DataField="fecha_entrega" HeaderText="Fecha de Entrega" ItemStyle-Width=20% footertext="TOTAL" footerstyle-font-bold="true" /> 
+                                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ItemStyle-Width=20% footerstyle-font-bold="true"/>
+                                    </Columns>                                    
                                     <PagerStyle CssClass="GridPager" Wrap="True" />
                                     <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
                                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
@@ -179,7 +178,7 @@
                             <div class="col-xs-10">                                
                             </div>
                             <div class="col-xs-2 text-right">
-                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
+                                <asp:Button ID="btnVolverMenu3" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
                             </div>
                         </div>
 			        </div>

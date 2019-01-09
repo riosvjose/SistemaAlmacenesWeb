@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Alvaro Mamani; Fecha: 08/01/2019
+    // Ultima modificación: Alvaro Mamani; Fecha: 09/01/2019
     // Descripción: Clase referente a la tabla alm_items
     public class BD_ALM_Items
     {
@@ -426,8 +426,8 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             return OracleBD.DataTable;
         }
-        //Reporte del consumo de un item por persona que pertenece a un departamento. Haciendo la verificacion de los permisos
-        
+
+        //Reporte del consumo de un item por persona que pertenece a un departamento. Haciendo la verificacion de los permisos        
         public DataTable dtConsumoPersona(string fechaInicial, string fechaFinal, string deptoUsr)
         {
             DataTable dt = new DataTable();
@@ -475,6 +475,60 @@ namespace SistemaAlmacenesWeb
                               "AND c.tipo_egreso = 1 ) q2  " + // Tipo de egreso por pedido
                           "ON q1.num_sec_transaccion_fin = q2.num_sec_transaccion_ini " +
                           "ORDER BY nombre_completo ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt.Dispose();
+            return OracleBD.DataTable;
+        }
+
+        // Método para VERIFICAR que la fecha sea menor a hoy
+        public bool VerificarFecha(string fecha)
+        {
+            bool FechaValida = false;
+            if (!string.IsNullOrEmpty(fecha.ToString().Trim()))
+            {
+                DataTable dt = new DataTable();
+                strSql = "SELECT TRUNC (SYSDATE) - TO_DATE( '" + fecha.ToString().Trim() + "', 'dd/MM/yyyy' ) AS DIFERENCIA_DIA " +
+                            "FROM dual";
+                OracleBD.MostrarError = false;
+                OracleBD.StrConexion = _strconexion;
+                OracleBD.Sql = strSql;
+                OracleBD.sqlDataTable();
+                dt = OracleBD.DataTable;
+                if (dt.Rows.Count == 1)
+                {
+                    DataRow dr = dt.Rows[0];
+                    long dia = 0;
+                    dia = Convert.ToInt64(dr["DIFERENCIA_DIA"].ToString());
+                    if (dia >= 0 ) // Si la fecha ingresada es menor o igual a 0 mandar un valor booleano (true)
+                    {
+                        FechaValida = true;
+                    }
+                }
+                dt.Dispose();
+            }
+            return FechaValida;
+        }
+
+        //Reporte de existencia de Items en el Almacen
+        public DataTable dtExistenciaItem()
+        {
+            DataTable dt = new DataTable();
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "SELECT a.num_sec_item, c.nombre AS item, Sum(a.ingreso) - Sum(a.egreso) AS existencia " +
+                          "FROM alm_movimientos a, alm_pasos b, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g " +
+                          "WHERE a.num_sec_paso = b.num_sec_paso " +
+                              "AND a.num_sec_item = c.num_sec_item " +
+                              "AND c.num_sec_cat = d.num_sec_cat " +
+                              "AND d.num_sec_grupo = e.num_sec_grupo " +
+                              "AND e.num_sec_almacen = f.num_sec_almacen " +
+                              "AND f.num_sec_almacen = g.num_sec_almacen " +
+                              "AND g. num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
+                              "AND(b.tipo = 1 OR b.tipo = 2) " +
+                          "GROUP BY a.num_sec_item, c.nombre " +
+                          "ORDER BY c.nombre";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

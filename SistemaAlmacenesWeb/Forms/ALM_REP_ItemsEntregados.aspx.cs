@@ -58,29 +58,35 @@ namespace SistemaAlmacenesWeb.Forms
         protected void btnGenerarReportes_Click(object sender, EventArgs e)
         {
             pnMensajeError.Visible = false;
-            pnMensajeOK.Visible = false;            
-            //Habilitar el panel del reporte
-            pnRepConsumoItem.Visible = true;
+            pnMensajeOK.Visible = false;
+            pnRepConsumoItem.Visible = false;
             pnRepConsumoDepto.Visible = false;
             pnRepConsumoPersona.Visible = false;
             string fechaInicial = Convert.ToDateTime(tbFechaInicialItem.Text.Trim()).ToString("dd/MM/yyyy");
             string fechaFinal = Convert.ToDateTime(tbFechaFinalItem.Text.Trim()).ToString("dd/MM/yyyy");
-            lblRepConsumoItem.Text = "Reporte de Items entregados del " + fechaInicial + " al " + fechaFinal;
-            // Reporte de Items entregados               
-            ALMItems.StrConexion = axVarSes.Lee<string>("strConexion");
-            gvItemsEntregados.Visible = true;
-            gvItemsEntregados.Columns[1].Visible = true;
-            gvItemsEntregados.DataSource = ALMItems.dtItemsEntregados(fechaInicial, fechaFinal);
-            gvItemsEntregados.DataBind();
-            gvItemsEntregados.Columns[1].Visible = false; // Jalar y ocultar el num_sec_item
+            ALMItems.StrConexion = axVarSes.Lee<string>("strConexion"); // Conexion con Items
+            if (ALMItems.VerificarFecha(fechaFinal))
+            { //Habilitar el panel del reporte
+                pnRepConsumoItem.Visible = true;
+                lblRepConsumoItem.Text = "Reporte de Items entregados del " + fechaInicial + " al " + fechaFinal;
+                // Reporte de Items entregados                           
+                gvItemsEntregados.Visible = true;
+                gvItemsEntregados.Columns[1].Visible = true;
+                gvItemsEntregados.DataSource = ALMItems.dtItemsEntregados(fechaInicial, fechaFinal);
+                gvItemsEntregados.DataBind();
+                gvItemsEntregados.Columns[1].Visible = false; // Jalar y ocultar el num_sec_item
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "La Fecha Final no es valida";
+            }
         }
 
         protected void btnVolverMenu_Click(object sender, EventArgs e)
         {
             Response.Redirect("ALM_REP_ItemsEntregados.aspx");
-        }
-
-        #endregion
+        }        
 
         protected void gvItemsEntregados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -107,7 +113,19 @@ namespace SistemaAlmacenesWeb.Forms
                 gvConsumoDepto.Columns[1].Visible = true; 
                 gvConsumoDepto.Columns[2].Visible = true; 
                 gvConsumoDepto.DataSource = ALMItems.dtConsumoDepto(fechaInicial, fechaFinal);
-                gvConsumoDepto.DataBind();
+                gvConsumoDepto.DataBind(); //Llenar el GridView con los datos de la consulta
+                //Hacer el calculo del Consumo Total por Departamento con datos del GridView
+                long totalDepto = 0; //Consumo total del Departamento
+                foreach (GridViewRow gvr in gvConsumoDepto.Rows)
+                {
+                    totalDepto += Convert.ToInt64(gvr.Cells[4].Text);// Sumar todo el campo cantidad
+                }
+                if (gvConsumoDepto.Rows.Count > 0) // Mostar el TOTAL caso de que haya mas de una fila
+                {
+                    gvConsumoDepto.ShowFooter = true;
+                    gvConsumoDepto.Columns[4].FooterText = totalDepto.ToString();
+                    gvConsumoDepto.DataBind(); //Aumentar el Total en el GridView
+                }                               
                 gvConsumoDepto.Columns[1].Visible = false; // ocultar el num_sec_item
                 gvConsumoDepto.Columns[2].Visible = false; // ocultar el num_sec_subdepartamento (Numero del departamento)
             }
@@ -122,7 +140,7 @@ namespace SistemaAlmacenesWeb.Forms
             gvConsumoDepto.Columns[1].Visible = true; //Habilitar y mostrar la columna "num_sec_item", para despues poder enviar el dato.
             gvConsumoDepto.Columns[2].Visible = true; //Habilitar y mostrar la columna "num_sec_subdepartamento", para despues poder enviar el dato.
             string num_sec_item = gvConsumoDepto.Rows[indice].Cells[1].Text.Trim();
-            string num_sec_depto = gvConsumoDepto.Rows[indice].Cells[2].Text.Trim();
+            string num_sec_depto = gvConsumoDepto.Rows[indice].Cells[2].Text.Trim();            
             gvConsumoDepto.Columns[1].Visible = false; //Ocultar la columna "num_sec_item"
             gvConsumoDepto.Columns[2].Visible = false; //Ocultar la columna "num_sec_subdepartamento"
             axVarSes.Escribe("NumSecItem", num_sec_item); // Enviar el id de ALM_ITEMS (num_sec_item)
@@ -135,7 +153,7 @@ namespace SistemaAlmacenesWeb.Forms
                 pnRepConsumoPersona.Visible = true;
                 string fechaInicial = Convert.ToDateTime(tbFechaInicialItem.Text.Trim()).ToString("dd/MM/yyyy");
                 string fechaFinal = Convert.ToDateTime(tbFechaFinalItem.Text.Trim()).ToString("dd/MM/yyyy");
-                lblRepConsumoDepto.Text = "Reporte de Items entregados por Persona del " + fechaInicial + " al " + fechaFinal;
+                lblRepConsumoPersona.Text = "Reporte de Items entregados por Persona del " + fechaInicial + " al " + fechaFinal;
                 // Reporte de Items entregados por persona               
                 ALMItems.StrConexion = axVarSes.Lee<string>("strConexion");
                 gvConsumoPersona.Visible = true;
@@ -143,9 +161,24 @@ namespace SistemaAlmacenesWeb.Forms
                 gvConsumoPersona.Columns[2].Visible = true; //num_sec_subdepartamento
                 gvConsumoPersona.DataSource = ALMItems.dtConsumoPersona(fechaInicial, fechaFinal, num_sec_depto);
                 gvConsumoPersona.DataBind();
+                //Hacer el calculo del Consumo Total por Persona con datos del GridView
+                long totalPer = 0; //Consumo total 
+                foreach (GridViewRow gvr in gvConsumoPersona.Rows)
+                {
+                    totalPer += Convert.ToInt64(gvr.Cells[6].Text);// Sumar todo el campo cantidad
+                }
+                if (gvConsumoPersona.Rows.Count > 0) // Mostar el TOTAL caso de que haya mas de una fila
+                {
+                    gvConsumoPersona.ShowFooter = true;
+                    gvConsumoPersona.Columns[6].FooterText = totalPer.ToString();
+                    gvConsumoPersona.DataBind(); //Aumentar el Total en el GridView
+                }
                 gvConsumoPersona.Columns[1].Visible = false; // ocultar el num_sec_item
                 gvConsumoPersona.Columns[2].Visible = false; // ocultar el num_sec_subdepartamento (Numero del departamento)
             }
         }
+
+        #endregion
+
     }
 }
