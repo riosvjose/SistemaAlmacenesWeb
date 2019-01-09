@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="ALM_REP_ConsumoDepartamento.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.ALM_REP_ConsumoDepartamento" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="ALM_REP_ConsumoDepto.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.ALM_REP_ConsumoDepto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Reporte de Consumo de Items expresado en dinero</h1>
+		            <h1>Reporte de Consumo expresado en dinero</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -29,7 +29,7 @@
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
-                        <h3> <strong><asp:Label runat="server" Text="Consumo de Items en un intervalo de fechas"></asp:Label></strong></h3>
+                        <h3> <strong><asp:Label runat="server" Text="Consumo expresado en dinero en un intervalo de fechas"></asp:Label></strong></h3>
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			        <div class="panel-body">
@@ -39,7 +39,7 @@
                                 <asp:RequiredFieldValidator ID="rfvFechaInicialCon" runat="server" ControlToValidate="tbFechaInicialCon" CssClass="text-danger" ErrorMessage="El campo Fecha Inicial es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-5 col-lg-3">
-                                 <asp:TextBox ID="tbFechaInicialCon" runat="server" TextMode="Date" CssClass="form-control" max="3000-12-31" min="1000-01-01" MaxLength="10" AutoCompleteType="Disabled" ></asp:TextBox>
+                                 <asp:TextBox ID="tbFechaInicialCon" runat="server" TextMode="Date" CssClass="form-control" max="3000-12-31" min="2000-01-01" MaxLength="10" AutoCompleteType="Disabled" ></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -49,15 +49,18 @@
                                 <asp:CompareValidator ID="rfvFechaFinalConMayor" runat="server" ControlToCompare="tbFechaInicialCon" ControlToValidate="tbFechaFinalCon" CssClass="text-danger" ErrorMessage="La Fecha Final debe ser mayor o igual a la Fecha Inicial." Operator="GreaterThanEqual" Type="Date">*</asp:CompareValidator>                            
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-5 col-lg-3">
-                                 <asp:TextBox ID="tbFechaFinalCon" runat="server" TextMode="Date" CssClass="form-control" max="3000-12-31" min="1000-01-01" MaxLength="10" AutoCompleteType="Disabled" ></asp:TextBox>
+                                 <asp:TextBox ID="tbFechaFinalCon" runat="server" TextMode="Date" CssClass="form-control" max="3000-12-31" min="2000-01-01" MaxLength="10" AutoCompleteType="Disabled" ></asp:TextBox>
                             </div>
                         </div>                                           
 			        </div>
                     <%--PIE DEL PANEL--%>
                     <div class="panel-footer">
                         <div class="row">
-                            <div class="btn-group">
-                                <asp:Button ID="btnGenerarReportes" runat="server" CssClass="btn btn-success" Text="Generar Reporte" CausesValidation="True" OnClick="btnGenerarReportes_Click" />
+                            <div class="col-xs-10"> 
+                                <asp:Button ID="btnGenerarReportes" runat="server" CssClass="btn btn-success" Text="Generar Reporte" CausesValidation="True" OnClick="btnGenerarReportes_Click" />                                   
+                            </div>
+                            <div class="col-xs-2 text-right">
+                                <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Menú Principal" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
                             </div>
                         </div>
 			        </div>	       
@@ -68,28 +71,28 @@
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
-                        <div class="row mb-3">
-					        <h2>Reporte de Consumo de Items expresado en dinero</h2>
-                        </div>
+                        <div class="panel-heading">
+                            <h3> <strong><asp:Label ID="lblRepConsumoDepto" runat="server" ></asp:Label></strong></h3>
+                        </div>			        
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			        <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:GridView ID="gvConsumoDepto" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" >
-                                    <Columns>
-                                        <asp:BoundField DataField="fecha" HeaderText="Fecha de Avance" ItemStyle-Width=10% />
-                                        <asp:BoundField DataField="fecha_fin" HeaderText="Fecha Programada de Avance" ItemStyle-Width=10% />
-                                        <asp:BoundField DataField="nombre_asignado" HeaderText="Nombre" ItemStyle-Width=20% />
-                                        <asp:BoundField DataField="nombre_tarea" HeaderText="Nombre de la Tarea" ItemStyle-Width=20%/>
-                                        <asp:BoundField DataField="observacion" HeaderText="Observación" />                                        
-                                        <asp:BoundField DataField="estado" HeaderText="Estado" ItemStyle-Width=10%/> 
-                                        <asp:BoundField DataField="p_avance" HeaderText="P. Avance" ItemStyle-Width=10%/> 
-                                    </Columns>
-                                    <PagerStyle CssClass="GridPager" Wrap="True" />
-                                    <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
-                                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-                                </asp:GridView>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <asp:GridView ID="gvConsumoDepto" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" >
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Nro."><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                                                <asp:BoundField DataField="nombre_depto" HeaderText="Departamento"/>
+                                                <asp:BoundField DataField="costo_total" HeaderText="Costo Total"/>
+                                            </Columns>
+                                            <PagerStyle CssClass="GridPager" Wrap="True" />
+                                            <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
+                                            <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 			        </div>
@@ -97,10 +100,9 @@
 			        <div class="panel-footer">
                         <div class="row">
                             <div class="col-xs-10">
-                                
                             </div>
                             <div class="col-xs-2 text-right">
-                                <asp:Button ID="btnVolvelMenu" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolvelMenu_Click"/>
+                                <asp:Button ID="btnLimpiarReporte" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Limpiar Reporte" CausesValidation="False" OnClick="btnLimpiarReporte_Click"/>
                             </div>
                         </div>
 			        </div>

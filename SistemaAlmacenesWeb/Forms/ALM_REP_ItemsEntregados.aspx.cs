@@ -79,13 +79,13 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "La Fecha Final no es valida";
+                lblMensajeError.Text = "La Fecha Final debe ser menor o igual a la fecha de hoy";
             }
         }
 
         protected void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ALM_REP_ItemsEntregados.aspx");
+            Response.Redirect("Index.aspx");
         }        
 
         protected void gvItemsEntregados_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -178,6 +178,25 @@ namespace SistemaAlmacenesWeb.Forms
             }
         }
 
+        protected void btnLimpiarReporte_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ALM_REP_ItemsEntregados.aspx");
+        }
+
+        protected void btnVolverItem_Click(object sender, EventArgs e)
+        {
+            pnRepConsumoItem.Visible = true;
+            pnRepConsumoDepto.Visible = false;
+            pnRepConsumoPersona.Visible = false;
+        }
+
+
+        protected void btnVolverDepto_Click(object sender, EventArgs e)
+        {
+            pnRepConsumoItem.Visible = false;
+            pnRepConsumoDepto.Visible = true;
+            pnRepConsumoPersona.Visible = false;
+        }
         #endregion
 
     }

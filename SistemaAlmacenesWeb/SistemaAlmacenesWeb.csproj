@@ -112,7 +112,7 @@
     <Content Include="Forms\ALM_MED_AdministrarMedidas.aspx" />
     <Content Include="Forms\ALM_PED_Entregar.aspx" />
     <Content Include="Forms\ALM_PROV_AdministrarProveedores.aspx" />
-    <Content Include="Forms\ALM_REP_ConsumoDepartamento.aspx" />
+    <Content Include="Forms\ALM_REP_ConsumoDepto.aspx" />
     <Content Include="Forms\ALM_REP_Existencias.aspx" />
     <Content Include="Forms\ALM_REP_ItemsEntregados.aspx" />
     <Content Include="Forms\ALM_SAL_Autorizar.aspx" />
@@ -260,12 +260,12 @@
     <Compile Include="Forms\ALM_PROV_AdministrarProveedores.aspx.designer.cs">
       <DependentUpon>ALM_PROV_AdministrarProveedores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ALM_REP_ConsumoDepartamento.aspx.cs">
-      <DependentUpon>ALM_REP_ConsumoDepartamento.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_REP_ConsumoDepto.aspx.cs">
+      <DependentUpon>ALM_REP_ConsumoDepto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\ALM_REP_ConsumoDepartamento.aspx.designer.cs">
-      <DependentUpon>ALM_REP_ConsumoDepartamento.aspx</DependentUpon>
+    <Compile Include="Forms\ALM_REP_ConsumoDepto.aspx.designer.cs">
+      <DependentUpon>ALM_REP_ConsumoDepto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ALM_REP_Existencias.aspx.cs">
       <DependentUpon>ALM_REP_Existencias.aspx</DependentUpon>

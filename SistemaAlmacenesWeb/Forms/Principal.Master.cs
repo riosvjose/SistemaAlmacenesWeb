@@ -85,7 +85,7 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void lnkbtnReporte2_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("ALM_REP_Existencias.aspx");
+            Response.Redirect("ALM_REP_ConsumoDepto.aspx");
         }
 
         protected void lnkbtnReporte3_Click(object sender, EventArgs e)
