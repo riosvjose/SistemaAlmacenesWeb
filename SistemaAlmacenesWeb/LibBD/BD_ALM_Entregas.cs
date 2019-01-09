@@ -174,7 +174,7 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        // Lista de todos los almacenes a los que una persona tiene permisos
+
         public DataTable dtListarEntregasToken(string paso, string token)
         {
             string subdepto = string.Empty;
