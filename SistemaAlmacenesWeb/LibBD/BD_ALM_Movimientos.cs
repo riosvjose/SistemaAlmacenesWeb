@@ -245,19 +245,19 @@ namespace SistemaAlmacenesWeb
             {
                 _precio_unitario = libItem.PrecioMov;// actualiza el precio_mov al de la tabla items si es salida
             }  
-            strSql = "INSERT INTO alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item,"+
-                     " num_sec_persona, num_sec_usuario, num_sec_paso, precio_unitario, ingreso, egreso,"+
-                     " num_sec_usuario_reg) VALUES "+
-                     " ("+_num_sec_movimiento+
+            strSql = "INSERT INTO alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item," +
+                     " num_sec_persona, num_sec_usuario, num_sec_paso, precio_unitario, ingreso, egreso," +
+                     " num_sec_usuario_reg) VALUES " +
+                     " (" + _num_sec_movimiento +
                      ", alm_mov_trans_sec.NEXTVAL" +
-                     ", " +_num_sec_item+
-                     ", " +_num_sec_persona+
-                     ", " +_num_sec_usuario+
+                     ", " + _num_sec_item +
+                     ", " + _num_sec_persona +
+                     ", " + _num_sec_usuario +
                      ", " + _num_sec_paso +
-                     ", " +_precio_unitario+
-                     ", " +_ingreso+
-                     ", " +_egreso+
-                     ", "+_num_sec_usuario_registro+")";
+                     ", " + _precio_unitario +
+                     ", " + _ingreso +
+                     ", " + _egreso +
+                     ", " + _num_sec_usuario_registro + ")";
             return strSql;
         }
         public long ObtenerNSMov()

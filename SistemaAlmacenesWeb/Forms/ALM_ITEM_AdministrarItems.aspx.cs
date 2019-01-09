@@ -27,7 +27,6 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Items ALMItems = new BD_ALM_Items();
         BD_ALM_Grupos_Items ALMGruposItems = new BD_ALM_Grupos_Items();
         BD_ALM_Cat_Items ALMCategoriasItems = new BD_ALM_Cat_Items();
-        BD_ALM_Marcas ALMMarcas = new BD_ALM_Marcas();
         BD_ALM_Medidas ALMMedidas = new BD_ALM_Medidas();
         #endregion
 
@@ -80,18 +79,6 @@ namespace SistemaAlmacenesWeb.Forms
 
             //Listar todas las Categorias
             CargarCategoriasDdl();
-
-            ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
-            //Listar todas las Marcas
-            ddlMarcaItem.DataSource = ALMMarcas.dtListarMarcas();
-            ddlMarcaItem.DataTextField = "NOMBRE";
-            ddlMarcaItem.DataValueField = "NUM_SEC_MARCA";
-            ddlMarcaItem.DataBind();
-            //Listar todas las Marcas al Editar
-            ddlEditarMarcaItem.DataSource = ALMMarcas.dtListarMarcas();
-            ddlEditarMarcaItem.DataTextField = "NOMBRE";
-            ddlEditarMarcaItem.DataValueField = "NUM_SEC_MARCA";
-            ddlEditarMarcaItem.DataBind();
 
             ALMMedidas.StrConexion = axVarSes.Lee<string>("strConexion");
             //Listar todas las Medidas
@@ -183,7 +170,6 @@ namespace SistemaAlmacenesWeb.Forms
                     tbEditarCodigoItem.Text = ALMItems.Cod.Trim();
                     tbEditarNombreItem.Text = ALMItems.Nombre.ToUpper().Trim();
                     ddlEditarCategoriaItem.SelectedValue = ALMItems.NumSecCat.ToString();
-                    ddlEditarMarcaItem.SelectedValue = ALMItems.NumSecMarca.ToString();
                     ddlEditarMedidaItem.SelectedValue = ALMItems.NumSecMedida.ToString();
                     tbEditarStockItem.Text = ALMItems.StockMin.ToString().Trim();
                 }
@@ -232,21 +218,9 @@ namespace SistemaAlmacenesWeb.Forms
             pnMensajeError.Visible = false;
             pnMensajeOK.Visible = false;
             upCategoriaItem.Visible = true;
-            upMarcaItem.Visible = false;
             upMedidaItem.Visible = false;
             // Abrir el modal
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalCategoriaItem').modal('show');", true);
-        }
-
-        protected void btnAgregarMarca_Click(object sender, EventArgs e)
-        {
-            pnMensajeError.Visible = false;
-            pnMensajeOK.Visible = false;
-            upCategoriaItem.Visible = false;
-            upMarcaItem.Visible = true;
-            upMedidaItem.Visible = false;
-            // Abrir el modal
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalMarcaItem').modal('show');", true);
         }
 
         protected void btnAgregarMedida_Click(object sender, EventArgs e)
@@ -254,7 +228,6 @@ namespace SistemaAlmacenesWeb.Forms
             pnMensajeError.Visible = false;
             pnMensajeOK.Visible = false;
             upCategoriaItem.Visible = false;
-            upMarcaItem.Visible = false;
             upMedidaItem.Visible = true;
             // Abrir el modal
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalMedidaItem').modal('show');", true);
@@ -264,7 +237,6 @@ namespace SistemaAlmacenesWeb.Forms
         protected void cerrarModals()
         {
             upCategoriaItem.Visible = false;    //Modal Crear Categorias
-            upMarcaItem.Visible = false;        //Modal Crear Marca
             upMedidaItem.Visible = false;       //Modal Crear Medida
         }
 
@@ -333,44 +305,6 @@ namespace SistemaAlmacenesWeb.Forms
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalCategoriaItem').hide();$('.modal-backdrop').hide();", true);
         }
 
-        protected void btnGuardarModalMarca_Click(object sender, EventArgs e)
-        {
-            pnMensajeError.Visible = false;
-            pnMensajeOK.Visible = false;
-
-            ALMMarcas.StrConexion = axVarSes.Lee<string>("strConexion");
-            ALMMarcas.Nombre = tbNombreMarca.Text.ToUpper().Trim();
-            if (ALMMarcas.Insertar())
-            {
-                pnMensajeOK.Visible = true;
-                lblMensajeOK.Text = "La Marca fue creada exitosamente";
-                //Ocultar los modals
-                cerrarModals();
-                // Cerrar el modal
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMarcaItem').hide();$('.modal-backdrop').hide();", true);
-                //Limpiar los campos del modal
-                tbNombreMarca.Text = "";
-                //Recargar el DDL Marca de Items
-                ddlMarcaItem.DataSource = ALMMarcas.dtListarMarcas();
-                ddlMarcaItem.DataTextField = "NOMBRE";
-                ddlMarcaItem.DataValueField = "NUM_SEC_MARCA";
-                ddlMarcaItem.DataBind();
-            }
-            else
-            {
-                pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMMarcas.Mensaje;
-            }
-        }
-
-        protected void btnCancelarModalMarca_Click(object sender, EventArgs e)
-        {
-            //Ocultar los modals
-            cerrarModals();
-            // Cerrar el modal Marca
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMarcaItem').hide();$('.modal-backdrop').hide();", true);
-        }
-
         protected void btnGuardarModalMedida_Click(object sender, EventArgs e)
         {
             pnMensajeError.Visible = false;
@@ -390,7 +324,7 @@ namespace SistemaAlmacenesWeb.Forms
                 //Limpiar los campos del modal
                 tbNombreMedida.Text = "";
                 tbAbrevMedida.Text = "";
-                //Recargar el DDL Marca de Items
+                //Recargar el DDL Medida de Items
                 ddlMedidaItem.DataSource = ALMMedidas.dtListarMedidas();
                 ddlMedidaItem.DataTextField = "NOMBRE";
                 ddlMedidaItem.DataValueField = "NUM_SEC_MEDIDA";
@@ -399,7 +333,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMMarcas.Mensaje;
+                lblMensajeError.Text = "Mensaje: " + ALMMedidas.Mensaje;
             }
         }
 
@@ -407,7 +341,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             //Ocultar los modals
             cerrarModals();
-            // Cerrar el modal Marca
+            // Cerrar el modal Medida
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Popup", "$('#modalMedidaItem').hide();$('.modal-backdrop').hide();", true);
         }
 
@@ -418,8 +352,7 @@ namespace SistemaAlmacenesWeb.Forms
             ALMItems.StrConexion = axVarSes.Lee<string>("strConexion");
             ALMItems.Cod = tbCodigoItem.Text.Trim();
             ALMItems.Nombre = tbNombreItem.Text.ToUpper().Trim();
-            ALMItems.NumSecCat = Convert.ToInt64(ddlCategoriaItem.Text.Trim());
-            ALMItems.NumSecMarca = Convert.ToInt64(ddlMarcaItem.Text.Trim());
+            ALMItems.NumSecCat = Convert.ToInt64(ddlCategoriaItem.Text.Trim());           
             ALMItems.NumSecMedida = Convert.ToInt64(ddlMedidaItem.Text.Trim());
             ALMItems.StockMin = Convert.ToInt64(tbStockItem.Text.Trim());
 
@@ -427,11 +360,6 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 pnMensajeError.Visible = true;
                 lblMensajeError.Text = "No existe ninguna Categoría registrada";
-            }
-            else if (ddlMarcaItem.Items.Count == 0)
-            {
-                pnMensajeError.Visible = true;
-                lblMensajeError.Text = "No existe ninguna Marca registrada";
             }
             else if (ddlMedidaItem.Items.Count == 0)
             {

@@ -74,12 +74,13 @@
 			        <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:GridView ID="gvItemsEntregados" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" >
+                                <asp:GridView ID="gvItemsEntregados" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvItemsEntregados_RowCommand" >
                                     <Columns>
-                                        <asp:BoundField DataField="num_sec_item" HeaderText="Nro" ItemStyle-Width=10% />
+                                        <asp:TemplateField HeaderText="Nro." ItemStyle-Width=10%><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                                        <asp:BoundField DataField="num_sec_item" HeaderText="id" />
                                         <asp:BoundField DataField="item" HeaderText="Item" ItemStyle-Width=40% />
                                         <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ItemStyle-Width=40% />
-                                        <asp:ButtonField HeaderText="Acciones" ButtonType="Button" CommandName="ver" Text="Ver" ItemStyle-Width=10% >
+                                        <asp:ButtonField HeaderText="Acciones" ButtonType="Button" CommandName="verDepto" Text="Ver" ItemStyle-Width=10% >
                                             <ControlStyle CssClass="btn btn-sm btn-success "/>
                                         </asp:ButtonField>
                                     </Columns>
@@ -101,7 +102,89 @@
                         </div>
 			        </div>
 		        </div>
-            </asp:Panel>       
+            </asp:Panel>    
+            <%--panel Reporte de Consumo de Items por Departamento--%>
+            <asp:Panel ID="pnRepConsumoDepto" runat="server" Visible="false">
+		        <div class="panel panel-info">
+                    <%--ENCABEZADO DEL PANEL--%>
+			        <div class="panel-heading">
+                        <h3> <strong><asp:Label ID="lblRepConsumoDepto" runat="server" ></asp:Label></strong></h3>
+			        </div>
+                    <%--CUERPO DEL PANEL--%>
+			        <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <asp:GridView ID="gvConsumoDepto" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvConsumoDepto_RowCommand" >
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Nro." ItemStyle-Width=10%><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                                        <asp:BoundField DataField="num_sec_item" HeaderText="itemId" />
+                                        <asp:BoundField DataField="num_sec_subdepartamento" HeaderText="DeptoId" />
+                                        <asp:BoundField DataField="nombre_depto" HeaderText="Departamento" ItemStyle-Width=40% />
+                                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ItemStyle-Width=40% />
+                                        <asp:ButtonField HeaderText="Acciones" ButtonType="Button" CommandName="verPer" Text="Ver" ItemStyle-Width=10% >
+                                            <ControlStyle CssClass="btn btn-sm btn-success "/>
+                                        </asp:ButtonField>
+                                    </Columns>
+                                    <PagerStyle CssClass="GridPager" Wrap="True" />
+                                    <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
+                                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                </asp:GridView>
+                            </div>
+                        </div>
+			        </div>
+                    <%--PIE DEL PANEL--%>
+			        <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-10">                                
+                            </div>
+                            <div class="col-xs-2 text-right">
+                                <asp:Button ID="btnVolverMenu2" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
+                            </div>
+                        </div>
+			        </div>
+		        </div>
+            </asp:Panel>   
+            <%--panel Reporte de Consumo de Items por Persona--%>
+            <asp:Panel ID="pnRepConsumoPersona" runat="server" Visible="false">
+		        <div class="panel panel-info">
+                    <%--ENCABEZADO DEL PANEL--%>
+			        <div class="panel-heading">
+                        <h3> <strong><asp:Label ID="lblConsumoPersona" runat="server" ></asp:Label></strong></h3>
+			        </div>
+                    <%--CUERPO DEL PANEL--%>
+			        <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <asp:GridView ID="gvConsumoPersona" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" >
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Nro." ItemStyle-Width=10%><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                                        <asp:BoundField DataField="num_sec_item" HeaderText="itemId" />
+                                        <asp:BoundField DataField="num_sec_subdepartamento" HeaderText="DeptoId" />
+                                        <asp:BoundField DataField="nombre_completo" HeaderText="Persona" ItemStyle-Width=40% /> <%--Persona que hizo el Pedido--%>
+                                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" ItemStyle-Width=40% />
+                                        <asp:ButtonField HeaderText="Acciones" ButtonType="Button" CommandName="verPer" Text="Ver" ItemStyle-Width=10% >
+                                            <ControlStyle CssClass="btn btn-sm btn-success "/>
+                                        </asp:ButtonField>
+                                    </Columns>
+                                    <PagerStyle CssClass="GridPager" Wrap="True" />
+                                    <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
+                                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                </asp:GridView>
+                            </div>
+                        </div>
+			        </div>
+                    <%--PIE DEL PANEL--%>
+			        <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-10">                                
+                            </div>
+                            <div class="col-xs-2 text-right">
+                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
+                            </div>
+                        </div>
+			        </div>
+		        </div>
+            </asp:Panel>     
             <%--Salto de linea--%>
             <div class="visible-lg visible-md">
                 <div class="col-lg-12">
