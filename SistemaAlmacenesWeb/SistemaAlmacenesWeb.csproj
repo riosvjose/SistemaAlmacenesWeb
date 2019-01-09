@@ -104,6 +104,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Forms\ALM_ALM_AdministrarAlmacenes.aspx" />
     <Content Include="Forms\ALM_CAT_AdministrarCategorias.aspx" />
     <Content Include="Forms\ALM_GRU_AdministrarGrupos.aspx" />
     <Content Include="Forms\ALM_ITEM_AdministrarItems.aspx" />
@@ -200,6 +201,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_ALM_AdministrarAlmacenes.aspx.cs">
+      <DependentUpon>ALM_ALM_AdministrarAlmacenes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_ALM_AdministrarAlmacenes.aspx.designer.cs">
+      <DependentUpon>ALM_ALM_AdministrarAlmacenes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ALM_CAT_AdministrarCategorias.aspx.cs">
       <DependentUpon>ALM_CAT_AdministrarCategorias.aspx</DependentUpon>
@@ -339,6 +347,7 @@
     <Compile Include="LibBD\BD_ALM_Cat_Items .cs" />
     <Compile Include="LibBD\BD_ALM_Grupos_Items.cs" />
     <Compile Include="LibBD\BD_ALM_Almacenes.cs" />
+    <Compile Include="LibBD\BD_GEN_Subdeptos.cs" />
     <Compile Include="LibBD\BD_GEN_Subdeptos_Personas.cs" />
     <Compile Include="LibBD\BD_SAM_Modulos.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Modulos.cs" />

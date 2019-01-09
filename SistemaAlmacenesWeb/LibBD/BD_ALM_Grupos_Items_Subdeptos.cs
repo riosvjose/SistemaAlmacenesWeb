@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Ignacio Rios; Fecha: 11/12/2018
+    // Ultima modificación: Ignacio Rios; Fecha: 08/01/2019
     // Descripción: Clase referente a la tabla alm_grupos_items_subdeptos
     public class BD_ALM_Grupos_Items_Subdeptos
     {
@@ -30,7 +30,7 @@ namespace SistemaAlmacenesWeb
         private long _num_sec_grupo_subdepto = 0;
         private long _num_sec_grupo_items = 0;
         private long _num_sec_subdepto = 0;
-        private short _estado = 0;
+        private short _activo = 0;
         private string _fecharegistro = string.Empty;
         private string _usuarioregistro = string.Empty;
         private long _numsecusuarioregistro = 0;
@@ -57,10 +57,10 @@ namespace SistemaAlmacenesWeb
             set { _num_sec_subdepto= value; }
         }
 
-        public short Estado
+        public short Activo
         {
-            get { return _estado; }
-            set { _estado = value; }
+            get { return _activo; }
+            set { _activo = value; }
         }
 
         public string FechaRegistro
@@ -94,7 +94,7 @@ namespace SistemaAlmacenesWeb
             _num_sec_grupo_subdepto = 0;
             _num_sec_grupo_items = 0;
             _num_sec_subdepto= 0;
-            _estado = 0;
+            _activo = 0;
             _fecharegistro = string.Empty;
             _usuarioregistro = string.Empty;
             _numsecusuarioregistro = 0;
@@ -109,10 +109,11 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
-            strSql = "insert into alm_grupos_items_subdeptos (num_sec_grupo_subdepto, num_sec_subdepto, "+
-                      " num_sec_grupo_items, estado, num_sec_usuario_reg) values"+
-                      " (alm_grupo_item_sec.nextval,"+ _num_sec_subdepto+", "+ _num_sec_grupo_items + 
-                      ", " + _estado + ", " +usuario +" )";
+            _activo = 1;
+            strSql = "insert into alm_grupos_items_subdeptos (num_sec_grupo_subdepto, num_sec_subdepartamento, "+
+                      " num_sec_grupo, activo, num_sec_usuario_reg) values"+
+                      " (alm_grupos_items_sec.nextval,"+ _num_sec_subdepto+", "+ _num_sec_grupo_items + 
+                      ", " + _activo + ", " +usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -151,7 +152,8 @@ namespace SistemaAlmacenesWeb
         {
             bool blEncontrado = false;
             string strSql = string.Empty;
-            strSql = "select a.num_sec_usuario, a.num_sec_persona, a.usuario, a.login, a.activo";
+            strSql = "select * from alm_grupos_items_subdeptos where num_sec_grupo="+_num_sec_grupo_items
+                      +" and num_sec_subdepartamento="+_num_sec_subdepto;
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
@@ -164,8 +166,8 @@ namespace SistemaAlmacenesWeb
                 DataRow dr = dt.Rows[0];
                 _num_sec_grupo_subdepto = Convert.ToInt64(dr["num_sec_grupo_subdepto"].ToString());
                 _num_sec_grupo_items = Convert.ToInt64(dr["num_sec_grupo_items"].ToString());
-                _num_sec_subdepto = Convert.ToInt64(dr["num_sec_subdepto"].ToString());
-                _estado = Convert.ToInt16(dr["estado"].ToString());
+                _num_sec_subdepto = Convert.ToInt64(dr["num_sec_subdepartamento"].ToString());
+                _activo = Convert.ToInt16(dr["activo"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -176,7 +178,7 @@ namespace SistemaAlmacenesWeb
                 _num_sec_grupo_subdepto = 0;
                 _num_sec_grupo_items = 0;
                 _num_sec_subdepto = 0;
-                _estado = 0;
+                _activo = 0;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
                 _numsecusuarioregistro = 0;
@@ -187,10 +189,86 @@ namespace SistemaAlmacenesWeb
             return blEncontrado;
         }
 
+
         #endregion
 
         #region Procedimientos y Funciones Locales
-        
+
+        public DataTable DTSubdeptosGrupo()
+        {
+            string strSql = string.Empty;
+            strSql = strSql = "select g.num_sec_subdepartamento, s.nombre"+
+                        " from alm_grupos_items_subdeptos g, gen_subdepartamentos s"+
+                        " where g.num_sec_grupo=" + _num_sec_grupo_items+
+                        " and g.activo=1"+
+                        " and g.num_sec_subdepartamento=s.num_sec_subdepartamento";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            return dt;
+        }
+
+        public bool VolverInactivo()
+        {
+            bool blOperacionCorrecta = false;
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "update alm_grupos_items_subdeptos " +
+                    " set activo = 0" +
+                    " where num_sec_grupo=" + _num_sec_grupo_items +
+                    " and num_sec_subdepartamento=" + _num_sec_subdepto;
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.EjecutarSqlTrans();
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
+            return blOperacionCorrecta;
+        }
+
+        public bool VolverActivo()
+        {
+            bool blOperacionCorrecta = false;
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "update alm_grupos_items_subdeptos " +
+                    " set activo = 1" +
+                    " where num_sec_grupo=" + _num_sec_grupo_items +
+                    " and num_sec_subdepartamento=" + _num_sec_subdepto;
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.EjecutarSqlTrans();
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
+            return blOperacionCorrecta;
+        }
+
+        public bool VerExistente()
+        {
+            bool blOperacionCorrecta = false;
+            strSql = "select num_sec_alm_usuario" +
+                     " from alm_almacenes_usuarios" +
+                    " where num_sec_grupo=" + _num_sec_grupo_items +
+                    " and num_sec_subdepartamento=" + _num_sec_subdepto;
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                blOperacionCorrecta = true;
+            }
+            dt.Dispose();
+            return blOperacionCorrecta;
+        }
         #endregion
 
     }

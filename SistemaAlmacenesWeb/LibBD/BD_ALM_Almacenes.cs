@@ -100,7 +100,7 @@ namespace SistemaAlmacenesWeb
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
             strSql = "insert into alm_almacenes (num_sec_almacen, nombre, descripcion, num_sec_usuario_reg) values";
-            strSql += " (alm_almacenes_sec.nextval,"+ _nombre+","+_descripcion+","+usuario +" )";
+            strSql += " (alm_almacenes_sec.nextval,'"+ _nombre+"','"+_descripcion+"',"+usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -199,6 +199,17 @@ namespace SistemaAlmacenesWeb
                         "WHERE a.num_sec_almacen = b.num_sec_almacen " +
                             "AND b.num_sec_usuario = " + usuario  + " " +
                             "AND b.activo = 1 " +
+                        "ORDER BY a.nombre ASC";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
+
+        public DataTable dtListarTodosAlmacenes()
+        {
+            strSql = "SELECT DISTINCT a.num_sec_almacen, a.nombre FROM alm_almacenes a " +
                         "ORDER BY a.nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;

@@ -10,7 +10,7 @@
 namespace SistemaAlmacenesWeb.Forms {
     
     
-    public partial class ALM_GRU_AdministrarGrupos {
+    public partial class ALM_ALM_AdministrarAlmacenes {
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -40,40 +40,31 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Panel pnPrincipal;
         
         /// <summary>
-        /// lblGrupoItems control.
+        /// lblAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGrupoItems;
+        protected global::System.Web.UI.WebControls.Label lblAlmacen;
         
         /// <summary>
-        /// ddlGrupoItems control.
+        /// ddlAlmacenes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoItems;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAlmacenes;
         
         /// <summary>
-        /// btnCrearGrupo control.
+        /// btnCrearAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCrearGrupo;
-        
-        /// <summary>
-        /// btnEditarGrupo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditarGrupo;
+        protected global::System.Web.UI.WebControls.Button btnCrearAlmacen;
         
         /// <summary>
         /// btnAdmUsuariosAlm control.
@@ -85,202 +76,112 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Button btnAdmUsuariosAlm;
         
         /// <summary>
-        /// btnVolverMenu control.
+        /// pnCrearAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverMenu;
+        protected global::System.Web.UI.WebControls.Panel pnCrearAlmacen;
         
         /// <summary>
-        /// pnCrearGrupoItem control.
+        /// lblCrearAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnCrearGrupoItem;
+        protected global::System.Web.UI.WebControls.Label lblCrearAlmacen;
         
         /// <summary>
-        /// lblFormGrupoItem control.
+        /// lblNombreAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFormGrupoItem;
+        protected global::System.Web.UI.WebControls.Label lblNombreAlmacen;
         
         /// <summary>
-        /// lblNombreGrupoItem control.
+        /// rfvNombreCategoriaItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreGrupoItem;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreCategoriaItem;
         
         /// <summary>
-        /// rfvNombreGrupoItem control.
+        /// tbNombreAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombreGrupoItem;
+        protected global::System.Web.UI.WebControls.TextBox tbNombreAlmacen;
         
         /// <summary>
-        /// tbNombreGrupoItem control.
+        /// lblDescripcionAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNombreGrupoItem;
+        protected global::System.Web.UI.WebControls.Label lblDescripcionAlmacen;
         
         /// <summary>
-        /// idAlmacenItem control.
+        /// rfvDescripcionCatItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl idAlmacenItem;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescripcionCatItem;
         
         /// <summary>
-        /// lblAlmacenItem control.
+        /// tbDescripcionAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlmacenItem;
+        protected global::System.Web.UI.WebControls.TextBox tbDescripcionAlmacen;
         
         /// <summary>
-        /// ddlAlmacenItem control.
+        /// btnGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAlmacenItem;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
-        /// btnGuardarGrupoItem control.
+        /// btnCancelar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarGrupoItem;
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
         
         /// <summary>
-        /// btnCancelarGrupoItem control.
+        /// pnAdmUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarGrupoItem;
+        protected global::System.Web.UI.WebControls.Panel pnAdmUsuarios;
         
         /// <summary>
-        /// pnEditarGrupoItem control.
+        /// lblAdmUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnEditarGrupoItem;
-        
-        /// <summary>
-        /// lblEditarGrupoItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEditarGrupoItem;
-        
-        /// <summary>
-        /// lblEditarNombreGrupoItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEditarNombreGrupoItem;
-        
-        /// <summary>
-        /// rfvEditarNombreGrupoItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditarNombreGrupoItem;
-        
-        /// <summary>
-        /// tbEditarNombreGrupoItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEditarNombreGrupoItem;
-        
-        /// <summary>
-        /// lblEditarAlmacen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEditarAlmacen;
-        
-        /// <summary>
-        /// ddlEditarAlmacen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEditarAlmacen;
-        
-        /// <summary>
-        /// btnEditarGuardarGrupoItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditarGuardarGrupoItem;
-        
-        /// <summary>
-        /// btnEditarCancelarGrupoItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditarCancelarGrupoItem;
-        
-        /// <summary>
-        /// pnAdmDeptos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnAdmDeptos;
-        
-        /// <summary>
-        /// lblAdmDeptos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdmDeptos;
+        protected global::System.Web.UI.WebControls.Label lblAdmUsuarios;
         
         /// <summary>
         /// gvDatos1 control.
@@ -301,13 +202,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Panel pnbuscar;
         
         /// <summary>
-        /// lblsubdepto control.
+        /// lblusuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblsubdepto;
+        protected global::System.Web.UI.WebControls.Label lblusuario;
         
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -319,13 +220,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// tbsubdepartamento control.
+        /// tbusuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbsubdepartamento;
+        protected global::System.Web.UI.WebControls.TextBox tbusuario;
         
         /// <summary>
         /// btnBuscar control.
@@ -346,13 +247,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Panel pnsugeridos;
         
         /// <summary>
-        /// gvSubdeptos control.
+        /// gvUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSubdeptos;
+        protected global::System.Web.UI.WebControls.GridView gvUsuarios;
         
         /// <summary>
         /// btnAgregar control.

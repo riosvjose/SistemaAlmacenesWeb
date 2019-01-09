@@ -705,21 +705,21 @@ namespace SistemaAlmacenesWeb.Forms
             tbCant13.Text = "0";
             tbCant14.Text = "0";
             tbCant15.Text = "0";
-            ddlItem1.SelectedIndex = 0;
-            ddlItem2.SelectedIndex = 0;
-            ddlItem3.SelectedIndex = 0;
-            ddlItem4.SelectedIndex = 0;
-            ddlItem5.SelectedIndex = 0;
-            ddlItem6.SelectedIndex = 0;
-            ddlItem7.SelectedIndex = 0;
-            ddlItem8.SelectedIndex = 0;
-            ddlItem9.SelectedIndex = 0;
-            ddlItem10.SelectedIndex = 0;
-            ddlItem11.SelectedIndex = 0;
-            ddlItem12.SelectedIndex = 0;
-            ddlItem13.SelectedIndex = 0;
-            ddlItem14.SelectedIndex = 0;
-            ddlItem15.SelectedIndex = 0;
+            ddlGrupo1.SelectedIndex = 0;
+            ddlGrupo2.SelectedIndex = 0;
+            ddlGrupo3.SelectedIndex = 0;
+            ddlGrupo4.SelectedIndex = 0;
+            ddlGrupo5.SelectedIndex = 0;
+            ddlGrupo6.SelectedIndex = 0;
+            ddlGrupo7.SelectedIndex = 0;
+            ddlGrupo8.SelectedIndex = 0;
+            ddlGrupo9.SelectedIndex = 0;
+            ddlGrupo10.SelectedIndex = 0;
+            ddlGrupo11.SelectedIndex = 0;
+            ddlGrupo12.SelectedIndex = 0;
+            ddlGrupo13.SelectedIndex = 0;
+            ddlGrupo14.SelectedIndex = 0;
+            ddlGrupo15.SelectedIndex = 0;
             ddlSolicitante1.SelectedIndex = 0;
             ddlSolicitante2.SelectedIndex = 0;
             ddlSolicitante3.SelectedIndex = 0;
@@ -1041,8 +1041,9 @@ namespace SistemaAlmacenesWeb.Forms
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                 if (libMov.InsertarVarios(StrSqls, contSqls))
                 {
-                    lblMensajeOK.Text = "Pedido registrado exitosamente.";
+                    
                     pnMensajeOK.Visible = true;
+                    lblMensajeOK.Text = "Pedido registrado exitosamente.";
                     pnMensajeError.Visible = false;
                     VaciarBoxes();
                 }
