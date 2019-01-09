@@ -110,6 +110,7 @@
     <Content Include="Forms\ALM_ITEM_AdministrarItems.aspx" />
     <Content Include="Forms\ALM_MAR_AdministrarMarcas.aspx" />
     <Content Include="Forms\ALM_MED_AdministrarMedidas.aspx" />
+    <Content Include="Forms\ALM_PED_Entregar1.aspx" />
     <Content Include="Forms\ALM_PED_Entregar.aspx" />
     <Content Include="Forms\ALM_PROV_AdministrarProveedores.aspx" />
     <Content Include="Forms\ALM_REP_ConsumoDepartamento.aspx" />
@@ -244,6 +245,13 @@
     </Compile>
     <Compile Include="Forms\ALM_MED_AdministrarMedidas.aspx.designer.cs">
       <DependentUpon>ALM_MED_AdministrarMedidas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_PED_Entregar1.aspx.cs">
+      <DependentUpon>ALM_PED_Entregar1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_PED_Entregar1.aspx.designer.cs">
+      <DependentUpon>ALM_PED_Entregar1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ALM_PED_Entregar.aspx.cs">
       <DependentUpon>ALM_PED_Entregar.aspx</DependentUpon>

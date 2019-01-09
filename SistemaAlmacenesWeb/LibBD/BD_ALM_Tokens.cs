@@ -250,6 +250,24 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             return existe;
         }
+
+        public bool VerificarTokenDepto()
+        {
+            bool existe = false;
+            DataTable dt = new DataTable();
+            strSql = "SELECT * from alm_tokens where token ='" + _token + "'"+ " and num_sec_subdepartamento="+_num_sec_subdepartamento ;
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                existe = true;
+            }
+            dt.Dispose();
+            return existe;
+        }
         #endregion
 
     }
