@@ -63,6 +63,11 @@ namespace SistemaAlmacenesWeb.Forms
             Response.Redirect("ALM_PED_Entregar.aspx");
         }
 
+        protected void lnkbtnGenerarToken_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ALM_TOK_GenerarToken.aspx");
+        }
+
         protected void lnkbtnRegistarSalida_Click(object sender, EventArgs e)
         {
            Response.Redirect("ALM_SAL_Registrar.aspx");
@@ -87,6 +92,8 @@ namespace SistemaAlmacenesWeb.Forms
         {
             //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
         }
+
+        
 
         #endregion
     }

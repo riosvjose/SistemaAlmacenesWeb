@@ -5,11 +5,13 @@ using System.Web;
 using System.Data;
 using nsGEN_OracleBD;
 using nsGEN_VarSession;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios Villanueva; Fecha: 07/09/218
-    // Ultima modificación: Alvaro Mamani; Fecha: 07/01/2019
+    // Ultima modificación: Ignacio Rios Villanueva; Fecha: 09/01/2019
     // Descripción: Clase para obtener datos adicionales 
     public class BD_ProcAdicionales
     {
@@ -111,10 +113,10 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Públicos
-        //verifica avances no registrados por proyecto y los inserta en la tabla avances
-
+        //Indica si un usuario puede o no acceder a un objeto
         public bool AccesoObjetoUsuario(string nombre_objeto)
         {
+            
             bool existe = false;
             string struser = axVarSes.Lee<string>("UsuarioNumSec");
             DataTable dt = new DataTable();
@@ -162,6 +164,8 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             return menorigual;
         }
+
+       
         #endregion
     }
 }

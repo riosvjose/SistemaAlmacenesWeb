@@ -172,6 +172,7 @@ namespace SistemaAlmacenesWeb
             strSql = "select s.num_sec_subdepartamento, s.nombre"+
                      " from gen_subdepartamentos s, gen_departamentos d, gen_facultades f"+
                      " where s.nombre like '%"+cad+"%'"+
+                     " and s.activo=1"+
                      " and f.num_sec_subunidad="+subunidad +
                      " and s.tipo IN (1,2,3,4,5,7)" +
                      " and s.num_sec_departamento= d.num_sec_departamento"+
