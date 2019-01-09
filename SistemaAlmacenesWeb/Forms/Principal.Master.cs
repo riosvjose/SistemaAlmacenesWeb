@@ -85,12 +85,12 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void lnkbtnReporte2_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
+            //Response.Redirect("ALM_REP_Existencias.aspx");
         }
 
         protected void lnkbtnReporte3_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_PROY_RegistrarAvanceEvento.aspx");
+            Response.Redirect("ALM_REP_Existencias.aspx");
         }
 
         

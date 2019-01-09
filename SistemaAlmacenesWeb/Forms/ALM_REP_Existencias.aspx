@@ -52,10 +52,7 @@
                     <%--PIE DEL PANEL--%>
 			        <div class="panel-footer">
                         <div class="row">
-                            <div class="col-xs-10">                                
-                            </div>
-                            <div class="col-xs-2 text-right">
-                                <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
+                            <div class="col-xs-12">                                
                             </div>
                         </div>
 			        </div>

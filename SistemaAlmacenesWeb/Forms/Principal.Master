@@ -103,13 +103,13 @@
                         <div class="collapse" id="collapseReportes">
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnReporte1" runat="server" CausesValidation="false" OnClick="lnkbtnReporte1_Click">Consumo por departamentos</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnReporte1" runat="server" CausesValidation="false" OnClick="lnkbtnReporte1_Click">Cantidad de Items Entregados</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnReporte2" runat="server" CausesValidation="false" OnClick="lnkbtnReporte2_Click">Reporte 2</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnReporte2" runat="server" CausesValidation="false" OnClick="lnkbtnReporte2_Click">Consumo expresado en dinero</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnReporte3" runat="server" CausesValidation="false" OnClick="lnkbtnReporte3_Click">Reporte 3</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnReporte3" runat="server" CausesValidation="false" OnClick="lnkbtnReporte3_Click">Existencia de Items</asp:LinkButton>
                                 </li>
                             </ul>
                         </div>

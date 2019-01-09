@@ -31,6 +31,87 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.UpdateProgress UpdateProgress1;
         
         /// <summary>
+        /// pnPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnPrincipal;
+        
+        /// <summary>
+        /// lblFechaInicialCon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaInicialCon;
+        
+        /// <summary>
+        /// rfvFechaInicialCon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaInicialCon;
+        
+        /// <summary>
+        /// tbFechaInicialCon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFechaInicialCon;
+        
+        /// <summary>
+        /// lblFechaFinalCon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaFinalCon;
+        
+        /// <summary>
+        /// rfvFechaFinalCon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaFinalCon;
+        
+        /// <summary>
+        /// rfvFechaFinalConMayor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator rfvFechaFinalConMayor;
+        
+        /// <summary>
+        /// tbFechaFinalCon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFechaFinalCon;
+        
+        /// <summary>
+        /// btnGenerarReportes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGenerarReportes;
+        
+        /// <summary>
         /// pnRepConsumoDepto control.
         /// </summary>
         /// <remarks>
@@ -40,13 +121,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Panel pnRepConsumoDepto;
         
         /// <summary>
-        /// gvConsumoItem control.
+        /// gvConsumoDepto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvConsumoItem;
+        protected global::System.Web.UI.WebControls.GridView gvConsumoDepto;
         
         /// <summary>
         /// btnVolvelMenu control.
