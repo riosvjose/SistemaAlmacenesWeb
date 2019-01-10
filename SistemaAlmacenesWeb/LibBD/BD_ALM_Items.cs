@@ -525,8 +525,9 @@ namespace SistemaAlmacenesWeb
                               "AND d.num_sec_grupo = e.num_sec_grupo " +
                               "AND e.num_sec_almacen = f.num_sec_almacen " +
                               "AND f.num_sec_almacen = g.num_sec_almacen " +
-                              "AND g. num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
-                              "AND(b.tipo = 1 OR b.tipo = 2) " +
+                              "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
+                              "AND g.activo = 1 " + // Verificar que el permiso este vigente
+                              "AND (b.tipo = 1 OR b.tipo = 2) " +
                           "GROUP BY a.num_sec_item, c.nombre " +
                           "ORDER BY c.nombre";
             OracleBD.MostrarError = false;
