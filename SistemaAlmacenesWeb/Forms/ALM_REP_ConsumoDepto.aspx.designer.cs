@@ -10,7 +10,7 @@
 namespace SistemaAlmacenesWeb.Forms {
     
     
-    public partial class ALM_REP_ConsumoDepartamento {
+    public partial class ALM_REP_ConsumoDepto {
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -112,6 +112,15 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Button btnGenerarReportes;
         
         /// <summary>
+        /// btnVolverMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolverMenu;
+        
+        /// <summary>
         /// pnRepConsumoDepto control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnRepConsumoDepto;
+        
+        /// <summary>
+        /// lblRepConsumoDepto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRepConsumoDepto;
         
         /// <summary>
         /// gvConsumoDepto control.
@@ -130,13 +148,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.GridView gvConsumoDepto;
         
         /// <summary>
-        /// btnVolvelMenu control.
+        /// btnLimpiarReporte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolvelMenu;
+        protected global::System.Web.UI.WebControls.Button btnLimpiarReporte;
         
         /// <summary>
         /// pnMensajeError control.

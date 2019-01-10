@@ -112,6 +112,15 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Button btnGenerarReportes;
         
         /// <summary>
+        /// btnVolver Menu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolverMenu;
+        
+        /// <summary>
         /// pnRepConsumoItem control.
         /// </summary>
         /// <remarks>
@@ -139,13 +148,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.GridView gvItemsEntregados;
         
         /// <summary>
-        /// btnVolverMenu control.
+        /// btnLimpiarReporte control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverMenu;
+        protected global::System.Web.UI.WebControls.Button btnLimpiarReporte;
         
         /// <summary>
         /// pnRepConsumoDepto control.
@@ -175,13 +184,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.GridView gvConsumoDepto;
         
         /// <summary>
-        /// btnVolverMenu2 control.
+        /// btnVolverItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverMenu2;
+        protected global::System.Web.UI.WebControls.Button btnVolverItem;
         
         /// <summary>
         /// pnRepConsumoPersona control.
@@ -211,13 +220,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.GridView gvConsumoPersona;
         
         /// <summary>
-        /// btnVolverMenu3 control.
+        /// btnVolverDepto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverMenu3;
+        protected global::System.Web.UI.WebControls.Button btnVolverDepto;
         
         /// <summary>
         /// pnMensajeError control.

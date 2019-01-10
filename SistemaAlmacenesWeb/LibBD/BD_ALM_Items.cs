@@ -390,7 +390,7 @@ namespace SistemaAlmacenesWeb
             return OracleBD.DataTable;
         }
 
-        //Reporte del consumo de un item por departamento y verificando el permiso a que almacenes tiene una persona
+        //Reporte del consumo de un item por departamento
         public DataTable dtConsumoDepto(string fechaInicial, string fechaFinal)
         {
             DataTable dt = new DataTable();
@@ -413,7 +413,7 @@ namespace SistemaAlmacenesWeb
                             "AND b2.activo = 1 " +
                             "AND a.num_sec_item = " + item + " " + // Restringir el consumo de un item en especifico
                             "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
-                            "AND g.activo = 1 " + // Verificar que el usario tena acceso a un almacen
+                            "AND g.activo = 1 " + // Verificar que el permiso este vigente
                             "AND h.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
@@ -451,7 +451,7 @@ namespace SistemaAlmacenesWeb
                             "AND b2.activo = 1 " +
                             "AND a.num_sec_item = " + item.Trim() + " " + // PARAMETRO DEL ITEM
                             "AND g.num_sec_usuario = " + usuario.Trim() + " " + // Verificar a que almacen tiene permiso un usuario
-                            "AND g.activo = 1 " + // Verificar que el usario tena acceso a un almacen
+                            "AND g.activo = 1 " + // Verificar que el permiso este vigente
                             "AND h.num_sec_subdepartamento = " + deptoUsr + " "+ // Parametro del Departamento consumidor
                             "AND h.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
                             "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
@@ -529,6 +529,42 @@ namespace SistemaAlmacenesWeb
                               "AND(b.tipo = 1 OR b.tipo = 2) " +
                           "GROUP BY a.num_sec_item, c.nombre " +
                           "ORDER BY c.nombre";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt.Dispose();
+            return OracleBD.DataTable;
+        }
+
+        //Reporte del consumo de un item por departamento expresado en dinero
+        public DataTable dtCostoConsumoDepto(string fechaInicial, string fechaFinal)
+        {
+            DataTable dt = new DataTable();
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            string item = axVarSes.Lee<string>("NumSecItem");
+            strSql = "SELECT Sum (a.egreso) AS cantidad, Round (Sum(a.precio_unitario * a.egreso), 2) AS costo_total, h.num_sec_subdepartamento, i.nombre AS nombre_depto " +
+                        "FROM alm_movimientos a, alm_pasos b, alm_plantillas b2, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g, gen_subdeptos_personas h, gen_subdepartamentos i " +
+                        "WHERE a.num_sec_paso = b.num_sec_paso " +
+                            "AND a.num_sec_item = c.num_sec_item " +
+                            "AND b.num_sec_plantilla = b2.num_sec_plantilla " +
+                            "AND c.num_sec_cat = d.num_sec_cat " +
+                            "AND d.num_sec_grupo = e.num_sec_grupo " +
+                            "AND e.num_sec_almacen = f.num_sec_almacen " +
+                            "AND f.num_sec_almacen = g.num_sec_almacen " +
+                            "AND a.num_sec_persona = h.num_sec_persona " +
+                            "AND h.num_sec_subdepartamento = i.num_sec_subdepartamento " +
+                            "AND b.tipo = 2 " + // Tipo egreso
+                            "AND b2.tipo_ingreso = 0 " +
+                            "AND b2.tipo_egreso = 1 " + //Tipo de egreso por pedido
+                            "AND b2.activo = 1 " +
+                            "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
+                            "AND g.activo = 1 " + // Verificar que el permiso este vigente
+                            "AND h.num_sec_modulo = (SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo = 46 AND num_sec_subunidad = 11) " +
+                            "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') >= To_Char(To_Date('" + fechaInicial.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
+                            "AND To_Char(a.fecha_registro, 'dd/mm/yyyy') <= To_Char(To_Date('" + fechaFinal.Trim() + "', 'dd/mm/yyyy'), 'dd/mm/yyyy') " +
+                        "GROUP BY h.num_sec_subdepartamento, i.nombre " +
+                        "ORDER BY i.nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

@@ -35,24 +35,31 @@
 			        <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:GridView ID="gvExistenciaItem" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" >
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Nro." ItemStyle-Width=10%><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-                                        <asp:BoundField DataField="num_sec_item" HeaderText="id" />
-                                        <asp:BoundField DataField="item" HeaderText="Item" ItemStyle-Width=40% />
-                                        <asp:BoundField DataField="existencia" HeaderText="Cantidad" ItemStyle-Width=40% />
-                                    </Columns>
-                                    <PagerStyle CssClass="GridPager" Wrap="True" />
-                                    <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
-                                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-                                </asp:GridView>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <asp:GridView ID="gvExistenciaItem" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" >
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Nro." ><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+                                                <asp:BoundField DataField="num_sec_item" HeaderText="id" />
+                                                <asp:BoundField DataField="item" HeaderText="Item" />
+                                                <asp:BoundField DataField="existencia" HeaderText="Cantidad" />
+                                            </Columns>
+                                            <PagerStyle CssClass="GridPager" Wrap="True" />
+                                            <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
+                                            <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 			        </div>
                     <%--PIE DEL PANEL--%>
 			        <div class="panel-footer">
                         <div class="row">
-                            <div class="col-xs-12">                                
+                            <div class="col-xs-10">                                
+                            </div>
+                            <div class="col-xs-2 text-right">
+                                <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Menú Principal" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
                             </div>
                         </div>
 			        </div>
