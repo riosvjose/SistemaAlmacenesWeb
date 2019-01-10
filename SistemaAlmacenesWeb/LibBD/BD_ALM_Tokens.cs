@@ -142,11 +142,11 @@ namespace SistemaAlmacenesWeb
                 DataRow dr = dt.Rows[0];
                 _num_sec_token = Convert.ToInt64(dr["num_sec_token"].ToString());
                 _num_sec_subdepartamento = Convert.ToInt64(dr["num_sec_subdepartamento"].ToString());
-                _token = dr["_token"].ToString();
+                _token = dr["token"].ToString();
                 _activo = Convert.ToInt16(dr["activo"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
-                _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
+                _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_registro"].ToString());
             }
             dt.Dispose();
             if (!blEncontrado)
@@ -188,7 +188,7 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_almacenes. " + _mensaje;
+                _mensaje = "No fue posible actualizar el dato. Se encontró un error al actualizar en la tabla alm_tokens. " + _mensaje;
             return blOperacionCorrecta;
         }
 

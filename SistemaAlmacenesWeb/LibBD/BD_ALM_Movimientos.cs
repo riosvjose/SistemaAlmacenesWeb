@@ -482,6 +482,97 @@ namespace SistemaAlmacenesWeb
                     ", " + _ingreso + ", " + _egreso + ", " + usuario + " )";
             return strSql;
         }
+
+        public string CadInsertarTodo()
+        {
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "insert into alm_movimientos (num_sec_movimiento, num_sec_transaccion, num_sec_item" +
+                    ", num_sec_persona, num_sec_usuario, num_sec_paso, precio_unitario, ingreso, egreso" +
+                    ", num_sec_usuario_reg) values " +
+                    "("+_num_sec_movimiento+", " + _num_sec_transaccion + ", " + _num_sec_item + ", " +
+                    _num_sec_persona + ", " + _num_sec_usuario + ", " + _num_sec_paso + ", " + _precio_unitario +
+                    ", " + _ingreso + ", " + _egreso + ", " + usuario + " )";
+            return strSql;
+        }
+
+        public bool EntregarVariasSalidas(DataTable DTpedidos, string token)
+        {
+            bool blOperacionCorrecta = false;
+            string[] strSqls = new string[(DTpedidos.Rows.Count*4)];
+            int numsqls = 0;
+            for (int i=0;i< DTpedidos.Rows.Count;i++)
+            {
+                DataRow dr = DTpedidos.Rows[i];
+                blOperacionCorrecta = false;
+                long num_sec_transaccion = Convert.ToInt64(dr["num_sec_transaccion"].ToString());
+                int paso = Convert.ToInt32(dr["num_sec_paso"].ToString());
+                int cant = Convert.ToInt32(dr["cantidad"].ToString());
+                string strSql = string.Empty;
+                strSql = "select * " +
+                        "from alm_movimientos " +
+                        " where num_sec_transaccion = " + num_sec_transaccion.ToString().Trim() +
+                        " and num_sec_paso = " + paso;
+                DataTable dt = new DataTable();
+                OracleBD.MostrarError = false;
+                OracleBD.StrConexion = _strconexion;
+                OracleBD.Sql = strSql;
+                OracleBD.sqlDataTable();
+                dt = OracleBD.DataTable;
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow dr1 = dt.Rows[0];
+                    _num_sec_transaccion = Convert.ToInt64(dr1["num_sec_transaccion"].ToString());
+                    _num_sec_item = Convert.ToInt64(dr1["num_sec_item"].ToString());
+                    _num_sec_persona = Convert.ToInt64(dr1["num_sec_persona"].ToString());
+                    _num_sec_usuario = Convert.ToInt64(dr1["num_sec_usuario"].ToString());
+                    _num_sec_paso = Convert.ToInt64(dr1["num_sec_paso"].ToString());
+                    _precio_unitario = Convert.ToDouble(dr1["precio_unitario"].ToString());
+                    _egreso = Convert.ToInt64(dr1["ingreso"].ToString());  //se invierten ingreso y egreso para anular las cantidades
+                    _ingreso = Convert.ToInt64(dr1["egreso"].ToString());
+                    blOperacionCorrecta = true;
+                }
+                if (blOperacionCorrecta)
+                {
+                    strSqls[numsqls] = CadInsertar();
+                    numsqls++;
+                    _num_sec_persona = Convert.ToInt64(axVarSes.Lee<string>("UsuarioPersonaNumSec"));
+                    _num_sec_usuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                    libpasos = new BD_ALM_Pasos();
+                    libpasos.StrConexion = _strconexion;
+                    libpasos.NumSecPaso = _num_sec_paso;
+                    _num_sec_paso = libpasos.ObtenerPasoSgte();
+                    _num_sec_movimiento = ObtenerNSMov();
+                    _egreso = cant;
+                    _ingreso = 0;
+                    strSqls[numsqls] = CadInsertarTodo();
+                    numsqls++;
+                    ////// insertar en alm_entregas
+                    BD_ALM_Entregas libEntregas = new BD_ALM_Entregas();
+                    BD_ALM_Tokens libtokens = new BD_ALM_Tokens();
+                    libEntregas.StrConexion = _strconexion;
+                    libEntregas.NumSecMovimiento = _num_sec_movimiento;
+                    libEntregas.NumSecUsuario= Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                    libEntregas.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("NumSecUsuariosSolicitante"));
+                    libtokens.StrConexion = StrConexion;
+                    libtokens.Token = axVarSes.Lee<string>("TokenSolicitante");
+                    libtokens.Ver();
+                    libEntregas.NumSecToken = libtokens.NumSecToken;
+                    strSqls[numsqls] = libEntregas.CadenaInsertar();
+                    numsqls++;
+                    
+                }
+               
+            }
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.ListaSqls = strSqls;
+            OracleBD.NumSqls = numsqls;
+            OracleBD.EjecutarSqlsTrans();
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible insertar los datos. Se encontró un error al insertar en la tabla alm_movimientos. " + _mensaje;
+            return blOperacionCorrecta;
+        }
         #endregion
     }
 }

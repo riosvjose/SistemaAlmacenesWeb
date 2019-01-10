@@ -32,6 +32,7 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Almacenes libAlm = new BD_ALM_Almacenes();
         BD_ALM_Plantillas libPlant = new BD_ALM_Plantillas();
         BD_ALM_Pasos_Subdepto_usu libPasoUsu = new BD_ALM_Pasos_Subdepto_usu();
+        BD_ALM_Tokens libtoken = new BD_ALM_Tokens();
         #endregion
 
         #region Variable globales
@@ -70,7 +71,7 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 int pasoaux = auxpasos[i];
                 int[] auxdeptos = libPasoUsu.VerDeptosPasoUsuario(pasoaux);
-                for(int j=0; j<auxdeptos.Length;i++)
+                for(int j=0; j<auxdeptos.Length;j++)
                 {
                     if (auxdeptos[j].ToString().Equals(depto))
                     {
@@ -80,9 +81,11 @@ namespace SistemaAlmacenesWeb.Forms
                         libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                         DataTable dtAux = new DataTable();
                         dtAux = libMov.DTTransaccionesPasoAnterior(pasoaux, aux);
+                        dtPedidos = new DataTable();
+                        dtPedidos.Merge(dtAux);
                         gvDatos1.Visible = true;
                         gvDatos1.Columns[2].Visible = true;
-                        gvDatos1.DataSource = dtAux;
+                        gvDatos1.DataSource = dtPedidos;
                         gvDatos1.DataBind();
                         gvDatos1.Columns[2].Visible = false;
                     }
@@ -118,22 +121,6 @@ namespace SistemaAlmacenesWeb.Forms
         protected void gvDatos1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int indice = Convert.ToInt32(e.CommandArgument);
-            if (e.CommandName == "entregar")
-            {
-                libMov = new BD_ALM_Movimientos();
-                libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.autorizarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[5].Text)))
-                {
-                    pnMensajeError.Visible = false;
-                    Response.Redirect("ALM_PED_Entregar.aspx");
-                }
-                else
-                {
-                    pnMensajeError.Visible = true;
-                    lblMensajeOK.Text = "No se pudo entregar el pedido Nro. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text)+". "+libMov.Mensaje; ;
-                    pnMensajeOK.Visible = false;
-                }
-            }
             if (e.CommandName == "eliminar")
             {
                 libMov = new BD_ALM_Movimientos();
@@ -151,6 +138,48 @@ namespace SistemaAlmacenesWeb.Forms
                 }
             }
         }
+        protected void btnEntregar_Click(object sender, EventArgs e)
+        {
+            libPasoUsu = new BD_ALM_Pasos_Subdepto_usu();
+            libPasoUsu.StrConexion = axVarSes.Lee<string>("strConexion");
+            int[] auxpasos = libPasoUsu.VerPasosSalidaUsuario(1); //1 define dominio como pedido
+            DataTable dtAux = new DataTable();
+            for (int i = 0; i < auxpasos.Length; i++)
+            {
+                int pasoaux = auxpasos[i];
+                int[] auxdeptos = libPasoUsu.VerDeptosPasoUsuario(pasoaux);
+                for (int j = 0; j < auxdeptos.Length; j++)
+                {
+                    if (auxdeptos[j].ToString().Equals(axVarSes.Lee<string>("DeptoSolicitante")))
+                    {
+                        int[] aux = new int[1];
+                        aux[0] = auxdeptos[j];
+                        libMov = new BD_ALM_Movimientos();
+                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                        dtAux = libMov.DTTransaccionesPasoAnterior(pasoaux, aux);
+                    }
+                }
+            }
+            libMov = new BD_ALM_Movimientos();
+            libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+            if (libMov.EntregarVariasSalidas(dtAux, tbToken.Text))
+            {
+                pnMensajeError.Visible = false;
+                libtoken.StrConexion = axVarSes.Lee<string>("strConexion");
+                libtoken.NumSecSubdepartamento= Convert.ToInt64(axVarSes.Lee<string>("DeptoSolicitante"));
+                libtoken.AnularTokenDepto();
+                axVarSes.Escribe("DeptoSolicitante", string.Empty);
+                axVarSes.Escribe("TokenSolicitante", string.Empty);
+                axVarSes.Escribe("NumSecUsuariosSolicitante", string.Empty);
+                Response.Redirect("ALM_PED_Entregar.aspx");
+            }
+            else
+            {
+                pnMensajeError.Visible = true;
+                lblMensajeError.Text = "No se pudo registrar la entrega de pedidos. " + libMov.Mensaje; ;
+                pnMensajeOK.Visible = false;
+            }
+        }
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             AutenticacionBD.Login = tbUsuario.Text.Trim();
@@ -162,7 +191,7 @@ namespace SistemaAlmacenesWeb.Forms
             BD_GEN_Subdeptos_Personas libSubdeptoPersona = new BD_GEN_Subdeptos_Personas();
             libSubdeptoPersona.StrConexion = axVarSes.Lee<string>("StrConexion");
             libSubdeptoPersona.Ver();
-            axVarSes.Escribe("strDeptoUsuario1", libSubdeptoPersona.NumSecSubdepto.ToString());
+            axVarSes.Escribe("NumSecUsuariosSolicitante", AutenticacionBD.NumSec.ToString());
             if (AutenticacionBD.Autenticado)
             {
                 pnMensajeError.Visible = false;
@@ -174,6 +203,8 @@ namespace SistemaAlmacenesWeb.Forms
                 {
                     pnPedidos.Visible = true;
                     pnPrincipal.Visible = false;
+                    axVarSes.Escribe("DeptoSolicitante",libSubdeptoPersona.NumSecSubdepto.ToString());
+                    axVarSes.Escribe("TokenSolicitante", tbToken.Text);
                     MostrarPedidos(libSubdeptoPersona.NumSecSubdepto.ToString());
                 }
                 else

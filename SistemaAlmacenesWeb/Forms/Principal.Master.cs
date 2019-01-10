@@ -60,7 +60,7 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void lnkbtnEntregarPedido_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ALM_PED_Entregar.aspx");
+            Response.Redirect("ALM_PED_Entregar1.aspx");
         }
 
         protected void lnkbtnGenerarToken_Click(object sender, EventArgs e)

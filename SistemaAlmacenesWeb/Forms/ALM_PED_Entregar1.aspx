@@ -53,7 +53,9 @@
                          <div class="row">
                             <div class="col-xs-12">
                                 <div class="row">
-                                        <div class="col-xs-12">
+                                    <div class="col-xs-4" >
+                                        </div>
+                                        <div class="col-xs-4" >
                                                 <div class="form-group">
                                                     <label>Usuario</label>
                                                     <div class="input-group">
@@ -118,9 +120,6 @@
                                                             <asp:BoundField DataField="paso" HeaderText="Estado" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
                                                             <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="entregar" Text="Entregar" >
-                                                                 <ControlStyle CssClass="btn btn-sm btn-success "/>
-                                                            </asp:ButtonField>
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="eliminar" Text="Eliminar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-danger "/>
                                                             </asp:ButtonField>
@@ -138,6 +137,7 @@
                     </div>
                     <%--PIE DEL PANEL--%>
 		        </div>
+                <asp:Button ID="btnEntregar" CssClass="btn btn-success" runat="server" Text="Entregar" OnClick="btnEntregar_Click" />
             </asp:Panel>
            <%--Panel mensajes error--%>
             <div class="row">
