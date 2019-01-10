@@ -19,13 +19,25 @@ namespace SistemaAlmacenesWeb.Forms
         #endregion
         #region "Clase de tablas de la Base de Datos"
         BD_ALM_Tokens libtokens = new BD_ALM_Tokens();
-
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
         #endregion
         #region "Funciones y procedimientos"
 
         private void CargarDatosIniciales(string strCon)
         {
-            
+            if (!string.IsNullOrEmpty(strCon.Trim()))
+            {
+                libproc.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (!libproc.AccesoObjetoUsuario("ALM_TOK_Generar_Token"))
+                {
+                    axVarSes.Escribe("MostrarMensajeError", "1");
+                    Response.Redirect("Index.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
