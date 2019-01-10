@@ -74,7 +74,7 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ALM_REP_Existencias.aspx");
+            Response.Redirect("Index.aspx");
         }
         #endregion
     }
