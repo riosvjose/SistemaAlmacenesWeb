@@ -44,7 +44,7 @@ namespace SistemaAlmacenesWeb.Forms
         private void CargarDatosIniciales(string strCon)
         {
             libproc.StrConexion = axVarSes.Lee<string>("strConexion");
-            if ((strCon != "") && (strCon != string.Empty))
+            if (!string.IsNullOrEmpty(strCon.Trim()))
             {
                 if (libproc.AccesoObjetoUsuario("ALM_PED_Entregar"))
                 {
