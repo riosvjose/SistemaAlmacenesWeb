@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using nsGEN_VarSession;
 using nsGEN_Java;
 using nsGEN_WebForms;
+using System.Data;
 
 namespace SistemaAlmacenesWeb.Forms
 {
@@ -17,8 +18,9 @@ namespace SistemaAlmacenesWeb.Forms
         GEN_VarSession axVarSes = new GEN_VarSession();
         GEN_Java libJava = new GEN_Java();
         GEN_WebForms webForms = new GEN_WebForms();
-
+        BD_ProcAdicionales libproc = new BD_ProcAdicionales();
         #endregion
+
         #region "Procedimientos y Funciones Locales"
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,6 +29,17 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 Response.Redirect("~/Default.aspx");
             }
+            else
+            {
+                libproc.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (libproc.AccesoObjetoUsuario("ALM_GRU_AdministrarGrupos"))
+                    sbAdminGrupos.Visible = true;
+                if (libproc.AccesoObjetoUsuario("ALM_CAT_AdministrarCategorias"))
+                    sbAdminCategorias.Visible = true;
+                if (libproc.AccesoObjetoUsuario("ALM_ITEM_AdministrarItems"))
+                    sbAdminItems.Visible = true;
+            }
+
             if (Request.UserAgent.IndexOf("AppleWebKit") > 0)
             {
                 Request.Browser.Adapters.Clear();

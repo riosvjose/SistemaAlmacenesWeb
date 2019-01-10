@@ -85,6 +85,33 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAutorizarSalida;
         
         /// <summary>
+        /// sbAdminGrupos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbAdminGrupos;
+        
+        /// <summary>
+        /// sbAdminCategorias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbAdminCategorias;
+        
+        /// <summary>
+        /// sbAdminItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbAdminItems;
+        
+        /// <summary>
         /// lnkbtnReporte1 control.
         /// </summary>
         /// <remarks>

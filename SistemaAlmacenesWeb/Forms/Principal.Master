@@ -79,22 +79,19 @@
                         </div>
                     </li>
                     <li>
-                        <a href="ALM_MAR_AdministrarMarcas.aspx"><i class="fa fa-shirtsinbulk" ></i> Marcas</a>
-                    </li>
-                    <li>
-                        <a href="ALM_MED_AdministrarMedidas.aspx"><i class="fa fa-balance-scale" ></i> Medidas</a>
+                        <a href="ALM_MED_AdministrarMedidas.aspx" ><i class="fa fa-balance-scale" ></i> Medidas</a>
                     </li>
                     <li>
                         <a href="ALM_PROV_AdministrarProveedores.aspx"><i class="fa fa-handshake-o" ></i> Proveedores</a>
                     </li>
                     <li>
-                        <a href="ALM_GRU_AdministrarGrupos.aspx"><i class="fa fa-object-group" ></i> Grupos</a>
+                        <a id="sbAdminGrupos" runat="server" href="ALM_GRU_AdministrarGrupos.aspx" visible="false" ><i class="fa fa-object-group" ></i> Grupos</a>
                     </li>
                     <li>
-                        <a href="ALM_CAT_AdministrarCategorias.aspx"><i class="fa fa-crop" ></i> Categorías</a>
+                        <a id="sbAdminCategorias" runat="server" href="ALM_CAT_AdministrarCategorias.aspx" visible="false" ><i class="fa fa-crop" ></i> Categorías</a>
                     </li>
                     <li>
-                        <a href="ALM_ITEM_AdministrarItems.aspx"><i class="fa fa-pencil" ></i> Items</a>
+                        <a id="sbAdminItems" runat="server" href="ALM_ITEM_AdministrarItems.aspx" visible="false" ><i class="fa fa-pencil" ></i> Items</a>
                     </li>
                     <li>
                         <a class="" role="link" data-toggle="collapse" href="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">
