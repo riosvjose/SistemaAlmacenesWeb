@@ -108,7 +108,6 @@
     <Content Include="Forms\ALM_CAT_AdministrarCategorias.aspx" />
     <Content Include="Forms\ALM_GRU_AdministrarGrupos.aspx" />
     <Content Include="Forms\ALM_ITEM_AdministrarItems.aspx" />
-    <Content Include="Forms\ALM_MAR_AdministrarMarcas.aspx" />
     <Content Include="Forms\ALM_MED_AdministrarMedidas.aspx" />
     <Content Include="Forms\ALM_PED_Entregar1.aspx" />
     <Content Include="Forms\ALM_PED_Entregar.aspx" />
@@ -232,13 +231,6 @@
     </Compile>
     <Compile Include="Forms\ALM_ITEM_AdministrarItems.aspx.designer.cs">
       <DependentUpon>ALM_ITEM_AdministrarItems.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ALM_MAR_AdministrarMarcas.aspx.cs">
-      <DependentUpon>ALM_MAR_AdministrarMarcas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\ALM_MAR_AdministrarMarcas.aspx.designer.cs">
-      <DependentUpon>ALM_MAR_AdministrarMarcas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ALM_MED_AdministrarMedidas.aspx.cs">
       <DependentUpon>ALM_MED_AdministrarMedidas.aspx</DependentUpon>
@@ -379,7 +371,6 @@
     <Compile Include="LibBD\BD_SAM_Parametros_Modulos.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Personas.cs" />
     <Compile Include="LibBD\BD_SAM_Parametros_Semestres.cs" />
-    <Compile Include="LibBD\BD_ALM_Marcas.cs" />
     <Compile Include="LibBD\BD_SAM_Usuarios.cs" />
     <Compile Include="LibBD\BD_SAM_Usuarios_Subdeptos.cs" />
     <Compile Include="LibBD\BD_Personas.cs" />

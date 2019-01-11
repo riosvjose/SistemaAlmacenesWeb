@@ -37,52 +37,52 @@
                         <a href="Index.aspx"><i class="fa fa-home fa-fw" ></i>Inicio</a>
                     </li>
                     <li>
-                        <a href="ALM_ALM_AdministrarAlmacenes.aspx"><i class="fa fa-industry fa-fw" ></i>Almacenes</a>
+                        <a id="sbAdminAlmacenes" runat="server" href="ALM_ALM_AdministrarAlmacenes.aspx" visible="false" ><i class="fa fa-industry fa-fw" ></i>Almacenes</a>
                     </li>
                     <li>
-                        <a href="ALM_RegistrarIngreso.aspx"><i class="fa fa-truck" ></i> Registrar ingreso</a>
+                        <a id="sbRegIngreso" runat="server"  href="ALM_RegistrarIngreso.aspx" visible="false" ><i class="fa fa-truck" ></i> Registrar ingreso</a>
                     </li>
                     <li>
-                        <a class="" role="link" data-toggle="collapse" href="#collapsePedidos" aria-expanded="false" aria-controls="collapsePedidos">
+                        <a id="sbPedidos" runat="server" class="" role="link" data-toggle="collapse" href="#collapsePedidos" aria-expanded="false" aria-controls="collapsePedidos" visible="false" >
                             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Pedidos
                         </a>
                         <div class="collapse" id="collapsePedidos">
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnRealizarPedido" runat="server" CausesValidation="false" OnClick="lnkbtnRealizarPedido_Click">Realizar pedido</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnRealizarPedido" runat="server" CausesValidation="false" OnClick="lnkbtnRealizarPedido_Click" Visible="false" >Realizar pedido</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnAutorizarPedido" runat="server" CausesValidation="false" OnClick="lnkbtnAutorizarPedido_Click">Autorizar pedido</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnAutorizarPedido" runat="server" CausesValidation="false" OnClick="lnkbtnAutorizarPedido_Click" Visible="false" >Autorizar pedido</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnEntregarPedido" runat="server" CausesValidation="false" OnClick="lnkbtnEntregarPedido_Click">Entregar pedido</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnEntregarPedido" runat="server" CausesValidation="false" OnClick="lnkbtnEntregarPedido_Click" Visible="false" >Entregar pedido</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnGenerarToken" runat="server" CausesValidation="false" OnClick="lnkbtnGenerarToken_Click">Generar token</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnGenerarToken" runat="server" CausesValidation="false" OnClick="lnkbtnGenerarToken_Click" Visible="false" >Generar token</asp:LinkButton>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li>
-                        <a class="" role="link" data-toggle="collapse" href="#collapseSalidas" aria-expanded="false" aria-controls="collapseSalidas">
+                        <a id="sbSalidas" runat="server" class="" role="link" data-toggle="collapse" href="#collapseSalidas" aria-expanded="false" aria-controls="collapseSalidas" visible="false" >
                             <i class="fa fa-sign-out" aria-hidden="true"></i> Salidas
                         </a>
                         <div class="collapse" id="collapseSalidas">
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnRegistarSalida" runat="server" CausesValidation="false" OnClick="lnkbtnRegistarSalida_Click">Registrar salida</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnRegistarSalida" runat="server" CausesValidation="false" OnClick="lnkbtnRegistarSalida_Click" Visible="false" >Registrar salida</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnAutorizarSalida" runat="server" CausesValidation="false" OnClick="lnkbtnAutorizarSalida_Click">Autorizar salida</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnAutorizarSalida" runat="server" CausesValidation="false" OnClick="lnkbtnAutorizarSalida_Click" Visible="false" >Autorizar salida</asp:LinkButton>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li>
-                        <a href="ALM_MED_AdministrarMedidas.aspx" ><i class="fa fa-balance-scale" ></i> Medidas</a>
+                        <a id="sbAdminMedidas" runat="server" href="ALM_MED_AdministrarMedidas.aspx" visible="false" ><i class="fa fa-balance-scale" ></i> Medidas</a>
                     </li>
                     <li>
-                        <a href="ALM_PROV_AdministrarProveedores.aspx"><i class="fa fa-handshake-o" ></i> Proveedores</a>
+                        <a id="sbAdminProveedores" runat="server" href="ALM_PROV_AdministrarProveedores.aspx" visible="false" ><i class="fa fa-handshake-o" ></i> Proveedores</a>
                     </li>
                     <li>
                         <a id="sbAdminGrupos" runat="server" href="ALM_GRU_AdministrarGrupos.aspx" visible="false" ><i class="fa fa-object-group" ></i> Grupos</a>
@@ -94,19 +94,19 @@
                         <a id="sbAdminItems" runat="server" href="ALM_ITEM_AdministrarItems.aspx" visible="false" ><i class="fa fa-pencil" ></i> Items</a>
                     </li>
                     <li>
-                        <a class="" role="link" data-toggle="collapse" href="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">
+                        <a id="sbReportes" runat="server" class="" role="link" data-toggle="collapse" href="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes" visible="false" >
                             <i class="fa fa-tasks" aria-hidden="true"></i> Reportes
                         </a>
                         <div class="collapse" id="collapseReportes">
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnReporte1" runat="server" CausesValidation="false" OnClick="lnkbtnReporte1_Click">Cantidad de Items Entregados</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnReporte1" runat="server" CausesValidation="false" OnClick="lnkbtnReporte1_Click" Visible="false" >Cantidad de Items Entregados</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnReporte2" runat="server" CausesValidation="false" OnClick="lnkbtnReporte2_Click">Consumo expresado en dinero</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnReporte2" runat="server" CausesValidation="false" OnClick="lnkbtnReporte2_Click" Visible="false" >Consumo expresado en dinero</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnReporte3" runat="server" CausesValidation="false" OnClick="lnkbtnReporte3_Click">Existencia de Items</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnReporte3" runat="server" CausesValidation="false" OnClick="lnkbtnReporte3_Click" Visible="false" >Existencia de Items</asp:LinkButton>
                                 </li>
                             </ul>
                         </div>

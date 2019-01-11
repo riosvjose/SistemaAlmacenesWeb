@@ -31,6 +31,33 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// sbAdminAlmacenes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbAdminAlmacenes;
+        
+        /// <summary>
+        /// sbRegIngreso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbRegIngreso;
+        
+        /// <summary>
+        /// sbPedidos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbPedidos;
+        
+        /// <summary>
         /// lnkbtnRealizarPedido control.
         /// </summary>
         /// <remarks>
@@ -67,6 +94,15 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnGenerarToken;
         
         /// <summary>
+        /// sbSalidas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbSalidas;
+        
+        /// <summary>
         /// lnkbtnRegistarSalida control.
         /// </summary>
         /// <remarks>
@@ -83,6 +119,24 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAutorizarSalida;
+        
+        /// <summary>
+        /// sbAdminMedidas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbAdminMedidas;
+        
+        /// <summary>
+        /// sbAdminProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbAdminProveedores;
         
         /// <summary>
         /// sbAdminGrupos control.
@@ -110,6 +164,15 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor sbAdminItems;
+        
+        /// <summary>
+        /// sbReportes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor sbReportes;
         
         /// <summary>
         /// lnkbtnReporte1 control.
