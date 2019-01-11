@@ -140,7 +140,7 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnEntregar_Click(object sender, EventArgs e)
         {
-            if (gvDatos1.Rows.Count==0)
+            if (gvDatos1.Rows.Count>0)
             {
                 libPasoUsu = new BD_ALM_Pasos_Subdepto_usu();
                 libPasoUsu.StrConexion = axVarSes.Lee<string>("strConexion");
