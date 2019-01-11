@@ -140,43 +140,52 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnEntregar_Click(object sender, EventArgs e)
         {
-            libPasoUsu = new BD_ALM_Pasos_Subdepto_usu();
-            libPasoUsu.StrConexion = axVarSes.Lee<string>("strConexion");
-            int[] auxpasos = libPasoUsu.VerPasosSalidaUsuario(1); //1 define dominio como pedido
-            DataTable dtAux = new DataTable();
-            for (int i = 0; i < auxpasos.Length; i++)
+            if (gvDatos1.Rows.Count==0)
             {
-                int pasoaux = auxpasos[i];
-                int[] auxdeptos = libPasoUsu.VerDeptosPasoUsuario(pasoaux);
-                for (int j = 0; j < auxdeptos.Length; j++)
+                libPasoUsu = new BD_ALM_Pasos_Subdepto_usu();
+                libPasoUsu.StrConexion = axVarSes.Lee<string>("strConexion");
+                int[] auxpasos = libPasoUsu.VerPasosSalidaUsuario(1); //1 define dominio como pedido
+                DataTable dtAux = new DataTable();
+                for (int i = 0; i < auxpasos.Length; i++)
                 {
-                    if (auxdeptos[j].ToString().Equals(axVarSes.Lee<string>("DeptoSolicitante")))
+                    int pasoaux = auxpasos[i];
+                    int[] auxdeptos = libPasoUsu.VerDeptosPasoUsuario(pasoaux);
+                    for (int j = 0; j < auxdeptos.Length; j++)
                     {
-                        int[] aux = new int[1];
-                        aux[0] = auxdeptos[j];
-                        libMov = new BD_ALM_Movimientos();
-                        libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                        dtAux = libMov.DTTransaccionesPasoAnterior(pasoaux, aux);
+                        if (auxdeptos[j].ToString().Equals(axVarSes.Lee<string>("DeptoSolicitante")))
+                        {
+                            int[] aux = new int[1];
+                            aux[0] = auxdeptos[j];
+                            libMov = new BD_ALM_Movimientos();
+                            libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                            dtAux = libMov.DTTransaccionesPasoAnterior(pasoaux, aux);
+                        }
                     }
                 }
-            }
-            libMov = new BD_ALM_Movimientos();
-            libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-            if (libMov.EntregarVariasSalidas(dtAux, tbToken.Text))
-            {
-                pnMensajeError.Visible = false;
-                libtoken.StrConexion = axVarSes.Lee<string>("strConexion");
-                libtoken.NumSecSubdepartamento= Convert.ToInt64(axVarSes.Lee<string>("DeptoSolicitante"));
-                libtoken.AnularTokenDepto();
-                axVarSes.Escribe("DeptoSolicitante", string.Empty);
-                axVarSes.Escribe("TokenSolicitante", string.Empty);
-                axVarSes.Escribe("NumSecUsuariosSolicitante", string.Empty);
-                Response.Redirect("ALM_PED_Entregar.aspx");
+                libMov = new BD_ALM_Movimientos();
+                libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                if (libMov.EntregarVariasSalidas(dtAux, tbToken.Text))
+                {
+                    pnMensajeError.Visible = false;
+                    libtoken.StrConexion = axVarSes.Lee<string>("strConexion");
+                    libtoken.NumSecSubdepartamento = Convert.ToInt64(axVarSes.Lee<string>("DeptoSolicitante"));
+                    libtoken.AnularTokenDepto();
+                    axVarSes.Escribe("DeptoSolicitante", string.Empty);
+                    axVarSes.Escribe("TokenSolicitante", string.Empty);
+                    axVarSes.Escribe("NumSecUsuariosSolicitante", string.Empty);
+                    Response.Redirect("ALM_PED_Entregar.aspx");
+                }
+                else
+                {
+                    pnMensajeError.Visible = true;
+                    lblMensajeError.Text = "No se pudo registrar la entrega de pedidos. " + libMov.Mensaje; ;
+                    pnMensajeOK.Visible = false;
+                }
             }
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "No se pudo registrar la entrega de pedidos. " + libMov.Mensaje; ;
+                lblMensajeError.Text = "No existen items para entregar. " ;
                 pnMensajeOK.Visible = false;
             }
         }
