@@ -358,14 +358,16 @@ namespace SistemaAlmacenesWeb
 
         public DataTable VerUsuariosPaso() 
         {
-            string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
+            string modulo = (axVarSes.Lee<string>("NumModulo")).ToString();
+            string subunidad = (axVarSes.Lee<string>("SubUnidad")).ToString();
             string strSql = string.Empty;
-            strSql = "select p.nombre, pu.num_sec_usuario, u.num_sec_persona, u.login, s.nombre, s.num_sec_subdepartamento" +
+            strSql = "select p.num_sec_paso, p.nombre as nombre_paso, pu.num_sec_usuario, u.num_sec_persona, u.login, s.nombre as nombre_subdepto, s.num_sec_subdepartamento" +
                     " from alm_paso_subdepto_usu pu, alm_pasos p, sam_usuarios u, gen_subdeptos_personas sp, gen_subdepartamentos s" +
                     " where pu.num_sec_paso =" + _num_sec_paso +
                     " and pu.num_sec_usuario = u.num_sec_usuario " +
                     " and p.num_sec_paso=pu.num_sec_paso" +
-                    " and pu.num_sec_persona=sp.num_sec_persona"+
+                    " AND sp.num_sec_modulo=(SELECT num_sec_modulo FROM sam_modulos WHERE numero_modulo="+modulo+" and num_sec_subunidad="+subunidad+") "+
+                    " and u.num_sec_persona=sp.num_sec_persona" +
                     " and sp.num_sec_subdepartamento=s.num_sec_subdepartamento"+
                     " and pu.activo=1 " +
                     " order by s.nombre, u.login asc";

@@ -85,13 +85,13 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.RadioButton rbSalidas;
         
         /// <summary>
-        /// pnTipoIngreso control.
+        /// pnPlantilla control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnTipoIngreso;
+        protected global::System.Web.UI.WebControls.Panel pnPlantilla;
         
         /// <summary>
         /// lblPlantilla control.
@@ -245,6 +245,51 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvUsuarios;
+        
+        /// <summary>
+        /// lblDepto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDepto;
+        
+        /// <summary>
+        /// rbTodosDeptos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbTodosDeptos;
+        
+        /// <summary>
+        /// rbUnDepto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbUnDepto;
+        
+        /// <summary>
+        /// pnDeptos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnDeptos;
+        
+        /// <summary>
+        /// ddlDeptos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeptos;
         
         /// <summary>
         /// btnAgregar control.

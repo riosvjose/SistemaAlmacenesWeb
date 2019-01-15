@@ -52,8 +52,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                    <asp:Panel ID="pnTipoIngreso" runat="server" Visible="false">
-                                        <strong><asp:Label ID="lblPlantilla" runat="server" Text="Tipo ingreso:" Visible="true"></asp:Label></strong>
+                                    <asp:Panel ID="pnPlantilla" runat="server" Visible="false">
+                                        <strong><asp:Label ID="lblPlantilla" runat="server" Text="Plantilla:" Visible="true"></asp:Label></strong>
                                         <asp:DropDownList ID="ddlPlantilla"  AutoPostBack="true" runat="server" CssClass="form-control mr-3" OnSelectedIndexChanged="ddlPlantilla_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     </asp:Panel>
@@ -100,9 +100,11 @@
                                                 <div class="form-group">
                                                     <asp:GridView ID="gvDatos1" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" OnRowCommand="gvDatos1_RowCommand" >
                                                         <Columns>
-                                                            <asp:BoundField DataField="num_sec_usuario" HeaderText="ns"   Visible="false"/>
-                                                            <asp:BoundField DataField="usuario" HeaderText="Usuario" />
-                                                            <asp:BoundField DataField="persona" HeaderText="Persona" />
+                                                            <asp:BoundField DataField="num_sec_subdepartamento" HeaderText="ns_subdepartamento"  />
+                                                            <asp:BoundField DataField="nombre_subdepto" HeaderText="Subdepartamento" />
+                                                            <asp:BoundField DataField="num_sec_usuario" HeaderText="ns" />
+                                                            <asp:BoundField DataField="login" HeaderText="Usuario" />
+                                                            <asp:BoundField DataField="num_sec_persona" HeaderText="Persona" />
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="eliminar" Text="Eliminar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-danger "/>
                                                             </asp:ButtonField>
@@ -154,6 +156,17 @@
                                                 </div>
                                         </div>
                                    </div>
+                            </div>
+                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <strong><asp:Label ID="lblDepto" runat="server" Text="Departamento:" Visible="true"></asp:Label></strong>
+                                 <br/>
+                                <asp:RadioButton ID="rbTodosDeptos" runat="server" AutoPostBack="true" GroupName="RegistrarDepto" OnCheckedChanged="rbTodosDepto_Click" Text="Todos los departamentos" />
+                                <br/>
+                                <asp:RadioButton ID="rbUnDepto" runat="server" AutoPostBack="true" GroupName="RegistrarDepto" OnCheckedChanged="rbUnDepto_Click" Text="Un departamento específico" />
+                                <asp:Panel ID="pnDeptos" runat="server" Visible="false">
+                                    <asp:DropDownList ID="ddlDeptos" runat="server" CssClass="form-control mr-3" OnSelectedIndexChanged="ddlDeptos_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </asp:Panel>
                             </div>
                         </div>
                      </asp:Panel>

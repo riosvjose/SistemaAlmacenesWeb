@@ -271,6 +271,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             dt = OracleBD.DataTable;
+            _mensaje = OracleBD.Mensaje;
             if (dt.Rows.Count > 0)
             {
                 blOperacionCorrecta = true;

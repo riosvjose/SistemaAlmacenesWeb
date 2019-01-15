@@ -160,6 +160,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
+            _mensaje = OracleBD.Mensaje;
             dt = OracleBD.DataTable;
             if (dt.Rows.Count > 0)
             {
@@ -204,6 +205,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
+            _mensaje = OracleBD.Mensaje;
             return OracleBD.DataTable;
         }
 
@@ -223,6 +225,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
+            _mensaje = OracleBD.Mensaje;
             return OracleBD.DataTable;
         }
         #endregion

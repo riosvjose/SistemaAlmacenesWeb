@@ -311,6 +311,21 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             return sgte;
         }
+
+        public DataTable VerPasosPlantilla ()
+        {
+            string strSql = string.Empty;
+            strSql = "select num_sec_paso, nombre from alm_pasos " +
+                    " where num_sec_plantilla=" + _num_sec_plantilla;
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            _mensaje = OracleBD.Mensaje;
+            dt = OracleBD.DataTable;
+            return dt;
+        }
         #endregion
     }
 }

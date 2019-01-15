@@ -30,6 +30,7 @@ namespace SistemaAlmacenesWeb.Forms
         BD_SAM_Usuarios libusu = new BD_SAM_Usuarios();
         BD_ALM_Dominios libdom = new BD_ALM_Dominios();
         BD_ALM_Plantillas libplant = new BD_ALM_Plantillas();
+        BD_GEN_Subdeptos libsubdeptos = new BD_GEN_Subdeptos();
         #endregion
 
         #region "Funciones y procedimientos"
@@ -64,25 +65,15 @@ namespace SistemaAlmacenesWeb.Forms
             ddlAlmacenes.DataBind();
         }
 
-       /* protected void CargarDdlSalidas()
+       protected void CargarDdlPasos()
         {
-            libdom.StrConexion = axVarSes.Lee<string>("strConexion");
-            libdom.Dominio = "ALM_TIPO_EGRESO";
-            ddlTipoSalida.DataSource = libdom.DTVerDominio("");
-            ddlTipoSalida.DataTextField = "DESCRIPCION";
-            ddlTipoSalida.DataValueField = "VALOR";
-            ddlTipoSalida.DataBind();
+            libPasos.StrConexion = axVarSes.Lee<string>("strConexion");
+            libPasos.NumSecPlantilla = Convert.ToInt64(ddlPlantilla.SelectedValue);
+            ddlPasos.DataSource = libPasos.VerPasosPlantilla();
+            ddlPasos.DataTextField = "NOMBRE";//---
+            ddlPasos.DataValueField = "NUM_SEC_PASO";//----
+            ddlPasos.DataBind();
         }
-
-        protected void CargarDdlIngresos()
-        {
-            libdom.StrConexion = axVarSes.Lee<string>("strConexion");
-            libdom.Dominio = "ALM_TIPO_INGRESO";
-            ddlTipoIngreso.DataSource = libdom.DTVerDominio("");
-            ddlTipoIngreso.DataTextField = "DESCRIPCION";
-            ddlTipoIngreso.DataValueField = "VALOR";
-            ddlTipoIngreso.DataBind();
-        }*/
 
         protected void CargarDdlPlantillas(bool ingreso, bool salida)
         {
@@ -104,47 +95,56 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void ddlAlmacenes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pnTipoIngreso.Visible = false;
+            pnPlantilla.Visible = false;
+            pnPasos.Visible = false;
+            pnbuscar.Visible = false;
         }
 
         protected void ddlPasos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void ddlPlantilla_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pnPasos.Visible = true;
+            CargarDdlPasos();
+        }
+
+        protected void ddlDeptos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
         protected void btnAgregarUsuario_Click(object sender, EventArgs e)
         {
-           /* pnMensajeError.Visible = false;
-            pnMensajeOK.Visible = false;
-            pnPrincipal.Visible = false;*/
+            pnbuscar.Visible = true;
         }
 
         protected void btnAdmUsu_Click(object sender, EventArgs e)
         {
             pnMensajeError.Visible = false;
             pnMensajeOK.Visible = false;
-            if ((ddlAlmacenes.Items.Count != 0)&&(ddlPasos.Items.Count != 0))
+            if ((ddlAlmacenes.Items.Count != 0)&&(ddlPlantilla.Items.Count != 0))
             {
                 pnAdmUsuarios.Visible = true;
                 pnPrincipal.Visible = true;
-                //pnCrearAlmacen.Visible = false;
                 libPasosUsu.StrConexion = axVarSes.Lee<string>("strConexion");
                 libPasosUsu.NumSecPaso = Convert.ToInt64(ddlPasos.SelectedValue);
                 gvDatos1.Visible = true;
                 gvDatos1.Columns[0].Visible = true;
+                gvDatos1.Columns[2].Visible = true;
+                gvDatos1.Columns[4].Visible = true;
                 gvDatos1.DataSource = libPasosUsu.VerUsuariosPaso();
                 gvDatos1.DataBind();
                 gvDatos1.Columns[0].Visible = false;
+                gvDatos1.Columns[2].Visible = false;
+                gvDatos1.Columns[4].Visible = false;
             }
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "No existe ningún almacen creado";
+                lblMensajeError.Text = "No existe ningún almacen creado o falta seleccionar un paso. ";
             }
         }
 
@@ -223,22 +223,33 @@ namespace SistemaAlmacenesWeb.Forms
         } 
         protected void rbIngreso_Click(object sender, EventArgs e)
         {
-            //pnTipoSalida.Visible = false;
-            pnTipoIngreso.Visible = true;
-            /*CargarDdlIngresos();
-            CargarDdlSalidas();
-            ddlTipoSalida.SelectedValue = 0.ToString();*/
+            pnPlantilla.Visible = true;
             CargarDdlPlantillas(true, false);
+            pnPasos.Visible = true;
+            CargarDdlPasos();
         }
 
         protected void rbSalida_Click(object sender, EventArgs e)
         {
-            pnTipoIngreso.Visible = true;
-            /* pnTipoSalida.Visible = true;
-             CargarDdlIngresos();
-             CargarDdlSalidas();
-             ddlTipoIngreso.SelectedValue = 0.ToString();*/
+            pnPlantilla.Visible = true;
             CargarDdlPlantillas(false, true);
+            pnPasos.Visible = true;
+            CargarDdlPasos();
+        }
+
+        protected void rbUnDepto_Click(object sender, EventArgs e)
+        {
+            pnDeptos.Visible = true;
+            libsubdeptos = new BD_GEN_Subdeptos();
+            libsubdeptos.StrConexion = axVarSes.Lee<string>("strConexion");
+            ddlDeptos.DataSource = libsubdeptos.DTVerSubdeptos();
+            ddlDeptos.DataTextField = "NOMBRE";
+            ddlDeptos.DataValueField = "NUM_SEC_subdepartamento";
+            ddlDeptos.DataBind();
+        }
+        protected void rbTodosDepto_Click(object sender, EventArgs e)
+        {
+            pnDeptos.Visible = false;
         }
         #endregion
 
