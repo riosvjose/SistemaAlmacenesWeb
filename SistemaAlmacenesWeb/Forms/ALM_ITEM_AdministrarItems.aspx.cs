@@ -122,7 +122,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: El Grupo seleccionado no cuenta con Categorías registradas. Seleccione otro Grupo por favor";
+                lblMensajeError.Text = "El Grupo seleccionado no cuenta con Categorías registradas. Seleccione otro Grupo por favor";
             }
         }
         #endregion
@@ -176,7 +176,7 @@ namespace SistemaAlmacenesWeb.Forms
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "Mensaje: " + ALMItems.Mensaje;
+                    lblMensajeError.Text = ALMItems.Mensaje;
                 }
             }
             else
@@ -281,13 +281,13 @@ namespace SistemaAlmacenesWeb.Forms
                     else
                     {
                         pnMensajeError.Visible = true;
-                        lblMensajeError.Text = "Mensaje: El Grupo seleccionado no cuenta con Categorías registradas. Seleccione otro Grupo por favor";
+                        lblMensajeError.Text = "El Grupo seleccionado no cuenta con Categorías registradas. Seleccione otro Grupo por favor";
                     }
                 }
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "Mensaje: " + ALMCategoriasItems.Mensaje;
+                    lblMensajeError.Text = ALMCategoriasItems.Mensaje;
                 }
             }
             else
@@ -333,7 +333,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMMedidas.Mensaje;
+                lblMensajeError.Text = ALMMedidas.Mensaje;
             }
         }
 
@@ -374,7 +374,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMItems.Mensaje;
+                lblMensajeError.Text = ALMItems.Mensaje;
             }
         }
 
@@ -401,7 +401,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMItems.Mensaje;
+                lblMensajeError.Text = ALMItems.Mensaje;
             }
         }
 
@@ -424,7 +424,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMItems.Mensaje;
+                lblMensajeError.Text = ALMItems.Mensaje;
             }
         }
 

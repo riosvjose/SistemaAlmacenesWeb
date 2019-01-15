@@ -106,7 +106,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMMedidas.Mensaje;
+                lblMensajeError.Text = ALMMedidas.Mensaje;
             }
         }
 

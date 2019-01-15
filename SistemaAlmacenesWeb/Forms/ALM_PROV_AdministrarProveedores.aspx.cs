@@ -114,7 +114,7 @@ namespace SistemaAlmacenesWeb.Forms
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "Mensaje: " + ALMProveedores.Mensaje;
+                    lblMensajeError.Text = ALMProveedores.Mensaje;
                 }
             }
             else
@@ -148,7 +148,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMProveedores.Mensaje ;
+                lblMensajeError.Text = ALMProveedores.Mensaje ;
             }
         }
 
@@ -176,7 +176,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMProveedores.Mensaje;
+                lblMensajeError.Text = ALMProveedores.Mensaje;
             }
         }
 
