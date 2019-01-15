@@ -107,6 +107,7 @@
     <Content Include="Forms\ALM_ALM_AdministrarAlmacenes.aspx" />
     <Content Include="Forms\ALM_CAT_AdministrarCategorias.aspx" />
     <Content Include="Forms\ALM_GRU_AdministrarGrupos.aspx" />
+    <Content Include="Forms\ALM_AdministrarPasos.aspx" />
     <Content Include="Forms\ALM_ITEM_AdministrarItems.aspx" />
     <Content Include="Forms\ALM_MED_AdministrarMedidas.aspx" />
     <Content Include="Forms\ALM_PED_Entregar1.aspx" />
@@ -224,6 +225,13 @@
     </Compile>
     <Compile Include="Forms\ALM_GRU_AdministrarGrupos.aspx.designer.cs">
       <DependentUpon>ALM_GRU_AdministrarGrupos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ALM_AdministrarPasos.aspx.cs">
+      <DependentUpon>ALM_AdministrarPasos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ALM_AdministrarPasos.aspx.designer.cs">
+      <DependentUpon>ALM_AdministrarPasos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ALM_ITEM_AdministrarItems.aspx.cs">
       <DependentUpon>ALM_ITEM_AdministrarItems.aspx</DependentUpon>

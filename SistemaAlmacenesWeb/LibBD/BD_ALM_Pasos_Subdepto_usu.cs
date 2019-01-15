@@ -118,12 +118,12 @@ namespace SistemaAlmacenesWeb
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
-            string usuario = axVarSes.Lee<string>("UsuarioPersonaNumSec");
-            string login = axVarSes.Lee<string>("UsuarioPersonaNumSec");
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            string login = axVarSes.Lee<string>("UsuarioLogin");
             strSql = "insert into alm_paso_subdepto_usu (num_sec_paso_usu, num_sec_paso, num_sec_subdepartamento"+
                     ", num_sec_usuario, activo, usuario_registro, fecha_registro, num_sec_usuario_reg) values" +
                     "(ALM_PASO_SUBD_USU_SEC.NEXTVAL, "+_num_sec_paso+", "+_num_sec_subdepartamento+
-                    ", "+_num_sec_usuario+",1,'"+login+"',SYSDATE,usuario)";
+                    ", "+_num_sec_usuario+",1,'"+login+"',SYSDATE,"+usuario+")";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -168,6 +168,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             dt = OracleBD.DataTable;
+            _mensaje = OracleBD.Mensaje;
             if (dt.Rows.Count > 0)
             {
                 blEncontrado = true;
@@ -244,6 +245,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             dt = OracleBD.DataTable;
+            _mensaje = OracleBD.Mensaje;
             int[] pasos = new int [dt.Rows.Count];
             if (dt.Rows.Count > 0)
             {
@@ -277,6 +279,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
+            _mensaje = OracleBD.Mensaje;
             dt = OracleBD.DataTable;
             int[] pasos = new int[dt.Rows.Count];
             if (dt.Rows.Count > 0)
@@ -304,6 +307,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             dt = OracleBD.DataTable;
+            _mensaje = OracleBD.Mensaje;
             int[] pasos = new int[dt.Rows.Count];
             if (dt.Rows.Count > 0)
             {
@@ -338,6 +342,7 @@ namespace SistemaAlmacenesWeb
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             dt = OracleBD.DataTable;
+            _mensaje = OracleBD.Mensaje;
             int[] pasos = new int[dt.Rows.Count];
             if (dt.Rows.Count > 0)
             {
@@ -349,6 +354,91 @@ namespace SistemaAlmacenesWeb
             }
             dt.Dispose();
             return pasos;
+        }
+
+        public DataTable VerUsuariosPaso() 
+        {
+            string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
+            string strSql = string.Empty;
+            strSql = "select p.nombre, pu.num_sec_usuario, u.num_sec_persona, u.login, s.nombre, s.num_sec_subdepartamento" +
+                    " from alm_paso_subdepto_usu pu, alm_pasos p, sam_usuarios u, gen_subdeptos_personas sp, gen_subdepartamentos s" +
+                    " where pu.num_sec_paso =" + _num_sec_paso +
+                    " and pu.num_sec_usuario = u.num_sec_usuario " +
+                    " and p.num_sec_paso=pu.num_sec_paso" +
+                    " and pu.num_sec_persona=sp.num_sec_persona"+
+                    " and sp.num_sec_subdepartamento=s.num_sec_subdepartamento"+
+                    " and pu.activo=1 " +
+                    " order by s.nombre, u.login asc";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            _mensaje = OracleBD.Mensaje;
+            return dt;
+        }
+
+        public bool VolverInactivo()
+        {
+            bool blOperacionCorrecta = false;
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "update alm_paso_subdepto_usu " +
+                    " set activo = 0" +
+                    " where num_sec_paso=" + _num_sec_paso +
+                    " and num_sec_subdepartamento=" + _num_sec_subdepartamento +
+                    " and num_sec_usuario=" + _num_sec_usuario;
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.EjecutarSqlTrans();
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_paso_subdepto_usu. " + _mensaje;
+            return blOperacionCorrecta;
+        }
+
+        public bool VolverActivo()
+        {
+            bool blOperacionCorrecta = false;
+            string usuario = axVarSes.Lee<string>("UsuarioNumSec");
+            strSql = "update alm_paso_subdepto_usu " +
+                    " set activo = 1" +
+                   " where num_sec_paso=" + _num_sec_paso +
+                    " and num_sec_subdepartamento=" + _num_sec_subdepartamento +
+                    " and num_sec_usuario=" + _num_sec_usuario;
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.EjecutarSqlTrans();
+            _mensaje = OracleBD.Mensaje;
+            blOperacionCorrecta = !OracleBD.Error;
+            if (OracleBD.Error)
+                _mensaje = "No fue posible insertar el dato. Se encontró un error al insertar en la tabla alm_paso_subdepto_usu. " + _mensaje;
+            return blOperacionCorrecta;
+        }
+
+        public bool VerExistente()
+        {
+            bool blOperacionCorrecta = false;
+            strSql = "select num_sec_alm_usuario" +
+                     " from alm_paso_subdepto_usu" +
+                    " where num_sec_paso=" + _num_sec_paso +
+                    " and num_sec_subdepartamento=" + _num_sec_subdepartamento +
+                    " and num_sec_usuario=" + _num_sec_usuario;
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count > 0)
+            {
+                blOperacionCorrecta = true;
+            }
+            dt.Dispose();
+            return blOperacionCorrecta;
         }
         #endregion
     }

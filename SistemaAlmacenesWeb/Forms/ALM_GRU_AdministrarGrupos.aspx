@@ -132,7 +132,7 @@
 			        </div>
 		        </div>
             </asp:Panel>
-                  <%--panel administar ususarios--%>
+                  <%--panel administar subdepartamentos--%>
             <asp:Panel ID="pnAdmDeptos" runat="server" Visible="false">
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>

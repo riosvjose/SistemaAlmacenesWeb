@@ -196,10 +196,29 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Procedimientos y Funciones Locales
-        // Lista de todos los proveedores
+        // listar todas las plantillas
         public DataTable ListarPlantillas()
         {            
             strSql = "SELECT * FROM alm_plantillas where activo=1 order by nombre asc";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
+
+        public DataTable ListarPlantillasPorTipo(bool ingreso, bool salida)// si ingreso es verdadero muestra las plantillas de ingreso, si salida es verdadero muestra las plantilas de salida
+        {
+            strSql = "SELECT * FROM alm_plantillas where activo=1 ";
+            if (ingreso)
+            {
+                strSql += " and tipo_ingreso <> 0";
+            }
+            if (salida)
+            {
+                strSql += " and tipo_egreso <> 0";
+            }
+            strSql += "order by nombre asc";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

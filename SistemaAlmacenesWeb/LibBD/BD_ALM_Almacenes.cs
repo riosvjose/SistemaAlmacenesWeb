@@ -12,7 +12,7 @@ using System.Collections;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
-    // Ultima modificación: Alvaro Mamani; Fecha: 19/12/2018
+    // Ultima modificación: Ignacio Rios; Fecha: 15/01/2019
     // Descripción: Clase referente a la tabla alm_almacenes
     public class BD_ALM_Almacenes
     {
