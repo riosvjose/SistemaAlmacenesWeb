@@ -123,7 +123,7 @@ namespace SistemaAlmacenesWeb.Forms
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "Mensaje: " + ALMGruposItems.Mensaje;
+                    lblMensajeError.Text = ALMGruposItems.Mensaje;
                 }
             }
             else
@@ -163,7 +163,7 @@ namespace SistemaAlmacenesWeb.Forms
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "Mensaje: " + ALMCategoriasItems.Mensaje;
+                    lblMensajeError.Text = ALMCategoriasItems.Mensaje;
                 }
             }
             else
@@ -200,7 +200,7 @@ namespace SistemaAlmacenesWeb.Forms
             else
             {
                 pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMCategoriasItems.Mensaje;
+                lblMensajeError.Text = ALMCategoriasItems.Mensaje;
             }
         }
 

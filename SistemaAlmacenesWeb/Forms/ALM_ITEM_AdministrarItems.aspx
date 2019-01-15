@@ -80,7 +80,7 @@
                                 <asp:RequiredFieldValidator ID="rfvNombreItem" runat="server" ControlToValidate="tbNombreItem" CssClass="text-danger" ErrorMessage="El campo Nombre es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbNombreItem" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="tbNombreItem" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -224,7 +224,7 @@
                                 <asp:RequiredFieldValidator ID="rfvEditarNombreItem" runat="server" ControlToValidate="tbEditarNombreItem" CssClass="text-danger" ErrorMessage="El campo Nombre es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbEditarNombreItem" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="tbEditarNombreItem" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mb-3">
