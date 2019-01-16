@@ -205,26 +205,6 @@ namespace SistemaAlmacenesWeb.Forms
         {
             pnMensajeError.Visible = false;
             pnMensajeOK.Visible = false;
-            //BD_ALM_Cat_Items
-            /*ALMCategoriasItems.StrConexion = axVarSes.Lee<string>("strConexion");
-            ALMCategoriasItems.NumSecCat = Convert.ToInt64(ddlCategoriaItems.Text.Trim()); // Obtener el NUM_SEC_CAT (id de la Categoria de Item)
-            ALMCategoriasItems.Nombre = tbEditarNombreCategoriaItem.Text.ToUpper().Trim();
-            ALMCategoriasItems.Descripcion = tbEditarDescCatItem.Text.Trim();
-            if (tbEditarDescCatItem.Text.Length >= 500)
-            {
-                pnMensajeError.Visible = true;
-                lblMensajeError.Text = "El campo Descripción debe contener menos de 500 caracteres";
-            }
-            else if (ALMCategoriasItems.Modificar())
-            {
-                Session["MensajeOK"] = "La Categoria del Item fue actualizada exitosamente";
-                Response.Redirect("ALM_CAT_AdministrarCategorias.aspx");
-            }
-            else
-            {
-                pnMensajeError.Visible = true;
-                lblMensajeError.Text = "Mensaje: " + ALMCategoriasItems.Mensaje;
-            }*/
         }
 
         protected void gvDatos1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -243,7 +223,7 @@ namespace SistemaAlmacenesWeb.Forms
                     {
 
                         pnMensajeError.Visible = true;
-                        lblMensajeOK.Text = "No se pudo agregar el usuario. " + Convert.ToInt64(gvUsuarios.Rows[indice].Cells[1].Text) + ". " + libalm.Mensaje; ;
+                        lblMensajeError.Text = "No se pudo agregar el usuario. " + Convert.ToInt64(gvUsuarios.Rows[indice].Cells[1].Text) + ". " + libalm.Mensaje; ;
                         pnMensajeOK.Visible = false;
                     }
                 }
@@ -253,7 +233,7 @@ namespace SistemaAlmacenesWeb.Forms
                     if (!libalmUsu.Insertar())
                     {
                         pnMensajeError.Visible = true;
-                        lblMensajeOK.Text = "No se pudo agregar el usuario. " + Convert.ToInt64(gvUsuarios.Rows[indice].Cells[1].Text) + ". " + libalm.Mensaje; ;
+                        lblMensajeError.Text = "No se pudo agregar el usuario. " + Convert.ToInt64(gvUsuarios.Rows[indice].Cells[1].Text) + ". " + libalm.Mensaje; ;
                         pnMensajeOK.Visible = false;
                     }
                 }
@@ -265,7 +245,7 @@ namespace SistemaAlmacenesWeb.Forms
                 if (!libalmUsu.VolverInactivo())
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeOK.Text = "No se pudo agregar el usuario. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[1].Text) + ". " + libalm.Mensaje; ;
+                    lblMensajeError.Text = "No se pudo eliminar el usuario. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[1].Text) + ". " + libalm.Mensaje; ;
                     pnMensajeOK.Visible = false;
                 }
             }

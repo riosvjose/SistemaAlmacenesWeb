@@ -40,6 +40,9 @@
                         <a id="sbAdminAlmacenes" runat="server" href="ALM_ALM_AdministrarAlmacenes.aspx" visible="false" ><i class="fa fa-industry fa-fw" ></i>Almacenes</a>
                     </li>
                     <li>
+                        <a id="sbAdministrarPermisosPasos" runat="server" href="ALM_AdministrarPasos.aspx" visible="false" ><i class="fa fa-level-up" ></i>Permisos a pasos</a>
+                    </li>
+                    <li>
                         <a id="sbRegIngreso" runat="server"  href="ALM_RegistrarIngreso.aspx" visible="false" ><i class="fa fa-truck" ></i> Registrar ingreso</a>
                     </li>
                     <li>

@@ -160,13 +160,13 @@
                              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                 <strong><asp:Label ID="lblDepto" runat="server" Text="Departamento:" Visible="true"></asp:Label></strong>
                                  <br/>
-                                <asp:RadioButton ID="rbTodosDeptos" runat="server" AutoPostBack="true" GroupName="RegistrarDepto" OnCheckedChanged="rbTodosDepto_Click" Text="Todos los departamentos" />
-                                <br/>
-                                <asp:RadioButton ID="rbUnDepto" runat="server" AutoPostBack="true" GroupName="RegistrarDepto" OnCheckedChanged="rbUnDepto_Click" Text="Un departamento específico" />
-                                <asp:Panel ID="pnDeptos" runat="server" Visible="false">
+                                <asp:Panel ID="pnDeptos" runat="server" Visible="true">
                                     <asp:DropDownList ID="ddlDeptos" runat="server" CssClass="form-control mr-3" OnSelectedIndexChanged="ddlDeptos_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </asp:Panel>
+                                 <br />
+                                 <asp:CheckBox ID="cbConfirmar" runat="server" />
+                                 <asp:Label ID="lblConfirmar" runat="server" Text="Confirmar" Visible="true"></asp:Label>
                             </div>
                         </div>
                      </asp:Panel>
@@ -181,12 +181,6 @@
 			        </div>
 		        </div>
             </asp:Panel>    
-            <%--Salto de linea--%>
-            <div class="visible-lg visible-md">
-                <div class="col-lg-12">
-                    <br /><br />
-                </div>
-            </div>
             <%--Mensajes de exito y error--%>
             <div class="row">
 	            <div class="col-md-6">
@@ -199,6 +193,8 @@
 		                <div class="alert alert-success alert-dismissable">
 			                <asp:Label ID="lblMensajeOK" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>.
 		                </div>
+	                </asp:Panel>
+                    <asp:Panel ID="pnVacio" runat="server" Visible="false">
 	                </asp:Panel>
                     <%--Mensaje de Error AJAXValidator--%>
                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />

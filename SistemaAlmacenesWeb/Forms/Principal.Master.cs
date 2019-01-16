@@ -35,6 +35,8 @@ namespace SistemaAlmacenesWeb.Forms
                 libproc.StrConexion = axVarSes.Lee<string>("strConexion");
                 if (libproc.AccesoObjetoUsuario("ALM_ALM_AdministrarAlmacenes"))
                     sbAdminAlmacenes.Visible = true;
+                if (libproc.AccesoObjetoUsuario("ALM_AdministrarPasos"))
+                    sbAdministrarPermisosPasos.Visible = true;
                 if (libproc.AccesoObjetoUsuario("ALM_RegistrarIngreso"))
                     sbRegIngreso.Visible = true;
                 if (libproc.AccesoObjetoUsuario("ALM_MED_AdministrarMedidas"))
