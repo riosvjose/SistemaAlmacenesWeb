@@ -13,8 +13,8 @@ using nsGEN;
 using nsGEN_OracleBD;
 namespace SistemaAlmacenesWeb
 {
-    // Creado por: Ignacio Rios Villanueva; Fecha: 27/08/218
-    // Ultima modificación: Ignacio Rios Villanueva; Fecha: 07/01/2018
+    // Creado por: Ignacio Rios Villanueva; Fecha: 27/08/2018
+    // Ultima modificación: Ignacio Rios Villanueva; Fecha: 17/01/2019
     // Descripción: Clase referente a la tabla Personas
     public class BD_Personas
     {
@@ -147,7 +147,7 @@ namespace SistemaAlmacenesWeb
             }
             dt.Dispose();
 
-    }
+        }
 
         #endregion
 
@@ -170,6 +170,26 @@ namespace SistemaAlmacenesWeb
             OracleBD.Sql = strSql;
             OracleBD.sqlDataTable();
             return OracleBD.DataTable;
+        }
+
+        public void VerPorCI (string ci)
+        {
+            string num_sec = string.Empty;
+            strSql = "SELECT * from personas where doc_identidad= " + ci;
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            DataTable dt = OracleBD.DataTable;
+            if (dt.Rows.Count == 1)
+            {
+                DataRow dr = dt.Rows[0];
+                _num_sec = Convert.ToInt64(dr["num_sec"].ToString().Trim());
+                _nombres = dr["nombres"].ToString().Trim();
+                _apellido_paterno = dr["ap_paterno"].ToString().Trim();
+                _apellido_materno = dr["ap_materno"].ToString().Trim();
+            }
+            dt.Dispose();
         }
         #endregion
     }

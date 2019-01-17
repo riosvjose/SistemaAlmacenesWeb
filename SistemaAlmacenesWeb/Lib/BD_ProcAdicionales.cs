@@ -11,7 +11,7 @@ using System.Text;
 namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios Villanueva; Fecha: 07/09/218
-    // Ultima modificación: Ignacio Rios Villanueva; Fecha: 09/01/2019
+    // Ultima modificación: Ignacio Rios Villanueva; Fecha: 16/01/2019
     // Descripción: Clase para obtener datos adicionales 
     public class BD_ProcAdicionales
     {
@@ -165,7 +165,45 @@ namespace SistemaAlmacenesWeb
             return menorigual;
         }
 
-       
+
+        public bool VerificarPassword(string ci, string password)
+        {
+            bool verificado = false;
+            string hash = string.Empty, contrasena=string.Empty;
+            DataTable dt = new DataTable();
+            strSql = "select ucbadmin.fn_encriptar_texto('"+password+"') as contr from dual";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            if (dt.Rows.Count == 1)
+            {
+                DataRow dr = dt.Rows[0];
+                hash = dr["contr"].ToString();
+                strSql = "select pp.password as contr" +
+                        " from personas_passwords pp, personas p" +
+                        " where p.doc_identidad=" + ci +
+                        " and p.num_sec=pp.num_sec_persona";
+                OracleBD.MostrarError = false;
+                OracleBD.StrConexion = _strconexion;
+                OracleBD.Sql = strSql;
+                OracleBD.sqlDataTable();
+                dt = OracleBD.DataTable;
+                if (dt.Rows.Count == 1)
+                {
+                    dr = dt.Rows[0];
+                    contrasena = dr["contr"].ToString();
+                    if(hash.ToUpper().Equals(contrasena.ToUpper()))
+                    {
+                        verificado = true;
+                    }
+                }
+            }
+            dt.Dispose();
+            return verificado;
+        }
+
         #endregion
     }
 }

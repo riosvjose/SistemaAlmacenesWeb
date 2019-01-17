@@ -36,7 +36,7 @@
 			        <div class="panel-body">
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblToken" runat="server" Text=""></asp:Label></strong>
+                                <h1><strong><asp:Label ID="lblToken" runat="server" Text=""></asp:Label></strong></h1>
                             </div>
                         </div>
 			        </div>                    

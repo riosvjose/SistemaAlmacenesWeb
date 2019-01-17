@@ -191,44 +191,78 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
-            AutenticacionBD.Login = tbUsuario.Text.Trim();
-            AutenticacionBD.Password = tbPassword.Text.Trim();
-            AutenticacionBD.Servidor = axVarSes.Lee<string>("Servidor");
-            AutenticacionBD.Pagina = this.Page;
-            AutenticacionBD.MostrarError = false;
-            AutenticacionBD.AutenticarSAM();
-            BD_GEN_Subdeptos_Personas libSubdeptoPersona = new BD_GEN_Subdeptos_Personas();
-            libSubdeptoPersona.StrConexion = axVarSes.Lee<string>("StrConexion");
-            libSubdeptoPersona.Ver();
-            axVarSes.Escribe("NumSecUsuariosSolicitante", AutenticacionBD.NumSec.ToString());
-            if (AutenticacionBD.Autenticado)
+            if (rbAdmin.Checked)
             {
-                pnMensajeError.Visible = false;
-                BD_ALM_Tokens libtoken = new BD_ALM_Tokens();
-                libtoken.StrConexion= axVarSes.Lee<string>("StrConexion");
-                libtoken.Token = tbToken.Text.ToUpper();
-                libtoken.NumSecSubdepartamento = libSubdeptoPersona.NumSecSubdepto;
-                if(libtoken.VerificarTokenDepto())
+                AutenticacionBD.Login = tbUsuario.Text.Trim();
+                AutenticacionBD.Password = tbPassword.Text.Trim();
+                AutenticacionBD.Servidor = axVarSes.Lee<string>("Servidor");
+                AutenticacionBD.Pagina = this.Page;
+                AutenticacionBD.MostrarError = false;
+                AutenticacionBD.AutenticarSAM();
+                BD_GEN_Subdeptos_Personas libSubdeptoPersona = new BD_GEN_Subdeptos_Personas();
+                libSubdeptoPersona.StrConexion = axVarSes.Lee<string>("StrConexion");
+                libSubdeptoPersona.Ver();
+                axVarSes.Escribe("NumSecUsuarioPersonaSolicitante", AutenticacionBD.Persona_NumSec.ToString());
+                if (AutenticacionBD.Autenticado)
                 {
-                    pnPedidos.Visible = true;
-                    pnPrincipal.Visible = false;
-                    axVarSes.Escribe("DeptoSolicitante",libSubdeptoPersona.NumSecSubdepto.ToString());
-                    axVarSes.Escribe("TokenSolicitante", tbToken.Text);
-                    MostrarPedidos(libSubdeptoPersona.NumSecSubdepto.ToString());
+                    pnMensajeError.Visible = false;
+                    BD_ALM_Tokens libtoken = new BD_ALM_Tokens();
+                    libtoken.StrConexion = axVarSes.Lee<string>("StrConexion");
+                    libtoken.Token = tbToken.Text.ToUpper();
+                    libtoken.NumSecSubdepartamento = libSubdeptoPersona.NumSecSubdepto;
+                    if (libtoken.VerificarTokenDepto())
+                    {
+                        pnPedidos.Visible = true;
+                        pnPrincipal.Visible = false;
+                        axVarSes.Escribe("DeptoSolicitante", libSubdeptoPersona.NumSecSubdepto.ToString());
+                        axVarSes.Escribe("TokenSolicitante", tbToken.Text);
+                        MostrarPedidos(libSubdeptoPersona.NumSecSubdepto.ToString());
+                    }
+                    else
+                    {
+                        pnMensajeError.Visible = true;
+                        lblMensajeError.Text = "Token incorrecto";
+                        tbPassword.Text = string.Empty;
+                    }
                 }
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "Token incorrecto";
-                    tbPassword.Text = string.Empty;
+                    lblMensajeError.Text = AutenticacionBD.Mensaje;
                 }
             }
-            else
+            else if (rbAsistente.Checked)
             {
-                pnMensajeError.Visible = true;
-                lblMensajeError.Text = AutenticacionBD.Mensaje;
+                BD_ProcAdicionales libAdicionales = new BD_ProcAdicionales();
+                libAdicionales.StrConexion= axVarSes.Lee<string>("StrConexion");
+                if (libAdicionales.VerificarPassword(tbUsuario.Text.Trim(), tbPassword.Text.Trim()))
+                {
+                    BD_ALM_Tokens libtoken = new BD_ALM_Tokens();
+                    libtoken.StrConexion = axVarSes.Lee<string>("StrConexion");
+                    libtoken.Token = tbToken.Text.ToUpper();
+                    libtoken.Ver();
+                    pnPedidos.Visible = true;
+                    pnPrincipal.Visible = false;
+                    libpersona.StrConexion = axVarSes.Lee<string>("StrConexion");
+                    libpersona.VerPorCI(tbUsuario.Text.Trim());
+                    axVarSes.Escribe("NumSecUsuarioPersonaSolicitante", libpersona.NumSec.ToString());
+                    axVarSes.Escribe("DeptoSolicitante", libtoken.NumSecSubdepartamento.ToString());
+                    axVarSes.Escribe("TokenSolicitante", tbToken.Text);
+                    MostrarPedidos(libtoken.NumSecSubdepartamento.ToString());
+                    pnMensajeError.Visible = false;
+                }
+                else
+                {
+                    pnMensajeError.Visible = true;
+                    lblMensajeError.Text = "Usuario o contraseña incorrectos.";
+                }
             }
         }
-        #endregion
+        protected void rb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+            #endregion
+        }
     }
-}

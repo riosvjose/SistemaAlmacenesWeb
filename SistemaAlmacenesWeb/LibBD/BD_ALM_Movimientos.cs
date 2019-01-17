@@ -551,7 +551,7 @@ namespace SistemaAlmacenesWeb
                     BD_ALM_Tokens libtokens = new BD_ALM_Tokens();
                     libEntregas.StrConexion = _strconexion;
                     libEntregas.NumSecMovimiento = _num_sec_movimiento;
-                    libEntregas.NumSecUsuario= Convert.ToInt64(axVarSes.Lee<string>("NumSecUsuariosSolicitante"));
+                    libEntregas.NumSecPersona= Convert.ToInt64(axVarSes.Lee<string>("NumSecUsuarioPersonaSolicitante"));
                     libEntregas.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec")); 
                     libtokens.StrConexion = StrConexion;
                     libtokens.Token = axVarSes.Lee<string>("TokenSolicitante");

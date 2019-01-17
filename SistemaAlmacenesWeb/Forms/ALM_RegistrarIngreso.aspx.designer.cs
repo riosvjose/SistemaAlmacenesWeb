@@ -130,6 +130,15 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.DropDownList ddlProveedor;
         
         /// <summary>
+        /// pnCodSAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnCodSAP;
+        
+        /// <summary>
         /// lblCompraSap control.
         /// </summary>
         /// <remarks>

@@ -34,7 +34,7 @@ namespace SistemaAlmacenes
             Session["NumSecItem"] = 0.ToString();
             Session["MostrarMensajeError"] = "0"; //Muestra mensaje de error cuando el usuario no tiene acceso a una funcion
             Session["DeptoSolicitante"] = "0";
-            Session["NumSecUsuariosSolicitante"] = "0";
+            Session["NumSecUsuarioPersonaSolicitante"] = "0";
             Session["TokenSolicitante"] = string.Empty;
         }
 

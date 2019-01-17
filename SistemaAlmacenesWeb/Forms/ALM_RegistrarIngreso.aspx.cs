@@ -857,12 +857,8 @@ namespace SistemaAlmacenesWeb.Forms
                         libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;
                         StrSqls[contSqls] = libIngresoMov.ObtenerCadenaInsertar();
                         contSqls++;
-                        if (Convert.ToInt16(ddlTipoIngreso.SelectedValue) == 1)
-                        {
-                            StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
-                            contSqls++;
-                        }
-
+                        StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
+                        contSqls++;
                     }
                     libMov = new BD_ALM_Movimientos();
                     libMov.StrConexion = axVarSes.Lee<string>("strConexion");
@@ -1178,11 +1174,11 @@ namespace SistemaAlmacenesWeb.Forms
         {
             if (Convert.ToInt32(ddlTipoIngreso.SelectedValue) != 1)
             {
-                pnFactura.Visible = false;
+                pnCodSAP.Visible = false;
             }
             else
             {
-                pnFactura.Visible = true;
+                pnCodSAP.Visible = true;
             }
         }
         protected void ddlProveedor_SelectedIndexChanged(object sender, EventArgs e)

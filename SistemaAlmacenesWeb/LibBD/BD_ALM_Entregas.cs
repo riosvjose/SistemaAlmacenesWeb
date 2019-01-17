@@ -29,7 +29,7 @@ namespace SistemaAlmacenesWeb
         private long _num_sec_entrega = 0;
         private long _num_sec_movimiento = 0;
         private long _num_sec_token = 0;
-        private long _num_sec_usuario = 0;
+        private long _num_sec_persona = 0;
         private string _fecharegistro = string.Empty;
         private string _usuarioregistro = string.Empty;
         private long _numsecusuarioregistro = 0;
@@ -56,10 +56,10 @@ namespace SistemaAlmacenesWeb
             set { _num_sec_token = value; }
         }
 
-        public long NumSecUsuario
+        public long NumSecPersona
         {
-            get { return _num_sec_usuario; }
-            set { _num_sec_usuario = value; }
+            get { return _num_sec_persona; }
+            set { _num_sec_persona = value; }
         }
 
         public string FechaRegistro
@@ -93,7 +93,7 @@ namespace SistemaAlmacenesWeb
             _num_sec_entrega= 0;
             _num_sec_movimiento = 0;
             _num_sec_token = 0;
-            _num_sec_usuario = 0;
+            _num_sec_persona = 0;
             _fecharegistro = string.Empty;
             _usuarioregistro = string.Empty;
             _numsecusuarioregistro = 0;
@@ -108,8 +108,8 @@ namespace SistemaAlmacenesWeb
         {
             bool blOperacionCorrecta = false;
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
-            strSql = "insert into alm_entregas (num_sec_entrega, num_sec_movimiento, num_sec_token, num_sec_usuario, num_sec_usuario_reg) values";
-            strSql += " (alm_entregas_sec.nextval,"+ _num_sec_movimiento+","+_num_sec_token+","+_num_sec_usuario+"," + usuario +" )";
+            strSql = "insert into alm_entregas (num_sec_entrega, num_sec_movimiento, num_sec_token, num_sec_persona, num_sec_usuario_reg) values";
+            strSql += " (alm_entregas_sec.nextval,"+ _num_sec_movimiento+","+_num_sec_token+","+_num_sec_persona+"," + usuario +" )";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
@@ -149,7 +149,7 @@ namespace SistemaAlmacenesWeb
                 _num_sec_entrega = Convert.ToInt64(dr["num_sec_entrega"].ToString());
                 _num_sec_movimiento = Convert.ToInt64(dr["num_sec_movimiento"].ToString());
                 _num_sec_token = Convert.ToInt64(dr["num_sec_token"].ToString());
-                _num_sec_usuario = Convert.ToInt64(dr["num_sec_usuario"].ToString());
+                _num_sec_persona = Convert.ToInt64(dr["num_sec_persona"].ToString());
                 _fecharegistro = dr["fecha_registro"].ToString();
                 _usuarioregistro = dr["usuario_registro"].ToString();
                 _numsecusuarioregistro = Convert.ToInt64(dr["num_sec_usuario_reg"].ToString());
@@ -160,7 +160,7 @@ namespace SistemaAlmacenesWeb
                 _num_sec_entrega = 0;
                 _num_sec_movimiento = 0;
                 _num_sec_token = 0;
-                _num_sec_usuario = 0;
+                _num_sec_persona = 0;
                 _fecharegistro = string.Empty;
                 _usuarioregistro = string.Empty;
                 _numsecusuarioregistro = 0;
@@ -176,8 +176,8 @@ namespace SistemaAlmacenesWeb
         #region Procedimientos y Funciones Locales
         public string CadenaInsertar()
         {
-            strSql = "insert into alm_entregas (num_sec_entrega, num_sec_movimiento, num_sec_token, num_sec_usuario, num_sec_usuario_registro) values"+
-                    " (alm_entregas_sec.nextval," + _num_sec_movimiento + "," + _num_sec_token + "," + _num_sec_usuario + "," + _numsecusuarioregistro + " )";
+            strSql = "insert into alm_entregas (num_sec_entrega, num_sec_movimiento, num_sec_token, num_sec_persona, num_sec_usuario_registro) values"+
+                    " (alm_entregas_sec.nextval," + _num_sec_movimiento + "," + _num_sec_token + "," + _num_sec_persona + "," + _numsecusuarioregistro + " )";
 
             return strSql;
         }
