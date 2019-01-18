@@ -231,11 +231,13 @@ namespace SistemaAlmacenesWeb
         public DataTable DTListaGruposPorDepto()
         {
             string subdepto = axVarSes.Lee<string>("strDeptoUsuario");
-            strSql ="(select 0 as num_sec_grupo, '-----------' as nombre from dual)"+
-                " UNION "+
-                "(select g.num_sec_grupo, g.nombre from alm_grupos_items g, ALM_GRUPOS_ITEMS_SUBDEPTOS s"+
-                " where s.num_sec_subdepartamento=" + subdepto + 
-                " and g.num_sec_grupo=s.num_sec_grupo)";
+            strSql = "SELECT * FROM ( " +
+                        "(select 0 as num_sec_grupo, '-----------' as nombre from dual)"+
+                        " UNION "+
+                        "(select g.num_sec_grupo, g.nombre from alm_grupos_items g, ALM_GRUPOS_ITEMS_SUBDEPTOS s"+
+                        " where s.num_sec_subdepartamento=" + subdepto + 
+                        " and g.num_sec_grupo=s.num_sec_grupo) " +
+                    ") ORDER BY nombre";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
