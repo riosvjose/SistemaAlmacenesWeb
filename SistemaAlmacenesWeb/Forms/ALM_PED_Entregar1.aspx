@@ -80,8 +80,8 @@
                                                     </div>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="tbToken" runat="server" ErrorMessage="Debe ingresar su contraseña." Text="*" CssClass="text-warning"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <div class="row">  
-                                                    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                                                <div class="form-group">  
+                                                    <div>
                                                             <strong><asp:Label ID="lblTipoUsuario" runat="server" Text="Movimiento:" Visible="true"></asp:Label></strong>
                                                             <br/>
                                                             <asp:RadioButton ID="rbAdmin" runat="server" AutoPostBack="false"  GroupName="rbuser" OnCheckedChanged="rb_Click" Text="Administrativo" />
