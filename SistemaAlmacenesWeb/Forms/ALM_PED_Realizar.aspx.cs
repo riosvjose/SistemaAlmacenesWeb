@@ -815,7 +815,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             string[] StrSqls = new string[30];
             int contSqls = 0;
-            bool mayorQueExistencia = false, blError=false;
+            bool mayorQueExistencia = false, blError = false;
             string item = string.Empty;
             int cantmaxItem1 = 0;
             int cantmaxItem2 = 0;
@@ -832,7 +832,7 @@ namespace SistemaAlmacenesWeb.Forms
             int cantmaxItem13 = 0;
             int cantmaxItem14 = 0;
             int cantmaxItem15 = 0;
-            for (int i = 1; ((i <= 15)&&(i <= Convert.ToInt32(lblContador.Text))); i++)
+            for (int i = 1; ((i <= 15) && (i <= Convert.ToInt32(lblContador.Text))); i++)
             {
                 libItem = new BD_ALM_Items();
                 libItem.StrConexion = axVarSes.Lee<string>("strConexion");
@@ -857,7 +857,7 @@ namespace SistemaAlmacenesWeb.Forms
                         libMov.NumSecItem = Convert.ToInt64(ddlItem1.SelectedValue);
                         libMov.NumSecPersona = Convert.ToInt64(ddlSolicitante1.SelectedValue);
                         libMov.Egreso = Convert.ToInt32(tbCant1.Text);
-                        if (Convert.ToInt32(tbCant1.Text)> cantmaxItem1) // verifica si se pide mas de las existencias
+                        if (Convert.ToInt32(tbCant1.Text) > cantmaxItem1) // verifica si se pide mas de las existencias
                         {
                             mayorQueExistencia = true;
                             item = ddlItem1.SelectedItem.Text;
@@ -1088,9 +1088,20 @@ namespace SistemaAlmacenesWeb.Forms
             }
             if (!blError)
             {
-            if (!mayorQueExistencia)
-            {
+                if (!mayorQueExistencia)
                 {
+                    libMov = new BD_ALM_Movimientos();
+                    libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                    if (libMov.InsertarVarios(StrSqls, contSqls))
+                    {
+
+                        pnMensajeOK.Visible = true;
+                        lblMensajeOK.Text = "Pedido registrado exitosamente.";
+                        pnMensajeError.Visible = false;
+                        VaciarBoxes();
+                        //Desplegar un mensaje en un modal
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalPedidoAviso').modal('show');", true);
+                    }
                     else
                     {
                         lblMensajeError.Text = "Error al registrar el pedido." + libMov.Mensaje;
@@ -1101,7 +1112,7 @@ namespace SistemaAlmacenesWeb.Forms
             }
             else
             {
-                lblMensajeError.Text = "No puede registrar un item nulo." + libMov.Mensaje;
+                lblMensajeError.Text = "No puede registrar un item nulo.";
                 pnMensajeError.Visible = true;
                 pnMensajeOK.Visible = false;
             }
