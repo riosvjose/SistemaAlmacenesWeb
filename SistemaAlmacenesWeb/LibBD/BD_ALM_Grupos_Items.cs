@@ -213,6 +213,7 @@ namespace SistemaAlmacenesWeb
         public DataTable DTListaGruposPorAlmacen(string [] strsqlalm)
         {
             strSql = string.Empty;//"(select 0 as num_sec_grupo '-----------' as nombre from dual)";
+            strSql += "Select * from (";
             for (int i=0; i<strsqlalm.Length;i++)
             {
                 if (i != 0)
@@ -220,7 +221,8 @@ namespace SistemaAlmacenesWeb
                     strSql += " UNION ";
                 }
                 strSql += "(select num_sec_grupo, nombre from alm_grupos_items where num_sec_almacen =" + strsqlalm[i]+")";
-            } 
+            }
+            strSql += ") Order By nombre";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

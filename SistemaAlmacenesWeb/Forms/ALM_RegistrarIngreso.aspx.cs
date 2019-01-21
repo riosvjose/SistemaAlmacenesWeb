@@ -36,6 +36,8 @@ namespace SistemaAlmacenesWeb.Forms
         BD_ALM_Almacenes libAlm = new BD_ALM_Almacenes();
         BD_ALM_Plantillas libPlant = new BD_ALM_Plantillas();
         BD_ProcAdicionales libproc = new BD_ProcAdicionales();
+
+        public object ActiveControl { get; private set; }
         #endregion
 
         #region "Funciones y procedimientos"
@@ -64,6 +66,15 @@ namespace SistemaAlmacenesWeb.Forms
                     CargarDdlGrupos();
                     CargarDdlCategorias();
                     CargarDdlItems();
+                    // Recibir mensaje exitoso cuando se redirige de otra pagina
+                    if (Session["MensajeOK"] != null)
+                    {
+                        pnMensajeOK.Visible = true;
+                        pnFinal.Visible = true;
+                        lblMensajeOK.Text = Session["MensajeOK"].ToString();
+                        Session["MensajeOK"] = null;
+                        pnFinal.Focus();
+                    }
                 }
                 else
                 {
@@ -633,71 +644,7 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem15.Items.Clear();
             }
-        }
-        protected void VaciarBoxes()
-        {
-            tbPrecio1.Text = "0";
-            tbPrecio2.Text = "0";
-            tbPrecio3.Text = "0";
-            tbPrecio4.Text = "0";
-            tbPrecio5.Text = "0";
-            tbPrecio6.Text = "0";
-            tbPrecio7.Text = "0";
-            tbPrecio8.Text = "0";
-            tbPrecio9.Text = "0";
-            tbPrecio10.Text = "0";
-            tbPrecio11.Text = "0";
-            tbPrecio12.Text = "0";
-            tbPrecio13.Text = "0";
-            tbPrecio14.Text = "0";
-            tbPrecio15.Text = "0";
-            tbFechaMov.Text = string.Empty;
-            tbCodSap.Text = string.Empty;
-            tbCant1.Text = "0";
-            tbCant2.Text = "0";
-            tbCant3.Text = "0";
-            tbCant4.Text = "0";
-            tbCant5.Text = "0";
-            tbCant6.Text = "0";
-            tbCant7.Text = "0";
-            tbCant9.Text = "0";
-            tbCant10.Text = "0";
-            tbCant11.Text = "0";
-            tbCant12.Text = "0";
-            tbCant13.Text = "0";
-            tbCant14.Text = "0";
-            tbCant15.Text = "0";
-            ddlItem1.SelectedIndex = 0;
-            ddlItem2.SelectedIndex = 0;
-            ddlItem3.SelectedIndex = 0;
-            ddlItem4.SelectedIndex = 0;
-            ddlItem5.SelectedIndex = 0;
-            ddlItem6.SelectedIndex = 0;
-            ddlItem7.SelectedIndex = 0;
-            ddlItem8.SelectedIndex = 0;
-            ddlItem9.SelectedIndex = 0;
-            ddlItem10.SelectedIndex = 0;
-            ddlItem11.SelectedIndex = 0;
-            ddlItem12.SelectedIndex = 0;
-            ddlItem13.SelectedIndex = 0;
-            ddlItem14.SelectedIndex = 0;
-            ddlItem15.SelectedIndex = 0;
-            Panel2.Visible = false;
-            Panel3.Visible = false;
-            Panel4.Visible = false;
-            Panel5.Visible = false;
-            Panel6.Visible = false;
-            Panel7.Visible = false;
-            Panel8.Visible = false;
-            Panel9.Visible = false;
-            Panel10.Visible = false;
-            Panel11.Visible = false;
-            Panel12.Visible = false;
-            Panel13.Visible = false;
-            Panel14.Visible = false;
-            Panel15.Visible = false;
-            lblContador.Text = "1";
-        }
+        }       
         #endregion
 
         #region "Eventos"
@@ -876,45 +823,50 @@ namespace SistemaAlmacenesWeb.Forms
                     {
                         if (libMov.InsertarVarios(StrSqls, contSqls))
                         {
-                            lblMensajeOK.Text = "Ingreso registrado exitosamente.";
-                            pnMensajeOK.Visible = true;
-                            pnMensajeError.Visible = false;
-                            VaciarBoxes();
+                            Session["MensajeOK"] = "Ingreso registrado exitosamente";
+                            Response.Redirect("ALM_RegistrarIngreso.aspx");
                         }
                         else
-                        {
-                            lblMensajeError.Text = "Error al registrar el ingreso. " + libMov.Mensaje;
+                        {                            
                             pnMensajeError.Visible = true;
                             pnMensajeOK.Visible = false;
+                            pnFinal.Visible = true;
+                            lblMensajeError.Text = "Error al registrar el ingreso. " + libMov.Mensaje;
+                            pnFinal.Focus();
                         }
                     }
                     else
                     {
-                        lblMensajeError.Text = "No puede registrar un item nulo. ";
                         pnMensajeError.Visible = true;
                         pnMensajeOK.Visible = false;
+                        pnFinal.Visible = true;
+                        lblMensajeError.Text = "No puede registrar un item nulo. ";
+                        pnFinal.Focus();
+
                     }
-                    
+
                 }
                 else
                 {
-                    lblMensajeError.Text = "Debe ingresar una fecha menor o igual a hoy. ";
                     pnMensajeError.Visible = true;
                     pnMensajeOK.Visible = false;
+                    pnFinal.Visible = true;
+                    lblMensajeError.Text = "Debe ingresar una fecha menor o igual a hoy. ";
+                    pnFinal.Focus();
                 }
             }
             else
             {
-                lblMensajeError.Text = "Debe indicar el tipo de ingreso. " ;
                 pnMensajeError.Visible = true;
                 pnMensajeOK.Visible = false;
+                pnFinal.Visible = true;
+                lblMensajeError.Text = "Debe indicar el tipo de ingreso. ";
+                pnFinal.Focus();           
             }
-            
-
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            VaciarBoxes();
+            Response.Redirect("ALM_RegistrarIngreso.aspx");
         }
         protected void btnAgregarItem_Click(object sender, EventArgs e)
         {
@@ -928,6 +880,7 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 case 2:
                     Panel2.Visible = true;
+                    btnQuitarItem.Enabled = true; //Cuando queda solo un panel para hacer ingresos se Habilita el Boton QuitarItem.
                     break;
                 case 3:
                     Panel3.Visible = true;
@@ -967,18 +920,21 @@ namespace SistemaAlmacenesWeb.Forms
                     break;
                 case 15:
                     Panel15.Visible = true;
+                    btnAgregarItem.Enabled = false; //Se des-habilita el Boton AgregarItem
                     break;
             }
         }
         protected void btnQuitarItem_Click(object sender, EventArgs e)
         {
             int aux = Convert.ToInt32(lblContador.Text.Trim());
+            btnAgregarItem.Enabled = true; //Se habilita el Boton AgregarItem, cuando se quita un item
             switch (aux)
             {
                 case 2:
                     Panel2.Visible = false;
                     ddlItem2.SelectedIndex = 0;
                     tbPrecio2.Text = "0";
+                    btnQuitarItem.Enabled = false; //Cuando queda solo un panel para hacer ingresos se des-habilita el Boton QuitarItem.
                     break;
                 case 3:
                     Panel3.Visible = false;
@@ -1043,9 +999,8 @@ namespace SistemaAlmacenesWeb.Forms
                 case 15:
                     Panel15.Visible = false;
                     ddlItem15.SelectedIndex = 0;
-                    tbPrecio15.Text = "0";
+                    tbPrecio15.Text = "0";                   
                     break;
-
             }
             if(aux>1)
             {

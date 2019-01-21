@@ -58,8 +58,10 @@ namespace SistemaAlmacenesWeb.Forms
                     if (Session["MensajeOK"] != null)
                     {
                         pnMensajeOK.Visible = true;
+                        pnFinal.Visible = true;
                         lblMensajeOK.Text = Session["MensajeOK"].ToString();
                         Session["MensajeOK"] = null;
+                        pnFinal.Focus();
                     }
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalPedidoAviso').modal('show');", true);
                 }
@@ -1050,9 +1052,11 @@ namespace SistemaAlmacenesWeb.Forms
                 {
                     if (mayorQueExistencia)
                     {
-                        pnMensajeError.Visible = true;
-                        lblMensajeError.Text = "La cantidad del articulo " + item + " no esta disponible. Intente solicitando una cantidad menor. ";
                         pnMensajeOK.Visible = false;
+                        pnMensajeError.Visible = true;
+                        pnFinal.Visible = true;
+                        lblMensajeError.Text = "La cantidad del articulo " + item + " no esta disponible. Intente solicitando una cantidad menor. ";
+                        pnFinal.Focus();
                         i = 16;// Para salir del ciclo
                     }
                     else
@@ -1094,27 +1098,32 @@ namespace SistemaAlmacenesWeb.Forms
                     libMov.StrConexion = axVarSes.Lee<string>("strConexion");
                     if (libMov.InsertarVarios(StrSqls, contSqls))
                     {
-
-                        pnMensajeOK.Visible = true;
-                        lblMensajeOK.Text = "Pedido registrado exitosamente.";
                         pnMensajeError.Visible = false;
+                        pnMensajeOK.Visible = true;
+                        pnFinal.Visible = true;
+                        lblMensajeOK.Text = "Pedido registrado exitosamente.";                        
                         VaciarBoxes();
                         //Desplegar un mensaje en un modal
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalPedidoAviso').modal('show');", true);
+                        pnFinal.Focus();
                     }
                     else
                     {
-                        lblMensajeError.Text = "Error al registrar el pedido." + libMov.Mensaje;
                         pnMensajeError.Visible = true;
                         pnMensajeOK.Visible = false;
+                        pnFinal.Visible = true;
+                        lblMensajeError.Text = "Error al registrar el pedido." + libMov.Mensaje;
+                        pnFinal.Focus();
                     }
                 }
             }
             else
             {
-                lblMensajeError.Text = "No puede registrar un item nulo.";
                 pnMensajeError.Visible = true;
                 pnMensajeOK.Visible = false;
+                pnFinal.Visible = true;
+                lblMensajeError.Text = "No puede registrar un item nulo.";
+                pnFinal.Focus();
             }
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -1133,6 +1142,7 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 case 2:
                     Panel2.Visible = true;
+                    btnQuitarItem.Enabled = true; //Cuando queda solo un panel para hacer ingresos se Habilita el Boton QuitarItem.
                     break;
                 case 3:
                     Panel3.Visible = true;
@@ -1172,16 +1182,19 @@ namespace SistemaAlmacenesWeb.Forms
                     break;
                 case 15:
                     Panel15.Visible = true;
+                    btnAgregarItem.Enabled = false; //Se des-habilita el Boton AgregarItem
                     break;
             }
         }
         protected void btnQuitarItem_Click(object sender, EventArgs e)
         {
             int aux = Convert.ToInt32(lblContador.Text.Trim());
+            btnAgregarItem.Enabled = true; //Se habilita el Boton AgregarItem, cuando se quita un item
             switch (aux)
             {
                 case 2:
                     Panel2.Visible = false;
+                    btnQuitarItem.Enabled = false; //Cuando queda solo un panel para hacer ingresos se des-habilita el Boton QuitarItem.
                     break;
                 case 3:
                     Panel3.Visible = false;
