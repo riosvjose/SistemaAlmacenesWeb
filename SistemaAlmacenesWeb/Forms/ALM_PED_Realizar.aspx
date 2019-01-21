@@ -408,7 +408,7 @@
 			        <div class="panel-footer">
                         <div class="row">
                             <div class="btn-group">
-                                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-success" Text="Guardar Cambios" CausesValidation="True" OnClick="btnGuardar_Click" />
+                                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-success" Text="Registrar pedido" CausesValidation="True" OnClick="btnGuardar_Click" />
                                      <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClick="btnCancelar_Click" />
                                 </div>
                         </div>
@@ -457,6 +457,8 @@
 			            <asp:Label ID="lblMensajeOK" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>
 		            </div>
 	            </asp:Panel>
+                 <%--Mensaje de Error AJAXValidator--%>
+                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

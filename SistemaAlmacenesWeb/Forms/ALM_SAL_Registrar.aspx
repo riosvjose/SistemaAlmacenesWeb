@@ -88,8 +88,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant1" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="tbCant1_FilteredTextBoxExtender" runat="server" BehaviorID="tbCant1_FilteredTextBoxExtender" TargetControlID="tbCant1" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator4" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant1" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator5" runat="server" ControlToValidate="tbCant1" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator4" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant1" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator5" runat="server" ControlToValidate="tbCant1" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                 <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida1" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -110,8 +110,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant2" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" BehaviorID="tbCant2_FilteredTextBoxExtender" TargetControlID="tbCant2" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant2" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator6" runat="server" ControlToValidate="tbCant2" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant2" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator6" runat="server" ControlToValidate="tbCant2" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                 <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida2" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -132,8 +132,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant3" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" BehaviorID="tbCant3_FilteredTextBoxExtender" TargetControlID="tbCant3" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator9" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant3" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator10" runat="server" ControlToValidate="tbCant3" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator9" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant3" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator10" runat="server" ControlToValidate="tbCant3" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida3" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -154,8 +154,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant4" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" BehaviorID="tbCant4_FilteredTextBoxExtender" TargetControlID="tbCant4" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator13" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant4" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator14" runat="server" ControlToValidate="tbCant4" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator13" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant4" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator14" runat="server" ControlToValidate="tbCant4" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                 <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida4" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -176,8 +176,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant5" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server" BehaviorID="tbCant5_FilteredTextBoxExtender" TargetControlID="tbCant5" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator17" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant5" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator18" runat="server" ControlToValidate="tbCant5" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator17" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant5" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator18" runat="server" ControlToValidate="tbCant5" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                 <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida5" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -198,8 +198,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant6" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender9" runat="server" BehaviorID="tbCant6_FilteredTextBoxExtender" TargetControlID="tbCant6" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator21" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant6" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator22" runat="server" ControlToValidate="tbCant6" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator21" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant6" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator22" runat="server" ControlToValidate="tbCant6" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                 <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida6" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -220,8 +220,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant7" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender11" runat="server" BehaviorID="tbCant7_FilteredTextBoxExtender" TargetControlID="tbCant7" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator25" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant7" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator26" runat="server" ControlToValidate="tbCant7" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator25" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant7" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator26" runat="server" ControlToValidate="tbCant7" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida7" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -242,8 +242,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant8" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender13" runat="server" BehaviorID="tbCant8_FilteredTextBoxExtender" TargetControlID="tbCant1" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator27" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant1" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator28" runat="server" ControlToValidate="tbCant1" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator27" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant1" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator28" runat="server" ControlToValidate="tbCant8" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida8" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -264,8 +264,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant9" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender15" runat="server" BehaviorID="tbCant9_FilteredTextBoxExtender" TargetControlID="tbCant9" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator29" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant9" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator30" runat="server" ControlToValidate="tbCant9" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator29" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant9" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator30" runat="server" ControlToValidate="tbCant9" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida9" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -286,8 +286,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant10" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender17" runat="server" BehaviorID="tbCant10_FilteredTextBoxExtender" TargetControlID="tbCant10" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator31" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant10" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator32" runat="server" ControlToValidate="tbCant10" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator31" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant10" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator32" runat="server" ControlToValidate="tbCant10" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida10" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -308,8 +308,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant11" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender19" runat="server" BehaviorID="tbCant11_FilteredTextBoxExtender" TargetControlID="tbCant11" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator41" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant11" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator42" runat="server" ControlToValidate="tbCant11" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator41" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant11" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator42" runat="server" ControlToValidate="tbCant11" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida11" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -330,8 +330,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant12" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender21" runat="server" BehaviorID="tbCant12_FilteredTextBoxExtender" TargetControlID="tbCant12" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator45" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant12" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator46" runat="server" ControlToValidate="tbCant12" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator45" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant12" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator46" runat="server" ControlToValidate="tbCant12" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida12" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -352,8 +352,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant13" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender23" runat="server" BehaviorID="tbCant13_FilteredTextBoxExtender" TargetControlID="tbCant13" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator49" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant13" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator50" runat="server" ControlToValidate="tbCant13" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator49" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant13" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator50" runat="server" ControlToValidate="tbCant13" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida13" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -374,8 +374,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant14" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender25" runat="server" BehaviorID="tbCant14_FilteredTextBoxExtender" TargetControlID="tbCant14" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator53" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant14" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator54" runat="server" ControlToValidate="tbCant14" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator53" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant14" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator54" runat="server" ControlToValidate="tbCant14" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                 <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida14" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -396,8 +396,8 @@
                                 <div class="col-sm-1">
                                     <asp:TextBox ID="tbCant15" runat="server" CssClass="form-control" MaxLength="10" Visible="true" Text="0" OnTextChanged="tbCambioValor_TextChanged"></asp:TextBox>
                                     <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender27" runat="server" BehaviorID="tbCant15_FilteredTextBoxExtender" TargetControlID="tbCant15" ValidChars="1234567890" />
-                                    <asp:CompareValidator ID="CompareValidator57" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Double" ControlToValidate="tbCant15" CssClass="text-danger">*</asp:CompareValidator>
-                                    <asp:CompareValidator ID="CompareValidator58" runat="server" ControlToValidate="tbCant15" ErrorMessage="El valor ingresado debe ser mayor o igual a 0." Operator="GreaterThanEqual" Type="Double" ValueToCompare="0" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator57" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCant15" CssClass="text-danger">*</asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator58" runat="server" ControlToValidate="tbCant15" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                 </div>
                                  <div class="col-sm-3">
                                    <asp:DropDownList ID="ddlSalida15" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSalida_SelectedIndexChanged" Visible="true" AutoPostBack="True"></asp:DropDownList>
@@ -429,6 +429,8 @@
 			            <asp:Label ID="lblMensajeOK" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>
 		            </div>
 	            </asp:Panel>
+                 <%--Mensaje de Error AJAXValidator--%>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

@@ -92,7 +92,7 @@
                             <asp:Panel ID="pnCodSAP" runat="server" Visible="true">
                             <div class="col-sm-2">
                                 <strong><asp:Label ID="lblCompraSap" runat="server" Text="Codigo compra SAP: "></asp:Label>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="tbCodSap" CssClass="text-danger" ErrorMessage="El campo número factura es obligatorio.">*</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="tbCodSap" CssClass="text-danger" ErrorMessage="El campo 'Codigo compra SAP' es obligatorio.">*</asp:RequiredFieldValidator>
                                 </strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
@@ -519,7 +519,7 @@
 			        <div class="panel-footer">
                         <div class="row">
                             <div class="btn-group">
-                                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-success" Text="Guardar Cambios" CausesValidation="True" OnClick="btnGuardar_Click" />
+                                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-success" Text="Registrar Ingreso" CausesValidation="True" OnClick="btnGuardar_Click" />
                                      <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClick="btnCancelar_Click" />
                                 </div>
                         </div>
