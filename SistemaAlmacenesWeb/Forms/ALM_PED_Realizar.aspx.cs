@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using nsGEN_VarSession;
 using nsGEN_Java;
 using nsGEN_WebForms;
+using System.Drawing;
 
 namespace SistemaAlmacenesWeb.Forms
 {
@@ -48,10 +49,19 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 if (libproc.AccesoObjetoUsuario("ALM_PED_Realizar"))
                 {
+                    //Cargar todos los Drop Down List
                     CargarDdlGrupos();
                     CargarDdlCategorias();
                     CargarDdlItems();
                     CargarDdlPersonas();
+                    // Recibir mensaje exitoso cuando se redirige de otra pagina
+                    if (Session["MensajeOK"] != null)
+                    {
+                        pnMensajeOK.Visible = true;
+                        lblMensajeOK.Text = Session["MensajeOK"].ToString();
+                        Session["MensajeOK"] = null;
+                    }
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#modalPedidoAviso').modal('show');", true);
                 }
                 else
                 {
@@ -750,6 +760,39 @@ namespace SistemaAlmacenesWeb.Forms
             Panel14.Visible = false;
             Panel15.Visible = false;
             lblContador.Text = "1";
+
+            //Limpiar las Categorias
+            ddlCat1.Items.Clear();
+            ddlCat2.Items.Clear();
+            ddlCat3.Items.Clear();
+            ddlCat4.Items.Clear();
+            ddlCat5.Items.Clear();
+            ddlCat6.Items.Clear();
+            ddlCat7.Items.Clear();
+            ddlCat8.Items.Clear();
+            ddlCat9.Items.Clear();
+            ddlCat10.Items.Clear();
+            ddlCat11.Items.Clear();
+            ddlCat12.Items.Clear();
+            ddlCat13.Items.Clear();
+            ddlCat14.Items.Clear();
+            ddlCat15.Items.Clear();
+            //Limpiar los items
+            ddlItem1.Items.Clear();
+            ddlItem2.Items.Clear();
+            ddlItem3.Items.Clear();
+            ddlItem4.Items.Clear();
+            ddlItem5.Items.Clear();
+            ddlItem6.Items.Clear();
+            ddlItem7.Items.Clear();
+            ddlItem8.Items.Clear();
+            ddlItem9.Items.Clear();
+            ddlItem10.Items.Clear();
+            ddlItem11.Items.Clear();
+            ddlItem12.Items.Clear();
+            ddlItem13.Items.Clear();
+            ddlItem14.Items.Clear();
+            ddlItem15.Items.Clear();
         }
         #endregion
 
@@ -758,7 +801,7 @@ namespace SistemaAlmacenesWeb.Forms
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
-            {            
+            {
                 CargarDatosIniciales(axVarSes.Lee<string>("strConexion"));
             }
         }
@@ -767,7 +810,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             //Response.Redirect("#");
         }
-        
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             string[] StrSqls = new string[30];
@@ -1045,18 +1088,9 @@ namespace SistemaAlmacenesWeb.Forms
             }
             if (!blError)
             {
-                if (!mayorQueExistencia)
+            if (!mayorQueExistencia)
+            {
                 {
-                    libMov = new BD_ALM_Movimientos();
-                    libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                    if (libMov.InsertarVarios(StrSqls, contSqls))
-                    {
-
-                        pnMensajeOK.Visible = true;
-                        lblMensajeOK.Text = "Pedido registrado exitosamente.";
-                        pnMensajeError.Visible = false;
-                        VaciarBoxes();
-                    }
                     else
                     {
                         lblMensajeError.Text = "Error al registrar el pedido." + libMov.Mensaje;
@@ -1074,7 +1108,7 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ALM_PED_Realizar.aspx");
         }
         protected void btnAgregarItem_Click(object sender, EventArgs e)
         {
@@ -1332,11 +1366,11 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void ddlPersona_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
         protected void ddlItem1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
         protected void ddlItem2_SelectedIndexChanged(object sender, EventArgs e)
         {

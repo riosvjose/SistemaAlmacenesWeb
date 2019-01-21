@@ -320,9 +320,6 @@
                     document.getElementById('<%= tbDescripcionCategoria.ClientID %>').removeAttribute('required');
                     document.getElementById('<%= ddlGrupoCategoria.ClientID %>').removeAttribute('required');
                 }
-                /*function CancelarModalMarca() {
-                    document.getElementById('</%= tbNombreMarca.ClientID %>').removeAttribute('required');                    
-                }*/
                 function CancelarModalMedida() {
                     document.getElementById('<%= tbNombreMedida.ClientID %>').removeAttribute('required');
                     document.getElementById('<%= tbAbrevMedida.ClientID %>').removeAttribute('required');                    
