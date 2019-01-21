@@ -211,6 +211,15 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.TextBox tbTelefonoProv;
         
         /// <summary>
+        /// tbTelefonoProv_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender tbTelefonoProv_FilteredTextBoxExtender;
+        
+        /// <summary>
         /// lblDireccionProv control.
         /// </summary>
         /// <remarks>
@@ -443,6 +452,15 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEditarTelefonoProv;
+        
+        /// <summary>
+        /// tbEditarTelefonoProv_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender tbEditarTelefonoProv_FilteredTextBoxExtender;
         
         /// <summary>
         /// lblEditarDireccionProv control.

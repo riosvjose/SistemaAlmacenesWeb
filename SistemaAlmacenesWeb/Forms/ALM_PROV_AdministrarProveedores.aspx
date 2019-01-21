@@ -97,7 +97,8 @@
                                 <asp:RequiredFieldValidator ID="rfvTelefonoProv" runat="server" ControlToValidate="tbTelefonoProv" CssClass="text-danger" ErrorMessage="El campo Teléfono es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbTelefonoProv" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="tbTelefonoProv" runat="server" pattern="(?=.*\d).{6,}" title="Debe contener un número telefonico valido." CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" ></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="tbTelefonoProv_FilteredTextBoxExtender" runat="server" BehaviorID="tbTelefonoProv_FilteredTextBoxExtender" TargetControlID="tbTelefonoProv" ValidChars="01234567890-" />                                                                                                
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -183,7 +184,8 @@
                                 <asp:RequiredFieldValidator ID="rfvEditarTelefonoProv" runat="server" ControlToValidate="tbEditarTelefonoProv" CssClass="text-danger" ErrorMessage="El campo Teléfono es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                                <asp:TextBox ID="tbEditarTelefonoProv" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="tbEditarTelefonoProv" pattern="(?=.*\d).{6,}" title="Debe contener un número telefonico valido." runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="tbEditarTelefonoProv_FilteredTextBoxExtender" runat="server" BehaviorID="tbEditarTelefonoProv_FilteredTextBoxExtender" TargetControlID="tbEditarTelefonoProv" ValidChars="01234567890-" />                                                                                                
                             </div>
                         </div>
                         <div class="row mb-3">

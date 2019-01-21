@@ -527,7 +527,7 @@ namespace SistemaAlmacenesWeb
                               "AND f.num_sec_almacen = g.num_sec_almacen " +
                               "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
                               "AND g.activo = 1 " + // Verificar que el permiso este vigente
-                              "AND (b.tipo = 1 OR b.tipo = 2) " +
+                              "AND (b.tipo = 1 OR b.tipo = 2) " + // Solo se consisera los ingresos y salidas, no se toman en cuenta los items que estan en proceso el proceso para ser autorizados.
                           "GROUP BY a.num_sec_item, c.nombre " +
                           "ORDER BY c.nombre";
             OracleBD.MostrarError = false;
