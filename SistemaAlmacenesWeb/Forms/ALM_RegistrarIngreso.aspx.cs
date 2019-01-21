@@ -720,6 +720,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             string[] StrSqls = new string[60];
             int contSqls = 0;
+            bool blError = false;
             if (ddlTipoIngreso.SelectedValue!="0")
             {
                 libIngreso = new BD_ALM_Ingresos();
@@ -831,50 +832,69 @@ namespace SistemaAlmacenesWeb.Forms
                                 libMov.PrecioUnitario = Convert.ToDouble(tbPrecio15.Text);
                                 break;
                         }
-                        libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-                        libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-                        double auxprecio = libMov.PrecioUnitario;
-                        libItem.NumSecItem = libMov.NumSecItem;
-                        libItem.Ver();
-                        libCat.NumSecCat = libItem.NumSecCat;
-                        libCat.Ver();
-                        libGrupo.NumSecGrupoItem = libCat.NumSecGrupoItem;
-                        libGrupo.Ver();
-                        libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
-                        libAlm.Ver();
-                        libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
-                        libPlant.TipoEgreso = 0;
-                        libPlant.TipoIngreso = Convert.ToInt16(ddlTipoIngreso.SelectedValue);// definido en basde a dominios 'alm_tipo_ingreso'
-                        libPlant.Ver();
-                        libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
-                        libPasos.VerPrimeroPlantilla();
-                        libMov.NumSecPaso = libPasos.NumSecPaso;
-                        libMov.NumSecMovimiento = libMov.ObtenerNSMov();
-                        libMov.PrecioUnitario = auxprecio;
-                        StrSqls[contSqls] = libMov.SQLCadenaMovimiento(true, false);
-                        contSqls++;
-                        libIngresoMov.NumSecIngreso = libIngreso.NumSecIngreso;
-                        libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;
-                        StrSqls[contSqls] = libIngresoMov.ObtenerCadenaInsertar();
-                        contSqls++;
-                        StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
-                        contSqls++;
+                        if (libMov.NumSecItem>0) //evalua que no se seleccione un item nulo
+                        {
+                            libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                            libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                            double auxprecio = libMov.PrecioUnitario;
+                            libItem.NumSecItem = libMov.NumSecItem;
+                            libItem.Ver();
+                            libCat.NumSecCat = libItem.NumSecCat;
+                            libCat.Ver();
+                            libGrupo.NumSecGrupoItem = libCat.NumSecGrupoItem;
+                            libGrupo.Ver();
+                            libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
+                            libAlm.Ver();
+                            libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
+                            libPlant.TipoEgreso = 0;
+                            libPlant.TipoIngreso = Convert.ToInt16(ddlTipoIngreso.SelectedValue);// definido en basde a dominios 'alm_tipo_ingreso'
+                            libPlant.Ver();
+                            libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
+                            libPasos.VerPrimeroPlantilla();
+                            libMov.NumSecPaso = libPasos.NumSecPaso;
+                            libMov.NumSecMovimiento = libMov.ObtenerNSMov();
+                            libMov.PrecioUnitario = auxprecio;
+                            StrSqls[contSqls] = libMov.SQLCadenaMovimiento(true, false);
+                            contSqls++;
+                            libIngresoMov.NumSecIngreso = libIngreso.NumSecIngreso;
+                            libIngresoMov.NumSecMovimiento = libMov.NumSecMovimiento;
+                            StrSqls[contSqls] = libIngresoMov.ObtenerCadenaInsertar();
+                            contSqls++;
+                            StrSqls[contSqls] = libItem.CadenaActualizarPrecio(libMov.Ingreso, auxprecio);//actualiza precio
+                            contSqls++;
+                        }
+                        else
+                        {
+                            i = 16;// sale del ciclo porque el chiclo solo evalua 15 elementos
+                            blError = true;
+                        }
+                        
                     }
                     libMov = new BD_ALM_Movimientos();
                     libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                    if (libMov.InsertarVarios(StrSqls, contSqls))
+                    if (!blError)
                     {
-                        lblMensajeOK.Text = "Ingreso registrado exitosamente.";
-                        pnMensajeOK.Visible = true;
-                        pnMensajeError.Visible = false;
-                        VaciarBoxes();
+                        if (libMov.InsertarVarios(StrSqls, contSqls))
+                        {
+                            lblMensajeOK.Text = "Ingreso registrado exitosamente.";
+                            pnMensajeOK.Visible = true;
+                            pnMensajeError.Visible = false;
+                            VaciarBoxes();
+                        }
+                        else
+                        {
+                            lblMensajeError.Text = "Error al registrar el ingreso. " + libMov.Mensaje;
+                            pnMensajeError.Visible = true;
+                            pnMensajeOK.Visible = false;
+                        }
                     }
                     else
                     {
-                        lblMensajeError.Text = "Error al registrar el ingreso. " + libMov.Mensaje;
+                        lblMensajeError.Text = "No puede registrar un item nulo. ";
                         pnMensajeError.Visible = true;
                         pnMensajeOK.Visible = false;
                     }
+                    
                 }
                 else
                 {

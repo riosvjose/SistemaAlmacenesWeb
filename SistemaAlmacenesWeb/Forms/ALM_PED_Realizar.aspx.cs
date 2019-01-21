@@ -772,7 +772,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             string[] StrSqls = new string[30];
             int contSqls = 0;
-            bool mayorQueExistencia = false;
+            bool mayorQueExistencia = false, blError=false;
             string item = string.Empty;
             int cantmaxItem1 = 0;
             int cantmaxItem2 = 0;
@@ -1003,59 +1003,74 @@ namespace SistemaAlmacenesWeb.Forms
                         }
                         break;
                 }
-                if (mayorQueExistencia)
+                if (libMov.NumSecItem > 0) //evalua que no se seleccione un item nulo
                 {
-                    pnMensajeError.Visible = true;
-                    lblMensajeError.Text = "La cantidad del articulo " + item + " no esta disponible. Intente solicitando una cantidad menor. ";
-                    pnMensajeOK.Visible = false;
-                    i = 16;// Para salir del ciclo
+                    if (mayorQueExistencia)
+                    {
+                        pnMensajeError.Visible = true;
+                        lblMensajeError.Text = "La cantidad del articulo " + item + " no esta disponible. Intente solicitando una cantidad menor. ";
+                        pnMensajeOK.Visible = false;
+                        i = 16;// Para salir del ciclo
+                    }
+                    else
+                    {
+                        libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                        libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                        double auxprecio = libMov.PrecioUnitario;
+                        libItem.NumSecItem = libMov.NumSecItem;
+                        libItem.Ver();
+                        libCat.NumSecCat = libItem.NumSecCat;
+                        libCat.Ver();
+                        libGrupo.NumSecGrupoItem = libCat.NumSecGrupoItem;
+                        libGrupo.Ver();
+                        libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
+                        libAlm.Ver();
+                        libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
+                        libPlant.TipoEgreso = 1;
+                        libPlant.TipoIngreso = 0;
+                        libPlant.Ver();
+                        libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
+                        libPasos.VerPrimeroPlantilla();
+                        libMov.NumSecPaso = libPasos.NumSecPaso;
+                        libMov.NumSecMovimiento = libMov.ObtenerNSMov();
+                        StrSqls[contSqls] = libMov.SQLCadenaMovimiento(false, true);
+                        contSqls++;
+                    }
                 }
                 else
                 {
-                    libMov.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-                    libMov.NumSecUsuarioRegistro = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-                    double auxprecio = libMov.PrecioUnitario;
-                    libItem.NumSecItem = libMov.NumSecItem;
-                    libItem.Ver();
-                    libCat.NumSecCat = libItem.NumSecCat;
-                    libCat.Ver();
-                    libGrupo.NumSecGrupoItem = libCat.NumSecGrupoItem;
-                    libGrupo.Ver();
-                    libAlm.NumSecAlmacen = libGrupo.NumSecAlmacen;
-                    libAlm.Ver();
-                    libPlant.NumSecAlmacen = libAlm.NumSecAlmacen;
-                    libPlant.TipoEgreso = 1;
-                    libPlant.TipoIngreso = 0;
-                    libPlant.Ver();
-                    libPasos.NumSecPlantilla = libPlant.NumSecPlantilla;
-                    libPasos.VerPrimeroPlantilla();
-                    libMov.NumSecPaso = libPasos.NumSecPaso;
-                    libMov.NumSecMovimiento = libMov.ObtenerNSMov();
-                    StrSqls[contSqls] = libMov.SQLCadenaMovimiento(false, true);
-                    contSqls++;
+                    i = 16;// sale del ciclo porque el chiclo solo evalua 15 elementos
+                    blError = true;
                 }
             }
-            if (!mayorQueExistencia)
+            if (!blError)
             {
-                libMov = new BD_ALM_Movimientos();
-                libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.InsertarVarios(StrSqls, contSqls))
+                if (!mayorQueExistencia)
                 {
-                    
-                    pnMensajeOK.Visible = true;
-                    lblMensajeOK.Text = "Pedido registrado exitosamente.";
-                    pnMensajeError.Visible = false;
-                    VaciarBoxes();
-                }
-                else
-                {
-                    lblMensajeError.Text = "Error al registrar el pedido." + libMov.Mensaje;
-                    pnMensajeError.Visible = true;
-                    pnMensajeOK.Visible = false;
+                    libMov = new BD_ALM_Movimientos();
+                    libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+                    if (libMov.InsertarVarios(StrSqls, contSqls))
+                    {
+
+                        pnMensajeOK.Visible = true;
+                        lblMensajeOK.Text = "Pedido registrado exitosamente.";
+                        pnMensajeError.Visible = false;
+                        VaciarBoxes();
+                    }
+                    else
+                    {
+                        lblMensajeError.Text = "Error al registrar el pedido." + libMov.Mensaje;
+                        pnMensajeError.Visible = true;
+                        pnMensajeOK.Visible = false;
+                    }
                 }
             }
-            
-
+            else
+            {
+                lblMensajeError.Text = "No puede registrar un item nulo." + libMov.Mensaje;
+                pnMensajeError.Visible = true;
+                pnMensajeOK.Visible = false;
+            }
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
