@@ -32,7 +32,7 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Atributos
-        // Campos de la tabla TRS_AVANCES
+        // Campos de la tabla subdeptos_personas
         private long _num_sec_modulo = 0;
         private long _num_sec_persona = 0;
         private long _num_sec_subdepartamento = 0;
@@ -44,7 +44,7 @@ namespace SistemaAlmacenesWeb
         // Otras propiedades
         private string _mensaje = string.Empty;
         private string _strconexion = string.Empty;
-        // Definicion GET y SET de los campos de la tabla TRS_AVANCES
+        // Definicion GET y SET de los campos de la tabla subdeptos_personas
 
         public long NumSecModulo { get { return _num_sec_modulo; } set { _num_sec_modulo = value; } }
         public long NumSecPersona { get { return _num_sec_persona; } set { _num_sec_persona = value; } }
@@ -67,7 +67,7 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Constructor
-        // Definición del contructor de la clase TRS_AVANCES
+        // Definición del contructor de la clase subdeptos_personas
         public BD_GEN_Subdeptos_Personas()
         {
             _num_sec_modulo= 0;
@@ -85,20 +85,20 @@ namespace SistemaAlmacenesWeb
 
         #region Metodos iBD_Tablas y Públicos
 
-        // Método para insertar un dato en la tabla TRS_AVANCES
+        // Método para insertar un dato en la tabla subdeptos_personas
         public bool Insertar()
         {
             return false;
         }
 
-        // Método para MODIFICAR un dato en la tabla TRS_AVANCES
+        // Método para MODIFICAR un dato en la tabla subdeptos_personas
         public bool Modificar()
         {
             bool blOperacionCorrecta = false;
             return blOperacionCorrecta;
         }
 
-        // Método para ELIMINAR un dato en la tabla Personas
+        // Método para ELIMINAR un dato en la tabla subdeptos_personas
         public bool Borrar()
         {
             bool blOperacionCorrecta = false;
