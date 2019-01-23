@@ -21,7 +21,7 @@
                    </div>
                 </div>--%>
 	            <div class="col-xs-12 col-md-6 pull-left">
-		            <h1>Autorizar pedido</h1>
+		            <h1>Buscar pedido</h1>
 	            </div>
                 
             </div>
