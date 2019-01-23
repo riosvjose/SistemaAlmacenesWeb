@@ -1088,7 +1088,7 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ALM_SAL_Registrar.aspx");
         }
         protected void btnAgregarItem_Click(object sender, EventArgs e)
         {
