@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="ALM_PED_Entregar.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.ALM_PED_Entregar" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Forms/Principal.Master" AutoEventWireup="true" CodeBehind="ALM_PED_Buscar.aspx.cs" Inherits="SistemaAlmacenesWeb.Forms.ALM_PED_Buscar" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -21,7 +21,7 @@
                    </div>
                 </div>--%>
 	            <div class="col-xs-12 col-md-6 pull-left">
-		            <h1>Entregar pedido</h1>
+		            <h1>Autorizar pedido</h1>
 	            </div>
                 
             </div>
@@ -40,8 +40,50 @@
                 </asp:UpdateProgress>
             </div>
             <br />
+            <%--panel Principal de Items--%>
+            <asp:Panel ID="pnPrincipal" runat="server">
+		        <div class="panel panel-info">
+                    <%--ENCABEZADO DEL PANEL--%>
+			        <div class="panel-heading">                        
+			        </div>
+                    <%--CUERPO DEL PANEL--%>
+                    <div class="panel-body">
+                        <div class="row mb-3">
+                            <asp:Panel ID="pnAlmacen" runat="server" Visible="true">
+                                <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
+                                    <strong><asp:Label ID="lblAlmacenes" runat="server" Text="Almacen:"></asp:Label></strong>
+                                </div>
+                                <div class="col-xs-12 col-sm-7 col-md-9 col-lg-10">
+                                    <asp:DropDownList ID="ddlAlmacenes" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlAlmacenes_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                        <div class="row mb-3">
+                            <asp:Panel ID="pnSubdepto" runat="server" Visible="true">
+                                <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
+                                    <strong><asp:Label ID="lblSubdeptos" runat="server" Text="Subdeptos:"></asp:Label></strong>
+                                </div>
+                                <div class="col-xs-12 col-sm-7 col-md-9 col-lg-10">
+                                    <asp:DropDownList ID="ddlSubdeptos" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlSubdeptos_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                            </asp:Panel>
+                        </div>
+			        </div>
+                    <%--PIE DEL PANEL--%>
+			        <div class="panel-footer">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group">
+                                <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-success" Text="Buscar" CausesValidation="False" OnClick="btnBuscar_Click" />
+                            </div>
+                            <div class="btn-group pull-right">
+                                  <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolver_Click" />
+                            </div>
+                          </div>
+                        </div>
+			        </div>
+            </asp:Panel>
              <%--panel pedidos--%>
-            <asp:Panel ID="pnPrincipal" runat="server" Visible="true">
+            <asp:Panel ID="pnBuscar" runat="server" Visible="false">
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
@@ -65,12 +107,6 @@
                                                             <asp:BoundField DataField="paso" HeaderText="Estado" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
                                                             <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="entregar" Text="Entregar" >
-                                                                 <ControlStyle CssClass="btn btn-sm btn-success "/>
-                                                            </asp:ButtonField>
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="eliminar" Text="Eliminar" >
-                                                                 <ControlStyle CssClass="btn btn-sm btn-danger "/>
-                                                            </asp:ButtonField>
                                                         </Columns>
                                                         <PagerStyle CssClass="GridPager" Wrap="True" />
                                                         <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
@@ -99,8 +135,6 @@
 			            <asp:Label ID="lblMensajeOK" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>
 		            </div>
 	            </asp:Panel>
-                 <%--Mensaje de Error AJAXValidator--%>
-                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

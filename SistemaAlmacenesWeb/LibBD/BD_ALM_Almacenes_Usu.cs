@@ -13,7 +13,7 @@ namespace SistemaAlmacenesWeb
 {
     // Creado por: Ignacio Rios; Fecha: 10/12/2018
     // Ultima modificación: Ignacio Rios; Fecha: 08/01/2019
-    // Descripción: Clase referente a la tabla alm_almacenes
+    // Descripción: Clase referente a la tabla alm_almacenes_usuarios
     public class BD_ALM_Almacenes_Usu
     {
         #region Variables Locales
@@ -25,7 +25,7 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Atributos
-        // Campos de la tabla alm_almacenes
+        // Campos de la tabla alm_almacenes_usuarios
         private long _num_sec_alm_usu= 0;
         private long _num_sec_almacen = 0;
         private long _num_sec_usuario = 0;
@@ -279,7 +279,23 @@ namespace SistemaAlmacenesWeb
             dt.Dispose();
             return blOperacionCorrecta;
         }
-
+        public DataTable DTObtenerAlmacenUsuario()
+        {
+            string strSql = string.Empty;
+            strSql = "select distinct au.num_sec_almacen, a.nombre "+
+                     " from alm_almacenes_usuarios au, alm_almacenes a"+
+                     " where au.num_sec_usuario=" + _num_sec_usuario.ToString() +
+                     " and au.activo=1"+
+                     " and au.num_sec_almacen=a.num_sec_almacen"+
+                     " order by a.nombre";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            return dt;
+        }
         #endregion
 
     }

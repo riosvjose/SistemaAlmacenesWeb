@@ -228,6 +228,8 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             return OracleBD.DataTable;
         }
+
+        
         #endregion
 
     }

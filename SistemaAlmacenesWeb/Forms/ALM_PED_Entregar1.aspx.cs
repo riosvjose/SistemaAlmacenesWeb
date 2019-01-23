@@ -114,6 +114,10 @@ namespace SistemaAlmacenesWeb.Forms
         {
 
         }
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ALM_PED_Buscar.aspx");
+        }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
 
