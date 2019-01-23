@@ -187,7 +187,7 @@ namespace SistemaAlmacenesWeb.Forms
 
         protected void lnkbtnBuscarItem_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("ALM_TOK_GenerarToken.aspx");
+            Response.Redirect("ALM_PED_Buscar.aspx");
         }
 
 
