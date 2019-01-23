@@ -162,7 +162,8 @@ namespace SistemaAlmacenesWeb
         public DataTable DTVerDominio(string straux)
         {
             string strSql = string.Empty;
-            strSql = "select * from dominios where dominio='" + _dominio+"' "+straux;
+            strSql = "select * from dominios where dominio='" + _dominio+"' "+straux + " " +
+                        "ORDER BY descripcion";
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;

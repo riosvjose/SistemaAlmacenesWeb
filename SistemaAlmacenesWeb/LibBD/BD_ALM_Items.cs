@@ -304,9 +304,11 @@ namespace SistemaAlmacenesWeb
         public DataTable DTListaItems(long cat)
         {
             string persona = axVarSes.Lee<string>("UsuarioNumSec");
-            strSql = "(select 0 as num_sec_item, '---------------------------' as nombre from dual) union " +
+            strSql = "SELECT * FROM ( " +
+                    "(select 0 as num_sec_item, '---------------------------' as nombre from dual) union " +
                     "(select num_sec_item, nombre " +
-                     "from alm_items where num_sec_cat="+cat+")";
+                     "from alm_items where num_sec_cat=" + cat + ") " +
+                     ") ORDER BY nombre ASC";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;
