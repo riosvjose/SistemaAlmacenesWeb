@@ -505,7 +505,7 @@ namespace nsBD_SAM
             string strSql = string.Empty;
             strSql = "select u.num_sec_usuario, u.usuario, p.ap_paterno||' '||p.ap_materno||' '||p.nombres as persona " +
                      " from sam_usuarios u, personas p" +
-                     " where u.usuario like '%" +cad+"%'"+
+                     " where Upper(u.usuario) like '%" + cad.ToUpper().Trim() +"%'"+
                      " and u.num_sec_persona=p.num_sec" +
                      " order by p.ap_paterno||' '||p.ap_materno||' '||p.nombres asc";
             DataTable dt = new DataTable();
