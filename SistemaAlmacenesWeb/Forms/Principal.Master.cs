@@ -75,6 +75,11 @@ namespace SistemaAlmacenesWeb.Forms
                     lnkbtnGenerarToken.Visible = true;
                     pedidos++;
                 }
+                if (AccesoObjeto.Contains("ALM_PED_Buscar_permitir_acceso"))
+                {
+                    lnkbtnBuscarItem.Visible = true;
+                    pedidos++;
+                }
                 if (pedidos > 0) //Mostrar sbPedidos en caso de que el usuario tenga acceso a almenos un modulo
                     sbPedidos.Visible = true;
 
@@ -180,7 +185,11 @@ namespace SistemaAlmacenesWeb.Forms
             Response.Redirect("ALM_REP_Existencias.aspx");
         }
 
-        
+        protected void lnkbtnBuscarItem_Click(object sender, EventArgs e)
+        {
+            //Response.Redirect("ALM_TOK_GenerarToken.aspx");
+        }
+
 
         #endregion
     }
