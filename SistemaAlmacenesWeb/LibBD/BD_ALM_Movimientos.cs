@@ -633,6 +633,7 @@ namespace SistemaAlmacenesWeb
                         " from alm_movimientos m, alm_movimientos mov, alm_pasos pa, alm_pasos p, personas per, alm_items i " +
                         ", dominios d" +
                         " where p.tipo=4" + //dominios define 4 como tipo rechazo
+                        " and mov.egreso=0"+
                         " and d.dominio='ALM_TIPO_PASO'" +
                         " and p.num_sec_paso=m.num_sec_paso" +
                         " and m.num_sec_transaccion=mov.num_sec_transaccion" +
