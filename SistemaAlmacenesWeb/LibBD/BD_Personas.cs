@@ -32,7 +32,7 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Atributos
-        // Campos de la tabla TRS_AVANCES
+        // Campos de la tabla Personas
         private long _num_sec = 0;
         private string _nombres = string.Empty;
         private string _apellido_paterno = string.Empty;
@@ -45,7 +45,7 @@ namespace SistemaAlmacenesWeb
         // Otras propiedades
         private string _mensaje = string.Empty;
         private string _strconexion = string.Empty;
-        // Definicion GET y SET de los campos de la tabla TRS_AVANCES
+        // Definicion GET y SET de los campos de la tabla Personas
 
         public long NumSec { get { return _num_sec; } set { _num_sec = value; } }
         public string Nombres { get { return _nombres; } set { _nombres = value; } }
@@ -69,7 +69,7 @@ namespace SistemaAlmacenesWeb
         #endregion
 
         #region Constructor
-        // Definición del contructor de la clase TRS_AVANCES
+        // Definición del contructor de la clase Personas
         public BD_Personas()
         {
             _num_sec= 0;
@@ -88,13 +88,13 @@ namespace SistemaAlmacenesWeb
 
         #region Metodos iBD_Tablas y Públicos
 
-        // Método para insertar un dato en la tabla TRS_AVANCES
+        // Método para insertar un dato en la tabla Personas
         public bool Insertar()
         {
             return false;
         }
 
-        // Método para MODIFICAR un dato en la tabla TRS_AVANCES
+        // Método para MODIFICAR un dato en la tabla Personas
         public bool Modificar()
         {
             bool blOperacionCorrecta = false;

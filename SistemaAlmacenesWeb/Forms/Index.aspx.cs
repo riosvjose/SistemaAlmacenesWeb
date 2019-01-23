@@ -50,19 +50,19 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void lbReportes_Click(object sender, EventArgs e)
         {
-           // Response.Redirect("STRS_SAL_MenuSalidas.aspx");
+          
         }
         protected void lbPedidos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("STRS_TAR_MenuTareas.aspx"); 
+            
         }
         protected void lbAutoriza_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_PROY_MenuProyectos.aspx");
+           
         }
         protected void lbSalidas_Click(object sender, EventArgs e)
         {
-            //Response.Redirect("STRS_CON_AULA_Registrar.aspx");
+            
         }
         protected void CargarLblNotificaHoy()
         {

@@ -30,7 +30,6 @@ namespace SistemaAlmacenesWeb
 
         #region Atributos
 
-        // Campos de la tabla TRS_PROYETOS
         private long _num_sec_persona = 0;
         private long _num_sec_depto = 0;
         private string _fecha_registro = string.Empty;
@@ -41,7 +40,7 @@ namespace SistemaAlmacenesWeb
         private string _mensaje = string.Empty;
         private string _strconexion = string.Empty;
 
-        // Definicion GET y SET de los campos de la tabla TRS_PROYECTOS
+        // Definicion GET y SET de los campos
         public long NumSecPersona { get { return _num_sec_persona; } set { _num_sec_persona = value; } }
         public long NumSecDepto { get { return _num_sec_depto; } set { _num_sec_depto = value; } }
         public string FechaRegistro { get { return _fecha_registro; } set { _fecha_registro = value; } }
@@ -78,7 +77,7 @@ namespace SistemaAlmacenesWeb
 
         #region Metodos iBD_Tablas y Públicos
 
-        // Método para insertar un dato en la tabla TRS_PROYECTOS
+        // Método para insertar un dato en la tabla
         public bool Insertar()
         {
             bool blOperacionCorrecta = false;
