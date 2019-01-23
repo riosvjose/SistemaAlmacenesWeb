@@ -1102,6 +1102,7 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 case 2:
                     Panel2.Visible = true;
+                    btnQuitarItem.Enabled = true; //Cuando queda solo un panel para hacer ingresos se Habilita el Boton QuitarItem.
                     break;
                 case 3:
                     Panel3.Visible = true;
@@ -1141,16 +1142,19 @@ namespace SistemaAlmacenesWeb.Forms
                     break;
                 case 15:
                     Panel15.Visible = true;
+                    btnAgregarItem.Enabled = false; //Se des-habilita el Boton AgregarItem
                     break;
             }
         }
         protected void btnQuitarItem_Click(object sender, EventArgs e)
         {
             int aux = Convert.ToInt32(lblContador.Text.Trim());
+            btnAgregarItem.Enabled = true; //Se habilita el Boton AgregarItem, cuando se quita un item
             switch (aux)
             {
                 case 2:
                     Panel2.Visible = false;
+                    btnQuitarItem.Enabled = false; //Cuando queda solo un panel para hacer ingresos se des-habilita el Boton QuitarItem.
                     break;
                 case 3:
                     Panel3.Visible = false;
