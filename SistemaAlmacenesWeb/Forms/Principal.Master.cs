@@ -33,44 +33,51 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 // Desplegar el SideBar de acuerdo a que modulos tiene permisos una persona
                 libproc.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libproc.AccesoObjetoUsuario("ALM_ALM_AdministrarAlmacenes"))
+                List<string> AccesoObjeto= new List<string>();
+                AccesoObjeto = libproc.ListaAccesoObjetoUsuario(); //Lista de todos los objetos a los que tiene permiso el usuario que Inicio Sesión
+                if(AccesoObjeto.Contains("ALM_ALM_AdministrarAlmacenes_permitir_acceso"))
                     sbAdminAlmacenes.Visible = true;
-                if (libproc.AccesoObjetoUsuario("ALM_AdministrarPasos"))
+                if (AccesoObjeto.Contains("ALM_AdministrarPasos_permitir_acceso"))
                     sbAdministrarPermisosPasos.Visible = true;
-                if (libproc.AccesoObjetoUsuario("ALM_RegistrarIngreso"))
+                if (AccesoObjeto.Contains("ALM_RegistrarIngreso_permitir_acceso"))
                     sbRegIngreso.Visible = true;
-                if (libproc.AccesoObjetoUsuario("ALM_MED_AdministrarMedidas"))
+                if (AccesoObjeto.Contains("ALM_MED_AdministrarMedidas_permitir_acceso"))
                     sbAdminMedidas.Visible = true;
-                if (libproc.AccesoObjetoUsuario("ALM_PROV_AdministrarProveedores"))
+                if (AccesoObjeto.Contains("ALM_PROV_AdministrarProveedores_permitir_acceso"))
                     sbAdminProveedores.Visible = true;
-                if (libproc.AccesoObjetoUsuario("ALM_GRU_AdministrarGrupos"))
+                if (AccesoObjeto.Contains("ALM_GRU_AdministrarGrupos_permitir_acceso"))
                     sbAdminGrupos.Visible = true;
-                if (libproc.AccesoObjetoUsuario("ALM_CAT_AdministrarCategorias"))
+                if (AccesoObjeto.Contains("ALM_CAT_AdministrarCategorias_permitir_acceso"))
                     sbAdminCategorias.Visible = true;
-                if (libproc.AccesoObjetoUsuario("ALM_ITEM_AdministrarItems"))
+                if (AccesoObjeto.Contains("ALM_ITEM_AdministrarItems_permitir_acceso"))
                     sbAdminItems.Visible = true;
                 //Desplegar los Collapse si una persona tiene permiso al menos a un módulo
                 
                 // Collapse de Pedidos
                 int pedidos = 0;
-                if (libproc.AccesoObjetoUsuario("ALM_PED_Realizar"))
+                if (AccesoObjeto.Contains("ALM_PED_Realizar_permitir_acceso"))
                 {
                     lnkbtnRealizarPedido.Visible = true;
                     pedidos++;
                 }
-                if (libproc.AccesoObjetoUsuario("ALM_PED_Autorizar"))
+                if (AccesoObjeto.Contains("ALM_PED_Autorizar_permitir_acceso"))
                 {
                     lnkbtnAutorizarPedido.Visible = true;
                     pedidos++;
                 }
-                if (libproc.AccesoObjetoUsuario("ALM_PED_Entregar"))
+                if (AccesoObjeto.Contains("ALM_PED_Entregar_permitir_acceso"))
                 {
                     lnkbtnEntregarPedido.Visible = true;
                     pedidos++;
                 }
-                if (libproc.AccesoObjetoUsuario("ALM_TOK_Generar_Token"))
+                if (AccesoObjeto.Contains("ALM_TOK_Generar_Token_permitir_acceso"))
                 {
                     lnkbtnGenerarToken.Visible = true;
+                    pedidos++;
+                }
+                if (AccesoObjeto.Contains("ALM_PED_Buscar_permitir_acceso"))
+                {
+                    lnkbtnBuscarItem.Visible = true;
                     pedidos++;
                 }
                 if (pedidos > 0) //Mostrar sbPedidos en caso de que el usuario tenga acceso a almenos un modulo
@@ -78,12 +85,12 @@ namespace SistemaAlmacenesWeb.Forms
 
                 //Collapse de Salidas
                 int salidas = 0;
-                if (libproc.AccesoObjetoUsuario("ALM_SAL_Registrar"))
+                if (AccesoObjeto.Contains("ALM_SAL_Registrar_permitir_acceso"))
                 {
                     lnkbtnRegistarSalida.Visible = true;
                     salidas++;
                 }
-                if (libproc.AccesoObjetoUsuario("ALM_SAL_Autorizar"))
+                if (AccesoObjeto.Contains("ALM_SAL_Autorizar_permitir_acceso"))
                 {
                     lnkbtnAutorizarSalida.Visible = true;
                     salidas++;
@@ -93,17 +100,17 @@ namespace SistemaAlmacenesWeb.Forms
 
                 //Collapse de Reportes
                 int reportes = 0;
-                if (libproc.AccesoObjetoUsuario("ALM_REP_ItemsEntregados"))
+                if (AccesoObjeto.Contains("ALM_REP_ItemsEntregados_permitir_acceso"))
                 {
                     lnkbtnReporte1.Visible = true;
                     reportes++;
                 }
-                if (libproc.AccesoObjetoUsuario("ALM_REP_ConsumoDepartamento"))
+                if (AccesoObjeto.Contains("ALM_REP_ConsumoDepartamento_permitir_acceso"))
                 {
                     lnkbtnReporte2.Visible = true;
                     reportes++;
                 }
-                if (libproc.AccesoObjetoUsuario("ALM_REP_Existencias"))
+                if (AccesoObjeto.Contains("ALM_REP_ExistenciasItems_permitir_acceso"))
                 {
                     lnkbtnReporte3.Visible = true;
                     reportes++;
@@ -178,7 +185,11 @@ namespace SistemaAlmacenesWeb.Forms
             Response.Redirect("ALM_REP_Existencias.aspx");
         }
 
-        
+        protected void lnkbtnBuscarItem_Click(object sender, EventArgs e)
+        {
+            //Response.Redirect("ALM_TOK_GenerarToken.aspx");
+        }
+
 
         #endregion
     }

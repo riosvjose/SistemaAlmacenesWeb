@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="btn-group">
                                 <asp:Button ID="btnAgregarItem" runat="server" CssClass="btn btn-primary" Text="Agregar Item" CausesValidation="False" OnClick="btnAgregarItem_Click" />
-                                <asp:Button ID="btnQuitarItem" runat="server" CssClass="btn btn-warning" Text="Quitar Item" CausesValidation="False" OnClick="btnQuitarItem_Click" />
+                                <asp:Button ID="btnQuitarItem" runat="server" CssClass="btn btn-warning" Text="Quitar Item" CausesValidation="False" Enabled="false" OnClick="btnQuitarItem_Click" />
                               </div>        
                         </div>
                         <asp:Label ID="lblContador" runat="server" Text="1" Visible="false"></asp:Label>
@@ -451,12 +451,17 @@
 			            <asp:Label ID="lblMensajeError" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>
 		            </div>
 	            </asp:Panel>
-
 	            <asp:Panel ID="pnMensajeOK" runat="server" Visible="false">
 		            <div class="alert alert-success alert-dismissable">
 			            <asp:Label ID="lblMensajeOK" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>
 		            </div>
 	            </asp:Panel>
+                <%--Panel Final de la pagina--%>
+                <asp:Panel ID="pnFinal" runat="server" Visible="false">
+                    <div class="alert alert-light">
+                        <asp:Label ID="lblFinal" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>
+                    </div>
+                </asp:Panel> 
                  <%--Mensaje de Error AJAXValidator--%>
                  <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />
             </div>
