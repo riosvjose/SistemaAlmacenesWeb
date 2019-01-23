@@ -440,14 +440,21 @@ namespace SistemaAlmacenesWeb
             return blOperacionCorrecta;
         }
 
-        public DataTable DTVerSubdeptosTodosPasosUsu()
+        public DataTable DTVerSubdeptosTodosPasosUsu(string almacen)
         {
             string strSql = string.Empty;
             strSql = " SELECT DISTINCT ps.num_sec_subdepartamento, s.nombre "+
                     " FROM alm_paso_subdepto_usu ps, gen_subdepartamentos s "+
+                    ", alm_almacenes a, alm_almacenes_usuarios au, alm_plantillas p, alm_pasos pa"+
                     " WHERE ps.num_sec_usuario = "+_num_sec_usuario +
                     " and ps.activo =1 "+
+                    " and au.num_sec_usuario="+_num_sec_usuario+
                     " AND ps.num_sec_subdepartamento = s.num_sec_subdepartamento"+
+                    " and a.num_sec_almacen="+almacen+
+                    " and a.num_sec_almacen=au.num_sec_almacen"+
+                    " and p.num_sec_almacen=a.num_sec_almacen"+
+                    " and p.num_sec_plantilla=pa.num_sec_plantilla"+
+                    " and pa.num_sec_paso=ps.num_sec_paso"+
                     " ORDER BY s.nombre";
             DataTable dt = new DataTable();
             OracleBD.MostrarError = false;

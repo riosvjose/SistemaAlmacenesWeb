@@ -615,6 +615,43 @@ namespace SistemaAlmacenesWeb
             //dt.Dispose();
             return dt;
         }
+
+        public DataTable DTMostrarRechazadosDepto(string subdepto) //obtiene todas las transacciones rechazadas de un subdepto desde hace 30 dias
+        {
+            string aux = string.Empty;
+            if (!string.IsNullOrEmpty(subdepto))
+            {
+                aux = " and m.num_sec_usuario in(select a.num_sec_usuario from alm_paso_subdepto_usu a" +
+                                                " where a.num_sec_subdepartamento in(" + subdepto + "))";
+            }
+            string usuario = (axVarSes.Lee<string>("UsuarioNumSec")).ToString();
+            string strSql = string.Empty;
+            string cadenaDeptos = string.Empty;
+            strSql = "select distinct m.num_sec_transaccion, i.nombre as num_sec_item, m.num_sec_paso, p.nombre as paso, m.egreso as cantidad" +
+                    ", d.descripcion, per.ap_paterno||' '||per.nombres as persona " +
+                    " from alm_movimientos m, alm_movimientos mov, alm_pasos pa, alm_pasos p, personas per, alm_items i " +
+                    ", dominios d" +
+                    " where p.tipo=4" + //dominios define 4 como tipo rechazo
+                    " and d.dominio='ALM_TIPO_PASO'"+
+                    " and p.num_sec_paso=m.num_sec_paso" +
+                    " and m.num_sec_transaccion=mov.num_sec_transaccion" +
+                    " and mov.num_sec_paso=pa.num_sec_paso" +
+                    " and pa.num_sec_paso_ant=0" +
+                    " and m.num_sec_item=i.num_sec_item" +
+                    " and mov.num_sec_persona=per.num_sec" +
+                    " and p.tipo=d.valor"+
+                    " and trunc(mov.fecha_registro)>trunc(sysdate-30)"+
+                    aux +
+                    " order by m.num_sec_transaccion";
+            DataTable dt = new DataTable();
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            dt = OracleBD.DataTable;
+            //dt.Dispose();
+            return dt;
+        }
         #endregion
     }
 }

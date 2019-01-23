@@ -150,7 +150,7 @@
                  <div class="row">
                       <div class="btn-group">
                             <asp:Button ID="btnEntregar" CssClass="btn btn-success" runat="server" Text="Entregar" OnClick="btnEntregar_Click" />
-                          <asp:Button ID="btnBuscar" CssClass="btn btn-success" runat="server" Text="Ver pendientes" OnClick="btnBuscar_Click" />
+                          <asp:Button ID="btnBuscar" CssClass="btn btn-primary" runat="server" Text="Ver pendientes" OnClick="btnBuscar_Click" />
                       </div>
                  </div>
             </asp:Panel>

@@ -111,14 +111,21 @@ namespace SistemaAlmacenesWeb.Forms
                 subdepto = ddlSubdeptos.SelectedValue;
                 DataTable dtAux = new DataTable();
                 dtAux = libMov.DTMostrarPedidosDepto(pasoaux, subdepto);
-                dtPedidos.Merge(dtAux);
+                dtPedidos.Merge(dtAux);       
             }
+            /// -----------------Pedidos rechazados
+            libMov = new BD_ALM_Movimientos();
+            libMov.StrConexion = axVarSes.Lee<string>("strConexion");
+            string subdepto1 = ddlSubdeptos.SelectedValue;
+            DataTable dtAux1 = new DataTable();
+            dtAux1 = libMov.DTMostrarRechazadosDepto(subdepto1);
+            dtPedidos.Merge(dtAux1);
         }
         public void CargarDDLSubdeptos()
         {
             libPasoUsu.StrConexion = axVarSes.Lee<string>("strConexion");
             libPasoUsu.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
-            ddlSubdeptos.DataSource = libPasoUsu.DTVerSubdeptosTodosPasosUsu();
+            ddlSubdeptos.DataSource = libPasoUsu.DTVerSubdeptosTodosPasosUsu(ddlAlmacenes.SelectedValue);
             ddlSubdeptos.DataTextField = "NOMBRE";
             ddlSubdeptos.DataValueField = "NUM_SEC_SUBDEPARTAMENTO";
             ddlSubdeptos.DataBind();
@@ -170,6 +177,12 @@ namespace SistemaAlmacenesWeb.Forms
         protected void ddlAlmacenes_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnBuscar.Visible = false;
+            libPasoUsu.StrConexion = axVarSes.Lee<string>("strConexion");
+            libPasoUsu.NumSecUsuario = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+            ddlSubdeptos.DataSource = libPasoUsu.DTVerSubdeptosTodosPasosUsu(ddlAlmacenes.SelectedValue);
+            ddlSubdeptos.DataTextField = "NOMBRE";
+            ddlSubdeptos.DataValueField = "NUM_SEC_SUBDEPARTAMENTO";
+            ddlSubdeptos.DataBind();
         }
 
         protected void gvDatos1_RowCommand(object sender, GridViewCommandEventArgs e)
