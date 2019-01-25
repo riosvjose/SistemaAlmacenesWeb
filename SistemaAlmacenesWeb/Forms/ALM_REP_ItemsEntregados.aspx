@@ -3,6 +3,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <Triggers>
+            <asp:PostBackTrigger ControlID="ibtnExportarExcel" />
+        </Triggers>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="ibtnExportarExcel1" />
+        </Triggers>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="ibtnExportarExcel2" />
+        </Triggers>
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
@@ -75,6 +84,11 @@
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			        <div class="panel-body">
+                        <div class="row mb-3">
+                                <div class="col-xs-12 text-right">
+                                   <asp:ImageButton ID="ibtnExportarExcel" ImageUrl="~/Img/excel.png" runat="server" OnClick="ibtnExportarExcel_Click" />
+                             </div>
+                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-inline">
@@ -119,6 +133,11 @@
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			        <div class="panel-body">
+                        <div class="row mb-3">
+                                <div class="col-xs-12 text-right">
+                                   <asp:ImageButton ID="ibtnExportarExcel1" ImageUrl="~/Img/excel.png" runat="server" OnClick="ibtnExportarExcel1_Click" />
+                             </div>
+                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-inline">
@@ -164,6 +183,11 @@
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			        <div class="panel-body">
+                        <div class="row mb-3">
+                                <div class="col-xs-12 text-right">
+                                   <asp:ImageButton ID="ibtnExportarExcel2" ImageUrl="~/Img/excel.png" runat="server" OnClick="ibtnExportarExcel2_Click" />
+                             </div>
+                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-inline">
