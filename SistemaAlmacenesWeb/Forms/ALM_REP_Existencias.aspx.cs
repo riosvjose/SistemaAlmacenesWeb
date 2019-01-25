@@ -105,7 +105,7 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void ibtnExportarExcel_Click(object sender, EventArgs e)
         {
-            ExportarExcel(gvDatos);
+            ExportarExcel(gvExistenciaItem);
         }
         #endregion
     }
