@@ -50,7 +50,9 @@
                                                 <asp:TemplateField HeaderText="Nro." ><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
                                                 <asp:BoundField DataField="num_sec_item" HeaderText="id" />
                                                 <asp:BoundField DataField="item" HeaderText="Item" />
-                                                <asp:BoundField DataField="existencia" HeaderText="Cantidad" />
+                                                <asp:BoundField DataField="existencia" HeaderText="Existencias" />
+                                                <asp:BoundField DataField="reserva" HeaderText="Reservados" />
+                                                <asp:BoundField DataField="saldo_real" HeaderText="Saldo Real" />                                            
                                             </Columns>
                                             <PagerStyle CssClass="GridPager" Wrap="True" />
                                             <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />
