@@ -112,7 +112,7 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Button btnGenerarReportes;
         
         /// <summary>
-        /// btnVolver Menu control.
+        /// btnVolverMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -137,6 +137,15 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRepConsumoItem;
+        
+        /// <summary>
+        /// ibtnExportarExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ibtnExportarExcel;
         
         /// <summary>
         /// gvItemsEntregados control.
@@ -175,6 +184,15 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Label lblRepConsumoDepto;
         
         /// <summary>
+        /// ibtnExportarExcel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ibtnExportarExcel1;
+        
+        /// <summary>
         /// gvConsumoDepto control.
         /// </summary>
         /// <remarks>
@@ -209,6 +227,15 @@ namespace SistemaAlmacenesWeb.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRepConsumoPersona;
+        
+        /// <summary>
+        /// ibtnExportarExcel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ibtnExportarExcel2;
         
         /// <summary>
         /// gvConsumoPersona control.
