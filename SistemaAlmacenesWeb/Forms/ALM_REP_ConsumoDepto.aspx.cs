@@ -10,6 +10,9 @@ using nsGEN_Java;
 using nsGEN_WebForms;
 using System.Data;
 using nsGEN;
+using System.Text;
+using System.Web.UI.HtmlControls;
+using System.IO;
 
 namespace SistemaAlmacenesWeb.Forms
 {
@@ -53,6 +56,30 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 Response.Redirect("~/Default.aspx");
             }
+        }
+        private void ExportarExcel(GridView gvMatriz)
+        {
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw1 = new StringWriter(sb);
+            HtmlTextWriter htw = new HtmlTextWriter(sw1);
+            Page page = new Page();
+            HtmlForm form = new HtmlForm();
+
+            gvMatriz.EnableViewState = false;
+            page.EnableEventValidation = false;
+            page.DesignerInitialize();
+            page.Controls.Add(form);
+            form.Controls.Add(gvMatriz);
+            page.RenderControl(htw);
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment; filename=Reporte Consumo.xls");
+            Response.Charset = "UTF-8";
+            Response.ContentEncoding = Encoding.Default;
+            Response.Write(sb.ToString());
+            Response.End();
         }
         #endregion
 
@@ -98,7 +125,10 @@ namespace SistemaAlmacenesWeb.Forms
         {
             Response.Redirect("ALM_REP_ConsumoDepto.aspx");
         }
-
+        protected void ibtnExportarExcel_Click(object sender, EventArgs e)
+        {
+            ExportarExcel(gvConsumoDepto);
+        }
         #endregion
 
     }
