@@ -115,8 +115,8 @@
 			        <div class="panel-body">
                         <div class="row">
                             <div class="btn-group">
-                                <asp:Button ID="btnAgregarItem" runat="server" CssClass="btn btn-primary" Text="Agregar Item" CausesValidation="False" OnClick="btnAgregarItem_Click" />
-                                <asp:Button ID="btnQuitarItem" runat="server" CssClass="btn btn-warning" Text="Quitar Item" CausesValidation="False" Enabled="false" OnClick="btnQuitarItem_Click" />
+                                <asp:Button ID="btnAgregarItem" runat="server" CssClass="btn btn-primary" Text="Agregar item" CausesValidation="False" OnClick="btnAgregarItem_Click" />
+                                <asp:Button ID="btnQuitarItem" runat="server" CssClass="btn btn-warning" Text="Quitar item" CausesValidation="False" Enabled="false" OnClick="btnQuitarItem_Click" />
                               </div>        
                         </div>
                         <asp:Label ID="lblContador" runat="server" Text="1" Visible="false"></asp:Label>
@@ -519,7 +519,7 @@
 			        <div class="panel-footer">
                         <div class="row">
                             <div class="btn-group">
-                                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-success" Text="Registrar Ingreso" CausesValidation="True" OnClick="btnGuardar_Click" />
+                                     <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-success" Text="Registrar ingreso" CausesValidation="True" OnClick="btnGuardar_Click" />
                                      <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" CausesValidation="False" OnClick="btnCancelar_Click" />
                                 </div>
                         </div>

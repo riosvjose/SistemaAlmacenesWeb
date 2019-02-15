@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Administrar Almacenes</h1>
+		            <h1>Administrar almacenes</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -45,13 +45,10 @@
 			        <div class="panel-footer">
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group">
-                                <asp:Button ID="btnCrearAlmacen" runat="server" CssClass="btn btn-success" Text="Crear Almacen" CausesValidation="False" OnClick="btnCrearAlmacen_Click" />
-                                 <asp:Button ID="btnAdmUsuariosAlm" runat="server" CssClass="btn btn-info" Text="Administrar Usuarios" CausesValidation="False" OnClick="btnAdmUsu_Click" />
+                                <asp:Button ID="btnCrearAlmacen" runat="server" CssClass="btn btn-success" Text="Crear almacen" CausesValidation="False" OnClick="btnCrearAlmacen_Click" />
+                                 <asp:Button ID="btnAdmUsuariosAlm" runat="server" CssClass="btn btn-info" Text="Administrar usuarios" CausesValidation="False" OnClick="btnAdmUsu_Click" />
                                 <%--<asp:Button ID="btnEditarAlmacen" runat="server" CssClass="btn btn-primary" Text="Editar Almacen" CausesValidation="False" OnClick="btnEditarAlmacen_Click" />--%>
                             </div>
-                            <%--<div class="btn-group pull-right">
-                                  <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click" />
-                            </div>--%>
                           </div>
                         </div>
 			        </div>

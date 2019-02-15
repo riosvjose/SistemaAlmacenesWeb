@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Administrar pasos movimientos</h1>
+		            <h1>Administrar permisos para realizar pasos de movimientos</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -36,7 +36,7 @@
                             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
                                 <strong><asp:Label ID="lblAlmacen" runat="server" Text="Almacen:" Visible="true"></asp:Label></strong>
                                 <br/>
-                                <asp:DropDownList ID="ddlAlmacenes" runat="server" CssClass="form-control mr-3" OnSelectedIndexChanged="ddlAlmacenes_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlAlmacenes" runat="server" CssClass="form-control mr-3" AutoPostBack="true" OnSelectedIndexChanged="ddlAlmacenes_SelectedIndexChanged">
                                     </asp:DropDownList>
                             </div>
                             </div>
@@ -74,9 +74,6 @@
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group">
                                 <asp:Button ID="btnAdministrarUsuarios" runat="server" CssClass="btn btn-primary" Text="Administrar usuarios" CausesValidation="False" OnClick="btnAdmUsu_Click" />
-                            </div>
-                            <div class="btn-group pull-right">
-                                  <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click" />
                             </div>
                           </div>
                         </div>

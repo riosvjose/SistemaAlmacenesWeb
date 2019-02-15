@@ -85,15 +85,6 @@ namespace SistemaAlmacenesWeb.Forms {
         protected global::System.Web.UI.WebControls.Button btnEliminarItem;
         
         /// <summary>
-        /// btnVolverMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverMenu;
-        
-        /// <summary>
         /// pnCrearItem control.
         /// </summary>
         /// <remarks>

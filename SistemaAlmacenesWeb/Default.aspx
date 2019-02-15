@@ -65,12 +65,12 @@
                                 </div>
                             </div>                            
                             <br />
-                            <div class="col-md-offset-4 col-md-4">
                                 <form id="form1" class="form-horizontal" runat="server">
                                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                         <ContentTemplate>
                                             <fieldset>
+                                                <div class="col-md-offset-4 col-md-4">
                                                 <div class="form-group">
                                                     <label>Usuario</label>
                                                     <div class="input-group">
@@ -93,15 +93,23 @@
                                                         <asp:Image ID="imgProcesando" runat="server" ImageUrl="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                                     </ProgressTemplate>
                                                 </asp:UpdateProgress>
+                                              </div>
                                             </fieldset>
                                             <br />
-                                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />
-                                            <asp:Label ID="lblMensaje" runat="server" Text="PRUEBA" Visible="false" CssClass="alert alert-danger"></asp:Label>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-4 ">
+                                                    </div>
+                                                <div class="col-xs-12 col-md-4 ">
+                                                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 text-center">
+                                                <asp:Label ID="lblMensaje" runat="server" Text="PRUEBA" Visible="FALSE" CssClass="alert alert-danger" Height="70px"></asp:Label>
+                                            </div>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
+                                     
                                 </form>
-                            </div>
-
                         </div>
                         <div class="row">
                             <div class="col-md-offset-4 col-md-4">

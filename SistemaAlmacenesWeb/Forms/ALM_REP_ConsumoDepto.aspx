@@ -62,9 +62,6 @@
                             <div class="col-xs-10"> 
                                 <asp:Button ID="btnGenerarReportes" runat="server" CssClass="btn btn-success" Text="Generar Reporte" CausesValidation="True" OnClick="btnGenerarReportes_Click" />                                   
                             </div>
-                            <div class="col-xs-2 text-right">
-                                <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Menú Principal" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
-                            </div>
                         </div>
 			        </div>	       
 			   </div>

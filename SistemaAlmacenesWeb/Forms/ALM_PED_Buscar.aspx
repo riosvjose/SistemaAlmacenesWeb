@@ -61,7 +61,7 @@
                         <div class="row mb-3">
                             <asp:Panel ID="pnSubdepto" runat="server" Visible="true">
                                 <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                    <strong><asp:Label ID="lblSubdeptos" runat="server" Text="Subdeptos:"></asp:Label></strong>
+                                    <strong><asp:Label ID="lblSubdeptos" runat="server" Text="Subdepartamento:"></asp:Label></strong>
                                 </div>
                                 <div class="col-xs-12 col-sm-7 col-md-9 col-lg-10">
                                     <asp:DropDownList ID="ddlSubdeptos" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlSubdeptos_SelectedIndexChanged"></asp:DropDownList>
@@ -74,9 +74,6 @@
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group">
                                 <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-success" Text="Buscar" CausesValidation="False" OnClick="btnBuscar_Click" />
-                            </div>
-                            <div class="btn-group pull-right">
-                                  <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolver_Click" />
                             </div>
                           </div>
                         </div>

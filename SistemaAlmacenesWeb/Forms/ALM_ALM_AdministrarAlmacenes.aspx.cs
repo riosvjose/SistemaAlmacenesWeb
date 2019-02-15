@@ -187,6 +187,12 @@ namespace SistemaAlmacenesWeb.Forms
                 pnPrincipal.Visible = true;
                 pnCrearAlmacen.Visible = false;
                 VaciarBoxes();
+                libalm.StrConexion = axVarSes.Lee<string>("strConexion");
+                // Listar todos los almacenes
+                ddlAlmacenes.DataSource = libalm.dtListarTodosAlmacenes();
+                ddlAlmacenes.DataTextField = "NOMBRE";
+                ddlAlmacenes.DataValueField = "NUM_SEC_ALMACEN";
+                ddlAlmacenes.DataBind();
             }
             else
             {

@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Administrar Grupo de Items</h1>
+		            <h1>Administrar grupo de items</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -34,7 +34,7 @@
 			        <div class="panel-body">
                         <div class="row mb-3">
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <strong><asp:Label ID="lblGrupoItems" runat="server" Text="Grupo de Items:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblGrupoItems" runat="server" Text="Grupo de items:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-9 col-lg-10">
                                 <asp:DropDownList ID="ddlGrupoItems" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlGrupoItems_SelectedIndexChanged" ></asp:DropDownList>
@@ -45,12 +45,9 @@
 			        <div class="panel-footer">
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group">
-                                <asp:Button ID="btnCrearGrupo" runat="server" CssClass="btn btn-success" Text="Crear Grupo" CausesValidation="False" OnClick="btnCrearGrupo_Click" />
-                                <asp:Button ID="btnEditarGrupo" runat="server" CssClass="btn btn-primary" Text="Editar Grupo" CausesValidation="False" OnClick="btnEditarGrupo_Click" />
-                                <asp:Button ID="btnAdmUsuariosAlm" runat="server" CssClass="btn btn-info" Text="Administrar Subdepartamentos" CausesValidation="False" OnClick="btnAdmSubdepto_Click" />
-                            </div>
-                            <div class="btn-group pull-right">
-                                  <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click" />
+                                <asp:Button ID="btnCrearGrupo" runat="server" CssClass="btn btn-success" Text="Crear grupo" CausesValidation="False" OnClick="btnCrearGrupo_Click" />
+                                <asp:Button ID="btnEditarGrupo" runat="server" CssClass="btn btn-primary" Text="Editar grupo" CausesValidation="False" OnClick="btnEditarGrupo_Click" />
+                                <asp:Button ID="btnAdmUsuariosAlm" runat="server" CssClass="btn btn-info" Text="Administrar subdepartamentos" CausesValidation="False" OnClick="btnAdmSubdepto_Click" />
                             </div>
                           </div>
                         </div>
@@ -137,7 +134,7 @@
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
-                        <h3> <strong><asp:Label ID="lblAdmDeptos" runat="server" Text="Administrar Subdepartamentos"></asp:Label></strong></h3>
+                        <h3> <strong><asp:Label ID="lblAdmDeptos" runat="server" Text="Administrar subdepartamentos"></asp:Label></strong></h3>
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			        <div class="panel-body">

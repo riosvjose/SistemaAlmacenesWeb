@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Administrar Items</h1>
+		            <h1>Administrar items</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -34,7 +34,7 @@
 			        <div class="panel-body">
                         <div class="row mb-3">
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <strong><asp:Label ID="lblItems" runat="server" Text="Items:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblItems" runat="server" Text="Item:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-9 col-lg-10">
                                 <asp:DropDownList ID="ddlItem" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged"></asp:DropDownList>
@@ -45,12 +45,9 @@
 			        <div class="panel-footer">
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group">
-                                <asp:Button ID="btnCrearItem" runat="server" CssClass="btn btn-success" Text="Crear Item" CausesValidation="False" OnClick="btnCrearItem_Click" />
-                                <asp:Button ID="btnEditarItem" runat="server" CssClass="btn btn-primary" Text="Editar Item" CausesValidation="False" OnClick="btnEditarItem_Click" />
-                                <asp:Button ID="btnEliminarItem" runat="server" CssClass="btn btn-danger" Text="Eliminar Item" CausesValidation="False" OnClick="btnEliminarItem_Click" />
-                            </div>
-                            <div class="btn-group pull-right">
-                                  <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click" />
+                                <asp:Button ID="btnCrearItem" runat="server" CssClass="btn btn-success" Text="Crear item" CausesValidation="False" OnClick="btnCrearItem_Click" />
+                                <asp:Button ID="btnEditarItem" runat="server" CssClass="btn btn-primary" Text="Editar item" CausesValidation="False" OnClick="btnEditarItem_Click" />
+                                <asp:Button ID="btnEliminarItem" runat="server" CssClass="btn btn-danger" Text="Eliminar item" CausesValidation="False" OnClick="btnEliminarItem_Click" />
                             </div>
                           </div>
                         </div>
@@ -85,7 +82,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblGrupoItem" runat="server" Text="Grupo de Categoría:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblGrupoItem" runat="server" Text="Grupo:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:DropDownList ID="ddlGrupoItem" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlGrupoItem_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
@@ -99,7 +96,7 @@
                                 <asp:DropDownList ID="ddlCategoriaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
                             </div>
                             <div>
-                                <asp:Button ID="btnAgregarCategoria" runat="server" CssClass="btn btn-primary" Text="Agregar Categoría" CausesValidation="False" OnClick="btnAgregarCategoria_Click"/>                                                                           
+                                <asp:Button ID="btnAgregarCategoria" runat="server" CssClass="btn btn-primary" Text="Agregar categoría" CausesValidation="False" OnClick="btnAgregarCategoria_Click"/>                                                                           
                             </div>                            
                         </div>
                         <div class="row mb-3">
@@ -110,13 +107,13 @@
                                 <asp:DropDownList ID="ddlMedidaItem" runat="server" CssClass="form-control" ></asp:DropDownList>
                             </div>
                             <div>
-                                <asp:Button ID="btnAgregarMedida" runat="server" CssClass="btn btn-primary" Text="Agregar Medida" CausesValidation="False" OnClick="btnAgregarMedida_Click"/>                                                                           
+                                <asp:Button ID="btnAgregarMedida" runat="server" CssClass="btn btn-primary" Text="Agregar medida" CausesValidation="False" OnClick="btnAgregarMedida_Click"/>                                                                           
                             </div> 
 
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblStockItem" runat="server" Text="Stock Mínimo:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblStockItem" runat="server" Text="Stock mínimo:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvStockItem" runat="server" ControlToValidate="tbStockItem" CssClass="text-danger" ErrorMessage="El campo Stock es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -245,7 +242,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblEditarStockItem" runat="server" Text="Stock Mínimo:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblEditarStockItem" runat="server" Text="Stock mínimo:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvEditarStockItem" runat="server" ControlToValidate="tbEditarStockItem" CssClass="text-danger" ErrorMessage="El campo Stock es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">

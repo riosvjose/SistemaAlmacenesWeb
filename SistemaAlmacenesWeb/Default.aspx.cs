@@ -43,54 +43,7 @@ namespace SistemaAlmacenesWeb
 
         #region "Funciones y Procedimientos"
 
-        private void Revisar_Permisos_Operacion(string NSPersona, string NSModulo, string NSUsuario, string NSSubUnidad, string strCon)
-        {
-            DataTable dt;
-            string SubDeptos = string.Empty;
-
-            ParametrosPersonas.StrConexion = strCon;
-            ParametrosPersonas.NumSecPersona = Convert.ToInt64(NSPersona);
-            dt = ParametrosPersonas.DTParametrosPersonaPorModulo(NSModulo);
-            axVarSes.Escribe("ax_Num_Sec_Semestre_AHP", "0");
-            axVarSes.Escribe("axModalidad_Operacion_Sistema", Convert.ToInt16("0"));
-            axVarSes.Escribe("axPermitir_insc_otros_deptos", Convert.ToInt16("0"));
-            axVarSes.Escribe("axPermitir_insc_nuevos", Convert.ToInt16("0"));
-            axVarSes.Escribe("axPermitir_todos_deptos", Convert.ToInt16("0"));
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                switch (dt.Rows[i]["codigo"].ToString().Trim())
-                {
-                    case "8012": // Semestre habilitado para habandono parcial
-                        axVarSes.Escribe("ax_Num_Sec_Semestre_AHP", dt.Rows[i]["valor"].ToString().Trim());
-                        break;
-                    case "8015": // Modalidad Operacion Sistema
-                        axVarSes.Escribe("axModalidad_Operacion_Sistema", Convert.ToInt16(dt.Rows[i]["valor"].ToString().Trim()));
-                        break;
-                    case "8016": // Permitir inscribir en materias de otros departamentos
-                        axVarSes.Escribe("axPermitir_insc_otros_deptos", Convert.ToInt16(dt.Rows[i]["valor"].ToString().Trim()));
-                        break;
-                    case "8017": // Permitir inscribir estudiantes nuevos
-                        axVarSes.Escribe("axPermitir_insc_nuevos", Convert.ToInt16(dt.Rows[i]["valor"].ToString().Trim()));
-                        break;
-                    case "8018": // Permitir acceso a todos los departamentos académicos
-                        axVarSes.Escribe("axPermitir_todos_deptos", Convert.ToInt16(dt.Rows[i]["valor"].ToString().Trim()));
-                        break;  
-
-                }
-            }
-            UsuariosSubdeptos.StrConexion = strCon;
-            dt = UsuariosSubdeptos.DTUsuarioSubSeptos(NSUsuario, NSSubUnidad);
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (i == 0)
-                    SubDeptos += dt.Rows[i]["num_sec_subdepartamento"].ToString().Trim();
-                else
-                    SubDeptos += ", " + dt.Rows[i]["num_sec_subdepartamento"].ToString().Trim();
-
-            }
-            axVarSes.Escribe("usuario_carreras", SubDeptos);
-        }
-
+        
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -106,6 +59,7 @@ namespace SistemaAlmacenesWeb
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            lblMensaje.Visible = false;
             AutenticacionBD.Login = tbUsuario.Text.Trim();
             AutenticacionBD.Password = tbPassword.Text.Trim();
             AutenticacionBD.Servidor = axVarSes.Lee<string>("Servidor");
@@ -156,6 +110,16 @@ namespace SistemaAlmacenesWeb
                 lblMensaje.Visible = true;
                 lblMensaje.Text = AutenticacionBD.Mensaje;
             }
+        }
+
+        protected void tbPassword_TextChanged(object sender, EventArgs e)
+        {
+            lblMensaje.Visible = false;
+        }
+
+        protected void tbUsuario_TextChanged(object sender, EventArgs e)
+        {
+            lblMensaje.Visible = false;
         }
     }
 }

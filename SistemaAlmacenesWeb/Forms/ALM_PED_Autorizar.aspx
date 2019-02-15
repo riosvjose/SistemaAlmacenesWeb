@@ -64,8 +64,8 @@
                                                             <asp:BoundField DataField="num_sec_paso" HeaderText="Paso" />
                                                             <asp:BoundField DataField="paso" HeaderText="Estado" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
-                                                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad Requerida" />
-                                                            <asp:TemplateField HeaderText="Cantidad Autorizada" Visible="true">
+                                                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad solicitada" />
+                                                            <asp:TemplateField HeaderText="Cantidad autorizada" Visible="true">
                                                                <ItemTemplate>
                                                                  <asp:TextBox ID="tbCantAut" runat="server" Enabled="false"></asp:TextBox>
                                                                </ItemTemplate>

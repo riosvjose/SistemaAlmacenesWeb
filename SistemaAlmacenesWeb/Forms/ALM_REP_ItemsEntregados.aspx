@@ -15,7 +15,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Reporte de Items Entregados</h1>
+		            <h1>Reporte de items entregados</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -53,7 +53,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <strong><asp:Label ID="lblFechaFinalItem" runat="server" Width="150">Fecha Final:</asp:Label></strong>
+                                <strong><asp:Label ID="lblFechaFinalItem" runat="server" Width="150">Fecha final:</asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvFechaFinalItem" runat="server" ControlToValidate="tbFechaFinalItem" CssClass="text-danger" ErrorMessage="El campo Fecha Final es obligatorio.">*</asp:RequiredFieldValidator>
                                 <asp:CompareValidator ID="rfvFechaFinalMayor" runat="server" ControlToCompare="tbFechaInicialItem" ControlToValidate="tbFechaFinalItem" CssClass="text-danger" ErrorMessage="La Fecha Final debe ser mayor o igual a la Fecha Inicial." Operator="GreaterThanEqual" Type="Date">*</asp:CompareValidator>                            
                             </div>
@@ -66,10 +66,7 @@
                     <div class="panel-footer">
                         <div class="row">                               
                             <div class="col-xs-10"> 
-                                <asp:Button ID="btnGenerarReportes" runat="server" CssClass="btn btn-success" Text="Generar Reporte" CausesValidation="True" OnClick="btnGenerarReportes_Click" />                                   
-                            </div>
-                            <div class="col-xs-2 text-right">
-                                <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Menú Principal" CausesValidation="False" OnClick="btnVolverMenu_Click"/>
+                                <asp:Button ID="btnGenerarReportes" runat="server" CssClass="btn btn-success" Text="Generar reporte" CausesValidation="True" OnClick="btnGenerarReportes_Click" />                                   
                             </div>
                         </div>
 			        </div>	       
@@ -118,7 +115,7 @@
                             <div class="col-xs-10">                                
                             </div>
                             <div class="col-xs-2 text-right">
-                                <asp:Button ID="btnLimpiarReporte" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Limpiar Reporte" CausesValidation="False" OnClick="btnLimpiarReporte_Click"/>
+                                <asp:Button ID="btnLimpiarReporte" runat="server" CssClass="btn btn-warning btn-default btn-block" Text="Limpiar reporte" CausesValidation="False" OnClick="btnLimpiarReporte_Click"/>
                             </div>
                         </div>
 			        </div>

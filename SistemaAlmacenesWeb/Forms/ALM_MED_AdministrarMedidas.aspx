@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Administrar Medidas</h1>
+		            <h1>Administrar medidas</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -31,7 +31,7 @@
                         <%--ENCABEZADO DEL PANEL--%>
 			            <div class="panel-heading">
                             <div class="row mb-3">
-					            <h2>Listado de Medidas</h2>
+					            <h2>Listado de medidas</h2>
                             </div>
 			            </div>
                         <%--CUERPO DEL PANEL--%>
@@ -56,9 +56,6 @@
                             <div class="btn-toolbar" role="toolbar">
                                 <div class="btn-group">
                                     <asp:Button ID="btnCrearMedida" runat="server" CssClass="btn btn-success" Text="Crear Medida" CausesValidation="False" OnClick="btnCrearMedida_Click" />
-                                </div>
-                                <div class="btn-group pull-right">
-                                      <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click" />
                                 </div>
                               </div>
                             </div>

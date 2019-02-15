@@ -64,7 +64,7 @@
                                                             <asp:BoundField DataField="num_sec_paso" HeaderText="Paso" />
                                                             <asp:BoundField DataField="paso" HeaderText="Estado" />
                                                             <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
-                                                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad Requerida" />
+                                                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad Solicitada" />
                                                             <asp:BoundField DataField="descripcion" HeaderText="Detalle" />
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="autorizar" Text="Autorizar" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>

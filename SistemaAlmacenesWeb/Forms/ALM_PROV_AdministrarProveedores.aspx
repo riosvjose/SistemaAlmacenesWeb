@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Administrar Proveedores</h1>
+		            <h1>Administrar proveedores</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -45,11 +45,8 @@
 			        <div class="panel-footer">
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group">
-                                <asp:Button ID="btnCrearProveedor" runat="server" CssClass="btn btn-success" Text="Crear Proveedor" CausesValidation="False" OnClick="btnCrearProveedor_Click"/>
-                                <asp:Button ID="btnEditarProveedor" runat="server" CssClass="btn btn-primary" Text="Editar Proveedor" CausesValidation="False" OnClick="btnEditarProveedor_Click" />
-                            </div>
-                            <div class="btn-group pull-right">
-                                  <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click" />
+                                <asp:Button ID="btnCrearProveedor" runat="server" CssClass="btn btn-success" Text="Crear proveedor" CausesValidation="False" OnClick="btnCrearProveedor_Click"/>
+                                <asp:Button ID="btnEditarProveedor" runat="server" CssClass="btn btn-primary" Text="Editar proveedor" CausesValidation="False" OnClick="btnEditarProveedor_Click" />
                             </div>
                           </div>
                         </div>
@@ -75,7 +72,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblNombreComProveedor" runat="server" Text="Nombre Comercial:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblNombreComProveedor" runat="server" Text="Nombre comercial:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvNombreComProveedor" runat="server" ControlToValidate="tbNombreComercialProv" CssClass="text-danger" ErrorMessage="El campo Nombre Comercial es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -84,7 +81,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblRazonSocialProv" runat="server" Text="Razón Social:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblRazonSocialProv" runat="server" Text="Razón social:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvRazonSocialProv" runat="server" ControlToValidate="tbRazonSocialProv" CssClass="text-danger" ErrorMessage="El campo Razón Social es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -122,7 +119,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblNombreConProv" runat="server" Text="Nombre de Contacto:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblNombreConProv" runat="server" Text="Nombre de contacto:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvNombreConProv" runat="server" ControlToValidate="tbNombreConProv" CssClass="text-danger" ErrorMessage="El campo Nombre de Contacto es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -162,7 +159,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblEditarNombreComProv" runat="server" Text="Nombre Comercial:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblEditarNombreComProv" runat="server" Text="Nombre comercial:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvEditarNombreComProv" runat="server" ControlToValidate="tbEditarNombreComercialProv" CssClass="text-danger" ErrorMessage="El campo Nombre Comercial es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -171,7 +168,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblEditarRazonSocialProv" runat="server" Text="Razón Social:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblEditarRazonSocialProv" runat="server" Text="Razón social:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvEditarRazonSocialProv" runat="server" ControlToValidate="tbEditarRazonSocialProv" CssClass="text-danger" ErrorMessage="El campo Razón Social es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -209,7 +206,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
-                                <strong><asp:Label ID="lblEditarNombreConProv" runat="server" Text="Nombre de Contacto:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblEditarNombreConProv" runat="server" Text="Nombre de contacto:"></asp:Label></strong>
                                 <asp:RequiredFieldValidator ID="rfvEditarNombreConProv" runat="server" ControlToValidate="tbEditarNombreConProv" CssClass="text-danger" ErrorMessage="El campo Nombre de Contacto es obligatorio.">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">

@@ -67,21 +67,27 @@ namespace SistemaAlmacenesWeb.Forms
 
        protected void CargarDdlPasos()
         {
-            libPasos.StrConexion = axVarSes.Lee<string>("strConexion");
-            libPasos.NumSecPlantilla = Convert.ToInt64(ddlPlantilla.SelectedValue);
-            ddlPasos.DataSource = libPasos.VerPasosPlantilla();
-            ddlPasos.DataTextField = "NOMBRE";
-            ddlPasos.DataValueField = "NUM_SEC_PASO";
-            ddlPasos.DataBind();
+            if (!string.IsNullOrEmpty(ddlPlantilla.SelectedValue))
+            {
+                libPasos.StrConexion = axVarSes.Lee<string>("strConexion");
+                libPasos.NumSecPlantilla = Convert.ToInt64(ddlPlantilla.SelectedValue);
+                ddlPasos.DataSource = libPasos.VerPasosPlantilla();
+                ddlPasos.DataTextField = "NOMBRE";
+                ddlPasos.DataValueField = "NUM_SEC_PASO";
+                ddlPasos.DataBind();
+            }
         }
 
         protected void CargarDdlPlantillas(bool ingreso, bool salida)
         {
-            libplant.StrConexion = axVarSes.Lee<string>("strConexion");
-            ddlPlantilla.DataSource = libplant.ListarPlantillasPorTipo(ingreso, salida);
-            ddlPlantilla.DataTextField = "NOMBRE";
-            ddlPlantilla.DataValueField = "NUM_SEC_PLANTILLA";
-            ddlPlantilla.DataBind();
+            if (!string.IsNullOrEmpty(ddlAlmacenes.SelectedValue))
+            {
+                libplant.StrConexion = axVarSes.Lee<string>("strConexion");
+                ddlPlantilla.DataSource = libplant.ListarPlantillasPorTipo(ingreso, salida, ddlAlmacenes.SelectedValue);
+                ddlPlantilla.DataTextField = "NOMBRE";
+                ddlPlantilla.DataValueField = "NUM_SEC_PLANTILLA";
+                ddlPlantilla.DataBind();
+            }
         }
         #endregion
 
@@ -100,6 +106,8 @@ namespace SistemaAlmacenesWeb.Forms
             pnbuscar.Visible = false;
             pnAdmUsuarios.Visible = false;
             pnMensajeError.Visible = false;
+            rbIngreso.Checked = false;
+            rbSalidas.Checked = false;
         }
 
         protected void ddlPasos_SelectedIndexChanged(object sender, EventArgs e)

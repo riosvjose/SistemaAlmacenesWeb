@@ -64,7 +64,7 @@
                                     <asp:LinkButton ID="lnkbtnGenerarToken" runat="server" CausesValidation="false" OnClick="lnkbtnGenerarToken_Click" Visible="false" >Generar token</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnBuscarItem" runat="server" CausesValidation="false" OnClick="lnkbtnBuscarItem_Click" Visible="false" >Rastrear pedidos</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnBuscarItem" runat="server" CausesValidation="false" OnClick="lnkbtnBuscarItem_Click" Visible="false" >Buscar pedidos</asp:LinkButton>
                                 </li>
                             </ul>
                         </div>
@@ -106,13 +106,13 @@
                         <div class="collapse" id="collapseReportes">
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnReporte1" runat="server" CausesValidation="false" OnClick="lnkbtnReporte1_Click" Visible="false" >Cantidad de Items Entregados</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnReporte1" runat="server" CausesValidation="false" OnClick="lnkbtnReporte1_Click" Visible="false" >Cantidad de items entregados</asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="lnkbtnReporte2" runat="server" CausesValidation="false" OnClick="lnkbtnReporte2_Click" Visible="false" >Consumo expresado en dinero</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lnkbtnReporte3" runat="server" CausesValidation="false" OnClick="lnkbtnReporte3_Click" Visible="false" >Existencia de Items</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnReporte3" runat="server" CausesValidation="false" OnClick="lnkbtnReporte3_Click" Visible="false" >Existencia de items</asp:LinkButton>
                                 </li>
                             </ul>
                         </div>

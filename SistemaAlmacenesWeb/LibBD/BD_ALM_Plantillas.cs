@@ -209,9 +209,9 @@ namespace SistemaAlmacenesWeb
             return OracleBD.DataTable;
         }
 
-        public DataTable ListarPlantillasPorTipo(bool ingreso, bool salida)// si ingreso es verdadero muestra las plantillas de ingreso, si salida es verdadero muestra las plantilas de salida
+        public DataTable ListarPlantillasPorTipo(bool ingreso, bool salida, string almacen)// si ingreso es verdadero muestra las plantillas de ingreso, si salida es verdadero muestra las plantilas de salida
         {
-            strSql = "SELECT * FROM alm_plantillas where activo=1 ";
+            strSql = "SELECT * FROM alm_plantillas where activo=1 and num_sec_almacen="+almacen;
             if (ingreso)
             {
                 strSql += " and tipo_ingreso <> 0";
@@ -220,7 +220,7 @@ namespace SistemaAlmacenesWeb
             {
                 strSql += " and tipo_egreso <> 0";
             }
-            strSql += "order by nombre asc";
+            strSql += " order by nombre asc";
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

@@ -6,7 +6,7 @@
         <ContentTemplate>
             <div class="row">
 	            <div class="col-xs-12">
-		            <h1>Administrar Categoría de Items</h1>
+		            <h1>Administrar categoría de items</h1>
 	            </div>
             </div>            
             <div class="row">
@@ -34,7 +34,7 @@
 			        <div class="panel-body">
                         <div class="row mb-3">
                             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
-                                <strong><asp:Label ID="lblCategoriaItems" runat="server" Text="Categoría de Items:"></asp:Label></strong>
+                                <strong><asp:Label ID="lblCategoriaItems" runat="server" Text="Categoría de items:"></asp:Label></strong>
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-9 col-lg-10">
                                 <asp:DropDownList ID="ddlCategoriaItems" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlCategoriaItems_SelectedIndexChanged" ></asp:DropDownList>
@@ -45,11 +45,8 @@
 			        <div class="panel-footer">
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group">
-                                <asp:Button ID="btnCrearCategoria" runat="server" CssClass="btn btn-success" Text="Crear Categoría" CausesValidation="False" OnClick="btnCrearCategoria_Click" />
-                                <asp:Button ID="btnEditarCategoria" runat="server" CssClass="btn btn-primary" Text="Editar Categoría" CausesValidation="False" OnClick="btnEditarCategoria_Click" />
-                            </div>
-                            <div class="btn-group pull-right">
-                                  <asp:Button ID="btnVolverMenu" runat="server" CssClass="btn btn-warning btn-block" Text="Volver" CausesValidation="False" OnClick="btnVolverMenu_Click" />
+                                <asp:Button ID="btnCrearCategoria" runat="server" CssClass="btn btn-success" Text="Crear categoría" CausesValidation="False" OnClick="btnCrearCategoria_Click" />
+                                <asp:Button ID="btnEditarCategoria" runat="server" CssClass="btn btn-primary" Text="Editar categoría" CausesValidation="False" OnClick="btnEditarCategoria_Click" />
                             </div>
                           </div>
                         </div>
