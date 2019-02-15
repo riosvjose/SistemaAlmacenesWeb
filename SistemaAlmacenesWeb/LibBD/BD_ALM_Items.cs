@@ -519,19 +519,41 @@ namespace SistemaAlmacenesWeb
         {
             DataTable dt = new DataTable();
             string usuario = axVarSes.Lee<string>("UsuarioNumSec");
-            strSql = "SELECT a.num_sec_item, c.nombre AS item, Sum(a.ingreso) - Sum(a.egreso) AS existencia " +
-                          "FROM alm_movimientos a, alm_pasos b, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g " +
-                          "WHERE a.num_sec_paso = b.num_sec_paso " +
-                              "AND a.num_sec_item = c.num_sec_item " +
-                              "AND c.num_sec_cat = d.num_sec_cat " +
-                              "AND d.num_sec_grupo = e.num_sec_grupo " +
-                              "AND e.num_sec_almacen = f.num_sec_almacen " +
-                              "AND f.num_sec_almacen = g.num_sec_almacen " +
-                              "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
-                              "AND g.activo = 1 " + // Verificar que el permiso este vigente
-                              "AND (b.tipo = 1 OR b.tipo = 2) " + // Solo se considera los ingresos y salidas, no se toman en cuenta los items que estan en proceso el proceso para ser autorizados.
-                          "GROUP BY a.num_sec_item, c.nombre " +
-                          "ORDER BY c.nombre";
+            strSql = "  SELECT q1.num_sec_item, q1.item, q1.existencia, Nvl(q2.reserva, 0) AS reserva, SUM(q1.existencia - Nvl(q2.reserva, 0)) AS saldo_real FROM " +
+                             "(SELECT a.num_sec_item, c.nombre AS item, Sum(a.ingreso)-Sum(a.egreso) AS existencia " +
+                              "FROM alm_movimientos a, alm_pasos b, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g " +
+                              "WHERE a.num_sec_paso=b.num_sec_paso " +
+                                  "AND a.num_sec_item = c.num_sec_item " +
+                                  "AND c.num_sec_cat = d.num_sec_cat " +
+                                  "AND d.num_sec_grupo = e.num_sec_grupo " +
+                                  "AND e.num_sec_almacen = f.num_sec_almacen " +
+                                  "AND f.num_sec_almacen = g.num_sec_almacen " +
+                                  "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
+                                  "AND g.activo = 1 " +
+                                  "AND b.tipo IN (1, 2) " + //Entrada y salida de items 
+                              "GROUP BY a.num_sec_item, c.nombre " +
+                              ")   q1, " +
+                              "(SELECT num_sec_item, item, Sum(reserva) AS reserva FROM " +
+                                  "(SELECT a.num_sec_item, a.num_sec_transaccion, c.nombre AS item, a.egreso AS reserva, a.fecha_registro, Rank () OVER (PARTITION BY a.num_sec_transaccion ORDER BY a.fecha_registro DESC) as rango " + // Funcion para ordenar descendemente basados en la fecha y darles un rango
+                                  "FROM alm_movimientos a, alm_pasos b, alm_items c, alm_categorias_items d, alm_grupos_items e, alm_almacenes f, alm_almacenes_usuarios g " +
+                                  "WHERE a.num_sec_paso=b.num_sec_paso " +
+                                      "AND a.num_sec_item = c.num_sec_item " +
+                                      "AND c.num_sec_cat = d.num_sec_cat " +
+                                      "AND d.num_sec_grupo = e.num_sec_grupo " +
+                                      "AND e.num_sec_almacen = f.num_sec_almacen " +
+                                      "AND f.num_sec_almacen = g.num_sec_almacen " +
+                                      "AND g.num_sec_usuario = " + usuario + " " + //Verificar el num_sec del usuario que tenga permiso a un almacen
+                                      "AND g.activo = 1 " +
+                                      "AND a.ingreso = 0 " + // Verificar que solo sean de tipo Egreso
+                                      "AND b.tipo IN (3) " + //Reservado
+                                      "AND a.num_sec_transaccion NOT IN (SELECT a.num_sec_transaccion FROM alm_movimientos a, alm_pasos b WHERE a.num_sec_paso = b.num_sec_paso AND b.tipo IN (2, 4)) " + // Verificar que la transaccion no este entregada o rechazada
+                                  "GROUP BY a.num_sec_item, a.num_sec_transaccion, c.nombre, a.egreso, a.fecha_registro) " +
+                              "WHERE rango = 1 " +
+                              "GROUP BY num_sec_item, item " +
+                              ") q2 " +
+                          "WHERE q1.num_sec_item = q2.num_sec_item (+) " +
+                          "GROUP BY q1.num_sec_item, q1.item, q1.existencia, q2.reserva " +
+                          "ORDER BY q1.item";                              
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

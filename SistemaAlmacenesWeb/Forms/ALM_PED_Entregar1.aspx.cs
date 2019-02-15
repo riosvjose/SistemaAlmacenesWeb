@@ -132,7 +132,7 @@ namespace SistemaAlmacenesWeb.Forms
                 if (libMov.RechazarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[5].Text)))
                 {
                     pnMensajeError.Visible = false;
-                    Response.Redirect("ALM_PED_Entregar.aspx");
+                    Response.Redirect("ALM_PED_Entregar1.aspx");
                 }
                 else
                 {
@@ -177,7 +177,7 @@ namespace SistemaAlmacenesWeb.Forms
                     axVarSes.Escribe("DeptoSolicitante", string.Empty);
                     axVarSes.Escribe("TokenSolicitante", string.Empty);
                     axVarSes.Escribe("NumSecUsuariosSolicitante", string.Empty);
-                    Response.Redirect("ALM_PED_Entregar.aspx");
+                    Response.Redirect("ALM_PED_Entregar1.aspx");
                 }
                 else
                 {
