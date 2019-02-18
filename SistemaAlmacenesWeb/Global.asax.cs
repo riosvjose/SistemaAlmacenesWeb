@@ -36,6 +36,8 @@ namespace SistemaAlmacenes
             Session["DeptoSolicitante"] = "0";
             Session["NumSecUsuarioPersonaSolicitante"] = "0";
             Session["TokenSolicitante"] = string.Empty;
+
+            Session["Mensaje"] = string.Empty;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

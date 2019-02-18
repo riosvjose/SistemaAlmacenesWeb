@@ -255,7 +255,7 @@ namespace SistemaAlmacenesWeb
         {
             bool existe = false;
             DataTable dt = new DataTable();
-            strSql = "SELECT * from alm_tokens where token ='" + _token + "'"+ " and num_sec_subdepartamento="+_num_sec_subdepartamento ;
+            strSql = "SELECT * from alm_tokens where token ='" + _token + "'"+ " and num_sec_subdepartamento="+_num_sec_subdepartamento+" and activo=1" ;
             OracleBD.MostrarError = false;
             OracleBD.StrConexion = _strconexion;
             OracleBD.Sql = strSql;

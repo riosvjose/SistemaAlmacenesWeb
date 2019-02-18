@@ -314,7 +314,7 @@ namespace SistemaAlmacenesWeb
                     cadenaDeptos += ", ";
                 }
             }
-            strSql = "select distinct m.num_sec_transaccion, i.nombre as num_sec_item, m.num_sec_paso, ps.nombre as paso, m.egreso as cantidad"+
+            strSql = "select distinct m.num_sec_transaccion, i.nombre as item, i.num_sec_item as num_sec_item, m.num_sec_paso, ps.nombre as paso, m.egreso as cantidad"+
                     ", d.descripcion, per.ap_paterno||' '||per.nombres as persona " +
                     " from alm_movimientos m, alm_movimientos mov, alm_pasos pa, alm_pasos p, alm_pasos ps, personas per, alm_items i "+
                     ", alm_plantillas plant, dominios d" +
@@ -497,6 +497,7 @@ namespace SistemaAlmacenesWeb
 
         public bool EntregarVariasSalidas(DataTable DTpedidos, string token)
         {
+            string cadena = string.Empty;
             bool blOperacionCorrecta = false;
             string[] strSqls = new string[(DTpedidos.Rows.Count*4)];
             int numsqls = 0;
@@ -557,6 +558,10 @@ namespace SistemaAlmacenesWeb
                     libtokens.Token = axVarSes.Lee<string>("TokenSolicitante");
                     libtokens.Ver();
                     libEntregas.NumSecToken = libtokens.NumSecToken;
+                    if(libtokens.NumSecToken==0)
+                    {
+                        cadena = "El token no existe o ya fue usado.";    
+                    }
                     strSqls[numsqls] = libEntregas.CadenaInsertar();
                     numsqls++;
                     
@@ -570,7 +575,7 @@ namespace SistemaAlmacenesWeb
             _mensaje = OracleBD.Mensaje;
             blOperacionCorrecta = !OracleBD.Error;
             if (OracleBD.Error)
-                _mensaje = "No fue posible insertar los datos. Se encontró un error al insertar en la tabla alm_movimientos. " + _mensaje;
+                _mensaje = cadena + " No fue posible insertar los datos. Se encontró un error al insertar en la tabla alm_movimientos. " + _mensaje;
             return blOperacionCorrecta;
         }
 

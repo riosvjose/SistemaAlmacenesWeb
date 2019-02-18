@@ -123,6 +123,7 @@
                                        <strong><asp:Label ID="lblusuario" runat="server" Text="Usuario:"></asp:Label></strong>
                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbusuario" CssClass="text-danger" ErrorMessage="El campo usuario es obligatorio.">*</asp:RequiredFieldValidator>
                                        <asp:TextBox ID="tbusuario" runat="server" CssClass="form-control" MaxLength="15" AutoCompleteType="Disabled"></asp:TextBox>
+                                       <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender29" runat="server" BehaviorID="tbusuario_FilteredTextBoxExtender" TargetControlID="tbusuario" ValidChars=".1234567890QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm_- " />
                                        <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-info" Text="Buscar" CausesValidation="true" OnClick="btnBuscar_Click" />
                                  </div>
                              </div>

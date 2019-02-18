@@ -210,7 +210,7 @@ namespace SistemaAlmacenesWeb
             return OracleBD.DataTable;
         }
 
-        public DataTable DTListaGruposPorAlmacen(string [] strsqlalm)
+        public DataTable DTListaGruposVariosAlmacen(string [] strsqlalm)
         {
             strSql = string.Empty;//"(select 0 as num_sec_grupo '-----------' as nombre from dual)";
             strSql += "Select * from (";
@@ -247,6 +247,17 @@ namespace SistemaAlmacenesWeb
             return OracleBD.DataTable;
         }
 
+        public DataTable DTListaGruposUnAlmacen()
+        {
+            strSql = string.Empty;//"(select 0 as num_sec_grupo '-----------' as nombre from dual)";
+            strSql ="select num_sec_grupo, nombre from alm_grupos_items "+
+                    " where num_sec_almacen =" +_num_sec_almacen + "order By nombre";
+            OracleBD.MostrarError = false;
+            OracleBD.StrConexion = _strconexion;
+            OracleBD.Sql = strSql;
+            OracleBD.sqlDataTable();
+            return OracleBD.DataTable;
+        }
         #endregion
 
     }

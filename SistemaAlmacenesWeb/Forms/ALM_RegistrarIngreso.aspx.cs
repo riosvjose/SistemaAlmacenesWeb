@@ -57,6 +57,29 @@ namespace SistemaAlmacenesWeb.Forms
                     ddlTipoIngreso.DataTextField = "DESCRIPCION";
                     ddlTipoIngreso.DataValueField = "VALOR";
                     ddlTipoIngreso.DataBind();
+                    libAlmUsu = new BD_ALM_Almacenes_Usu();
+                    libAlmUsu.StrConexion = axVarSes.Lee<string>("strConexion");
+                    libAlmUsu.NumSecUsu = Convert.ToInt64(axVarSes.Lee<string>("UsuarioNumSec"));
+                    ddlAlmacenes.DataSource = libAlmUsu.DTObtenerAlmacenUsuario();
+                    ddlAlmacenes.DataTextField = "nombre";
+                    ddlAlmacenes.DataValueField = "num_sec_almacen";
+                    ddlAlmacenes.DataBind();
+                    if(ddlAlmacenes.Items.Count>1)
+                    {
+                        ddlAlmacenes.Visible = true;
+                    }
+                    else if(ddlAlmacenes.Items.Count == 1)
+                    {
+                        lblalm.Text = ddlAlmacenes.SelectedItem.Text;
+                        lblalm.Visible = true;
+                    }
+                    else
+                    {
+                        btnAgregarItem.Enabled = false;
+                        btnGuardar.Enabled = false;
+                        btnCancelar.Enabled = false;
+                        btnQuitarItem.Enabled = false;
+                    }
                     libProv = new BD_ALM_Proveedores();
                     libProv.StrConexion = axVarSes.Lee<string>("strConexion");
                     ddlProveedor.DataSource = libProv.dtListarProveedores();
@@ -95,65 +118,66 @@ namespace SistemaAlmacenesWeb.Forms
             long ns_usuario= Convert.ToInt64(user);
             libAlmUsu.NumSecUsu= ns_usuario;
             string[] stralmacenes = libAlmUsu.ObtenerAlmacenUsuario();
-            libGrupo = new BD_ALM_Grupos_Items(); 
+            libGrupo = new BD_ALM_Grupos_Items();
+            libGrupo.NumSecAlmacen = Convert.ToInt64(ddlAlmacenes.SelectedValue);
             libGrupo.StrConexion= axVarSes.Lee<string>("strConexion");
-            ddlGrupo1.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo1.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo1.DataTextField = "NOMBRE";
             ddlGrupo1.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo1.DataBind();
-            ddlGrupo2.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo2.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo2.DataTextField = "NOMBRE";
             ddlGrupo2.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo2.DataBind();
-            ddlGrupo3.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo3.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo3.DataTextField = "NOMBRE";
             ddlGrupo3.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo3.DataBind();
-            ddlGrupo4.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo4.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo4.DataTextField = "NOMBRE";
             ddlGrupo4.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo4.DataBind();
-            ddlGrupo5.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo5.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo5.DataTextField = "NOMBRE";
             ddlGrupo5.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo5.DataBind();
-            ddlGrupo6.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo6.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo6.DataTextField = "NOMBRE";
             ddlGrupo6.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo6.DataBind();
-            ddlGrupo7.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo7.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo7.DataTextField = "NOMBRE";
             ddlGrupo7.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo7.DataBind();
-            ddlGrupo8.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo8.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo8.DataTextField = "NOMBRE";
             ddlGrupo8.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo8.DataBind();
-            ddlGrupo9.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo9.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo9.DataTextField = "NOMBRE";
             ddlGrupo9.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo9.DataBind();
-            ddlGrupo10.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo10.DataSource = libGrupo.DTListaGruposUnAlmacen(); 
             ddlGrupo10.DataTextField = "NOMBRE";
             ddlGrupo10.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo10.DataBind();
-            ddlGrupo11.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo11.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo11.DataTextField = "NOMBRE";
             ddlGrupo11.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo11.DataBind();
-            ddlGrupo12.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo12.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo12.DataTextField = "NOMBRE";
             ddlGrupo12.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo12.DataBind();
-            ddlGrupo13.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo13.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo13.DataTextField = "NOMBRE";
             ddlGrupo13.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo13.DataBind();
-            ddlGrupo14.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo14.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo14.DataTextField = "NOMBRE";
             ddlGrupo14.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo14.DataBind();
-            ddlGrupo15.DataSource = libGrupo.DTListaGruposPorAlmacen(stralmacenes);
+            ddlGrupo15.DataSource = libGrupo.DTListaGruposUnAlmacen();
             ddlGrupo15.DataTextField = "NOMBRE";
             ddlGrupo15.DataValueField = "NUM_SEC_GRUPO";
             ddlGrupo15.DataBind();
@@ -208,6 +232,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat1.DataValueField = "NUM_SEC_CAT";
                 ddlCat1.DataBind();
             }
+            else
+            {
+                ddlCat1.Items.Clear();
+                ddlCat1.Dispose();
+            }
         }
 
         protected void CargarDdlCaT2()
@@ -221,6 +250,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat2.DataTextField = "NOMBRE";
                 ddlCat2.DataValueField = "NUM_SEC_CAT";
                 ddlCat2.DataBind();
+            }
+            else
+            {
+                ddlCat2.Items.Clear();
+                ddlCat2.Dispose();
             }
         }
 
@@ -236,6 +270,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat3.DataValueField = "NUM_SEC_CAT";
                 ddlCat3.DataBind();
             }
+            else
+            {
+                ddlCat3.Items.Clear();
+                ddlCat3.Dispose();
+            }
         }
 
         protected void CargarDdlCaT4()
@@ -249,6 +288,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat4.DataTextField = "NOMBRE";
                 ddlCat4.DataValueField = "NUM_SEC_CAT";
                 ddlCat4.DataBind();
+            }
+            else
+            {
+                ddlCat4.Items.Clear();
+                ddlCat4.Dispose();
             }
         }
 
@@ -264,6 +308,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat5.DataValueField = "NUM_SEC_CAT";
                 ddlCat5.DataBind();
             }
+            else
+            {
+                ddlCat5.Items.Clear();
+                ddlCat5.Dispose();
+            }
         }
 
         protected void CargarDdlCaT6()
@@ -277,6 +326,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat6.DataTextField = "NOMBRE";
                 ddlCat6.DataValueField = "NUM_SEC_CAT";
                 ddlCat6.DataBind();
+            }
+            else
+            {
+                ddlCat6.Items.Clear();
+                ddlCat6.Dispose();
             }
         }
 
@@ -292,6 +346,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat7.DataValueField = "NUM_SEC_CAT";
                 ddlCat7.DataBind();
             }
+            else
+            {
+                ddlCat7.Items.Clear();
+                ddlCat7.Dispose();
+            }
         }
 
         protected void CargarDdlCaT8()
@@ -305,6 +364,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat8.DataTextField = "NOMBRE";
                 ddlCat8.DataValueField = "NUM_SEC_CAT";
                 ddlCat8.DataBind();
+            }
+            else
+            {
+                ddlCat8.Items.Clear();
+                ddlCat8.Dispose();
             }
         }
 
@@ -320,6 +384,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat9.DataValueField = "NUM_SEC_CAT";
                 ddlCat9.DataBind();
             }
+            else
+            {
+                ddlCat9.Items.Clear();
+                ddlCat9.Dispose();
+            }
         }
 
         protected void CargarDdlCaT10()
@@ -333,6 +402,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat10.DataTextField = "NOMBRE";
                 ddlCat10.DataValueField = "NUM_SEC_CAT";
                 ddlCat10.DataBind();
+            }
+            else
+            {
+                ddlCat10.Items.Clear();
+                ddlCat10.Dispose();
             }
         }
 
@@ -348,6 +422,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat11.DataValueField = "NUM_SEC_CAT";
                 ddlCat11.DataBind();
             }
+            else
+            {
+                ddlCat11.Items.Clear();
+                ddlCat11.Dispose();
+            }
         }
 
         protected void CargarDdlCaT12()
@@ -361,6 +440,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat12.DataTextField = "NOMBRE";
                 ddlCat12.DataValueField = "NUM_SEC_CAT";
                 ddlCat12.DataBind();
+            }
+            else
+            {
+                ddlCat12.Items.Clear();
+                ddlCat12.Dispose();
             }
         }
 
@@ -376,6 +460,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat13.DataValueField = "NUM_SEC_CAT";
                 ddlCat13.DataBind();
             }
+            else
+            {
+                ddlCat13.Items.Clear();
+                ddlCat13.Dispose();
+            }
         }
 
         protected void CargarDdlCaT14()
@@ -390,6 +479,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat14.DataValueField = "NUM_SEC_CAT";
                 ddlCat14.DataBind();
             }
+            else
+            {
+                ddlCat14.Items.Clear();
+                ddlCat14.Dispose();
+            }
         }
 
         protected void CargarDdlCaT15()
@@ -403,6 +497,11 @@ namespace SistemaAlmacenesWeb.Forms
                 ddlCat15.DataTextField = "NOMBRE";
                 ddlCat15.DataValueField = "NUM_SEC_CAT";
                 ddlCat15.DataBind();
+            }
+            else
+            {
+                ddlCat15.Items.Clear();
+                ddlCat15.Dispose();
             }
         }
         protected void CargarDdlItem1()
@@ -420,6 +519,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem1.Items.Clear();
             }
+            tbCant1.Text = "0";
+            tbPrecio1.Text = "0";
         }
         protected void CargarDdlItem2()
         {
@@ -436,6 +537,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem2.Items.Clear();
             }
+            tbCant2.Text = "0";
+            tbPrecio2.Text = "0";
         }
         protected void CargarDdlItem3()
         {
@@ -452,6 +555,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem3.Items.Clear();
             }
+            tbCant3.Text = "0";
+            tbPrecio3.Text = "0";
         }
         protected void CargarDdlItem4()
         {
@@ -468,6 +573,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem6.Items.Clear();
             }
+            tbCant4.Text = "0";
+            tbPrecio4.Text = "0";
         }
         protected void CargarDdlItem5()
         {
@@ -484,6 +591,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem5.Items.Clear();
             }
+            tbCant5.Text = "0";
+            tbPrecio5.Text = "0";
         }
         protected void CargarDdlItem6()
         {
@@ -500,6 +609,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem6.Items.Clear();
             }
+            tbCant6.Text = "0";
+            tbPrecio6.Text = "0";
         }
         protected void CargarDdlItem7()
         {
@@ -516,6 +627,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem7.Items.Clear();
             }
+            tbCant7.Text = "0";
+            tbPrecio7.Text = "0";
         }
         protected void CargarDdlItem8()
         {
@@ -532,6 +645,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem8.Items.Clear();
             }
+            tbCant8.Text = "0";
+            tbPrecio8.Text = "0";
         }
         protected void CargarDdlItem9()
         {
@@ -548,6 +663,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem9.Items.Clear();
             }
+            tbCant9.Text = "0";
+            tbPrecio9.Text = "0";
         }
         protected void CargarDdlItem10()
         {
@@ -564,6 +681,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem10.Items.Clear();
             }
+            tbCant10.Text = "0";
+            tbPrecio10.Text = "0";
         }
         protected void CargarDdlItem11()
         {
@@ -580,6 +699,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem11.Items.Clear();
             }
+            tbCant11.Text = "0";
+            tbPrecio11.Text = "0";
         }
         protected void CargarDdlItem12()
         {
@@ -596,6 +717,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem12.Items.Clear();
             }
+            tbCant12.Text = "0";
+            tbPrecio12.Text = "0";
         }
         protected void CargarDdlItem13()
         {
@@ -612,6 +735,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem13.Items.Clear();
             }
+            tbCant13.Text = "0";
+            tbPrecio13.Text = "0";
         }
         protected void CargarDdlItem14()
         {
@@ -628,6 +753,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem14.Items.Clear();
             }
+            tbCant14.Text = "0";
+            tbPrecio14.Text = "0";
         }
         protected void CargarDdlItem15()
         {
@@ -644,6 +771,8 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 ddlItem15.Items.Clear();
             }
+            tbCant15.Text = "0";
+            tbPrecio15.Text = "0";
         }       
         #endregion
 
@@ -1007,6 +1136,12 @@ namespace SistemaAlmacenesWeb.Forms
                 aux--;
             }
             lblContador.Text = aux.ToString();
+        }
+        protected void ddlAlmacenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarDdlGrupos();
+            CargarDdlCategorias();
+            CargarDdlItems();
         }
         protected void ddlGrupo1_SelectedIndexChanged(object sender, EventArgs e)
         {

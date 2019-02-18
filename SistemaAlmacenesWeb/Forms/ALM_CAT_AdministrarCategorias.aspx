@@ -68,6 +68,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbNombreCategoriaItem" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" BehaviorID="tbNombreCategoriaItem_FilteredTextBoxExtender" TargetControlID="tbNombreCategoriaItem" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -77,6 +78,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbDescripcionCatItem" runat="server" CssClass="form-control" onKeyPress="if(this.value.length==499) return false;" TextMode="MultiLine" Rows="5" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" BehaviorID="tbDescripcionCatItem_FilteredTextBoxExtender" TargetControlID="tbsubdepartamento" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -115,6 +117,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarNombreCategoriaItem" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                 <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" BehaviorID="tbEditarNombreCategoriaItem_FilteredTextBoxExtender" TargetControlID="tbEditarNombreCategoriaItem" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -124,6 +127,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarDescCatItem" runat="server" CssClass="form-control" onKeyPress="if(this.value.length==499) return false;" TextMode="MultiLine" Rows="5" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" BehaviorID="tbEditarDescCatItem_FilteredTextBoxExtender" TargetControlID="tbEditarDescCatItem" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">

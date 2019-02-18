@@ -50,9 +50,11 @@ namespace SistemaAlmacenesWeb.Forms
                     VerificarPasos();
                     gvDatos1.Visible = true;
                     gvDatos1.Columns[2].Visible = true;
+                    gvDatos1.Columns[5].Visible = true;
                     gvDatos1.DataSource = dtPedidos;
                     gvDatos1.DataBind();
                     gvDatos1.Columns[2].Visible = false;
+                    gvDatos1.Columns[5].Visible = false;
                     llenarTexboxes();
                 }
                 else
@@ -71,7 +73,7 @@ namespace SistemaAlmacenesWeb.Forms
         {
             for (int i = 0; i < gvDatos1.Rows.Count; i++)
             {
-                ((TextBox)gvDatos1.Rows[i].Cells[6].Controls[1]).Text= gvDatos1.Rows[i].Cells[5].Text.Trim();
+                ((TextBox)gvDatos1.Rows[i].Cells[7].Controls[1]).Text= gvDatos1.Rows[i].Cells[6].Text.Trim();
             }
         }
 
@@ -119,32 +121,42 @@ namespace SistemaAlmacenesWeb.Forms
         protected void gvDatos1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int indice = Convert.ToInt32(e.CommandArgument);
-            int cant = Convert.ToInt32(((TextBox)gvDatos1.Rows[indice].Cells[6].Controls[1]).Text);
+            int cant = Convert.ToInt32(((TextBox)gvDatos1.Rows[indice].Cells[7].Controls[1]).Text);
             if (e.CommandName == "autorizar")
             {
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.autorizarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), cant))
+                int cantdisp = libMov.ObtenerExistenciasItem(Convert.ToInt64(gvDatos1.Rows[indice].Cells[5].Text));
+                if (cant<=cantdisp)
                 {
-                    pnMensajeError.Visible = false;
-                    Response.Redirect("ALM_PED_Autorizar.aspx");
+                    if (libMov.autorizarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), cant))
+                    {
+                        pnMensajeError.Visible = false;
+                        Response.Redirect("ALM_PED_Autorizar.aspx");
+                    }
+                    else
+                    {
+                        pnMensajeError.Visible = true;
+                        lblMensajeError.Text = "No se pudo aprobar el pedido Nro. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text) + ". " + libMov.Mensaje; ;
+                        pnMensajeOK.Visible = false;
+                    }
                 }
                 else
                 {
                     pnMensajeError.Visible = true;
-                    lblMensajeOK.Text = "No se pudo aprobar el pedido Nro. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text)+". "+libMov.Mensaje; ;
+                    lblMensajeError.Text = "No se pudo aprobar el pedido Nro. " + Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text) + ". No existen suficientes existencias en almacenes." ;
                     pnMensajeOK.Visible = false;
                 }
             }
             if (e.CommandName == "modificar")
             {
-                ((TextBox)gvDatos1.Rows[indice].Cells[6].Controls[1]).Enabled=true;
+                ((TextBox)gvDatos1.Rows[indice].Cells[7].Controls[1]).Enabled=true;
             }
             if (e.CommandName == "rechazar")
             {
                 libMov = new BD_ALM_Movimientos();
                 libMov.StrConexion = axVarSes.Lee<string>("strConexion");
-                if (libMov.RechazarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[5].Text)))
+                if (libMov.RechazarSalida(Convert.ToInt64(gvDatos1.Rows[indice].Cells[0].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[2].Text), Convert.ToInt32(gvDatos1.Rows[indice].Cells[6].Text)))
                 {
                     pnMensajeError.Visible = false;
                     Response.Redirect("ALM_PED_Autorizar.aspx");

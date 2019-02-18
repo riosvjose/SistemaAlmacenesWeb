@@ -31,6 +31,12 @@ namespace SistemaAlmacenesWeb.Forms
                 lblMensajeError.Text = "Permisos insuficientes.";
                 axVarSes.Escribe("MostrarMensajeError", "0");
             }
+            if (!string.IsNullOrEmpty(axVarSes.Lee<string>("Mensaje")))
+            {
+                pnMensajeOK.Visible = true;
+                lblMensajeOK.Text = axVarSes.Lee<string>("Mensaje");
+                axVarSes.Escribe("Mensaje", string.Empty);
+            }
         }
         
         protected void Page_Load(object sender, EventArgs e)

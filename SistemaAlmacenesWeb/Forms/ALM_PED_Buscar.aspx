@@ -71,11 +71,14 @@
 			        </div>
                     <%--PIE DEL PANEL--%>
 			        <div class="panel-footer">
-                        <div class="btn-toolbar" role="toolbar">
-                            <div class="btn-group">
-                                <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-success" Text="Buscar" CausesValidation="False" OnClick="btnBuscar_Click" />
+                            <div class="row">
+                                <div class="col-xs-6 text-left">
+                                    <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-success" Text="Buscar" CausesValidation="False" OnClick="btnBuscar_Click" />
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <asp:Button ID="btnVolver" CssClass="btn btn-warning" runat="server" Text="Volver" OnClick="btnVolver_Click" />
+                                </div>
                             </div>
-                          </div>
                         </div>
 			        </div>
             </asp:Panel>

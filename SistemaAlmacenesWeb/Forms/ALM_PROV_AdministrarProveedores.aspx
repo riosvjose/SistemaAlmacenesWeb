@@ -68,6 +68,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbNitProveedor" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" BehaviorID="tbNitProveedor_FilteredTextBoxExtender" TargetControlID="tbNitProveedor" ValidChars="1234567890_-QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -77,6 +78,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbNombreComercialProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" BehaviorID="tbNombreComercialProv_FilteredTextBoxExtender" TargetControlID="tbNombreComercialProv" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -86,6 +88,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbRazonSocialProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" BehaviorID="tbRazonSocialProv_FilteredTextBoxExtender" TargetControlID="tbRazonSocialProv" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -105,6 +108,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbDireccionProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" BehaviorID="tbDireccionProv_FilteredTextBoxExtender" TargetControlID="tbDireccionProv" ValidChars="1234567890_#.QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -115,6 +119,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox  ID="tbEmailProv" runat="server" CssClass="form-control" type="email" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" BehaviorID="tbEmailProv_FilteredTextBoxExtender" TargetControlID="tbEmailProv" ValidChars="1234567890_qwertyuiopasdfghjklñzxcvbnm.@" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -124,6 +129,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbNombreConProv" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server" BehaviorID="tbNombreConProv_FilteredTextBoxExtender" TargetControlID="tbNombreConProv" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm. " />
                             </div>
                         </div>
 			        </div>
@@ -155,6 +161,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarNitProveedor" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" ReadOnly="true" ></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server" BehaviorID="tbEditarNitProveedor_FilteredTextBoxExtender" TargetControlID="tbEditarNitProveedor" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm." />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -164,6 +171,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarNombreComercialProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled" ReadOnly="true" ></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender8" runat="server" BehaviorID="tbEditarNombreComercialProv_FilteredTextBoxExtender" TargetControlID="tbEditarNombreComercialProv" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm. " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -173,6 +181,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarRazonSocialProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled" ReadOnly="true" ></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender9" runat="server" BehaviorID="tbEditarRazonSocialProv_FilteredTextBoxExtender" TargetControlID="tbEditarRazonSocialProv" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm. " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -192,6 +201,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarDireccionProv" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender10" runat="server" BehaviorID="tbEditarDireccionProv_FilteredTextBoxExtender" TargetControlID="tbEditarDireccionProv" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm. " />
                             </div>
                         </div>                        
                         <div class="row mb-3">
@@ -202,6 +212,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox  ID="tbEditarEmailProv" runat="server" CssClass="form-control" type="email" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender11" runat="server" BehaviorID="tbEditarEmailProv_FilteredTextBoxExtender" TargetControlID="tbEditarEmailProv" ValidChars="1234567890_qwertyuiopasdfghjklñzxcvbnm.@" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -211,6 +222,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarNombreConProv" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" ReadOnly="true" ></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender12" runat="server" BehaviorID="tbEditarNombreConProv_FilteredTextBoxExtender" TargetControlID="tbEditarNombreConProv" ValidChars="1234567890_qwertyuiopasdfghjklñzxcvbnmQWERTYUIOP " />
                             </div>
                         </div>
 			        </div>

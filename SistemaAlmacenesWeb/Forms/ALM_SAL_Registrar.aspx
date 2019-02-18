@@ -45,10 +45,19 @@
 		        <div class="panel panel-info">
                     <%--ENCABEZADO DEL PANEL--%>
 			        <div class="panel-heading">
-                        <h3> <strong><asp:Label ID="lblItems" runat="server" Text="Items"></asp:Label></strong></h3>
+                        <h3> <strong><asp:Label ID="lblItems" runat="server" Text="Datos de salida"></asp:Label></strong></h3>
 			        </div>
                     <%--CUERPO DEL PANEL--%>
 			        <div class="panel-body">
+                         <div class="row mb-3">
+                            <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2">
+                                <strong><asp:Label ID="Label2" runat="server" Text="Almacen:"></asp:Label></strong>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-6 col-lg-4">
+                                <asp:DropDownList ID="ddlAlmacenes" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlAlmacenes_SelectedIndexChanged" Visible="false" AutoPostBack="True"></asp:DropDownList>
+                                <asp:Label ID="lblalm" runat="server" Text="" Visible="false"></asp:Label>
+                            </div>
+                        </div>         
                         <div class="row">
                             <div class="btn-group">
                                 <asp:Button ID="btnAgregarItem" runat="server" CssClass="btn btn-primary" Text="Agregar item" CausesValidation="False" OnClick="btnAgregarItem_Click" />

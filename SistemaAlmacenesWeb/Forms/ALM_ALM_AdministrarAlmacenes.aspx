@@ -69,6 +69,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbNombreAlmacen" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender29" runat="server" BehaviorID="tbnombrealmacen_FilteredTextBoxExtender" TargetControlID="tbNombreAlmacen" ValidChars=".1234567890QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm_-() " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -78,6 +79,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbDescripcionAlmacen" runat="server" CssClass="form-control" onKeyPress="if(this.value.length==499) return false;" TextMode="MultiLine" Rows="5" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" BehaviorID="tbdescripcionalmacen_FilteredTextBoxExtender" TargetControlID="tbDescripcionAlmacen" ValidChars=".1234567890QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm_-() " />
                             </div>
                         </div>
 			        </div>
@@ -134,6 +136,7 @@
                                        <strong><asp:Label ID="lblusuario" runat="server" Text="Usuario:"></asp:Label></strong>
                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbusuario" CssClass="text-danger" ErrorMessage="El campo usuario es obligatorio.">*</asp:RequiredFieldValidator>
                                        <asp:TextBox ID="tbusuario" runat="server" CssClass="form-control" MaxLength="15" AutoCompleteType="Disabled"></asp:TextBox>
+                                       <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" BehaviorID="tbusuario_FilteredTextBoxExtender" TargetControlID="tbusuario" ValidChars=".1234567890QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm_- " />
                                        <asp:Button ID="btnBuscar" runat="server" CssClass="btn btn-info" Text="Buscar" CausesValidation="true" OnClick="btnBuscar_Click" />
                                  </div>
                              </div>

@@ -61,6 +61,7 @@
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                                                         <asp:TextBox ID="tbUsuario" CssClass="form-control" placeholder="Ingrese su usuario ..." runat="server" MaxLength="20" AutoCompleteType="Disabled"></asp:TextBox>
+                                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" BehaviorID="tbUsuario_FilteredTextBoxExtender" TargetControlID="tbUsuario" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm" />
                                                     </div>
                                                     <asp:RequiredFieldValidator ID="tbCI_RequiredFieldValidator" ControlToValidate="tbUsuario" runat="server" ErrorMessage="Debe ingresar su usuario." Text="*" CssClass="text-warning"></asp:RequiredFieldValidator>
                                                 </div>
@@ -77,6 +78,7 @@
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
                                                         <asp:TextBox ID="tbToken" CssClass="form-control" placeholder="Ingrese el token ..." runat="server" MaxLength="32" AutoCompleteType="Disabled"></asp:TextBox>
+                                                        <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" BehaviorID="tbToken_FilteredTextBoxExtender" TargetControlID="tbUsuario" ValidChars="1234567890QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm" />
                                                     </div>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="tbToken" runat="server" ErrorMessage="Debe ingresar su contraseña." Text="*" CssClass="text-warning"></asp:RequiredFieldValidator>
                                                 </div>
@@ -150,7 +152,7 @@
                  <div class="row">
                       <div class="btn-group">
                             <asp:Button ID="btnEntregar" CssClass="btn btn-success" runat="server" Text="Entregar" OnClick="btnEntregar_Click" />
-                          <asp:Button ID="btnBuscar" CssClass="btn btn-primary" runat="server" Text="Ver pendientes" OnClick="btnBuscar_Click" />
+                          <asp:Button ID="btnBuscar" CssClass="btn btn-primary" runat="server" Text="Ver pendientes y rechazados" OnClick="btnBuscar_Click" />
                       </div>
                  </div>
             </asp:Panel>

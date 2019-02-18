@@ -69,6 +69,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbCodigoItem" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" runat="server" BehaviorID="tbCodigoItem_FilteredTextBoxExtender" TargetControlID="tbCodigoItem" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -78,6 +79,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbNombreItem" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" BehaviorID="tbNombreItem_FilteredTextBoxExtender" TargetControlID="tbNombreItem" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -147,10 +149,12 @@
                                         <div class="form-group">                                          
                                             <strong><asp:Label ID="lblNombreCategoria" runat="server">Nombre:</asp:Label></strong>                                          
                                             <asp:TextBox ID="tbNombreCategoria" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                                                                                                   
+                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" BehaviorID="tbNombreCategoria_FilteredTextBoxExtender" TargetControlID="tbNombreCategoria" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                                         </div>                                      
                                         <div class="form-group">                                          
                                             <strong><asp:Label ID="lblDescripcion" runat="server">Descripción:</asp:Label></strong>                                          
-                                            <asp:TextBox ID="tbDescripcionCategoria" runat="server" CssClass="form-control" onKeyPress="if(this.value.length==499) return false;" TextMode="MultiLine" Rows="2" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                      
+                                            <asp:TextBox ID="tbDescripcionCategoria" runat="server" CssClass="form-control" onKeyPress="if(this.value.length==499) return false;" TextMode="MultiLine" Rows="2" AutoCompleteType="Disabled" required="" ></asp:TextBox>
+                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" BehaviorID="tbDescripcionCategoria_FilteredTextBoxExtender" TargetControlID="tbDescripcionCategoria" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                                         </div>
                                         <div class="form-group">                                                                                      
                                             <strong><asp:Label ID="lblGrupoCategoria" runat="server">Grúpo de Categoría:</asp:Label></strong>
@@ -181,10 +185,12 @@
                                         <div class="form-group">                                          
                                             <strong><asp:Label ID="lblNombreMedida" runat="server">Nombre:</asp:Label></strong>                                          
                                             <asp:TextBox ID="tbNombreMedida" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                                                                                                   
+                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" BehaviorID="tbNombreMedida_FilteredTextBoxExtender" TargetControlID="tbNombreMedida" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                                         </div>                                      
                                         <div class="form-group">                                          
                                             <strong><asp:Label ID="lblAbrevMedida" runat="server">Abreviación:</asp:Label></strong>                                          
                                             <asp:TextBox ID="tbAbrevMedida" runat="server" CssClass="form-control" MaxLength="5" AutoCompleteType="Disabled" required="" ></asp:TextBox>                                                                                                                   
+                                            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender6" runat="server" BehaviorID="tbAbrevMedida_FilteredTextBoxExtender" TargetControlID="tbAbrevMedida" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm/@" />
                                         </div>                                   
                                     </form>                                                                     
                                 </div>                                                                      
@@ -213,6 +219,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarCodigoItem" runat="server" CssClass="form-control" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender7" runat="server" BehaviorID="tbEditarCodigoItem_FilteredTextBoxExtender" TargetControlID="tbEditarCodigoItem" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -222,6 +229,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                                 <asp:TextBox ID="tbEditarNombreItem" runat="server" CssClass="form-control" MaxLength="150" AutoCompleteType="Disabled"></asp:TextBox>
+                                <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender8" runat="server" BehaviorID="tbEditarNombreItem_FilteredTextBoxExtender" TargetControlID="tbEditarNombreItem" ValidChars="1234567890_QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnm " />
                             </div>
                         </div>
                         <div class="row mb-3">

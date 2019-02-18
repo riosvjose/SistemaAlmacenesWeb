@@ -48,7 +48,17 @@ namespace SistemaAlmacenesWeb.Forms
             {
                 if (libproc.AccesoObjetoUsuario("ALM_PED_Entregar"))
                 {
-                    pnPrincipal.Visible = true;
+                    if ((!string.IsNullOrEmpty(axVarSes.Lee<string>("DeptoSolicitante")))&&((!string.IsNullOrEmpty(axVarSes.Lee<string>("NumSecUsuarioPersonaSolicitante")))) &&((!string.IsNullOrEmpty(axVarSes.Lee<string>("TokenSolicitante")))))
+                    {
+                        pnPedidos.Visible = true;
+                        pnPrincipal.Visible = false;
+                        MostrarPedidos(axVarSes.Lee<string>("DeptoSolicitante"));
+                    }
+                    else
+                    {
+                        pnPrincipal.Visible = true;
+                    }
+                    
                 }
                 else
                 {
@@ -177,7 +187,8 @@ namespace SistemaAlmacenesWeb.Forms
                     axVarSes.Escribe("DeptoSolicitante", string.Empty);
                     axVarSes.Escribe("TokenSolicitante", string.Empty);
                     axVarSes.Escribe("NumSecUsuariosSolicitante", string.Empty);
-                    Response.Redirect("ALM_PED_Entregar1.aspx");
+                    axVarSes.Escribe("Mensaje", "Pedido entregado, los datos se almacenaron con éxito.");
+                    Response.Redirect("Index.aspx");
                 }
                 else
                 {

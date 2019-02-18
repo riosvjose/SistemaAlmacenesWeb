@@ -166,7 +166,7 @@ namespace SistemaAlmacenesWeb.Forms
         }
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Index.aspx");
+            Response.Redirect("ALM_PED_Entregar1.aspx");
         }
 
         protected void ddlSubdeptos_SelectedIndexChanged(object sender, EventArgs e)

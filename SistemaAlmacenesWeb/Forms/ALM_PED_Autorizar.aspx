@@ -63,14 +63,17 @@
                                                             <asp:BoundField DataField="persona" HeaderText="Solicitante" />
                                                             <asp:BoundField DataField="num_sec_paso" HeaderText="Paso" />
                                                             <asp:BoundField DataField="paso" HeaderText="Estado" />
-                                                            <asp:BoundField DataField="num_sec_item" HeaderText="Item" />
+                                                            <asp:BoundField DataField="item" HeaderText="Item" />
+                                                            <asp:BoundField DataField="num_sec_item" HeaderText="ns_item" />
                                                             <asp:BoundField DataField="cantidad" HeaderText="Cantidad solicitada" />
                                                             <asp:TemplateField HeaderText="Cantidad autorizada" Visible="true">
                                                                <ItemTemplate>
                                                                  <asp:TextBox ID="tbCantAut" runat="server" Enabled="false"></asp:TextBox>
+                                                                   <asp:CompareValidator ID="CompareValidator4" runat="server" ErrorMessage="Formato incorrecto, en valor ingresado debe ser numerico" Operator="DataTypeCheck" Type="Integer" ControlToValidate="tbCantAut" CssClass="text-danger">*</asp:CompareValidator>
+                                                                   <asp:CompareValidator ID="CompareValidator5" runat="server" ControlToValidate="tbCantAut" ErrorMessage="El valor ingresado debe ser mayor o igual a 1." Operator="GreaterThanEqual" Type="Integer" ValueToCompare="1" CssClass="text-danger">*</asp:CompareValidator>
                                                                </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="autorizar" Text="Autorizar" >
+                                                            <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="autorizar" Text="Autorizar" CausesValidation="true" >
                                                                  <ControlStyle CssClass="btn btn-sm btn-success "/>
                                                             </asp:ButtonField>
                                                             <asp:ButtonField HeaderText="" ButtonType="Button" CommandName="modificar" Text="Modificar" >
@@ -107,6 +110,8 @@
 			            <asp:Label ID="lblMensajeOK" runat="server" Text=""></asp:Label><a href="#" class="alert-link"></a>
 		            </div>
 	            </asp:Panel>
+                 <%--Mensaje de Error AJAXValidator--%>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="False" ShowSummary="True" CssClass="alert alert-danger" /> 
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
