@@ -144,7 +144,7 @@
                                                 <asp:TemplateField HeaderText="Nro." ><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
                                                 <asp:BoundField DataField="num_sec_item" HeaderText="itemId" />
                                                 <asp:BoundField DataField="num_sec_subdepartamento" HeaderText="DeptoId" />
-                                                <asp:BoundField DataField="nombre_depto" HeaderText="Departamento" FooterText="TOTAL" FooterStyle-Font-Bold="true"/>
+                                                <asp:BoundField DataField="nombre_depto" HeaderText="Subdepartamento" FooterText="TOTAL" FooterStyle-Font-Bold="true"/>
                                                 <asp:BoundField DataField="cantidad" HeaderText="Cantidad" FooterStyle-Font-Bold="true" />
                                                 <asp:ButtonField HeaderText="Acciones" ButtonType="Button" CommandName="verPer" Text="Ver" >
                                                     <ControlStyle CssClass="btn btn-sm btn-success "/>

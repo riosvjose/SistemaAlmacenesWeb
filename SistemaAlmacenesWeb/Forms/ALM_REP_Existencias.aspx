@@ -52,7 +52,7 @@
                                                 <asp:BoundField DataField="item" HeaderText="Item" />
                                                 <asp:BoundField DataField="existencia" HeaderText="Existencias" />
                                                 <asp:BoundField DataField="reserva" HeaderText="Reservados" />
-                                                <asp:BoundField DataField="saldo_real" HeaderText="Saldo Real" />                                            
+                                                <asp:BoundField DataField="saldo_real" HeaderText="Disponibles" />                                            
                                             </Columns>
                                             <PagerStyle CssClass="GridPager" Wrap="True" />
                                             <SelectedRowStyle BackColor="#008A8C" ForeColor="White" />

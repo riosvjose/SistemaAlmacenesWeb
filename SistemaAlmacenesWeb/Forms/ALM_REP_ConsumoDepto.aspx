@@ -89,7 +89,7 @@
                                         <asp:GridView ID="gvConsumoDepto" runat="server" CssClass="table table-striped table-bordered table-hover input-sm" AutoGenerateColumns="False" PageSize="15" >
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Nro."><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-                                                <asp:BoundField DataField="nombre_depto" HeaderText="Departamento"/>
+                                                <asp:BoundField DataField="nombre_depto" HeaderText="Subdepartamento"/>
                                                 <asp:BoundField DataField="costo_total" HeaderText="Costo Total"/>
                                             </Columns>
                                             <PagerStyle CssClass="GridPager" Wrap="True" />
